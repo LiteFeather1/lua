@@ -5,9 +5,9 @@ public class Witch : MonoBehaviour
     [Header("Moviment")]
     [SerializeField] private float _maxSpeed;
     [SerializeField] private CompositeValue _acceleration;
+    private float _initialAcceleration;
     [SerializeField] private Vector2 _decelerationRange = new(.95f, .75f);
     [SerializeField] private float _accelerationMaxForRange = 50f;
-    private float _deceleration;
     private Vector2 _inputDirection;
 
     [Header("Components")]
@@ -15,7 +15,8 @@ public class Witch : MonoBehaviour
 
     private void Awake()
     {
-        _deceleration = _decelerationRange.x;
+        _rb.drag = _decelerationRange.x;
+        _initialAcceleration = _acceleration.Value;
     }
 
     private void Update()
@@ -28,20 +29,22 @@ public class Witch : MonoBehaviour
         float x = _inputDirection.x * _acceleration.Value * Time.deltaTime;
         float y = _inputDirection.y * _acceleration.Value * Time.deltaTime;
         var velocity = _rb.velocity;
-        velocity.x += x;
         velocity.y += y;
-        velocity *= _deceleration;
-        if (Mathf.Abs(velocity.x) > _maxSpeed)
-            velocity.x = _maxSpeed * _inputDirection.x;
-        if (Mathf.Abs(velocity.y) > _maxSpeed)
-            velocity.y = _maxSpeed * _inputDirection.y;
-        _rb.velocity = velocity;
+        velocity.x += x;
+        if (Mathf.Sign(_inputDirection.x) == Mathf.Sign(_rb.velocity.x) 
+            && Mathf.Abs(_rb.velocity.x) > _maxSpeed)
+            velocity.x = 0f;
+        if (Mathf.Sign(_inputDirection.y) == Mathf.Sign(_rb.velocity.y) 
+            && Mathf.Abs(_rb.velocity.y) > _maxSpeed)
+            velocity.y = 0f;
+
+        _rb.AddForce(velocity, ForceMode2D.Force);
     }
 
     public void AddAccelerationMofifier(CompositeValueModifier mod)
     {
         _acceleration.AddModifier(mod);
-        float t = _acceleration.Value / _accelerationMaxForRange;
-        _deceleration = Mathf.Lerp(_decelerationRange.x, _decelerationRange.y, t);
+        float t = (_acceleration.Value - _initialAcceleration) / _accelerationMaxForRange;
+        _rb.drag = Mathf.Lerp(_decelerationRange.x, _decelerationRange.y, t);
     }
 }
