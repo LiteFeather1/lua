@@ -11,16 +11,29 @@ public class Gun : MonoBehaviour
     [Header("States")]
     [SerializeField] private CompositeValue _damage;
     [SerializeField] private CompositeValue _knockback;
-    [SerializeField] private float _bulletSpeed = 1f;
+    [SerializeField] private CompositeValue _bulletSpeed = new(1f);
+    [SerializeField] private CompositeValue _size = new(1f);
     [SerializeField] private int _bulletAmount = 1;
     [SerializeField] private float _separationPerBullet = 12.5f;
     [SerializeField] private int _burstAmount = 1;
     private int _rotationSign = 1;
     [SerializeField] private float _timeToCompleteShooting = .25f;
-    [SerializeField] private float _bounceAmount;
-    [SerializeField] private float _pierceAmount;
-    [SerializeField] private CompositeValue _size = new(1f);
+    [SerializeField] private int _bounceAmount;
+    [SerializeField] private int _pierceAmount;
     [SerializeField] private int _randomBulletAmount;
+
+    public CompositeValue Damage => _damage;    
+    public CompositeValue Knockback => _knockback;
+    public CompositeValue BulletSpeed => _bulletSpeed;
+    public CompositeValue Size => _size;
+
+    public void AddBulletAmount(int amount) => _bulletAmount += amount;
+    public void AddRandomBullet(int amount) => _randomBulletAmount += amount;
+    public void AddBurst(int amount) => _burstAmount += amount;
+    public void AddBounce(int amount) => _bounceAmount += amount;
+    public void AddPierce(int amount) => _pierceAmount += amount;
+
+    public System.Action<float> OnDamageAppplied;
 
     private void Awake()
     {
@@ -28,9 +41,9 @@ public class Gun : MonoBehaviour
         foreach (Bullet bullet in _bulletPool.Objects)
         {
             bullet.ReturnToPool += ReturnToPool;
+            bullet.Hitbox.OnDamageAppplied += DamageAppplied;
         }
         _bulletPool.ObjectCreated += ObjectCreated;
-
     }
 
     private void OnDestroy()
@@ -38,8 +51,14 @@ public class Gun : MonoBehaviour
         foreach (var bullet in _bulletPool.Objects)
         {
             bullet.ReturnToPool -= ReturnToPool;
+            bullet.Hitbox.OnDamageAppplied -= DamageAppplied;
         }
         _bulletPool.ObjectCreated -= ObjectCreated;
+    }
+
+    public void Shoot()
+    {
+        StartCoroutine(Shot_CO());
     }
 
     private void ObjectCreated(Bullet bullet)
@@ -52,9 +71,9 @@ public class Gun : MonoBehaviour
         _bulletPool.ReturnObject(bullet);
     }
 
-    public void Shoot()
+    public void DamageAppplied(float damage)
     {
-        StartCoroutine(Shot_CO());
+        OnDamageAppplied?.Invoke(damage);
     }
 
     private void ShootBullet(float angle)
@@ -65,7 +84,9 @@ public class Gun : MonoBehaviour
         bullet.transform.localScale = Vector3.one * _size.Value;
         bullet.gameObject.SetActive(true);
         bullet.Hitbox.SetDamage(_damage.Value);
-        bullet.Projectile.Shoot(_bulletSpeed, bullet.transform.right);
+        bullet.Hitbox.SetKnockback(_knockback.Value);
+        bullet.Projectile.Shoot(_bulletSpeed.Value, bullet.transform.right, 
+                                _pierceAmount, _bounceAmount);
     }
 
     private IEnumerator Shot_CO()

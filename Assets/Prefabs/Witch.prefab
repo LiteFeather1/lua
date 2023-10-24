@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5155081586467621625}
   - component: {fileID: 1307456679637955763}
+  - component: {fileID: 6948465981988686169}
   - component: {fileID: 6431089900240576536}
   - component: {fileID: 6244824650771415616}
   - component: {fileID: 5435065137700811392}
@@ -80,14 +81,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de37cf5f04f39234184d71cb06a37f0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: {fileID: 0}
   _maxSpeed: 7.5
   _acceleration:
     _baseValue: 100
   _decelerationRange: {x: 3, y: 10}
   _accelerationMaxForRange: 1000
   _gun: {fileID: 6431089900240576536}
-  _shootTime: 1
+  _shootTime:
+    _baseValue: 1
+  _chanceToLifeSteal:
+    _baseValue: 0.01
+  _lifeStealPercent:
+    _baseValue: 0.1
   _rb: {fileID: 6244824650771415616}
+--- !u!114 &6948465981988686169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7450378837478392003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc5167e123b18d04487b8f5de1ae4f67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 0
+  _shield: 0
+  _defence:
+    _baseValue: 10
 --- !u!114 &6431089900240576536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,11 +123,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7874cb6ed1bb0124cbfc93f4d8ab364b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletSpeed: 2
   _firePoint: {fileID: 1315096798156018825}
   _bulletPool:
     _object: {fileID: 5908951068596790919, guid: b391f4e020d7a56478086c94bdc5dc07, type: 3}
     _initialPoolSize: 10
+  _damage:
+    _baseValue: 10
+  _knockback:
+    _baseValue: 0
+  _bulletSpeed:
+    _baseValue: 1
+  _size:
+    _baseValue: 1
+  _bulletAmount: 1
+  _separationPerBullet: 12.5
+  _burstAmount: 1
+  _timeToCompleteShooting: 0.25
+  _bounceAmount: 0
+  _pierceAmount: 0
+  _randomBulletAmount: 0
 --- !u!50 &6244824650771415616
 Rigidbody2D:
   serializedVersion: 4

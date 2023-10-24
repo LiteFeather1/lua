@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Health : MonoBehaviour, IDamageable
 {
-    [SerializeField] private float _maxHealth;
-    private float _health;
+    [SerializeField] protected float _maxHealth;
+    protected float _health;
 
     public float MaxHP => _maxHealth;
     public float HP => _health;
@@ -15,23 +15,23 @@ public class Health : MonoBehaviour, IDamageable
         _health = _maxHealth;    
     }
 
-    public bool TakeDamage(float damage, IDamageEffect damageEffect)
+    public virtual bool TakeDamage(float damage)
     {
         _health -= damage;
-        if (_health < 0 )
+        if (_health < 0f)
         {
+            _health = 0f;
             Died?.Invoke();
             return true;
         }
 
-        if (damageEffect != null)
-        {
-            if (damageEffect.Chance < Random.value)
-            {
-
-            }
-        }
-
         return false;
-    }   
+    }  
+    
+    public void Heal(float heal)
+    {
+        _health += heal;
+        if (_health > _maxHealth)
+            _health = _maxHealth;
+    }
 }

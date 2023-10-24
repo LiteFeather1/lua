@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 namespace LTFUtils
@@ -66,7 +67,7 @@ namespace LTFUtils
             object_.transform.SetParent(_poolParent.transform);
             ObjectCreated?.Invoke(object_);
             object_.name += _inactiveObjects.Count;
-            Objects.Add(_object);
+            Objects.Add(object_);
             return object_;
         }
 

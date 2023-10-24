@@ -15,7 +15,7 @@ public class Projectile : MonoBehaviour
 
     public Action Deactivated { get; set; }
 
-    public void Update()
+    private void Update()
     {
         _elapsedTime += Time.deltaTime;
         if (_elapsedTime >= _time)
@@ -35,7 +35,6 @@ public class Projectile : MonoBehaviour
         _pierce = pierce;
         _bounce = bounce;
     }
-
 
     private void Deactivate()
     {

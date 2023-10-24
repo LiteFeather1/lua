@@ -80,6 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 0
+  _knockBack: 0
 --- !u!50 &4883590745908279346
 Rigidbody2D:
   serializedVersion: 4

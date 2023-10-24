@@ -11,5 +11,4 @@ public class GameManager : MonoBehaviour
         Inputs = new();
         Inputs.Enable();
     }
-
 }

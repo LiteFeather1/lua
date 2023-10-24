@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Witch : MonoBehaviour
 {
+    [SerializeField] private HealthPlayer _health;
+
     [Header("Moviment")]
     [SerializeField] private float _maxSpeed;
     [SerializeField] private CompositeValue _acceleration;
@@ -12,16 +14,33 @@ public class Witch : MonoBehaviour
 
     [Header("Shoot")]
     [SerializeField] private Gun _gun;
-    [SerializeField] private float _shootTime = 1f;
+    [SerializeField] private CompositeValue _shootTime = new(1f);
     private float _elaspedShootTime;
+
+    [Header("Life Steal")]
+    [SerializeField] private CompositeValue _chanceToLifeSteal = new(.01f);
+    [SerializeField] private CompositeValue _lifeStealPercent = new(.1f);
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D _rb;
+
+    public HealthPlayer Health => _health;
+
+    public Gun Gun => _gun;
+    public CompositeValue ShootTime => _shootTime;
+
+    public CompositeValue ChanceToLifeSteal => _chanceToLifeSteal;
+    public CompositeValue LifeStealPercent => _lifeStealPercent;
 
     private void Awake()
     {
         _rb.drag = _decelerationRange.x;
         _initialAcceleration = _acceleration.Value;
+    }
+
+    private void OnEnable()
+    {
+        _gun.OnDamageAppplied += TryLifeSteal;
     }
 
     private void Update()
@@ -30,11 +49,16 @@ public class Witch : MonoBehaviour
 
         _elaspedShootTime += Time.deltaTime;
 
-        if (_elaspedShootTime >= _shootTime)
+        if (_elaspedShootTime >= _shootTime.Value)
         {
             _elaspedShootTime = 0f;
             _gun.Shoot();
         }
+    }
+
+    private void OnDisable()
+    {
+        _gun.OnDamageAppplied -= TryLifeSteal;
     }
 
     private void FixedUpdate()
@@ -59,5 +83,13 @@ public class Witch : MonoBehaviour
         _acceleration.AddModifier(mod);
         float t = (_acceleration.Value - _initialAcceleration) / _accelerationMaxForRange;
         _rb.drag = Mathf.Lerp(_decelerationRange.x, _decelerationRange.y, t);
+    }
+
+    private void TryLifeSteal(float damage)
+    {
+        if (Random.value < _chanceToLifeSteal.Value)
+        {
+            _health.Heal(damage * _lifeStealPercent.Value);
+        }
     }
 }
