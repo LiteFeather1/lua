@@ -10,6 +10,11 @@ public class Witch : MonoBehaviour
     [SerializeField] private float _accelerationMaxForRange = 50f;
     private Vector2 _inputDirection;
 
+    [Header("Shoot")]
+    [SerializeField] private Gun _gun;
+    [SerializeField] private float _shootTime = 1f;
+    private float _elaspedShootTime;
+
     [Header("Components")]
     [SerializeField] private Rigidbody2D _rb;
 
@@ -22,6 +27,14 @@ public class Witch : MonoBehaviour
     private void Update()
     {
         _inputDirection = GameManager.Inputs.Player.Moviment.ReadValue<Vector2>().normalized;
+
+        _elaspedShootTime += Time.deltaTime;
+
+        if (_elaspedShootTime >= _shootTime)
+        {
+            _elaspedShootTime = 0f;
+            _gun.Shoot();
+        }
     }
 
     private void FixedUpdate()
