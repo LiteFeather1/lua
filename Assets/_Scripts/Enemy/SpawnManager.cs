@@ -38,18 +38,16 @@ public class SpawnManager : MonoBehaviour
         _spawnTime = spawnTime + offSet;
     }
 
-    private void Update()
+    public void Tick(float t, float tClamped)
     {
         _elapsedTime += Time.deltaTime;
         if (_elapsedTime >= _spawnTime)
         {
             _elapsedTime = 0f;
-            var tClamped = GameManager.Instance.TClamped();
             var spawnTime = Random.Range(_minSpawnTimeRange.Evaluate(tClamped), _maxSpawnTimeRange.Evaluate(tClamped));
             var offSetTime = _spawnTimeOffset.Evaluate(tClamped);
             _spawnTime = spawnTime + Random.Range(-offSetTime, offSetTime);
 
-            var t = GameManager.Instance.T();
             var minBurstAmount = _minEnemiesPerBurstRange.Evaluate(t);
             var maxBurstAmount = _maxEnemiesPerBurstRange.Evaluate(t);
             var offSetBurstT = _enemiesPerBurstOffset.Evaluate(t);

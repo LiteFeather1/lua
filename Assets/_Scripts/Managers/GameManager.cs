@@ -8,6 +8,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float _playTime;
     [SerializeField] private float _timeForMaxDifficult = 360f;
 
+    [Header("Managers")]
+    [SerializeField] private SpawnManager _spawnManager;
+    [SerializeField] private UIManager _uiManager;
+
     public static GameManager Instance { get; private set; }
     public static InputMapping Inputs { get; private set; }
 
@@ -24,6 +28,14 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         _playTime += Time.deltaTime;
+
+        var t = _playTime / _timeForMaxDifficult;
+        var tClamped = t;
+        if (tClamped > 1f)
+            tClamped = 1f;
+
+        _spawnManager.Tick(t, tClamped);
+        _uiManager.UpdateTime(_playTime);
     }
 
     public float T()
