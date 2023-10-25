@@ -599,7 +599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _directionVelocity: {x: 1, y: 0}
-  _deltaSpeed: {x: 0, y: 1}
+  _deltaSpeed: {x: 0, y: 0.75}
   _camera: {fileID: 519420031}
   _subject: {fileID: 256337799807947317}
   _sr: {fileID: 441565107}
@@ -911,6 +911,14 @@ MonoBehaviour:
       _weight: 0.5
     - _object:
         _object: {fileID: 1743916010169902079, guid: 8fc8796755dbda349b2e0771845513f4, type: 3}
+        _initialPoolSize: 10
+      _weight: 0.5
+    - _object:
+        _object: {fileID: 1124217388555753815, guid: 9b1d73122d5d3ba409c4803812f65789, type: 3}
+        _initialPoolSize: 10
+      _weight: 0.5
+    - _object:
+        _object: {fileID: 1124217388555753815, guid: c36c7725324f0bb42a9b86707841f023, type: 3}
         _initialPoolSize: 10
       _weight: 0.5
   _maxEnemiesPerBurstRange: {x: 5, y: 25}
@@ -1665,7 +1673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _directionVelocity: {x: 1, y: 0}
-  _deltaSpeed: {x: 0, y: 1}
+  _deltaSpeed: {x: 0, y: 0.75}
   _camera: {fileID: 519420031}
   _subject: {fileID: 256337799807947317}
   _sr: {fileID: 1375221768}
