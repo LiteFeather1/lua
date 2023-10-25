@@ -67,7 +67,6 @@ namespace LTFUtils
             return objectToReturn;
         }
 
-        public T GetWeightedObjectObject() => GetWeightedObject().Object;
 
         public void RemoveObject(WeightedObject<T> objectToRemove)
         {

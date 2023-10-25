@@ -13,6 +13,6 @@ public class EnemyChase : Enemy
     public override void Spawn(float t)
     {
         base.Spawn(t);
-        _movement.SetSpeed(Mathf.Lerp(_speedRange.x, _speedRange.y, t));
+        _movement.SetSpeed(_speedRange.Evaluate(t));
     }
 }

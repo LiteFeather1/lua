@@ -82,7 +82,9 @@ public class Witch : MonoBehaviour
     {
         _acceleration.AddModifier(mod);
         float t = (_acceleration.Value - _initialAcceleration) / _accelerationMaxForRange;
-        _rb.drag = Mathf.Lerp(_decelerationRange.x, _decelerationRange.y, t);
+        if (t > 1f)
+            t = 1f;
+        _rb.drag = _decelerationRange.Evaluate(t);
     }
 
     private void TryLifeSteal(float damage)

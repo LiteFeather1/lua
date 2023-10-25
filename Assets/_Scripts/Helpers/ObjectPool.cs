@@ -12,6 +12,8 @@ namespace LTFUtils
         private readonly Stack<T> _inactiveObjects = new();
         public HashSet<T> Objects { get; private set; } = new();
         private GameObject _poolParent;
+
+        public T Object => _object;
         public GameObject PoolParent => _poolParent;
 
         public System.Action<T> ObjectCreated { get; set; }
