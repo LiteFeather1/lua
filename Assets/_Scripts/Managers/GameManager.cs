@@ -28,10 +28,14 @@ public class GameManager : MonoBehaviour
 
     public float T()
     {
+        return _playTime / _timeForMaxDifficult;
+    }
+
+    public float TClamped()
+    {
         float t = _playTime / _timeForMaxDifficult;
         if (t > 1f)
             t = 1f;
         return t;
     }
-
 }

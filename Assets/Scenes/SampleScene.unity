@@ -399,6 +399,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &517397749
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 517397750}
+  m_Layer: 0
+  m_Name: Spawn2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &517397750
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517397749}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 682165028}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,7 +682,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 850318395}
+  - {fileID: 517397750}
   m_Father: {fileID: 1886159767}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &682165029
@@ -676,10 +709,14 @@ MonoBehaviour:
         _object: {fileID: 1743916010169902079, guid: 8fc8796755dbda349b2e0771845513f4, type: 3}
         _initialPoolSize: 10
       _weight: 0.5
-  _enemiesPerBurstRange: {x: 5, y: 10}
-  _spawnTime: 1
-  _spawnX: 2
-  _spawnYRange: 0.8
+  _maxEnemiesPerBurstRange: {x: 5, y: 25}
+  _minEnemiesPerBurstRange: {x: 2, y: 10}
+  _enemiesPerBurstOffset: {x: 2, y: 10}
+  _maxSpawnTimeRange: {x: 12.5, y: 0.75}
+  _minSpawnTimeRange: {x: 7.5, y: 0.25}
+  _spawnTimeOffset: {x: 2.5, y: 0.125}
+  _spawn1: {fileID: 850318395}
+  _spawn2: {fileID: 517397750}
 --- !u!1001 &807412420
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -796,6 +833,37 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6013203024223714052, guid: 74858273c4d2e534aa4566e4a2296590, type: 3}
   m_PrefabInstance: {fileID: 807412420}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &850318394
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 850318395}
+  m_Layer: 0
+  m_Name: Spawn1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &850318395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850318394}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2, y: 0.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 682165028}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &956265097
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1559,6 +1627,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _witch: {fileID: 256337799807947314}
+  _playTime: 0
+  _timeForMaxDifficult: 360
 --- !u!4 &1886159767
 Transform:
   m_ObjectHideFlags: 0
