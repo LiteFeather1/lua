@@ -14,8 +14,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private Vector2 _spawnTimeOffset;
     private float _spawnTime;
     private float _elapsedTime;
-    [SerializeField] private Transform _spawn1;
-    [SerializeField] private Transform _spawn2;
+    [SerializeField] private BoxCollider2D _spawnArea;
 
     private void Start()
     {
@@ -34,7 +33,7 @@ public class SpawnManager : MonoBehaviour
         }
 
         var offSet = Random.Range(-_spawnTimeOffset.x, _spawnTimeOffset.x);
-        var spawnTime = Random.Range(_minSpawnTimeRange.x, _maxSpawnTimeRange.x);
+        var spawnTime = Random.Range(_minSpawnTimeRange.x, _maxSpawnTimeRange.x) / 2f;
         _spawnTime = spawnTime + offSet;
     }
 
@@ -55,8 +54,8 @@ public class SpawnManager : MonoBehaviour
             for (int i = 0; i < spawnAmount; i++)
             {
                 var enemy = _weightedPoolOfEnemies.GetWeightedObject().Object.GetObject();
-                var randX = Random.Range(_spawn1.localPosition.x, _spawn2.localPosition.x);
-                var randY = Random.Range(_spawn1.localPosition.y, _spawn2.localPosition.y);
+                var randX = Random.Range(_spawnArea.bounds.min.x, _spawnArea.bounds.max.x);
+                var randY = Random.Range(_spawnArea.bounds.min.y, _spawnArea.bounds.max.y);
                 enemy.transform.localPosition = new(randX, randY);
                 enemy.Spawn(tClamped);
             }
@@ -72,11 +71,5 @@ public class SpawnManager : MonoBehaviour
     private void ReturnToPool(Enemy enemy)
     {
         _enemyToPool[enemy.Name].ReturnObject(enemy);
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(_spawn1.localPosition, _spawn2.localPosition);
     }
 }

@@ -172,7 +172,12 @@ MonoBehaviour:
     _baseValue: 0.01
   _lifeStealPercent:
     _baseValue: 0.1
+  _invulnerabilityDuration: 0
+  _blinkAmount: 0
+  _durationBetweenBlinks: 0
   _rb: {fileID: 6244824650771415616}
+  _sr: {fileID: 5435065137700811392}
+  _hurtBox: {fileID: 2089837871041214972}
 --- !u!114 &6948465981988686169
 MonoBehaviour:
   m_ObjectHideFlags: 0
