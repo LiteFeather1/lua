@@ -13,6 +13,7 @@ public class HealthPlayer : Health
         if (_shield > 0)
         {
             _shield--;
+            OnDamage?.Invoke();
             return false;   
         }
 

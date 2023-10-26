@@ -8,7 +8,8 @@ public class Health : MonoBehaviour, IDamageable
     public float MaxHP => _maxHealth;
     public float HP => _health;
 
-    public System.Action OnDeath {  get; set; }
+    public System.Action OnDamage { get; set; }
+    public System.Action OnDeath { get; set; }
 
     public void Start()
     {
@@ -18,6 +19,7 @@ public class Health : MonoBehaviour, IDamageable
     public virtual bool TakeDamage(float damage)
     {
         _health -= damage;
+        OnDamage?.Invoke();
         if (_health < 0f)
         {
             _health = 0f;

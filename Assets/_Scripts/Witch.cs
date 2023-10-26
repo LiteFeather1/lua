@@ -21,8 +21,15 @@ public class Witch : MonoBehaviour
     [SerializeField] private CompositeValue _chanceToLifeSteal = new(.01f);
     [SerializeField] private CompositeValue _lifeStealPercent = new(.1f);
 
+    [Header("Blink on Damage")]
+    [SerializeField] private float _invulnerabilityDuration;
+    [SerializeField] private int _blinkAmount;
+    [SerializeField] private float _durationBetweenBlinks;
+
     [Header("Components")]
     [SerializeField] private Rigidbody2D _rb;
+    [SerializeField] private SpriteRenderer _sr;
+    [SerializeField] private Collider2D _hurtBox;
 
     public HealthPlayer Health => _health;
 
