@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class Witch : MonoBehaviour
@@ -23,8 +25,10 @@ public class Witch : MonoBehaviour
 
     [Header("Blink on Damage")]
     [SerializeField] private float _invulnerabilityDuration;
+    private WaitForSeconds _waitInvulnerability;
     [SerializeField] private int _blinkAmount;
     [SerializeField] private float _durationBetweenBlinks;
+    [SerializeField] private Color _damagedColour = Color.red;
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D _rb;
@@ -43,11 +47,13 @@ public class Witch : MonoBehaviour
     {
         _rb.drag = _decelerationRange.x;
         _initialAcceleration = _acceleration.Value;
+        _waitInvulnerability = new(_invulnerabilityDuration);
     }
 
     private void OnEnable()
     {
         _gun.OnDamageAppplied += TryLifeSteal;
+        _health.OnDamage += OnDamage;
     }
 
     private void Update()
@@ -66,6 +72,7 @@ public class Witch : MonoBehaviour
     private void OnDisable()
     {
         _gun.OnDamageAppplied -= TryLifeSteal;
+        _health.OnDamage += OnDamage;
     }
 
     private void FixedUpdate()
@@ -100,5 +107,47 @@ public class Witch : MonoBehaviour
         {
             _health.Heal(damage * _lifeStealPercent.Value);
         }
+    }
+
+    private void OnDamage()
+    {
+        _hurtBox.enabled = false;
+        StartCoroutine(Blink());
+        StartCoroutine(Invulnerability());
+    }
+
+    private IEnumerator Blink()
+    {
+        _sr.color = _damagedColour;
+        var clearColour = _damagedColour;
+        clearColour.a = 0f;
+        float eTime = 0f;
+
+        for (int i = 0; i < _blinkAmount; i++)
+        {
+            while (eTime < _durationBetweenBlinks) 
+            {
+                float t = eTime / _durationBetweenBlinks;
+                _sr.color = Color.Lerp(_damagedColour, clearColour, t);
+                eTime += Time.deltaTime; 
+                yield return null;
+            }
+
+            while (eTime > 0f)
+            {
+                float t = eTime / _durationBetweenBlinks;
+                _sr.color = Color.Lerp(_damagedColour, clearColour, t);
+                eTime -= Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        _sr.color = Color.white;
+    }
+
+    private IEnumerator Invulnerability()
+    {
+        yield return _waitInvulnerability;
+        _hurtBox.enabled = true;
     }
 }

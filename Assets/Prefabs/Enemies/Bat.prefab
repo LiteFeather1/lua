@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4557867895462103551}
   - component: {fileID: 1124217388555753815}
-  - component: {fileID: 1599531401289546909}
   - component: {fileID: 3566666758495182051}
   - component: {fileID: 3687588919383611242}
   m_Layer: 7
@@ -52,22 +51,9 @@ MonoBehaviour:
   _speedRange: {x: 0.25, y: 2}
   _healthRange: {x: 1, y: 1}
   _damageRange: {x: 1, y: 10}
-  _health: {fileID: 1599531401289546909}
+  _health: {fileID: 7506333432508400211}
   _hitBox: {fileID: 1580534110986226837}
   _movement: {fileID: 3566666758495182051}
---- !u!114 &1599531401289546909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3823027903207645631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f4800cc294ebec49aa06d0c2bb8691f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 100
 --- !u!114 &3566666758495182051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,6 +133,7 @@ GameObject:
   - component: {fileID: 7852216611036758076}
   - component: {fileID: 1580534110986226837}
   - component: {fileID: 8033920046837509531}
+  - component: {fileID: 7506333432508400211}
   m_Layer: 8
   m_Name: Hit_Box
   m_TagString: Untagged
@@ -228,3 +215,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.12, y: 0.12}
   m_EdgeRadius: 0
+--- !u!114 &7506333432508400211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7444254118816387904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f4800cc294ebec49aa06d0c2bb8691f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100

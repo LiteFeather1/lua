@@ -172,9 +172,10 @@ MonoBehaviour:
     _baseValue: 0.01
   _lifeStealPercent:
     _baseValue: 0.1
-  _invulnerabilityDuration: 0
-  _blinkAmount: 0
-  _durationBetweenBlinks: 0
+  _invulnerabilityDuration: 0.5
+  _blinkAmount: 4
+  _durationBetweenBlinks: 0.0625
+  _damagedColour: {r: 1, g: 0.3915094, b: 0.3915094, a: 1}
   _rb: {fileID: 6244824650771415616}
   _sr: {fileID: 5435065137700811392}
   _hurtBox: {fileID: 2089837871041214972}
