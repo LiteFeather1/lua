@@ -26,8 +26,8 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IDragHandler, IPointer
 
             _originalParent = transform.parent;
             transform.SetParent(transform.parent.parent);
-
             _canvasGroup.blocksRaycasts = false;
+            OnCardUnHovered?.Invoke();
         }
     }
 

@@ -10,8 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4557867895462103551}
   - component: {fileID: 1124217388555753815}
+  - component: {fileID: 7250449085420806086}
   - component: {fileID: 3566666758495182051}
   - component: {fileID: 3687588919383611242}
+  - component: {fileID: 7672098373207395047}
   m_Layer: 7
   m_Name: Bat
   m_TagString: Untagged
@@ -49,11 +51,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Bat
   _speedRange: {x: 0.25, y: 2}
-  _healthRange: {x: 1, y: 1}
+  _healthRange: {x: 1, y: 5}
   _damageRange: {x: 1, y: 10}
-  _health: {fileID: 7506333432508400211}
+  _health: {fileID: 7250449085420806086}
   _hitBox: {fileID: 1580534110986226837}
   _movement: {fileID: 3566666758495182051}
+--- !u!114 &7250449085420806086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3823027903207645631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f4800cc294ebec49aa06d0c2bb8691f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
 --- !u!114 &3566666758495182051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,6 +137,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &7672098373207395047
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3823027903207645631}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.14, y: 0.14}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.12, y: 0.12}
+  m_EdgeRadius: 0
 --- !u!1 &7444254118816387904
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +193,6 @@ GameObject:
   - component: {fileID: 7852216611036758076}
   - component: {fileID: 1580534110986226837}
   - component: {fileID: 8033920046837509531}
-  - component: {fileID: 7506333432508400211}
   m_Layer: 8
   m_Name: Hit_Box
   m_TagString: Untagged
@@ -215,16 +274,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.12, y: 0.12}
   m_EdgeRadius: 0
---- !u!114 &7506333432508400211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7444254118816387904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f4800cc294ebec49aa06d0c2bb8691f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 100

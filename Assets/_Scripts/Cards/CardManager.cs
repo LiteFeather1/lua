@@ -1,4 +1,5 @@
 using LTFUtils;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,7 +17,8 @@ public class CardManager : MonoBehaviour
 
     [Header("Cards")]
     [SerializeField] private float _cardSize = 32f;
-    [SerializeField] private List<CardUIPowerUp> _cardsToDrawn;
+    [SerializeField] private CardUIPowerUp[] _cards;
+    private List<CardUIPowerUp> _cardsToDraw;
     private List<CardUIPowerUp> _drawnCards;
     [SerializeField] private RectTransform _cardArea;
     [SerializeField] private Image i_drawer;
@@ -26,23 +28,27 @@ public class CardManager : MonoBehaviour
     [SerializeField] private float _spacingBetweenCards;
     private Vector2[] _cardVelocity;
 
-    public System.Action<CardUIPowerUp> OnCardPlayed { get; set; }    
+    public CardUIPowerUp[] Cards => _cards;
+
+    public Action CardHovered { get; set; }
+    public Action CardUnHovered { get; set; }
 
     private void Awake()
     {
         _drawnCards = new();
-        _cardVelocity = new Vector2[_cardsToDrawn.Count];
+        _cardVelocity = new Vector2[_cards.Length];
     }
 
     private void OnEnable()
     {
-        for (int i = 0; i < _cardsToDrawn.Count; i++)
+        for (int i = 0; i < _cards.Length; i++)
         {
-            var card = _cardsToDrawn[i];
+            var card = _cards[i];
             card.OnPickedUp += CardPickedUp;
             card.OnDropped += CardDropped;
             card.OnUsed += OnUsed;
         }
+        _cardsToDraw = new(_cards);
     }
 
     private void Start()
@@ -61,9 +67,9 @@ public class CardManager : MonoBehaviour
 
     private void OnDisable()
     {
-        for (int i = 0; i < _cardsToDrawn.Count; i++)
+        for (int i = 0; i < _cards.Length; i++)
         {
-            var card = _cardsToDrawn[i];
+            var card = _cards[i];
             card.OnPickedUp -= CardPickedUp;
             card.OnDropped -= CardDropped;
             card.OnUsed -= OnUsed;
@@ -72,7 +78,7 @@ public class CardManager : MonoBehaviour
 
     private void DrawCards()
     {
-        if (_cardsToDrawn.Count == 0)
+        if (_cardsToDraw.Count == 0)
             return;
 
         _elapsedTimeToDrawCard += Time.deltaTime;
@@ -80,8 +86,8 @@ public class CardManager : MonoBehaviour
         if (_elapsedTimeToDrawCard > _timeToDrawCard.Value)
         {
             _elapsedTimeToDrawCard = 0f;
-            var card = _cardsToDrawn[0];
-            _cardsToDrawn.RemoveAt(0);
+            var card = _cardsToDraw[0];
+            _cardsToDraw.RemoveAt(0);
             var weightedObject = _powerUps.GetWeightedObject();
             var powerUp = weightedObject.Object;
             if (powerUp.IncreasePickedAmount())
@@ -122,6 +128,6 @@ public class CardManager : MonoBehaviour
     {
         card.gameObject.SetActive(false);
         _drawnCards.Remove(card);
-        _cardsToDrawn.Add(card);
+        _cardsToDraw.Add(card);
     }
 }

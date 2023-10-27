@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 990078718385039292}
   - component: {fileID: 8996073055895518969}
   - component: {fileID: 6383393513515364969}
-  - component: {fileID: 5939797102556673703}
   m_Layer: 8
   m_Name: Hit_Box
   m_TagString: Untagged
@@ -93,19 +92,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.12, y: 0.12}
   m_EdgeRadius: 0
---- !u!114 &5939797102556673703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 59116337984571462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f4800cc294ebec49aa06d0c2bb8691f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 100
 --- !u!1 &455869738570211940
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,8 +102,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3380036019576511084}
   - component: {fileID: 1743916010169902079}
+  - component: {fileID: 8930174284517584093}
   - component: {fileID: 2810869468874211039}
   - component: {fileID: 109992122801125493}
+  - component: {fileID: -8276200113158299438}
   m_Layer: 7
   m_Name: Pumpkin
   m_TagString: Untagged
@@ -155,11 +143,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Pumpkin
   _speedRange: {x: 0.25, y: 2}
-  _healthRange: {x: 1, y: 1}
+  _healthRange: {x: 1, y: 5}
   _damageRange: {x: 1, y: 10}
-  _health: {fileID: 5939797102556673703}
+  _health: {fileID: 8930174284517584093}
   _hitBox: {fileID: 8996073055895518969}
   _movement: {fileID: 2810869468874211039}
+--- !u!114 &8930174284517584093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455869738570211940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f4800cc294ebec49aa06d0c2bb8691f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
 --- !u!114 &2810869468874211039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,3 +227,48 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &-8276200113158299438
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455869738570211940}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.14, y: 0.12}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.12, y: 0.12}
+  m_EdgeRadius: 0

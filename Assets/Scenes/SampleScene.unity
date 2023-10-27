@@ -238,7 +238,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133767065}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -2643,7 +2643,7 @@ GameObject:
   - component: {fileID: 1844759270}
   - component: {fileID: 1844759271}
   m_Layer: 5
-  m_Name: Cards
+  m_Name: Card_Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2693,7 +2693,7 @@ MonoBehaviour:
     - _object: {fileID: 11400000, guid: 98a476555a75c7b41aed429cd9c33dc1, type: 2}
       _weight: 0.1
   _cardSize: 32
-  _cardsToDrawn:
+  _cards:
   - {fileID: 1769923820}
   - {fileID: 1991813464}
   - {fileID: 360723392}
@@ -2717,7 +2717,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1886159766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2731,10 +2731,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _witch: {fileID: 256337799807947314}
+  _slowDownScale: 0.375
   _playTime: 0
   _timeForMaxDifficult: 360
   _spawnManager: {fileID: 682165029}
   _uiManager: {fileID: 1699692670}
+  _cardManager: {fileID: 1844759271}
 --- !u!4 &1886159767
 Transform:
   m_ObjectHideFlags: 0
@@ -3048,7 +3050,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7450378837478392003, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

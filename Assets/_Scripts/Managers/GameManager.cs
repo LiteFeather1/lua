@@ -5,17 +5,20 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Witch _witch;
 
     [Header("Settings")]
+    [SerializeField] private float _slowDownScale = .25f;
     [SerializeField] private float _playTime;
     [SerializeField] private float _timeForMaxDifficult = 360f;
 
     [Header("Managers")]
     [SerializeField] private SpawnManager _spawnManager;
     [SerializeField] private UIManager _uiManager;
+    [SerializeField] private CardManager _cardManager;
 
     public static GameManager Instance { get; private set; }
     public static InputMapping Inputs { get; private set; }
 
     public Witch Witch => _witch;
+    public CardManager CardManager => _cardManager;
 
 
     private void Awake()
@@ -23,6 +26,16 @@ public class GameManager : MonoBehaviour
         Instance = this;
         Inputs = new();
         Inputs.Enable();
+    }
+
+    private void OnEnable()
+    {
+        for (int i = 0; i < _cardManager.Cards.Length; i++)
+        {
+            var card = _cardManager.Cards[i];
+            card.OnCardHovered += SlowDown;
+            card.OnCardUnHovered += UnSlowDown;
+        }
     }
 
     private void Update()
@@ -38,6 +51,16 @@ public class GameManager : MonoBehaviour
         _uiManager.UpdateTime(_playTime);
     }
 
+    private void OnDisable()
+    {
+        for (int i = 0; i < _cardManager.Cards.Length; i++)
+        {
+            var card = _cardManager.Cards[i];
+            card.OnCardHovered += SlowDown;
+            card.OnCardUnHovered += UnSlowDown;
+        }
+    }
+
     public float T()
     {
         return _playTime / _timeForMaxDifficult;
@@ -49,5 +72,15 @@ public class GameManager : MonoBehaviour
         if (t > 1f)
             t = 1f;
         return t;
+    }
+
+    private void SlowDown()
+    {
+        Time.timeScale = _slowDownScale;
+    }
+
+    private void UnSlowDown()
+    {
+        Time.timeScale = 1f;
     }
 }
