@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile : MonoBehaviour, IDeactivatable
 {
     [SerializeField] private int _pierce;
     [SerializeField] private int _bounce;
@@ -23,6 +23,7 @@ public class Projectile : MonoBehaviour
             Deactivate();
         }
     }
+
     public void Shoot(float speed, Vector2 direction)
     {
         _rb.velocity = direction * speed;
@@ -36,7 +37,7 @@ public class Projectile : MonoBehaviour
         _bounce = bounce;
     }
 
-    private void Deactivate()
+    public void Deactivate()
     {
         _rb.velocity = Vector2.zero;
         _elapsedTime = 0f;

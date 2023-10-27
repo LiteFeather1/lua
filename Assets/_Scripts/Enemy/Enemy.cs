@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour, IDeactivatable
 {
     [field: SerializeField] public string Name { get; set; }
 
@@ -37,8 +37,14 @@ public abstract class Enemy : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    public void Deactivate()
+    {
+        Died();
+    }
+
     protected void Died()
     {
         gameObject.SetActive(false);
+        ReturnToPool?.Invoke(this);
     }
 }
