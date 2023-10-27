@@ -8,7 +8,6 @@ public abstract class CardUIDropContainer : CardUi, IDropHandler
     {
         if (eventData.pointerDrag.TryGetComponent(out CardUIPowerUp card))
         {
-            print("Hello");
             UseCard(card);
             CardUsed?.Invoke();
         }

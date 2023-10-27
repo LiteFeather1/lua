@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c89b2989f47df384c84e53af4d09f217, type: 3}
-  m_Name: PowerUpDamage
+  m_Script: {fileID: 11500000, guid: 56a6669a4e86bbc40ad80bb8ea49b31c, type: 3}
+  m_Name: Power_Up_Life_Steal_Chance
   m_EditorClassIdentifier: 
-  _name: Damage
-  _effect: Increase Bullet Damage by $
+  _name: Life Steal Chance
+  _effect: Increase Chance to Heal on Damage by $
   _rarity: {fileID: 11400000, guid: 639bbac6bf1db91429066dc023f24633, type: 2}
-  _limit: 0
+  _limit: 40
   _icon: {fileID: 0}
   _modifier:
-    _value: 1
-    _type: 100
+    _value: 0.025
+    _type: 200

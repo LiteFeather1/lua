@@ -34,9 +34,9 @@ namespace LTFUtils
                 _sumOfWeights += object_.Weight;
         }
 
-        public Weighter(List<WeightedObject<T>> objects)
+        public Weighter(IList<WeightedObject<T>> objects)
         {
-            _objects = objects;
+            _objects = new(objects);
             _isDirty = true;
             _sumOfWeights = SumOfWeights;
         }

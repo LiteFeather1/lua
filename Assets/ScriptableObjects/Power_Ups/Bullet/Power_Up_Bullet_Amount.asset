@@ -9,14 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c89b2989f47df384c84e53af4d09f217, type: 3}
-  m_Name: PowerUpDamage
+  m_Script: {fileID: 11500000, guid: f170bcbe1d14d8344961f9c9c086723e, type: 3}
+  m_Name: Power_Up_Bullet_Amount
   m_EditorClassIdentifier: 
-  _name: Damage
-  _effect: Increase Bullet Damage by $
+  _name: Bullet Amount
+  _effect: Increase Amount Of Bullets Shot by $
   _rarity: {fileID: 11400000, guid: 639bbac6bf1db91429066dc023f24633, type: 2}
   _limit: 0
   _icon: {fileID: 0}
-  _modifier:
-    _value: 1
-    _type: 100
+  _amount: 0

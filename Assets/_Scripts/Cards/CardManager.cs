@@ -2,6 +2,7 @@ using LTFUtils;
 using System;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +15,8 @@ public class CardManager : MonoBehaviour
     private float _elapsedTimeToDrawCard;
 
     [Header("Power Ups")]
-    [SerializeField] private Weighter<PowerUp> _powerUps;
+    [SerializeField] private PowerUp[] _startingPowerUps;
+    private Weighter<PowerUp> _weightedPowerUps;
 
     [Header("Cards")]
     [SerializeField] private float _cardSize = 32f;
@@ -60,12 +62,15 @@ public class CardManager : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < _powerUps.Count; i++)
+        var weightedObjects = new WeightedObject<PowerUp>[_startingPowerUps.Length];
+        for (int i = 0; i < _startingPowerUps.Length; i++)
         {
-            var powerUp = _powerUps.Objects[i].Object;
-            _powerUps.Objects[i].SetWeight(powerUp.Weight);
+            var powerUp = _startingPowerUps[i];
+            weightedObjects[i] = new(powerUp, powerUp.Weight);
             powerUp.Reset();
         }
+
+        _weightedPowerUps = new(weightedObjects);
     }
 
     private void Update()
@@ -97,10 +102,10 @@ public class CardManager : MonoBehaviour
             _elapsedTimeToDrawCard = 0f;
             var card = _cardsToDraw[0];
             _cardsToDraw.RemoveAt(0);
-            var weightedObject = _powerUps.GetWeightedObject();
+            var weightedObject = _weightedPowerUps.GetWeightedObject();
             var powerUp = weightedObject.Object;
             if (powerUp.IncreasePickedAmount())
-                _powerUps.RemoveObject(weightedObject);
+                _weightedPowerUps.RemoveObject(weightedObject);
             card.SetPowerUp(powerUp);
             card.transform.position = i_drawer.transform.position;
             _drawnCards.Add(card);

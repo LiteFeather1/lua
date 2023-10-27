@@ -2,10 +2,9 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler
+public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IDragHandler
 {
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private Image i_powerUp;
@@ -52,6 +51,9 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IPo
             OnCardUnHovered?.Invoke();
         }
     }
+
+    // Only used to voit the event system to know what is dragging
+    public void OnDrag(PointerEventData eventData) { }
 
     public void OnPointerUp(PointerEventData eventData)
     {

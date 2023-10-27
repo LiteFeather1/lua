@@ -11,8 +11,8 @@ public abstract class PowerUpModifier : PowerUp
             return _modifier.Type switch
             {
                 CompositeValueModifierType.Flat => $"+{_modifier.Value}",
-                CompositeValueModifierType.PercentAdditive => $"+{_modifier.Value}%",
-                CompositeValueModifierType.PercentMultiplier => $"+{_modifier}%",
+                CompositeValueModifierType.PercentAdditive => $"+{_modifier.Value * 100f:00}%",
+                CompositeValueModifierType.PercentMultiplier => $"+{_modifier.Value * 100f:00}%",
                 _ => ""
             };
         }

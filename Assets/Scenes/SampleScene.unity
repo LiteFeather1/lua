@@ -2860,10 +2860,23 @@ MonoBehaviour:
   _root: {fileID: 1699692668}
   _timeToDrawCard:
     _baseValue: 1
-  _powerUps:
-    _objects:
-    - _object: {fileID: 11400000, guid: 98a476555a75c7b41aed429cd9c33dc1, type: 2}
-      _weight: 0
+  _startingPowerUps:
+  - {fileID: 11400000, guid: 4bfaf8febf012894f9db7647ef64c6f4, type: 2}
+  - {fileID: 11400000, guid: 334d676b15020964dad1967628ebdc1a, type: 2}
+  - {fileID: 11400000, guid: d6d478c996489324986423532c7f7cb1, type: 2}
+  - {fileID: 11400000, guid: 63b10fc08c3862147ae2eaaabf303606, type: 2}
+  - {fileID: 11400000, guid: 362121bbd495f9b4583084584767ca92, type: 2}
+  - {fileID: 11400000, guid: 111af9b328bbd6f4886dd84e21987694, type: 2}
+  - {fileID: 11400000, guid: 79506618dc6a9b345b8a77ec8c4d46a1, type: 2}
+  - {fileID: 11400000, guid: 5f39a668fd822cb4ebc1f7a7f1d4c92c, type: 2}
+  - {fileID: 11400000, guid: c0d31ac65b84349469c9930fe08e674c, type: 2}
+  - {fileID: 11400000, guid: 8830cdbf48c089f4fae2ddd8b1789f9d, type: 2}
+  - {fileID: 11400000, guid: b3e24908159f725409166fae402c24f0, type: 2}
+  - {fileID: 11400000, guid: 48f6d8a235ba5124badb0fab5dbd06d1, type: 2}
+  - {fileID: 11400000, guid: b7f7b34c06fd9954b9c304ffc1931ef0, type: 2}
+  - {fileID: 11400000, guid: f276ff5abb397e240919e02d0e3ad9a8, type: 2}
+  - {fileID: 11400000, guid: 98a476555a75c7b41aed429cd9c33dc1, type: 2}
+  - {fileID: 11400000, guid: 88d1342179fc9724f9d950bbde297268, type: 2}
   _cardSize: 28
   _cards:
   - {fileID: 1769923820}
