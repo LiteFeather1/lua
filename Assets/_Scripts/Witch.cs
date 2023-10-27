@@ -54,6 +54,7 @@ public class Witch : MonoBehaviour
     {
         _gun.OnDamageAppplied += TryLifeSteal;
         _health.OnDamage += OnDamage;
+        _health.OnDeath += OnDeath;
     }
 
     private void Update()
@@ -72,7 +73,8 @@ public class Witch : MonoBehaviour
     private void OnDisable()
     {
         _gun.OnDamageAppplied -= TryLifeSteal;
-        _health.OnDamage += OnDamage;
+        _health.OnDamage -= OnDamage;
+        _health.OnDeath -= OnDeath;
     }
 
     private void FixedUpdate()
@@ -149,5 +151,10 @@ public class Witch : MonoBehaviour
     {
         yield return _waitInvulnerability;
         _hurtBox.enabled = true;
+    }
+
+    private void OnDeath()
+    {
+        gameObject.SetActive(false);
     }
 }

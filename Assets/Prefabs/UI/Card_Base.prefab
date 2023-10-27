@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 4324580063732135095}
   - component: {fileID: 1100845553475819333}
   m_Layer: 5
-  m_Name: Recycle
+  m_Name: Card_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

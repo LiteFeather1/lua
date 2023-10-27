@@ -50,7 +50,7 @@ namespace LTFUtils
 
         public WeightedObject<T> GetWeightedObject()
         {
-            if(_sumOfWeights < 0.01f)
+            if (_sumOfWeights < 0.01f)
                 _isDirty = true;
 
             float f = Random.value * SumOfWeights;
