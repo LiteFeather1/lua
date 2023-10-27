@@ -31,29 +31,3 @@ public abstract class PowerUp : ScriptableObject
         return _pickedAmount >= _limit && _limit != 0;
     }
 }
-
-public abstract class PowerUpModifier : PowerUp
-{
-    [SerializeField] protected CompositeValueModifier _modifier;
-
-    protected override string Num
-    {
-        get
-        {
-            return _modifier.Type switch
-            {
-                CompositeValueModifierType.Flat => $"+{_modifier.Value}",
-                CompositeValueModifierType.PercentAdditive => $"+{_modifier.Value}%",
-                CompositeValueModifierType.PercentMultiplier => $"+{_modifier}%",
-                _ => ""
-            };
-        }
-    }
-}
-
-public abstract class PowerUpFlat : PowerUp
-{
-    [SerializeField] protected int _amount;
-
-    protected override string Num => $"+{_amount}";
-}

@@ -155,6 +155,7 @@ public class Witch : MonoBehaviour
 
     private void OnDeath()
     {
+        transform.localPosition += new Vector3(-12f, 0f);
         gameObject.SetActive(false);
     }
 }

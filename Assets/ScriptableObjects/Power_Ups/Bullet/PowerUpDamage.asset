@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Damage
   _effect: Increase Bullet Damage By %
-  _weight: 0
+  _weight: 0.1
   _limit: 0
   _icon: {fileID: 0}
   _rarityColour: {r: 1, g: 1, b: 1, a: 1}

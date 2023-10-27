@@ -2863,8 +2863,8 @@ MonoBehaviour:
   _powerUps:
     _objects:
     - _object: {fileID: 11400000, guid: 98a476555a75c7b41aed429cd9c33dc1, type: 2}
-      _weight: 0.1
-  _cardSize: 32
+      _weight: 0
+  _cardSize: 28
   _cards:
   - {fileID: 1769923820}
   - {fileID: 1991813464}
@@ -2874,7 +2874,7 @@ MonoBehaviour:
   t_cardName: {fileID: 926434836}
   t_cardEffect: {fileID: 1971697729}
   _cardMoveSpeed: 48
-  _spacingBetweenCards: 16
+  _spacingBetweenCards: 12
 --- !u!1 &1886159765
 GameObject:
   m_ObjectHideFlags: 0
