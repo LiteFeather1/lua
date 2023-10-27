@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: PowerUpDamage
   m_EditorClassIdentifier: 
   _name: Damage
+  _effect: 
+  _chance: 0
   _limit: 0
   _icon: {fileID: 0}
+  _rarityColour: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 1}
   _modifier:
     _value: 1
     _type: 100

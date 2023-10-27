@@ -212,7 +212,7 @@ MonoBehaviour:
     _object: {fileID: 5908951068596790919, guid: b391f4e020d7a56478086c94bdc5dc07, type: 3}
     _initialPoolSize: 10
   _damage:
-    _baseValue: 10
+    _baseValue: 1
   _knockback:
     _baseValue: 0
   _bulletSpeed:

@@ -1,5 +1,5 @@
 ﻿using System;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -7,13 +7,15 @@ using UnityEngine.UI;
 public class CardUIPowerUp : CardUi, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     [SerializeField] private CanvasGroup _canvasGroup;
-    [SerializeField] private Image i_card;
     [SerializeField] private Image i_powerUp;
+    [SerializeField] private TextMeshProUGUI t_cardName; 
     private Transform _originalParent;
     private PowerUp _powerUp;
 
+    public PowerUp PowerUp => _powerUp;
+
     public Action<CardUIPowerUp> OnPickedUp { get; set; }
-    public Action<CardUIPowerUp> OnPlayed { get; set; }
+    public Action<CardUIPowerUp> OnUsed { get; set; }
     public Action<CardUIPowerUp> OnDropped { get; set; }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -50,16 +52,14 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IDragHandler, IPointer
     public void SetPowerUp(PowerUp powerUp)
     {
         _powerUp = powerUp;
+        i_powerUp.sprite = powerUp.Icon;
+        i_card.color = powerUp.RarityColour;
+        t_cardName.color = powerUp.RarityColour;
+        t_cardName.text = powerUp.Name;
     }
-}
 
-public class DropCardContainer : MonoBehaviour, IDropHandler
-{
-    public void OnDrop(PointerEventData eventData)
+    public void Used()
     {
-        if (eventData.pointerDrag.TryGetComponent(out CardUIPowerUp card))
-        {
-            //card.OnPlayed
-        }
+        OnUsed?.Invoke(this);
     }
 }

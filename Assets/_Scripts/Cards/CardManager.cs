@@ -41,7 +41,7 @@ public class CardManager : MonoBehaviour
             var card = _cardsToDrawn[i];
             card.OnPickedUp += CardPickedUp;
             card.OnDropped += CardDropped;
-            card.OnPlayed += CardPlayed;
+            card.OnUsed += OnUsed;
         }
     }
 
@@ -66,7 +66,7 @@ public class CardManager : MonoBehaviour
             var card = _cardsToDrawn[i];
             card.OnPickedUp -= CardPickedUp;
             card.OnDropped -= CardDropped;
-            card.OnPlayed -= CardPlayed;
+            card.OnUsed -= OnUsed;
         }
     }
 
@@ -118,8 +118,10 @@ public class CardManager : MonoBehaviour
         _drawnCards.Remove(card);
     }
 
-    private void CardPlayed(CardUIPowerUp card)
+    private void OnUsed(CardUIPowerUp card)
     {
         card.gameObject.SetActive(false);
+        _drawnCards.Remove(card);
+        _cardsToDrawn.Add(card);
     }
 }
