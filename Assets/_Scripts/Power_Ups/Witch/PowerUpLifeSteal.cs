@@ -5,8 +5,8 @@ public class PowerUpLifeSteal : PowerUp
 {
     [SerializeField] protected CompositeValueModifier _modifier;
 
-    public override void ApplyEffect(Witch witch)
+    public override void ApplyEffect(GameManager gm)
     {
-        witch.LifeStealPercent.AddModifier(_modifier);
+        gm.Witch.LifeStealPercent.AddModifier(_modifier);
     }
 }

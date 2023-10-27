@@ -59,7 +59,7 @@ public class DropCardContainer : MonoBehaviour, IDropHandler
     {
         if (eventData.pointerDrag.TryGetComponent(out CardUIPowerUp card))
         {
-            card.OnPlayed
+            //card.OnPlayed
         }
     }
 }

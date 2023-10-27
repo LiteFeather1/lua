@@ -5,8 +5,8 @@ public class PowerUpDefence : PowerUp
 {
     [SerializeField] protected CompositeValueModifier _modifier;
 
-    public override void ApplyEffect(Witch witch)
+    public override void ApplyEffect(GameManager gm)
     {
-        witch.Health.Defence.AddModifier(_modifier);
+        gm.Witch.Health.Defence.AddModifier(_modifier);
     }
 }

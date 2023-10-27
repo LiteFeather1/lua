@@ -5,8 +5,8 @@ public class PowerUpPierce : PowerUp
 {
     [SerializeField] private int _amountToAdd = 1;
 
-    public override void ApplyEffect(Witch witch)
+    public override void ApplyEffect(GameManager gm)
     {
-        witch.Gun.AddPierce(_amountToAdd);
+        gm.Witch.Gun.AddPierce(_amountToAdd);
     }
 }

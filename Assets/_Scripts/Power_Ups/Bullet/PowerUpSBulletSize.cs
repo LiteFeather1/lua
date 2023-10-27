@@ -5,8 +5,8 @@ public class PowerUpSBulletSize : PowerUp
 {
     [SerializeField] private CompositeValueModifier _modifier;
 
-    public override void ApplyEffect(Witch witch)
+    public override void ApplyEffect(GameManager gm)
     {
-        witch.Gun.Size.AddModifier(_modifier);
+        gm.Witch.Gun.Size.AddModifier(_modifier);
     }
 }

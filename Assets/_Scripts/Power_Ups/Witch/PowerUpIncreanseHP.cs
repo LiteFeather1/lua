@@ -5,8 +5,8 @@ public class PowerUpIncreanseHP : PowerUp
 {
     [SerializeField] protected float _amount;
 
-    public override void ApplyEffect(Witch witch)
+    public override void ApplyEffect(GameManager gm)
     {
-        witch.Health.IncreaseMaxHP(_amount);
+        gm.Witch.Health.IncreaseMaxHP(_amount);
     }
 }

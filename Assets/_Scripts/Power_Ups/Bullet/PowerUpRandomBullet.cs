@@ -5,8 +5,8 @@ public class PowerUpRandomBullet : PowerUp
 {
     [SerializeField] private int _amountToAdd = 1;
 
-    public override void ApplyEffect(Witch witch)
+    public override void ApplyEffect(GameManager gm)
     {
-        witch.Gun.AddRandomBullet(_amountToAdd);
+        gm.Witch.Gun.AddRandomBullet(_amountToAdd);
     }
 }

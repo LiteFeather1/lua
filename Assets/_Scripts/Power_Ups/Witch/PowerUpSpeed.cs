@@ -5,8 +5,8 @@ public class PowerUpSpeed : PowerUp
 {
     [SerializeField] protected CompositeValueModifier _modifier;
 
-    public override void ApplyEffect(Witch witch)
+    public override void ApplyEffect(GameManager gm)
     {
-        witch.AddAccelerationMofifier(_modifier);
+        gm.Witch.AddAccelerationMofifier(_modifier);
     }
 }

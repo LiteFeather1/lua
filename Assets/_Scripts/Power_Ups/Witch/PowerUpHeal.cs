@@ -5,8 +5,8 @@ public class PowerUpHeal : PowerUp
 {
     [SerializeField] protected float _amount;
 
-    public override void ApplyEffect(Witch witch)
+    public override void ApplyEffect(GameManager gm)
     {
-        witch.Health.Heal(_amount);
+        gm.Witch.Health.Heal(_amount);
     }
 }

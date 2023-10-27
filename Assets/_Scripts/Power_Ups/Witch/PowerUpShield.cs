@@ -5,8 +5,8 @@ public class PowerUpShield : PowerUp
 {
     [SerializeField] protected int _amount;
 
-    public override void ApplyEffect(Witch witch)
+    public override void ApplyEffect(GameManager gm)
     {
-        witch.Health.AddShield(_amount);
+        gm.Witch.Health.AddShield(_amount);
     }
 }

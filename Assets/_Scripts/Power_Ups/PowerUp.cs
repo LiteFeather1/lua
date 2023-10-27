@@ -10,7 +10,7 @@ public abstract class PowerUp : ScriptableObject
     public string Name => _name;
     public int Limit => _limit;
 
-    public abstract void ApplyEffect(Witch witch);
+    public abstract void ApplyEffect(GameManager gm);
 
     public void Reset()
     {

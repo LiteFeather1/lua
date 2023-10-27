@@ -5,8 +5,8 @@ public class PowerUpBulletSpeed : PowerUp
 {
     [SerializeField] protected CompositeValueModifier _modifier;
 
-    public override void ApplyEffect(Witch witch)
+    public override void ApplyEffect(GameManager gm)
     {
-        witch.Gun.BulletSpeed.AddModifier(_modifier);
+        gm.Witch.Gun.BulletSpeed.AddModifier(_modifier);
     }
 }

@@ -5,8 +5,8 @@ public class PowerUpFireRate : PowerUp
 {
     [SerializeField] protected CompositeValueModifier _modifier;
 
-    public override void ApplyEffect(Witch witch)
+    public override void ApplyEffect(GameManager gm)
     {
-        witch.ShootTime.AddModifier(_modifier);
+        gm.Witch.ShootTime.AddModifier(_modifier);
     }
 }

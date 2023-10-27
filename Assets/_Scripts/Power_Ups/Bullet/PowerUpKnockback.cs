@@ -5,8 +5,8 @@ public class PowerUpKnockback : PowerUp
 {
     [SerializeField] protected CompositeValueModifier _modifier;
 
-    public override void ApplyEffect(Witch witch)
+    public override void ApplyEffect(GameManager gm)
     {
-        witch.Gun.Knockback.AddModifier(_modifier);
+        gm.Witch.Gun.Knockback.AddModifier(_modifier);
     }
 }
