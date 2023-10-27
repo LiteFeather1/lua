@@ -18,5 +18,7 @@ namespace LTFUtils
 
         public T Object => _object;
         public float Weight => _weight;
+
+        public void SetWeight(float weight) => _weight = weight;
     }
 }

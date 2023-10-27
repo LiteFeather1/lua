@@ -1,6 +1,7 @@
 using LTFUtils;
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,6 +24,10 @@ public class CardManager : MonoBehaviour
     [SerializeField] private RectTransform _cardArea;
     [SerializeField] private Image i_drawer;
 
+    [Header("Text")]
+    [SerializeField] private TextMeshProUGUI t_cardName;
+    [SerializeField] private TextMeshProUGUI t_cardEffect;
+
     [Header("Animations")]
     [SerializeField] private float _cardMoveSpeed = 5f;
     [SerializeField] private float _spacingBetweenCards;
@@ -30,8 +35,8 @@ public class CardManager : MonoBehaviour
 
     public CardUIPowerUp[] Cards => _cards;
 
-    public Action CardHovered { get; set; }
-    public Action CardUnHovered { get; set; }
+    public Action OnCardHovered { get; set; }
+    public Action OnCardUnHovered { get; set; }
 
     private void Awake()
     {
@@ -44,6 +49,8 @@ public class CardManager : MonoBehaviour
         for (int i = 0; i < _cards.Length; i++)
         {
             var card = _cards[i];
+            card.OnShowDescription += CardHovered;
+            card.OnCardUnHovered += CardUnHovered;
             card.OnPickedUp += CardPickedUp;
             card.OnDropped += CardDropped;
             card.OnUsed += OnUsed;
@@ -55,7 +62,9 @@ public class CardManager : MonoBehaviour
     {
         for (int i = 0; i < _powerUps.Count; i++)
         {
-            _powerUps.Objects[i].Object.Reset();
+            var powerUp = _powerUps.Objects[i].Object;
+            _powerUps.Objects[i].SetWeight(powerUp.Weight);
+            powerUp.Reset();
         }
     }
 
@@ -112,6 +121,23 @@ public class CardManager : MonoBehaviour
             card.transform.position = Vector2.SmoothDamp(card.transform.position, to, 
                                                          ref _cardVelocity[i], _cardMoveSpeed * deltaTime);
         }
+    }
+
+    private void CardHovered(PowerUp power)
+    {
+        t_cardName.text = power.Name;
+        t_cardEffect.color = power.RarityColour;
+        t_cardEffect.text = power.Efffect;
+        t_cardEffect.enabled = true;
+        t_cardName.enabled = true;
+        OnCardHovered?.Invoke();
+    }
+
+    private void CardUnHovered()
+    {
+        t_cardName.enabled = false;
+        t_cardEffect.enabled = false;
+        OnCardUnHovered?.Invoke();
     }
 
     private void CardDropped(CardUIPowerUp card)

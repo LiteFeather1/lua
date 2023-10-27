@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
     public Witch Witch => _witch;
     public CardManager CardManager => _cardManager;
 
-
     private void Awake()
     {
         Instance = this;
@@ -30,12 +29,8 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        for (int i = 0; i < _cardManager.Cards.Length; i++)
-        {
-            var card = _cardManager.Cards[i];
-            card.OnCardHovered += SlowDown;
-            card.OnCardUnHovered += UnSlowDown;
-        }
+        _cardManager.OnCardHovered += SlowDown;
+        _cardManager.OnCardUnHovered += UnSlowDown;
     }
 
     private void Update()
@@ -53,12 +48,8 @@ public class GameManager : MonoBehaviour
 
     private void OnDisable()
     {
-        for (int i = 0; i < _cardManager.Cards.Length; i++)
-        {
-            var card = _cardManager.Cards[i];
-            card.OnCardHovered += SlowDown;
-            card.OnCardUnHovered += UnSlowDown;
-        }
+        _cardManager.OnCardHovered -= SlowDown;
+        _cardManager.OnCardUnHovered -= UnSlowDown;
     }
 
     public float T()

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CardUIPowerUp : CardUi, IPointerDownHandler, IDragHandler, IPointerUpHandler
+public class CardUIPowerUp : CardUi, IPointerDownHandler, IDragHandler, IPointerUpHandler, IPointerEnterHandler
 {
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private Image i_powerUp;
@@ -17,6 +17,12 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IDragHandler, IPointer
     public Action<CardUIPowerUp> OnPickedUp { get; set; }
     public Action<CardUIPowerUp> OnUsed { get; set; }
     public Action<CardUIPowerUp> OnDropped { get; set; }
+    public Action<PowerUp> OnShowDescription { get; set; }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        OnShowDescription?.Invoke(_powerUp);
+    }
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -54,7 +60,6 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IDragHandler, IPointer
         _powerUp = powerUp;
         i_powerUp.sprite = powerUp.Icon;
         i_card.color = powerUp.RarityColour;
-        t_cardName.color = powerUp.RarityColour;
         t_cardName.text = powerUp.Name;
     }
 

@@ -3,17 +3,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CardUi : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public abstract class CardUi : MonoBehaviour, IPointerExitHandler
 {
     [SerializeField] protected Image i_card;
 
-    public Action OnCardHovered { get; set; }
     public Action OnCardUnHovered { get; set; }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        OnCardHovered?.Invoke();
-    }
 
     public void OnPointerExit(PointerEventData eventData)
     {
