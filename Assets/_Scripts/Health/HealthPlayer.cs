@@ -8,6 +8,8 @@ public class HealthPlayer : Health
 
     public delegate void MaxHPIncreased(float maxHp, float t);
     public MaxHPIncreased OnMaxHPIncreased { get; set; }
+    public System.Action OnShieldDamaged { get; set; }
+    public System.Action<int> OnShieldGained { get; set; }
     public CompositeValue Defence => _defence;
 
     public override bool TakeDamage(float damage)
@@ -16,6 +18,7 @@ public class HealthPlayer : Health
         {
             _shield--;
             OnDamage?.Invoke();
+            OnShieldDamaged?.Invoke();
             return false;   
         }
 
@@ -31,5 +34,9 @@ public class HealthPlayer : Health
         OnMaxHPIncreased?.Invoke(_maxHealth, _health / _maxHealth);
     }
 
-    public void AddShield(int amount) => _shield += amount;
+    public void AddShield(int amount)
+    {
+        _shield += amount;
+        OnShieldGained?.Invoke(amount);
+    }
 }

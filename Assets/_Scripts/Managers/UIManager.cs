@@ -10,6 +10,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image i_hpFill;
     [SerializeField] private float _maxHPSize = 272f;
 
+    [Header("Witch Shield")]
+    [SerializeField] private Image i_shield;
+    private float ShieldWidth => i_shield.sprite.texture.width;
+
+
     [Header("Witch Portrait")]
     [SerializeField] private Image i_witchPortrait;
     [SerializeField] private Sprite _defaultSprite;
@@ -20,14 +25,20 @@ public class UIManager : MonoBehaviour
     {
         witch.OnDamaged += WitchDamaged;
         witch.OnInvulnerabilityEnded += InvulnerabilityEnded;
+
         witch.Health.OnMaxHPIncreased += MaxHpIncreased;
+        witch.Health.OnShieldDamaged += ShieldRemoved;
+        witch.Health.OnShieldGained += ShieldGained;
     }
 
     public void UnBindToWitch(Witch witch)
     {
         witch.OnDamaged -= WitchDamaged;
         witch.OnInvulnerabilityEnded -= InvulnerabilityEnded;
+
         witch.Health.OnMaxHPIncreased -= MaxHpIncreased;
+        witch.Health.OnShieldDamaged -= ShieldRemoved;
+        witch.Health.OnShieldGained -= ShieldGained;
     }
 
     public void UpdateTime(float time)
@@ -55,6 +66,16 @@ public class UIManager : MonoBehaviour
             maxHP = _maxHPSize;
         i_hpFill.rectTransform.sizeDelta = new(maxHP, i_hpFill.rectTransform.sizeDelta.y);
         i_hpFill.fillAmount = t;    
+    }
+
+    private void ShieldGained(int amount)
+    {
+        i_shield.rectTransform.sizeDelta += new Vector2(ShieldWidth * amount, 0f);
+    }
+
+    private void ShieldRemoved()
+    {
+        i_shield.rectTransform.sizeDelta -= new Vector2(ShieldWidth, 0f);
     }
 
     private void InvulnerabilityEnded()
