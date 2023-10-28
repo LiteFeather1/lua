@@ -160,11 +160,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 6948465981988686169}
-  _maxSpeed: 7.5
+  _maxSpeed: 20
   _acceleration:
-    _baseValue: 100
+    _baseValue: 2
   _decelerationRange: {x: 3, y: 10}
-  _accelerationMaxForRange: 1000
+  _accelerationMaxForRange: 200
   _gun: {fileID: 6431089900240576536}
   _shootTime:
     _baseValue: 1
@@ -251,7 +251,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &5435065137700811392
 SpriteRenderer:

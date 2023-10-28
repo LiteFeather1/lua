@@ -79,11 +79,9 @@ public class Witch : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float x = _inputDirection.x * _acceleration.Value * Time.deltaTime;
-        float y = _inputDirection.y * _acceleration.Value * Time.deltaTime;
         var velocity = _rb.velocity;
-        velocity.y += y;
-        velocity.x += x;
+        velocity.x += _inputDirection.x * _acceleration.Value;
+        velocity.y += _inputDirection.y * _acceleration.Value;
         if (Mathf.Sign(_inputDirection.x) == Mathf.Sign(_rb.velocity.x) 
             && Mathf.Abs(_rb.velocity.x) > _maxSpeed)
             velocity.x = 0f;
