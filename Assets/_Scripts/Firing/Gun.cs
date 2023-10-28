@@ -16,7 +16,6 @@ public class Gun : MonoBehaviour
     [SerializeField] private int _bulletAmount = 1;
     [SerializeField] private float _separationPerBullet = 12.5f;
     [SerializeField] private int _burstAmount = 1;
-    private int _rotationSign = 1;
     [SerializeField] private float _timeToCompleteShooting = .25f;
     [SerializeField] private int _bounceAmount;
     [SerializeField] private int _pierceAmount;
@@ -94,11 +93,9 @@ public class Gun : MonoBehaviour
         WaitForSeconds yieldBetweenBurst = new(_timeToCompleteShooting / _burstAmount);
         for (int i = 0; i < _burstAmount; i++)
         {
-            _rotationSign *= -1;
-            float angleOffset = _separationPerBullet * i * _rotationSign * (_bulletAmount - 1);
             for (int j = 0; j < _bulletAmount; j++)
             {
-                ShootBullet(GetAngle(j) + angleOffset);
+                ShootBullet(GetAngle(j));
             }
             yield return yieldBetweenBurst;
         }

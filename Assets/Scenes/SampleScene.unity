@@ -578,7 +578,7 @@ GameObject:
   - component: {fileID: 234980168}
   - component: {fileID: 234980169}
   - component: {fileID: 234980170}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: right_wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2217,7 +2217,7 @@ GameObject:
   - component: {fileID: 1326438225}
   - component: {fileID: 1326438227}
   - component: {fileID: 1326438226}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: south_wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3515,7 +3515,7 @@ GameObject:
   - component: {fileID: 1746883915}
   - component: {fileID: 1746883916}
   - component: {fileID: 1746883917}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: north_wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4399,7 +4399,7 @@ GameObject:
   - component: {fileID: 2015188020}
   - component: {fileID: 2015188021}
   - component: {fileID: 2015188022}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: left_wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4604,6 +4604,10 @@ PrefabInstance:
     - target: {fileID: 5155081586467621625, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431089900240576536, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
+      propertyPath: _bounceAmount
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7450378837478392003, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
       propertyPath: m_Name

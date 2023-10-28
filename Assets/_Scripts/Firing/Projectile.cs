@@ -48,6 +48,7 @@ public class Projectile : MonoBehaviour, IDeactivatable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        _hitAmount++;
         if (_hitAmount >= _bounce + _pierce)
         {
             Deactivate();
@@ -61,7 +62,5 @@ public class Projectile : MonoBehaviour, IDeactivatable
             var reflect = Vector2.Reflect(_rb.velocity.normalized, normal.normalized);
             Shoot(_speed, reflect);
         }
-
-        _hitAmount++;
     }
 }
