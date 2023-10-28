@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI t_timeText;
+
+    [Header("Fade")]
+    [SerializeField] private float _fadeAlpha = .33f;
+    [SerializeField] private float _fadeTime = .5f;
+    [SerializeField] private AnimationCurve _fadeCurve;
 
     [Header("Witch HP")]
     [SerializeField] private Image i_hpFill;
@@ -52,9 +58,27 @@ public class UIManager : MonoBehaviour
         t_timeText.text = $"{minutes:00} : {(int)seconds:00} . {mili:000}";
     }
 
-    public void SetCurrence(int amount)
+    public void FadeGroup(CanvasGroup canvasGroup)
     {
-        t_currency.text = amount.ToString();
+        StartCoroutine(FadeGroupCO(canvasGroup, _fadeAlpha));
+    }
+
+    public void UnFadeGroup(CanvasGroup canvasGroup)
+    {
+        StartCoroutine(FadeGroupCO(canvasGroup, 1f));
+    }
+
+    private IEnumerator FadeGroupCO(CanvasGroup canvasGroup, float fadeAlpha)
+    {
+        float initialAlpha = canvasGroup.alpha;
+        float eTime = 0f;
+        while (eTime  < _fadeTime)
+        {
+            float t = _fadeCurve.Evaluate(eTime / _fadeTime);
+            canvasGroup.alpha = Mathf.Lerp(initialAlpha, fadeAlpha, t);
+            eTime += Time.deltaTime;
+            yield return null;
+        }
     }
 
     private void WitchDamaged(float t)
