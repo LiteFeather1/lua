@@ -1,6 +1,7 @@
+using System;
 using System.Collections;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Witch : MonoBehaviour
 {
@@ -35,6 +36,9 @@ public class Witch : MonoBehaviour
     [SerializeField] private SpriteRenderer _sr;
     [SerializeField] private Collider2D _hurtBox;
 
+    public Action<float> OnDamaged { get; set; }
+    public Action OnInvulnerabilityEnded { get; set; }
+
     public HealthPlayer Health => _health;
 
     public Gun Gun => _gun;
@@ -53,7 +57,7 @@ public class Witch : MonoBehaviour
     private void OnEnable()
     {
         _gun.OnDamageAppplied += TryLifeSteal;
-        _health.OnDamage += OnDamage;
+        _health.OnDamage += Damaged;
         _health.OnDeath += OnDeath;
     }
 
@@ -73,7 +77,7 @@ public class Witch : MonoBehaviour
     private void OnDisable()
     {
         _gun.OnDamageAppplied -= TryLifeSteal;
-        _health.OnDamage -= OnDamage;
+        _health.OnDamage -= Damaged;
         _health.OnDeath -= OnDeath;
     }
 
@@ -109,9 +113,10 @@ public class Witch : MonoBehaviour
         }
     }
 
-    private void OnDamage()
+    private void Damaged()
     {
         _hurtBox.enabled = false;
+        OnDamaged?.Invoke(_health.HP / _health.MaxHP);
         StartCoroutine(Blink());
         StartCoroutine(Invulnerability());
     }
@@ -149,6 +154,7 @@ public class Witch : MonoBehaviour
     {
         yield return _waitInvulnerability;
         _hurtBox.enabled = true;
+        OnInvulnerabilityEnded?.Invoke();
     }
 
     private void OnDeath()

@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     {
         _cardManager.OnCardHovered += SlowDown;
         _cardManager.OnCardUnHovered += UnSlowDown;
+        _uiManager.BindToWitch(_witch);
     }
 
     private void Update()
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
     {
         _cardManager.OnCardHovered -= SlowDown;
         _cardManager.OnCardUnHovered -= UnSlowDown;
+        _uiManager.UnBindToWitch(_witch);
     }
 
     public float T()
