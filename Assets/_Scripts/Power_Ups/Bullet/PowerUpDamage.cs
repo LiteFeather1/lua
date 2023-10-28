@@ -5,6 +5,6 @@ public class PowerUpDamage : PowerUpModifier
 {
     public override void ApplyEffect(GameManager gm)   
     {
-        gm.Witch.Gun.Damage.AddModifier(_modifier);
+        gm.Witch.Damage.AddModifier(_modifier);
     }
 }

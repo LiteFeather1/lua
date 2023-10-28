@@ -8,9 +8,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private Transform _firePoint;
     [SerializeField] private ObjectPool<Bullet> _bulletPool;
 
-    [Header("States")]
-    [SerializeField] private CompositeValue _damage;
-    [SerializeField] private CompositeValue _knockback;
+    [Header("Stats")]
     [SerializeField] private CompositeValue _bulletSpeed = new(1f);
     [SerializeField] private CompositeValue _size = new(1f);
     [SerializeField] private int _bulletAmount = 1;
@@ -19,15 +17,11 @@ public class Gun : MonoBehaviour
     [SerializeField] private float _timeToCompleteShooting = .25f;
     [SerializeField] private int _bounceAmount;
     [SerializeField] private int _pierceAmount;
-    [SerializeField] private int _randomBulletAmount;
 
-    public CompositeValue Damage => _damage;    
-    public CompositeValue Knockback => _knockback;
     public CompositeValue BulletSpeed => _bulletSpeed;
     public CompositeValue Size => _size;
 
     public void AddBulletAmount(int amount) => _bulletAmount += amount;
-    public void AddRandomBullet(int amount) => _randomBulletAmount += amount;
     public void AddBurst(int amount) => _burstAmount += amount;
     public void AddBounce(int amount) => _bounceAmount += amount;
     public void AddPierce(int amount) => _pierceAmount += amount;
@@ -55,9 +49,22 @@ public class Gun : MonoBehaviour
         _bulletPool.ObjectCreated -= ObjectCreated;
     }
 
-    public void Shoot()
+    public void ShootRoutine(float damage, float knockback)
     {
-        StartCoroutine(Shot_CO());
+        StartCoroutine(Shot_CO(damage, knockback));
+    }
+
+    public void ShootBullet(float damage, float knockback, float angle)
+    {
+        var bullet = _bulletPool.GetObject();
+        bullet.transform.SetLocalPositionAndRotation(_firePoint.position,
+                                                     Quaternion.Euler(0f, 0f, angle));
+        bullet.transform.localScale = Vector3.one * _size.Value;
+        bullet.gameObject.SetActive(true);
+        bullet.Hitbox.SetDamage(damage);
+        bullet.Hitbox.SetKnockback(knockback);
+        bullet.Projectile.Shoot(_bulletSpeed.Value, bullet.transform.right,
+                                _pierceAmount, _bounceAmount);
     }
 
     private void ObjectCreated(Bullet bullet)
@@ -75,34 +82,16 @@ public class Gun : MonoBehaviour
         OnDamageAppplied?.Invoke(damage);
     }
 
-    private void ShootBullet(float angle)
-    {
-        var bullet = _bulletPool.GetObject();
-        bullet.transform.SetLocalPositionAndRotation(_firePoint.position,
-                                                     Quaternion.Euler(0f, 0f, angle));
-        bullet.transform.localScale = Vector3.one * _size.Value;
-        bullet.gameObject.SetActive(true);
-        bullet.Hitbox.SetDamage(_damage.Value);
-        bullet.Hitbox.SetKnockback(_knockback.Value);
-        bullet.Projectile.Shoot(_bulletSpeed.Value, bullet.transform.right, 
-                                _pierceAmount, _bounceAmount);
-    }
-
-    private IEnumerator Shot_CO()
+    private IEnumerator Shot_CO(float damage, float knockback)
     {
         WaitForSeconds yieldBetweenBurst = new(_timeToCompleteShooting / _burstAmount);
         for (int i = 0; i < _burstAmount; i++)
         {
             for (int j = 0; j < _bulletAmount; j++)
             {
-                ShootBullet(GetAngle(j));
+                ShootBullet(damage, knockback, GetAngle(j));
             }
             yield return yieldBetweenBurst;
-        }
-
-        for (int i = 0; i < _randomBulletAmount; i++)
-        {
-            ShootBullet(Random.Range(0f, 360f));
         }
     }
 

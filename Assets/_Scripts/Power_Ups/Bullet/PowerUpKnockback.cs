@@ -5,6 +5,6 @@ public class PowerUpKnockback : PowerUpModifier
 {
     public override void ApplyEffect(GameManager gm)
     {
-        gm.Witch.Gun.Knockback.AddModifier(_modifier);
+        gm.Witch.Knockback.AddModifier(_modifier);
     }
 }

@@ -21,8 +21,13 @@ public class Witch : MonoBehaviour
 
     [Header("Shoot")]
     [SerializeField] private Gun _gun;
+    [SerializeField] private CompositeValue _damage;
+    [SerializeField] private CompositeValue _knockback;
     [SerializeField] private CompositeValue _shootTime = new(1f);
-    private float _elaspedShootTime;
+    [SerializeField] private CompositeValue _randomBulletShootTime = new(1f);
+    [SerializeField] private int _randomBulletAmount;
+    private float _elapsedShootTime;
+    private float _elapsedRandomShootTime;
 
     [Header("Life Steal")]
     [SerializeField] private CompositeValue _chanceToLifeSteal = new(.01f);
@@ -47,7 +52,10 @@ public class Witch : MonoBehaviour
     public HealthPlayer Health => _health;
 
     public Gun Gun => _gun;
+    public CompositeValue Damage => _damage;
+    public CompositeValue Knockback => _knockback;
     public CompositeValue ShootTime => _shootTime;
+    public void AddRandomBullet(int amount) => _randomBulletAmount += amount;
 
     public CompositeValue ChanceToLifeSteal => _chanceToLifeSteal;
     public CompositeValue LifeStealPercent => _lifeStealPercent;
@@ -70,12 +78,22 @@ public class Witch : MonoBehaviour
     {
         _inputDirection = GameManager.Inputs.Player.Moviment.ReadValue<Vector2>().normalized;
 
-        _elaspedShootTime += Time.deltaTime;
-
-        if (_elaspedShootTime >= _shootTime.Value)
+        float delta = Time.deltaTime;
+        _elapsedShootTime += delta;
+        if (_elapsedShootTime >= _shootTime.Value)
         {
-            _elaspedShootTime = 0f;
-            _gun.Shoot();
+            _elapsedShootTime = 0f;
+            _gun.ShootRoutine(_damage.Value, _knockback.Value);
+        }
+
+        _elapsedRandomShootTime += delta;
+        if (_elapsedRandomShootTime >= _randomBulletShootTime.Value)
+        {
+            _elapsedRandomShootTime = 0f;
+            for (int i = 0; i < _randomBulletAmount; i++)
+            {
+                _gun.ShootBullet(_damage.Value, _knockback.Value, Random.Range(0f, 360f));
+            }
         }
     }
 
