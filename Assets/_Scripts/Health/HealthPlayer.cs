@@ -6,6 +6,8 @@ public class HealthPlayer : Health
     [SerializeField] private int _shield;
     [SerializeField] private CompositeValue _defence = new(10f);
 
+    public delegate void MaxHPIncreased(float maxHp, float t);
+    public MaxHPIncreased OnMaxHPIncreased { get; set; }
     public CompositeValue Defence => _defence;
 
     public override bool TakeDamage(float damage)
@@ -26,6 +28,7 @@ public class HealthPlayer : Health
     {
         _maxHealth += amount;
         _health += amount;
+        OnMaxHPIncreased?.Invoke(_maxHealth, _health / _maxHealth);
     }
 
     public void AddShield(int amount) => _shield += amount;

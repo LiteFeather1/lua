@@ -987,7 +987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _directionVelocity: {x: 1, y: 0}
-  _deltaSpeed: {x: 0, y: 10}
+  _deltaSpeed: {x: 0, y: 5}
   _camera: {fileID: 519420031}
   _subject: {fileID: 256337799807947317}
   _sr: {fileID: 372150708}
@@ -2540,7 +2540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _directionVelocity: {x: 1, y: 0}
-  _deltaSpeed: {x: 0, y: 5}
+  _deltaSpeed: {x: 0, y: 2.5}
   _camera: {fileID: 519420031}
   _subject: {fileID: 256337799807947317}
   _sr: {fileID: 1498909713}
@@ -3144,10 +3144,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   t_timeText: {fileID: 1590040177}
+  i_hpFill: {fileID: 300096512}
+  _maxHPSize: 272
   i_witchPortrait: {fileID: 1742950384}
   _defaultSprite: {fileID: 0}
   _damagedSprite: {fileID: 0}
-  i_hpFill: {fileID: 300096512}
   t_currence: {fileID: 1525381100}
 --- !u!1 &1742950382
 GameObject:
