@@ -14,11 +14,11 @@ public class UIManager : MonoBehaviour
 
     [Header("Witch HP")]
     [SerializeField] private Image i_hpFill;
+    [SerializeField] private Image i_hpFrame;
     [SerializeField] private float _maxHPSize = 272f;
 
     [Header("Witch Shield")]
     [SerializeField] private Image i_shield;
-    private float ShieldWidth => i_shield.sprite.texture.width;
 
     [Header("Witch Portrait")]
     [SerializeField] private Image i_witchPortrait;
@@ -92,17 +92,21 @@ public class UIManager : MonoBehaviour
         if (maxHP > _maxHPSize)
             maxHP = _maxHPSize;
         i_hpFill.rectTransform.sizeDelta = new(maxHP, i_hpFill.rectTransform.sizeDelta.y);
+        var hpFrameWidth = maxHP + i_hpFrame.sprite.texture.width;
+        i_hpFrame.rectTransform.sizeDelta = new(hpFrameWidth, i_hpFrame.rectTransform.sizeDelta.y);
         i_hpFill.fillAmount = t;    
     }
 
     private void ShieldGained(int amount)
     {
-        i_shield.rectTransform.sizeDelta += new Vector2(ShieldWidth * amount, 0f);
+        var shieldWidth = i_shield.sprite.texture.width;
+        i_shield.rectTransform.sizeDelta += new Vector2(shieldWidth * amount, 0f);
     }
 
     private void ShieldRemoved()
     {
-        i_shield.rectTransform.sizeDelta -= new Vector2(ShieldWidth, 0f);
+        var shieldWidth = i_shield.sprite.texture.width;
+        i_shield.rectTransform.sizeDelta -= new Vector2(shieldWidth, 0f);
     }
 
     private void InvulnerabilityEnded()
