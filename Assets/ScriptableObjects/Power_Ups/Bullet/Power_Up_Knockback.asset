@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Knockback
   _effect: Increase Damage Knockback by $
+  _cost: 4
   _rarity: {fileID: 11400000, guid: 639bbac6bf1db91429066dc023f24633, type: 2}
   _limit: 0
   _icon: {fileID: 0}
   _modifier:
-    _value: 10
+    _value: 0.2
     _type: 200

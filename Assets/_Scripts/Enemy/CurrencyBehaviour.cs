@@ -24,7 +24,6 @@ public class CurrencyBehaviour : MonoBehaviour
         {
             gameObject.SetActive(false);
             _elapsedTime = 0f;
-            _velocity = Vector2.zero;
             _witch.ModifyCurrency(1);
             ReturnToPool?.Invoke(this);
         }

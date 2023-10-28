@@ -66,7 +66,7 @@ public class CardManager : MonoBehaviour
         for (int i = 0; i < _startingPowerUps.Length; i++)
         {
             var powerUp = _startingPowerUps[i];
-            weightedObjects[i] = new(powerUp, powerUp.Weight);
+            weightedObjects[i] = new(powerUp, powerUp.Weight);  
             powerUp.Reset();
         }
 

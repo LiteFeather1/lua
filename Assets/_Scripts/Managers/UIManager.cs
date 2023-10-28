@@ -14,12 +14,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image i_shield;
     private float ShieldWidth => i_shield.sprite.texture.width;
 
-
     [Header("Witch Portrait")]
     [SerializeField] private Image i_witchPortrait;
     [SerializeField] private Sprite _defaultSprite;
     [SerializeField] private Sprite _damagedSprite;
-    [SerializeField] private TextMeshProUGUI t_currence;
+    [SerializeField] private TextMeshProUGUI t_currency;
 
     public void BindToWitch(Witch witch)
     {
@@ -29,6 +28,8 @@ public class UIManager : MonoBehaviour
         witch.Health.OnMaxHPIncreased += MaxHpIncreased;
         witch.Health.OnShieldDamaged += ShieldRemoved;
         witch.Health.OnShieldGained += ShieldGained;
+
+        witch.OnCurrencyModified += UpdateCurrency;
     }
 
     public void UnBindToWitch(Witch witch)
@@ -39,6 +40,8 @@ public class UIManager : MonoBehaviour
         witch.Health.OnMaxHPIncreased -= MaxHpIncreased;
         witch.Health.OnShieldDamaged -= ShieldRemoved;
         witch.Health.OnShieldGained -= ShieldGained;
+
+        witch.OnCurrencyModified -= UpdateCurrency;
     }
 
     public void UpdateTime(float time)
@@ -51,7 +54,7 @@ public class UIManager : MonoBehaviour
 
     public void SetCurrence(int amount)
     {
-        t_currence.text = amount.ToString();
+        t_currency.text = amount.ToString();
     }
 
     private void WitchDamaged(float t)
@@ -81,5 +84,10 @@ public class UIManager : MonoBehaviour
     private void InvulnerabilityEnded()
     {
         i_witchPortrait.sprite = _defaultSprite;
+    }
+
+    private void UpdateCurrency(int amount)
+    {
+        t_currency.text = amount.ToString();
     }
 }

@@ -2632,7 +2632,7 @@ GameObject:
   - component: {fileID: 1525381101}
   - component: {fileID: 1525381100}
   m_Layer: 5
-  m_Name: t_currence
+  m_Name: t_currency
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3226,7 +3226,7 @@ MonoBehaviour:
   i_witchPortrait: {fileID: 1742950384}
   _defaultSprite: {fileID: 0}
   _damagedSprite: {fileID: 0}
-  t_currence: {fileID: 1525381100}
+  t_currency: {fileID: 1525381100}
 --- !u!1 &1742950382
 GameObject:
   m_ObjectHideFlags: 0
@@ -3752,6 +3752,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f276ff5abb397e240919e02d0e3ad9a8, type: 2}
   - {fileID: 11400000, guid: 98a476555a75c7b41aed429cd9c33dc1, type: 2}
   - {fileID: 11400000, guid: 88d1342179fc9724f9d950bbde297268, type: 2}
+  - {fileID: 11400000, guid: 5a5292755a2d8364dbdc683b5c850021, type: 2}
   _cardSize: 28
   _cards:
   - {fileID: 1769923820}

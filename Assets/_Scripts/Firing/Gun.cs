@@ -95,7 +95,7 @@ public class Gun : MonoBehaviour
         for (int i = 0; i < _burstAmount; i++)
         {
             _rotationSign *= -1;
-            float angleOffset = _separationPerBullet * i * _rotationSign;
+            float angleOffset = _separationPerBullet * i * _rotationSign * (_bulletAmount - 1);
             for (int j = 0; j < _bulletAmount; j++)
             {
                 ShootBullet(GetAngle(j) + angleOffset);
