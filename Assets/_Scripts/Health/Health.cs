@@ -20,7 +20,7 @@ public class Health : MonoBehaviour, IDamageable
     {
         _health -= damage;
         OnDamage?.Invoke();
-        if (_health < 0f)
+        if (_health <= 0f)
         {
             _health = 0f;
             OnDeath?.Invoke();

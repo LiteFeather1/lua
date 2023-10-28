@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    [SerializeField] private ObjectPool<CurrencyBehaviour> _currencyPool;
     [SerializeField] private Weighter<ObjectPool<Enemy>> _weightedPoolOfEnemies;
     private Dictionary<string, ObjectPool<Enemy>> _enemyToPool;
     [SerializeField] private Vector2Int _maxEnemiesPerBurstRange;
@@ -18,6 +19,13 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
+        _currencyPool.InitPool();
+        foreach (var currency in _currencyPool.Objects)
+        {
+            CurrencyCreated(currency);
+        }
+        _currencyPool.ObjectCreated += CurrencyCreated;
+
         _enemyToPool = new(_weightedPoolOfEnemies.Count);
         for (int i = 0; i < _weightedPoolOfEnemies.Count; i++)
         {
@@ -25,16 +33,35 @@ public class SpawnManager : MonoBehaviour
             pool.InitPool();
             foreach (var enemy in pool.Objects)
             {
-                enemy.Init(GameManager.Instance.Witch);
-                enemy.ReturnToPool += ReturnToPool;
+                EnemyCreated(enemy);
             }
             _enemyToPool.Add(pool.Object.Name, pool);
-            pool.ObjectCreated += ObjectCreated;
+            pool.ObjectCreated += EnemyCreated;
         }
 
         var offSet = Random.Range(-_spawnTimeOffset.x, _spawnTimeOffset.x);
         var spawnTime = Random.Range(_minSpawnTimeRange.x, _maxSpawnTimeRange.x) / 2f;
         _spawnTime = spawnTime + offSet;
+    }
+
+    private void OnDestroy()
+    {
+        foreach (var currency in _currencyPool.Objects)
+        {
+            currency.ReturnToPool -= ReturnCurrencyToPool;
+        }
+        _currencyPool.ObjectCreated -= CurrencyCreated;
+
+        for (int i = 0; i < _weightedPoolOfEnemies.Count; i++)
+        {
+            var pool = _weightedPoolOfEnemies.Objects[i].Object;
+            foreach (var enemy in pool.Objects)
+            {
+                enemy.ReturnToPool -= ReturnEnemyToPool;
+                enemy.OnDied -= EnemyDied;
+            }
+            pool.ObjectCreated -= EnemyCreated;
+        }
     }
 
     public void Tick(float t, float tClamped)
@@ -62,13 +89,32 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    private void ObjectCreated(Enemy enemy)
+    private void CurrencyCreated(CurrencyBehaviour currency)
     {
-        enemy.Init(GameManager.Instance.Witch);
-        enemy.ReturnToPool += ReturnToPool;
+        currency.Init(GameManager.Instance.Witch);
+        currency.ReturnToPool += ReturnCurrencyToPool;
     }
 
-    private void ReturnToPool(Enemy enemy)
+    private void ReturnCurrencyToPool(CurrencyBehaviour currency)
+    {
+        _currencyPool.ReturnObject(currency);   
+    }
+
+    private void EnemyDied(Vector2 pos)
+    {
+        var currency = _currencyPool.GetObject();
+        currency.transform.position = pos;
+        currency.gameObject.SetActive(true);
+    }
+
+    private void EnemyCreated(Enemy enemy)
+    {
+        enemy.Init(GameManager.Instance.Witch);
+        enemy.ReturnToPool += ReturnEnemyToPool;
+        enemy.OnDied += EnemyDied;
+    }
+
+    private void ReturnEnemyToPool(Enemy enemy)
     {
         _enemyToPool[enemy.Name].ReturnObject(enemy);
     }

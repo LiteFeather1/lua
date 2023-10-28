@@ -1482,6 +1482,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2afff7a8f9c0184084e16339051f06a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currencyPool:
+    _object: {fileID: 2748346242251297967, guid: 01b4627feeae6a645a416d881fbab9b8, type: 3}
+    _initialPoolSize: 10
   _weightedPoolOfEnemies:
     _objects:
     - _object:

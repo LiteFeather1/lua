@@ -5,6 +5,10 @@ using Random = UnityEngine.Random;
 
 public class Witch : MonoBehaviour
 {
+    [Header("Currency")]
+    [SerializeField] private int _currency;
+
+    [Header("Health")]
     [SerializeField] private HealthPlayer _health;
 
     [Header("Moviment")]
@@ -36,6 +40,7 @@ public class Witch : MonoBehaviour
     [SerializeField] private SpriteRenderer _sr;
     [SerializeField] private Collider2D _hurtBox;
 
+    public Action<int> OnCurrencyModified { get; set; }
     public Action<float> OnDamaged { get; set; }
     public Action OnInvulnerabilityEnded { get; set; }
 
@@ -94,6 +99,12 @@ public class Witch : MonoBehaviour
             velocity.y = 0f;
 
         _rb.AddForce(velocity, ForceMode2D.Force);
+    }
+
+    public void ModifyCurrency(int amount)
+    {
+        _currency += amount;
+        OnCurrencyModified?.Invoke(_currency);
     }
 
     public void AddAccelerationMofifier(CompositeValueModifier mod)

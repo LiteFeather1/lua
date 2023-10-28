@@ -17,6 +17,7 @@ public abstract class Enemy : MonoBehaviour, IDeactivatable
     public HitBox HitBox => _hitBox;
 
     public System.Action<Enemy> ReturnToPool { get; set; }
+    public System.Action<Vector2> OnDied { get; set; }
 
     protected void OnEnable()
     {
@@ -39,12 +40,14 @@ public abstract class Enemy : MonoBehaviour, IDeactivatable
 
     public void Deactivate()
     {
-        Died();
+        gameObject.SetActive(false);
+        ReturnToPool?.Invoke(this);
     }
 
     protected void Died()
     {
         gameObject.SetActive(false);
         ReturnToPool?.Invoke(this);
+        OnDied?.Invoke(transform.position);
     }
 }
