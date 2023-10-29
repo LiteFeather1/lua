@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c89b2989f47df384c84e53af4d09f217, type: 3}
-  m_Name: PowerUpDamage
+  m_Name: Power_Up_Damage
   m_EditorClassIdentifier: 
   _name: Damage
   _effect: Increase Bullet Damage by $

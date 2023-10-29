@@ -23,13 +23,19 @@ public class CardManager : MonoBehaviour
     private List<CardUIPowerUp> _cardsToDraw;
     private List<CardUIPowerUp> _drawnCards;
     [SerializeField] private RectTransform _cardArea;
+
+    [Header("Drawer")]
     [SerializeField] private Image i_drawer;
+    [SerializeField] private Sprite[] _drawerAnimation;
+    
+    [Header("Seeker")]
+    [SerializeField] private CardUIDropContainerSeek _seek;
 
     [Header("Text")]
     [SerializeField] private TextMeshProUGUI t_cardName;
     [SerializeField] private TextMeshProUGUI t_cardEffect;
 
-    [Header("Animations")]
+    [Header("Card Moviment")]
     [SerializeField] private float _cardMoveSpeed = 5f;
     [SerializeField] private float _spacingBetweenCards;
     private Vector2[] _cardVelocity;
@@ -43,10 +49,6 @@ public class CardManager : MonoBehaviour
     {
         _drawnCards = new();
         _cardVelocity = new Vector2[_cards.Length];
-    }
-
-    private void OnEnable()
-    {
         for (int i = 0; i < _cards.Length; i++)
         {
             var card = _cards[i];
@@ -57,6 +59,8 @@ public class CardManager : MonoBehaviour
             card.OnUsed += OnUsed;
         }
         _cardsToDraw = new(_cards);
+
+        _seek.OnPowerUpDropped += SeekDropped;
     }
 
     private void Start()
@@ -78,15 +82,19 @@ public class CardManager : MonoBehaviour
         MoveCards();
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         for (int i = 0; i < _cards.Length; i++)
         {
             var card = _cards[i];
+            card.OnShowDescription -= CardHovered;
+            card.OnCardUnHovered -= CardUnHovered;
             card.OnPickedUp -= CardPickedUp;
             card.OnDropped -= CardDropped;
             card.OnUsed -= OnUsed;
         }
+
+        _seek.OnPowerUpDropped -= SeekDropped;
     }
 
     private void DrawCards()
@@ -159,5 +167,13 @@ public class CardManager : MonoBehaviour
         card.gameObject.SetActive(false);
         _drawnCards.Remove(card);
         _cardsToDraw.Add(card);
+    }
+
+    private void SeekDropped(WeightedObject<PowerUp> old, WeightedObject<PowerUp> new_)
+    {
+        if (old != null)
+            _weightedPowerUps.RemoveObject(old);
+
+        _weightedPowerUps.AddObject(new_);
     }
 }

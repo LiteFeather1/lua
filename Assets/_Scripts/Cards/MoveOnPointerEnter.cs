@@ -19,17 +19,29 @@ public class MoveOnPointerEnter : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        StopCoroutine(_movement);
-        _movement = Movement(_transformToMove.localPosition, _startPos + new Vector2(0f, _pixels));
-        StartCoroutine(_movement);
+        StartCoroutine(MoveUp());
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        StartCoroutine(MoveDown());
+    }
+
+    public IEnumerator MoveUp()
+    {
+        StopCoroutine(_movement);
+        _movement = Movement(_transformToMove.localPosition, _startPos + new Vector2(0f, _pixels));
+        return _movement;
+    }
+    
+    public IEnumerator MoveDown()
+    {
         StopCoroutine(_movement);
         _movement = Movement(_transformToMove.localPosition, _startPos);
-        StartCoroutine(_movement);
+        return _movement;
     }
+
+    public void Stop() => StopCoroutine(_movement);
 
     private IEnumerator Movement(Vector2 from, Vector2 to)
     {

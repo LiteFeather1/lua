@@ -67,10 +67,15 @@ namespace LTFUtils
             return objectToReturn;
         }
 
-
         public void RemoveObject(WeightedObject<T> objectToRemove)
         {
             _objects.Remove(objectToRemove);
+            _isDirty = true;
+        }
+
+        public void AddObject(WeightedObject<T> objectToAdd)
+        {
+            _objects.Add(objectToAdd);
             _isDirty = true;
         }
     }
