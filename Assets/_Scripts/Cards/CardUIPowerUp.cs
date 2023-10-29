@@ -13,10 +13,11 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDr
     [SerializeField] private TextMeshProUGUI t_cardCost;
     private Transform _originalParent;
     private PowerUp _powerUp;
-    private Vector2 _velocity;
     private Quaternion _deriv;
     private bool _dragging;
 
+    // icky
+    public Vector2 Velocity;
     public PowerUp PowerUp => _powerUp;
 
     public Action<CardUIPowerUp> OnPickedUp { get; set; }
@@ -29,8 +30,8 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDr
         if (_dragging)
         {
             var delta = Time.deltaTime;
-            transform.position = Vector2.SmoothDamp(transform.position, Input.mousePosition, ref _velocity, delta * 6f);
-            var zRotation = Mathf.Lerp(0f, 18f, Mathf.Abs(_velocity.x) / 1800f) * Mathf.Sign(_velocity.x);
+            transform.position = Vector2.SmoothDamp(transform.position, Input.mousePosition, ref Velocity, delta * 6f);
+            var zRotation = Mathf.Lerp(0f, 18f, Mathf.Abs(Velocity.x) / 1800f) * Mathf.Sign(Velocity.x);
             var to = Quaternion.Euler(0f, 0f, -zRotation);
             transform.localRotation = SmoothDamp(transform.localRotation, to, ref _deriv, delta * 128f);
         }

@@ -19,8 +19,10 @@ public class CardManager : MonoBehaviour
     private Weighter<PowerUp> _weightedPowerUps;
 
     [Header("Cards")]
-    [SerializeField] private float _cardSize = 32f;
-    [SerializeField] private CardUIPowerUp[] _cards;
+    [SerializeField] private float _cardSize = 30f;
+    [SerializeField] private int _maxCards = 6;
+    [SerializeField] private int _startingCards = 3;
+    [SerializeField] private CardUIPowerUp _cardPrefab;
     private List<CardUIPowerUp> _cardsToDraw;
     private List<CardUIPowerUp> _drawnCards;
     [SerializeField] private RectTransform _cardArea;
@@ -41,13 +43,10 @@ public class CardManager : MonoBehaviour
 
     [Header("Card Moviment")]
     [SerializeField] private float _cardMoveSpeed = 5f;
-    [SerializeField] private float _spacingBetweenCards;
-    private Vector2[] _cardVelocity;
+    [SerializeField] private Vector2 _spacingBetweenCardsRange = new(16f, 12f);
 
     public CompositeValue TimeToDrawCard => _timeToDrawCard;
     public CompositeValue RefundOnDiscard => _refundOnDiscard;
-
-    public CardUIPowerUp[] Cards => _cards;
 
     public CardUIDropContainerRecycle Recycler => _recycler;
 
@@ -57,17 +56,9 @@ public class CardManager : MonoBehaviour
     private void Awake()
     {
         _drawnCards = new();
-        _cardVelocity = new Vector2[_cards.Length];
-        for (int i = 0; i < _cards.Length; i++)
-        {
-            var card = _cards[i];
-            card.OnShowDescription += CardHovered;
-            card.OnCardUnHovered += CardUnHovered;
-            card.OnPickedUp += CardPickedUp;
-            card.OnDropped += CardDropped;
-            card.OnUsed += OnUsed;
-        }
-        _cardsToDraw = new(_cards);
+        _cardsToDraw = new(_startingCards);
+        for (int i = 0; i < _startingCards; i++)
+            AddCard();
 
         _seek.OnPowerUpDropped += SeekDropped;
 
@@ -95,15 +86,11 @@ public class CardManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        for (int i = 0; i < _cards.Length; i++)
-        {
-            var card = _cards[i];
-            card.OnShowDescription -= CardHovered;
-            card.OnCardUnHovered -= CardUnHovered;
-            card.OnPickedUp -= CardPickedUp;
-            card.OnDropped -= CardDropped;
-            card.OnUsed -= OnUsed;
-        }
+        for (int i = 0; i < _cardsToDraw.Count; i++)
+            UnSubToCard(_cardsToDraw[i]);
+
+        for (int i = 0; i < _drawnCards.Count; i++)
+            UnSubToCard(_drawnCards[i]);
 
         _seek.OnPowerUpDropped -= SeekDropped;
 
@@ -114,6 +101,33 @@ public class CardManager : MonoBehaviour
     {
         var refund = (_timeToDrawCard.Value - _elapsedTimeToDrawCard) * _refundOnDiscard.Value;
         _elapsedTimeToDrawCard += refund;
+    }
+
+    [ContextMenu("Add Card")]
+    public void AddCard()
+    {
+        var card = Instantiate(_cardPrefab, _cardArea);
+        card.gameObject.SetActive(false);
+        _cardsToDraw.Add(card);
+        SubToCard(card);
+    }
+
+    private void SubToCard(CardUIPowerUp card)
+    {
+        card.OnShowDescription += CardHovered;
+        card.OnCardUnHovered += CardUnHovered;
+        card.OnPickedUp += CardPickedUp;
+        card.OnDropped += CardDropped;
+        card.OnUsed += OnUsed;
+    }
+
+    private void UnSubToCard(CardUIPowerUp card)
+    {
+        card.OnShowDescription -= CardHovered;
+        card.OnCardUnHovered -= CardUnHovered;
+        card.OnPickedUp -= CardPickedUp;
+        card.OnDropped -= CardDropped;
+        card.OnUsed -= OnUsed;
     }
 
     private void DrawCards()
@@ -142,7 +156,8 @@ public class CardManager : MonoBehaviour
     private void MoveCards()
     {
         var count = _drawnCards.Count;
-        var addX = (_cardSize + _spacingBetweenCards) * _root.transform.localScale.x;
+        var spacing = _spacingBetweenCardsRange.Evaluate((float)count / _maxCards);
+        var addX = (_cardSize + spacing) * _root.transform.localScale.x;
         var minX = -(count - 1) * (addX / 2f);
         var deltaTime = Time.deltaTime;
         for (int i = 0; i < count; i++)
@@ -150,7 +165,7 @@ public class CardManager : MonoBehaviour
             var card = _drawnCards[i];
             Vector2 to = new Vector2(minX + (addX * i), 0f) + (Vector2)_cardArea.position;
             card.transform.position = Vector2.SmoothDamp(card.transform.position, to, 
-                                                         ref _cardVelocity[i], _cardMoveSpeed * deltaTime);
+                                                         ref card.Velocity, _cardMoveSpeed * deltaTime);
         }
     }
 
