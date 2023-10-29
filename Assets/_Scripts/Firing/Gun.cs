@@ -11,6 +11,7 @@ public class Gun : MonoBehaviour
     [Header("Stats")]
     [SerializeField] private CompositeValue _bulletSpeed = new(1f);
     [SerializeField] private CompositeValue _size = new(1f);
+    [SerializeField] private CompositeValue _bulletDuration = new(1f);
     [SerializeField] private int _bulletAmount = 1;
     [SerializeField] private float _separationPerBullet = 12.5f;
     [SerializeField] private int _burstAmount = 1;
@@ -64,7 +65,7 @@ public class Gun : MonoBehaviour
         bullet.Hitbox.SetDamage(damage);
         bullet.Hitbox.SetKnockback(knockback);
         bullet.Projectile.Shoot(_bulletSpeed.Value, bullet.transform.right,
-                                _pierceAmount, _bounceAmount);
+                                _pierceAmount, _bounceAmount, _bulletDuration.Value);
     }
 
     private void ObjectCreated(Bullet bullet)
@@ -77,7 +78,7 @@ public class Gun : MonoBehaviour
         _bulletPool.ReturnObject(bullet);
     }
 
-    public void DamageAppplied(float damage)
+    private void DamageAppplied(float damage)
     {
         OnDamageAppplied?.Invoke(damage);
     }

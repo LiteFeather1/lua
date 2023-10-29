@@ -36,7 +36,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - PixelLayer
   m_SortingLayers:
   - name: Background_Far
     uniqueID: 3037198273

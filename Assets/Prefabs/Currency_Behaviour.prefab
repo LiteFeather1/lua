@@ -46,7 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 7.5
-  _curve:
+  _timeToMaxSpeed: 0.5
+  _speedCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -88,7 +89,31 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _time: 0.5
+  _yOffset: 1
+  _yOffsetCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0.010386786
+      outSlope: 0.010386786
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.5
+      value: 0
+      inSlope: 0.007675161
+      outSlope: 0.007675161
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.42455238
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!212 &4259906858558961966
 SpriteRenderer:
   m_ObjectHideFlags: 0

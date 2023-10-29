@@ -30,11 +30,12 @@ public class Projectile : MonoBehaviour, IDeactivatable
         _speed = speed;
     }
 
-    public void Shoot(float speed, Vector2 direction, int pierce, int bounce)
+    public void Shoot(float speed, Vector2 direction, int pierce, int bounce, float time)
     {
         Shoot(speed, direction);
         _pierce = pierce;
         _bounce = bounce;
+        _time = time;
     }
 
     public void Deactivate()
