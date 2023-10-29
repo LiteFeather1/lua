@@ -89,7 +89,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _yOffset: 1
+  _yOffset: 0.7
   _yOffsetCurve:
     serializedVersion: 2
     m_Curve:
@@ -103,7 +103,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 1
     - serializedVersion: 3
-      time: 0.5
+      time: 0.4
       value: 0
       inSlope: 0.007675161
       outSlope: 0.007675161

@@ -90,7 +90,7 @@ public class SpawnManager : MonoBehaviour
                 var randX = Random.Range(_spawnArea.bounds.min.x, _spawnArea.bounds.max.x);
                 var randY = Random.Range(_spawnArea.bounds.min.y, _spawnArea.bounds.max.y);
                 enemy.transform.localPosition = new(randX, randY);
-                enemy.Spawn(tClamped);
+                enemy.Spawn(t, tClamped);
                 ActiveEnemies.Add(enemy);
             }
         }

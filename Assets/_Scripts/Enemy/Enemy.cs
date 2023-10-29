@@ -31,7 +31,7 @@ public abstract class Enemy : MonoBehaviour, IDeactivatable
 
     public virtual void Init(Witch witch) { }
 
-    public virtual void Spawn(float t) 
+    public virtual void Spawn(float t, float tClamped) 
     {
         _health.ResetHealth(_healthRange.Evaluate(t));
         _hitBox.SetDamage(_damageRange.Evaluate(t));

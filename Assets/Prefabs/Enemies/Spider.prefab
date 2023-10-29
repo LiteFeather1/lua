@@ -52,8 +52,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Spider
-  _speedRange: {x: 0.25, y: 2}
-  _healthRange: {x: 1, y: 5}
+  _speedRange: {x: 0.1, y: 0.7}
+  _healthRange: {x: 0.5, y: 5}
   _damageRange: {x: 1, y: 10}
   _health: {fileID: 1599531401289546909}
   _hitBox: {fileID: 4943662796723205737}
@@ -274,6 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 0
+  _critChance: 0
   _knockBack: 0
 --- !u!61 &8214140061213547316
 BoxCollider2D:

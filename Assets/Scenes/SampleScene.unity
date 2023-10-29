@@ -1506,9 +1506,13 @@ MonoBehaviour:
     - _object:
         _object: {fileID: 1124217388555753815, guid: 9b1d73122d5d3ba409c4803812f65789, type: 3}
         _initialPoolSize: 10
-      _weight: 0.25
+      _weight: 0.125
     - _object:
         _object: {fileID: 1124217388555753815, guid: c36c7725324f0bb42a9b86707841f023, type: 3}
+        _initialPoolSize: 10
+      _weight: 0.5
+    - _object:
+        _object: {fileID: 1124217388555753815, guid: 49ea02d64db183745b62ee7513381e9d, type: 3}
         _initialPoolSize: 10
       _weight: 0.5
   _maxEnemiesPerBurstRange: {x: 5, y: 25}

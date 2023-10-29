@@ -51,8 +51,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Bat
-  _speedRange: {x: 0.25, y: 2}
-  _healthRange: {x: 1, y: 5}
+  _speedRange: {x: 0.1, y: 0.7}
+  _healthRange: {x: 0.5, y: 5}
   _damageRange: {x: 1, y: 10}
   _health: {fileID: 7250449085420806086}
   _hitBox: {fileID: 1580534110986226837}
@@ -245,6 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 0
+  _critChance: 0
   _knockBack: 0
 --- !u!61 &8033920046837509531
 BoxCollider2D:

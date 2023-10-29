@@ -10,9 +10,9 @@ public class EnemyChase : Enemy
         _movement.SetTarget(witch.transform);
     }
 
-    public override void Spawn(float t)
+    public override void Spawn(float t, float tClamped)
     {
-        base.Spawn(t);
-        _movement.SetSpeed(_speedRange.Evaluate(t));
+        base.Spawn(t, tClamped);
+        _movement.SetSpeed(_speedRange.Evaluate(tClamped));
     }
 }
