@@ -70,6 +70,8 @@ public class CardManager : MonoBehaviour
         _cardsToDraw = new(_cards);
 
         _seek.OnPowerUpDropped += SeekDropped;
+
+        _recycler.OnCardUsed += RefundCooldown;
     }
 
     private void Start()
@@ -104,6 +106,8 @@ public class CardManager : MonoBehaviour
         }
 
         _seek.OnPowerUpDropped -= SeekDropped;
+
+        _recycler.OnCardUsed -= RefundCooldown;
     }
 
     public void RefundCooldown()
