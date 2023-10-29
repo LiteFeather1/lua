@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce59639e48fd22f419d24b0d74d91747, type: 3}
-  m_Name: Power_Up_Bullet_Size
+  m_Script: {fileID: 11500000, guid: daffefa6b9d1bf442969da248b0f4dbe, type: 3}
+  m_Name: Power_Up_Bullet_Range
   m_EditorClassIdentifier: 
-  _name: Bullet Size
-  _effect: Increase Bullet size by $
+  _name: Bullet Range
+  _effect: 
   _cost: 4
-  _rarity: {fileID: 11400000, guid: 639bbac6bf1db91429066dc023f24633, type: 2}
+  _rarity: {fileID: 0}
   _limit: 0
-  _icon: {fileID: 999687974, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
+  _icon: {fileID: 0}
   _modifier:
     _value: 0.1
     _type: 200

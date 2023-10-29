@@ -21,6 +21,7 @@ public class Gun : MonoBehaviour
 
     public CompositeValue BulletSpeed => _bulletSpeed;
     public CompositeValue Size => _size;
+    public CompositeValue BulletDuration => _bulletDuration;
 
     public void AddBulletAmount(int amount) => _bulletAmount += amount;
     public void AddBurst(int amount) => _burstAmount += amount;
