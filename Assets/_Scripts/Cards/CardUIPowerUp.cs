@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IDragHandler
+public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDragHandler, IPointerEnterHandler
 {
     [SerializeField] private float _defaultAlpha = .9f;
     [SerializeField] private CanvasGroup _canvasGroup;
@@ -30,7 +30,7 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IPo
         {
             var delta = Time.deltaTime;
             transform.position = Vector2.SmoothDamp(transform.position, Input.mousePosition, ref _velocity, delta * 6f);
-            var zRotation = Mathf.Lerp(0f, 24f, Mathf.Abs(_velocity.x) / 1200f) * Mathf.Sign(_velocity.x);
+            var zRotation = Mathf.Lerp(0f, 18f, Mathf.Abs(_velocity.x) / 1800f) * Mathf.Sign(_velocity.x);
             var to = Quaternion.Euler(0f, 0f, -zRotation);
             transform.localRotation = SmoothDamp(transform.localRotation, to, ref _deriv, delta * 128f);
         }
