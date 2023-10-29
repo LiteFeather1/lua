@@ -40,6 +40,8 @@ public class CardManager : MonoBehaviour
     [SerializeField] private float _spacingBetweenCards;
     private Vector2[] _cardVelocity;
 
+    public CompositeValue TimeToDrawCard => _timeToDrawCard;
+
     public CardUIPowerUp[] Cards => _cards;
 
     public Action OnCardHovered { get; set; }

@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Piercing
   _effect: Increase Bullet Pierce by $
+  _cost: 4
   _rarity: {fileID: 11400000, guid: 639bbac6bf1db91429066dc023f24633, type: 2}
   _limit: 0
-  _icon: {fileID: 0}
+  _icon: {fileID: 475383769, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
   _amount: 1
