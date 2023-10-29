@@ -121,15 +121,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Cards
     originalName: 
-    pivot: {x: 0.5, y: 0.21875}
+    pivot: {x: 0.53242326, y: -0.20408164}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 320
-      height: 320
+      width: 293
+      height: 147
     spriteID: b8bc46fc3ca984f488484b4139892f72
     spriteBone: []
     spriteOutline: []
@@ -151,10 +151,10 @@ ScriptedImporter:
     - name: Cards
       frameIndex: 0
       cellRect:
-        x: 0
-        y: -70
-        width: 320
-        height: 320
+        x: 4
+        y: 30
+        width: 293
+        height: 147
       spriteId: b8bc46fc3ca984f488484b4139892f72
     linkedCells: []
     parentIndex: -1

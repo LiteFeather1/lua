@@ -9,13 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 554fa0501890b2a4eac3569b089b9873, type: 3}
-  m_Name: Power_Up_Burst
+  m_Script: {fileID: 11500000, guid: 16ea150aac9ad224d9945f345df03f44, type: 3}
+  m_Name: Power_Up_Damage_Enemies
   m_EditorClassIdentifier: 
-  _name: Staff Burst
-  _effect: Increase Staff Bullet Burst by $
+  _name: Damage Enemies
+  _effect: Damage Every Enemy On Recycle. Increase Damage by $
   _cost: 4
   _rarity: {fileID: 11400000, guid: 639bbac6bf1db91429066dc023f24633, type: 2}
   _limit: 0
-  _icon: {fileID: -1286512544, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
-  _amount: 1
+  _icon: {fileID: -1568667785, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
+  _modifier:
+    _value: 2
+    _type: 100

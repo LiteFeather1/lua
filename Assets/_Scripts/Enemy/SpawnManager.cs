@@ -17,6 +17,8 @@ public class SpawnManager : MonoBehaviour
     private float _elapsedTime;
     [SerializeField] private BoxCollider2D _spawnArea;
 
+    public List<Enemy> ActiveEnemies { get; private set; } = new();
+
     private void Start()
     {
         _currencyPool.InitPool();
@@ -83,6 +85,7 @@ public class SpawnManager : MonoBehaviour
                 var randY = Random.Range(_spawnArea.bounds.min.y, _spawnArea.bounds.max.y);
                 enemy.transform.localPosition = new(randX, randY);
                 enemy.Spawn(tClamped);
+                ActiveEnemies.Add(enemy);
             }
         }
     }
@@ -114,6 +117,7 @@ public class SpawnManager : MonoBehaviour
 
     private void ReturnEnemyToPool(Enemy enemy)
     {
+        ActiveEnemies.Remove(enemy);
         _enemyToPool[enemy.Name].ReturnObject(enemy);
     }
 }

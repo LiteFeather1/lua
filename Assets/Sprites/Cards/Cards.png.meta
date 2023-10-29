@@ -844,6 +844,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Cards_Staff_Burst
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 28
+        width: 30
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bdebf929fd6c134da9daf111a191e16
+      internalID: -1286512544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -891,6 +912,7 @@ TextureImporter:
       Cards_Seek: 1576528002
       Cards_Shield: -1649963791
       Cards_Shooting_Moon: 1297781831
+      Cards_Staff_Burst: -1286512544
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

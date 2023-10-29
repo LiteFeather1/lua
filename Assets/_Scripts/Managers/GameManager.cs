@@ -14,23 +14,28 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UIManager _uiManager;
     [SerializeField] private CardManager _cardManager;
 
+    [Header("Recycle Effects")]
+    [SerializeField] private CompositeValue _damageEnemiesOnRecycle;
+
     public static GameManager Instance { get; private set; }
     public static InputMapping Inputs { get; private set; }
 
     public Witch Witch => _witch;
     public CardManager CardManager => _cardManager;
 
+    public CompositeValue DamageEnemiesOnRecycle => _damageEnemiesOnRecycle;
+
     private void Awake()
     {
         Instance = this;
         Inputs = new();
         Inputs.Enable();
-    }
 
-    private void OnEnable()
-    {
         _cardManager.OnCardHovered += SlowDown;
         _cardManager.OnCardUnHovered += UnSlowDown;
+
+        _cardManager.Recycler.OnCardUsed += CardRecycled;
+
         _uiManager.BindToWitch(_witch);
     }
 
@@ -47,10 +52,13 @@ public class GameManager : MonoBehaviour
         _uiManager.UpdateTime(_playTime);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         _cardManager.OnCardHovered -= SlowDown;
         _cardManager.OnCardUnHovered -= UnSlowDown;
+
+        _cardManager.Recycler.OnCardUsed += CardRecycled;
+
         _uiManager.UnBindToWitch(_witch);
     }
 
@@ -75,5 +83,17 @@ public class GameManager : MonoBehaviour
     private void UnSlowDown()
     {
         Time.timeScale = 1f;
+    }
+
+    private void CardRecycled()
+    {
+        if (_damageEnemiesOnRecycle.Value > 0f)
+        {
+            var enemies = _spawnManager.ActiveEnemies.ToArray();
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                enemies[i].Health.TakeDamage(_damageEnemiesOnRecycle.Value);
+            }
+        }
     }
 }

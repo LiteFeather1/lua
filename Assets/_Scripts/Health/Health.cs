@@ -18,6 +18,10 @@ public class Health : MonoBehaviour, IDamageable
 
     public virtual bool TakeDamage(float damage)
     {
+        // Is alive check
+        if (_health <= 0f)
+            return true;
+
         _health -= damage;
         OnDamage?.Invoke();
         if (_health <= 0f)

@@ -31,6 +31,9 @@ public class CardManager : MonoBehaviour
     [Header("Seeker")]
     [SerializeField] private CardUIDropContainerSeek _seek;
 
+    [Header("Recycle")]
+    [SerializeField] private CardUIDropContainerRecycle _recycler;
+
     [Header("Text")]
     [SerializeField] private TextMeshProUGUI t_cardName;
     [SerializeField] private TextMeshProUGUI t_cardEffect;
@@ -43,6 +46,8 @@ public class CardManager : MonoBehaviour
     public CompositeValue TimeToDrawCard => _timeToDrawCard;
 
     public CardUIPowerUp[] Cards => _cards;
+
+    public CardUIDropContainerRecycle Recycler => _recycler;
 
     public Action OnCardHovered { get; set; }
     public Action OnCardUnHovered { get; set; }

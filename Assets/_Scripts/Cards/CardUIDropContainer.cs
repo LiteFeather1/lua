@@ -2,14 +2,14 @@
 
 public abstract class CardUIDropContainer : CardUi, IDropHandler
 {
-    public System.Action CardUsed { get; set; }
+    public System.Action OnCardUsed { get; set; }
 
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag.TryGetComponent(out CardUIPowerUp card))
         {
             UseCard(card);
-            CardUsed?.Invoke();
+            OnCardUsed?.Invoke();
         }
     }
 

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Power Up/Drawer/Cooldown")]
-public class PowerUpDrawerCooldown : PowerUpModifier
+[CreateAssetMenu(menuName = "Power Up/Drawer/Drawing Speed")]
+public class PowerUpDrawingSpeed : PowerUpModifier
 {
     public override void ApplyEffect(GameManager gm)
     {
