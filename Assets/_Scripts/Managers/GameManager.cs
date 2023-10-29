@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [Header("Recycle Effects")]
     [SerializeField] private CompositeValue _damageEnemiesOnRecycle;
     [SerializeField] private CompositeValue _healOnRecycle;
+    [SerializeField] private CompositeValue _addCurrencyOnRecycle;
 
     public static GameManager Instance { get; private set; }
     public static InputMapping Inputs { get; private set; }
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     public CompositeValue DamageEnemiesOnRecycle => _damageEnemiesOnRecycle;
     public CompositeValue HealOnRecycle => _healOnRecycle;
+    public CompositeValue AddCurrencyOnRecycle => _addCurrencyOnRecycle;
 
     private void Awake()
     {
@@ -95,6 +97,7 @@ public class GameManager : MonoBehaviour
         }
 
         _witch.Health.Heal(_healOnRecycle.Value);
+        _witch.ModifyCurrency((int)_addCurrencyOnRecycle.Value);
     }
 
     private void DamageEveryEnemy()

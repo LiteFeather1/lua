@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] private ObjectPool<CurrencyBehaviour> _currencyPool;
     [SerializeField] private Weighter<ObjectPool<Enemy>> _weightedPoolOfEnemies;
     private Dictionary<string, ObjectPool<Enemy>> _enemyToPool;
     [SerializeField] private Vector2Int _maxEnemiesPerBurstRange;
@@ -17,7 +16,14 @@ public class SpawnManager : MonoBehaviour
     private float _elapsedTime;
     [SerializeField] private BoxCollider2D _spawnArea;
 
+    [Header("Candy")]
+    [SerializeField] private ObjectPool<CurrencyBehaviour> _currencyPool;
+    [SerializeField] private float _candySpawnOffset = 0.04f;
+    [SerializeField] private CompositeValue _chanceToExtraCandy = new(0f);
+
     public List<Enemy> ActiveEnemies { get; private set; } = new();
+
+    public CompositeValue ChanceToExtraCandy => _chanceToExtraCandy;
 
     private void Start()
     {
@@ -103,8 +109,17 @@ public class SpawnManager : MonoBehaviour
 
     private void EnemyDied(Vector2 pos)
     {
+        SpawnCandy(pos);
+        if (Random.value < _chanceToExtraCandy.Value)
+            SpawnCandy(pos);
+    }
+
+    private void SpawnCandy(Vector2 pos)
+    {
         var currency = _currencyPool.GetObject();
-        currency.transform.position = pos;
+        var randX = Random.Range(-_candySpawnOffset, _candySpawnOffset);
+        var randY = Random.Range(-_candySpawnOffset, _candySpawnOffset);
+        currency.transform.position = pos + new Vector2(randX, randY);
         currency.gameObject.SetActive(true);
     }
 

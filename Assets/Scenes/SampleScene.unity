@@ -488,7 +488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1613,9 +1613,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2afff7a8f9c0184084e16339051f06a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currencyPool:
-    _object: {fileID: 2748346242251297967, guid: 01b4627feeae6a645a416d881fbab9b8, type: 3}
-    _initialPoolSize: 10
   _weightedPoolOfEnemies:
     _objects:
     - _object:
@@ -1641,6 +1638,12 @@ MonoBehaviour:
   _minSpawnTimeRange: {x: 7.5, y: 0.25}
   _spawnTimeOffset: {x: 2.5, y: 0.125}
   _spawnArea: {fileID: 850318396}
+  _currencyPool:
+    _object: {fileID: 2748346242251297967, guid: 01b4627feeae6a645a416d881fbab9b8, type: 3}
+    _initialPoolSize: 10
+  _candySpawnOffset: 0.04
+  _chanceToExtraCandy:
+    _baseValue: 0
 --- !u!1 &772496564
 GameObject:
   m_ObjectHideFlags: 0
@@ -2135,7 +2138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4043,6 +4046,8 @@ MonoBehaviour:
     _baseValue: 0
   _healOnRecycle:
     _baseValue: 0
+  _addCurrencyOnRecycle:
+    _baseValue: 0
 --- !u!4 &1886159767
 Transform:
   m_ObjectHideFlags: 0
@@ -4736,9 +4741,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1307456679637955763, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
-      propertyPath: _randomBulletShootTime._baseValue
-      value: 2
+    - target: {fileID: 2089837871041214972, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089837871041214972, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089837871041214972, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089837871041214972, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 5155081586467621625, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4934,10 +4951,6 @@ PrefabInstance:
     - target: {fileID: 6191480579105741466, guid: 74858273c4d2e534aa4566e4a2296590, type: 3}
       propertyPath: m_Name
       value: Card_Recycle
-      objectReference: {fileID: 0}
-    - target: {fileID: 8969968865876324067, guid: 74858273c4d2e534aa4566e4a2296590, type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

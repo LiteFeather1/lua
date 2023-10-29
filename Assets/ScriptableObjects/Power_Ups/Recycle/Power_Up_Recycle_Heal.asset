@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Power_Up_Recycle_Heal
   m_EditorClassIdentifier: 
   _name: Recycle Heal
-  _effect: On Recycle heal by + $
+  _effect: Heal on Recycle. Increased by $
   _cost: 4
   _rarity: {fileID: 11400000, guid: 639bbac6bf1db91429066dc023f24633, type: 2}
   _limit: 0
