@@ -187,6 +187,9 @@ MonoBehaviour:
   _blinkAmount: 4
   _durationBetweenBlinks: 0.0625
   _damagedColour: {r: 1, g: 0.3915094, b: 0.3915094, a: 1}
+  _damageExplosions:
+    _object: {fileID: 9029989089869572558, guid: cd79c920beec33a46adc58aa416c394c, type: 3}
+    _initialPoolSize: 10
   _rb: {fileID: 6244824650771415616}
   _sr: {fileID: 5435065137700811392}
   _hurtBox: {fileID: 2089837871041214972}

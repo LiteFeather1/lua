@@ -1,3 +1,5 @@
+using LTFUtils;
+using RetroAnimation;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -41,6 +43,9 @@ public class Witch : MonoBehaviour
     [SerializeField] private float _durationBetweenBlinks;
     [SerializeField] private Color _damagedColour = Color.red;
 
+    [Header("Damage Explosion")]
+    [SerializeField] private ObjectPool<FlipBook> _damageExplosions;
+
     [Header("Components")]
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private SpriteRenderer _sr;
@@ -69,15 +74,23 @@ public class Witch : MonoBehaviour
         _rb.drag = _decelerationRange.x;
         _initialAcceleration = _acceleration.Value;
         _waitInvulnerability = new(_invulnerabilityDuration);
+
+        _damageExplosions.InitPool();
     }
 
     private void OnEnable()
     {
-        _gun.OnDamageAppplied += TryLifeSteal;
+        _gun.OnDamageAppplied += DamagedApplied;
 
         _health.OnDamage += Damaged;
         _health.OnDeath += OnDeath;
         _health.OnHeal += HPModified;
+
+        foreach (var explosion in _damageExplosions.Objects)
+        {
+            DamageExplosionCreated(explosion);
+        }
+        _damageExplosions.ObjectCreated += DamageExplosionCreated;
     }
 
     private void Update()
@@ -105,11 +118,16 @@ public class Witch : MonoBehaviour
 
     private void OnDisable()
     {
-        _gun.OnDamageAppplied -= TryLifeSteal;
+        _gun.OnDamageAppplied -= DamagedApplied;
 
         _health.OnDamage -= Damaged;
         _health.OnDeath -= OnDeath;
         _health.OnHeal -= HPModified;
+
+        foreach (var explosion in _damageExplosions.Objects)
+        {
+            explosion.FinishedAnimation -= DamageExplosionCreated;
+        }
     }
 
     private void FixedUpdate()
@@ -142,8 +160,24 @@ public class Witch : MonoBehaviour
         _rb.drag = _decelerationRange.Evaluate(t);
     }
 
-    private void TryLifeSteal(float damage)
+    private void DamageExplosionCreated(FlipBook explosion)
     {
+        explosion.FinishedAnimation += ReturnExplosionToPool;
+    }
+
+    private void ReturnExplosionToPool(FlipBook explosion)
+    {
+        explosion.gameObject.SetActive(false);
+        _damageExplosions.ReturnObject(explosion);
+    }
+
+    private void DamagedApplied(float damage, Vector2 pos)
+    {
+        var bulletExplosion = _damageExplosions.GetObject();
+        bulletExplosion.transform.position = pos;
+        bulletExplosion.Play();
+        bulletExplosion.gameObject.SetActive(true);
+
         if (Random.value < _chanceToLifeSteal.Value)
         {
             _health.Heal(damage * _lifeStealPercent.Value);

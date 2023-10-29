@@ -28,15 +28,14 @@ public class Gun : MonoBehaviour
     public void AddBounce(int amount) => _bounceAmount += amount;
     public void AddPierce(int amount) => _pierceAmount += amount;
 
-    public System.Action<float> OnDamageAppplied;
+    public System.Action<float, Vector2> OnDamageAppplied;
 
     private void Awake()
     {
         _bulletPool.InitPool();
         foreach (Bullet bullet in _bulletPool.Objects)
         {
-            bullet.ReturnToPool += ReturnToPool;
-            bullet.Hitbox.OnDamageAppplied += DamageAppplied;
+            ObjectCreated(bullet);
         }
         _bulletPool.ObjectCreated += ObjectCreated;
     }
@@ -73,6 +72,7 @@ public class Gun : MonoBehaviour
     private void ObjectCreated(Bullet bullet)
     {
         bullet.ReturnToPool += ReturnToPool;
+        bullet.Hitbox.OnDamageAppplied += DamageAppplied;
     }
 
     private void ReturnToPool(Bullet bullet)
@@ -80,9 +80,9 @@ public class Gun : MonoBehaviour
         _bulletPool.ReturnObject(bullet);
     }
 
-    private void DamageAppplied(float damage)
+    private void DamageAppplied(float damage, Vector2 pos)
     {
-        OnDamageAppplied?.Invoke(damage);
+        OnDamageAppplied?.Invoke(damage, pos);
     }
 
     private IEnumerator Shot_CO(float damage, float critChance, float knockback)

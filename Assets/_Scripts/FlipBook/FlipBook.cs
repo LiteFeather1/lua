@@ -25,7 +25,7 @@ namespace RetroAnimation
         public float AnimationTimeToFinish => (1 / _fps) * (_flipSheet == null ? 1 : _flipSheet.FramesLength);
         public float T => AnimationTime / AnimationTimeToFinish;
 
-        public System.Action FinishedAnimation { get; set; }
+        public System.Action<FlipBook> FinishedAnimation { get; set; }
 
         private void Awake()
         {
@@ -53,7 +53,7 @@ namespace RetroAnimation
             else
             {
                 _playing = false;
-                FinishedAnimation?.Invoke();
+                FinishedAnimation?.Invoke(this);
             }
         }
 
