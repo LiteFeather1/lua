@@ -58,6 +58,7 @@ public class Witch : MonoBehaviour
     public CompositeValue CritChance => _critChance;
     public CompositeValue Knockback => _knockback;
     public CompositeValue ShootTime => _shootTime;
+    public CompositeValue RandomBulletShootTime => _randomBulletShootTime;
     public void AddRandomBullet(int amount) => _randomBulletAmount += amount;
 
     public CompositeValue ChanceToLifeSteal => _chanceToLifeSteal;

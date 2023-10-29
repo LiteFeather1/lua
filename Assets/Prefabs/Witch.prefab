@@ -170,12 +170,14 @@ MonoBehaviour:
   _gun: {fileID: 6431089900240576536}
   _damage:
     _baseValue: 1
+  _critChance:
+    _baseValue: 0
   _knockback:
     _baseValue: 0
   _shootTime:
     _baseValue: 1
   _randomBulletShootTime:
-    _baseValue: 1
+    _baseValue: 2
   _randomBulletAmount: 0
   _chanceToLifeSteal:
     _baseValue: 0.01
@@ -223,6 +225,8 @@ MonoBehaviour:
   _bulletSpeed:
     _baseValue: 1
   _size:
+    _baseValue: 1
+  _bulletDuration:
     _baseValue: 1
   _bulletAmount: 1
   _separationPerBullet: 12.5
@@ -322,7 +326,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &2089837871041214972
