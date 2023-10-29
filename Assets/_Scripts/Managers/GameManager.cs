@@ -89,11 +89,16 @@ public class GameManager : MonoBehaviour
     {
         if (_damageEnemiesOnRecycle.Value > 0f)
         {
-            var enemies = _spawnManager.ActiveEnemies.ToArray();
-            for (int i = 0; i < enemies.Length; i++)
-            {
-                enemies[i].Health.TakeDamage(_damageEnemiesOnRecycle.Value);
-            }
+            DamageEveryEnemy();
+        }
+    }
+
+    private void DamageEveryEnemy()
+    {
+        var enemies = _spawnManager.ActiveEnemies.ToArray();
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            enemies[i].Health.TakeDamage(_damageEnemiesOnRecycle.Value);
         }
     }
 }

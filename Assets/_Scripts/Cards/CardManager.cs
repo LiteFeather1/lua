@@ -11,6 +11,7 @@ public class CardManager : MonoBehaviour
 
     [Header("Time")]
     [SerializeField] private CompositeValue _timeToDrawCard = new(5f);
+    [SerializeField] private CompositeValue _refundOnDiscard = new(0f);
     private float _elapsedTimeToDrawCard;
 
     [Header("Power Ups")]
@@ -44,6 +45,7 @@ public class CardManager : MonoBehaviour
     private Vector2[] _cardVelocity;
 
     public CompositeValue TimeToDrawCard => _timeToDrawCard;
+    public CompositeValue RefundOnDiscard => _refundOnDiscard;
 
     public CardUIPowerUp[] Cards => _cards;
 
@@ -102,6 +104,12 @@ public class CardManager : MonoBehaviour
         }
 
         _seek.OnPowerUpDropped -= SeekDropped;
+    }
+
+    public void RefundCooldown()
+    {
+        var refund = (_timeToDrawCard.Value - _elapsedTimeToDrawCard) * _refundOnDiscard.Value;
+        _elapsedTimeToDrawCard += refund;
     }
 
     private void DrawCards()
