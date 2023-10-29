@@ -933,6 +933,7 @@ GameObject:
   - component: {fileID: 372150707}
   - component: {fileID: 372150708}
   - component: {fileID: 372150709}
+  - component: {fileID: 372150710}
   m_Layer: 0
   m_Name: Moon
   m_TagString: Untagged
@@ -996,7 +997,7 @@ SpriteRenderer:
   m_SortingLayerID: -1257769023
   m_SortingLayer: -2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0bc7be785b6458f4baa41ce271f5d1cc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c01dd71946beeda4e9834d8503655ef2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1024,6 +1025,28 @@ MonoBehaviour:
   _camera: {fileID: 519420031}
   _subject: {fileID: 256337799807947317}
   _sr: {fileID: 372150708}
+--- !u!114 &372150710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372150706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a06dfc61c6024547a48c4c6c7780264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sr: {fileID: 372150708}
+  _moonPhases:
+  - {fileID: 21300000, guid: c01dd71946beeda4e9834d8503655ef2, type: 3}
+  - {fileID: 21300000, guid: c58e682ad9c1e7d45981d5af1d2ce909, type: 3}
+  - {fileID: 21300000, guid: 3b4aa8921cb5ef140a4df66a6cc5e0b8, type: 3}
+  - {fileID: 21300000, guid: 1aea3ed3f691ee649b0d79491e139619, type: 3}
+  - {fileID: 21300000, guid: cd19e8bebd1f9f14caf498cc2c7ed39c, type: 3}
+  - {fileID: 21300000, guid: a575d4d4fc6746843b65ddf72c23969e, type: 3}
+  - {fileID: 21300000, guid: b06f339788dbcb743877a9ea371f294c, type: 3}
+  - {fileID: 21300000, guid: c58e682ad9c1e7d45981d5af1d2ce909, type: 3}
 --- !u!1 &441565105
 GameObject:
   m_ObjectHideFlags: 0
@@ -2897,7 +2920,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -12}
+  m_AnchoredPosition: {x: 0, y: -16}
   m_SizeDelta: {x: 100, y: 14}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1590040177
@@ -3271,7 +3294,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   i_hpFill: {fileID: 300096512}
   i_hpFrame: {fileID: 1885250482}
-  _maxHPSize: 272
+  _maxHPSize: 280
   i_shield: {fileID: 1387576572}
   i_witchPortrait: {fileID: 1742950384}
   _defaultSprite: {fileID: 21300000, guid: c7750bc9fddb46b408fbc846c9fd357b, type: 3}
