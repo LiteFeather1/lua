@@ -6,9 +6,11 @@ using UnityEngine.UI;
 
 public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IDragHandler
 {
+    [SerializeField] private float _defaultAlpha = .9f;
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private Image i_powerUp;
-    [SerializeField] private TextMeshProUGUI t_cardName; 
+    [SerializeField] private TextMeshProUGUI t_cardName;
+    [SerializeField] private TextMeshProUGUI t_cardCost;
     private Transform _originalParent;
     private PowerUp _powerUp;
     private Vector2 _velocity;
@@ -37,6 +39,13 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IPo
     public void OnPointerEnter(PointerEventData eventData)
     {
         OnShowDescription?.Invoke(_powerUp);
+        _canvasGroup.alpha = 1f;
+    }
+
+    public override void OnPointerExit(PointerEventData eventData)
+    {
+        base.OnPointerExit(eventData);
+        _canvasGroup.alpha = _defaultAlpha;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -73,6 +82,7 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IPo
         i_powerUp.sprite = powerUp.Icon;
         i_card.color = powerUp.RarityColour;
         t_cardName.text = powerUp.Name;
+        t_cardCost.text = powerUp.Cost.ToString();
     }
 
     public void Used()

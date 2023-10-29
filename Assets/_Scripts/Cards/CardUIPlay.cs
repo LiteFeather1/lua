@@ -6,6 +6,9 @@ public class CardUIPlay : CardUIDropContainer
 
     protected override void UseCard(CardUIPowerUp card)
     {
+        if (_gm.Witch.Currency < card.PowerUp.Cost)
+            return;
+        _gm.Witch.ModifyCurrency(-card.PowerUp.Cost);
         card.PowerUp.ApplyEffect(_gm);
         card.Used();
     }

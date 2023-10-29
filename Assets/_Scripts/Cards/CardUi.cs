@@ -9,7 +9,7 @@ public abstract class CardUi : MonoBehaviour, IPointerExitHandler
 
     public Action OnCardUnHovered { get; set; }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public virtual void OnPointerExit(PointerEventData eventData)
     {
         OnCardUnHovered?.Invoke();
     }

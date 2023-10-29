@@ -49,6 +49,7 @@ public class Witch : MonoBehaviour
     public Action<float> OnDamaged { get; set; }
     public Action OnInvulnerabilityEnded { get; set; }
 
+    public int Currency => _currency;
     public HealthPlayer Health => _health;
 
     public Gun Gun => _gun;

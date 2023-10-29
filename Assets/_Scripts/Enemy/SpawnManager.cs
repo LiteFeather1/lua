@@ -39,9 +39,7 @@ public class SpawnManager : MonoBehaviour
             pool.ObjectCreated += EnemyCreated;
         }
 
-        var offSet = Random.Range(-_spawnTimeOffset.x, _spawnTimeOffset.x);
-        var spawnTime = Random.Range(_minSpawnTimeRange.x, _maxSpawnTimeRange.x) / 2f;
-        _spawnTime = spawnTime + offSet;
+        _spawnTime = Random.Range(2.75f, 4f);
     }
 
     private void OnDestroy()
