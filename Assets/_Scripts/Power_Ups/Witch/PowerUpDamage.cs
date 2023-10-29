@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Power Up/Bullet/Damage")]
+[CreateAssetMenu(menuName = "Power Up/Witch/Damage")]
 public class PowerUpDamage : PowerUpModifier
 {
     public override void ApplyEffect(GameManager gm)   

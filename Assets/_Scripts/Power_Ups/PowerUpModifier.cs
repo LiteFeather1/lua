@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.InteropServices.WindowsRuntime;
+using UnityEngine;
 
 public abstract class PowerUpModifier : PowerUp
 {
@@ -10,11 +11,23 @@ public abstract class PowerUpModifier : PowerUp
         {
             return _modifier.Type switch
             {
-                CompositeValueModifierType.Flat => $"+{_modifier.Value}",
-                CompositeValueModifierType.PercentAdditive => $"+{Mathf.Abs(_modifier.Value) * 100f:0.00}%",
-                CompositeValueModifierType.PercentMultiplier => $"+{Mathf.Abs(_modifier.Value) * 100f:0.00}%",
+                CompositeValueModifierType.Flat => FlatModifier(),
+                CompositeValueModifierType.PercentAdditive => PercentModifer(),
+                CompositeValueModifierType.PercentMultiplier => PercentModifer(),
                 _ => ""
             };
         }
+    }
+
+    private string FlatModifier()
+    {
+        if (_modifier.Value < 1f)
+            return PercentModifer();
+        return $"+{_modifier.Value}";
+    }
+
+    private string PercentModifer()
+    {
+        return $"+{Mathf.Abs(_modifier.Value) * 100f:0.00}%";
     }
 }

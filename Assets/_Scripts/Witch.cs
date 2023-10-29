@@ -22,6 +22,7 @@ public class Witch : MonoBehaviour
     [Header("Shoot")]
     [SerializeField] private Gun _gun;
     [SerializeField] private CompositeValue _damage;
+    [SerializeField] private CompositeValue _critChance = new(.01f);
     [SerializeField] private CompositeValue _knockback;
     [SerializeField] private CompositeValue _shootTime = new(1f);
     [SerializeField] private CompositeValue _randomBulletShootTime = new(1f);
@@ -54,6 +55,7 @@ public class Witch : MonoBehaviour
 
     public Gun Gun => _gun;
     public CompositeValue Damage => _damage;
+    public CompositeValue CritChance => _critChance;
     public CompositeValue Knockback => _knockback;
     public CompositeValue ShootTime => _shootTime;
     public void AddRandomBullet(int amount) => _randomBulletAmount += amount;
@@ -84,7 +86,7 @@ public class Witch : MonoBehaviour
         if (_elapsedShootTime >= _shootTime.Value)
         {
             _elapsedShootTime = 0f;
-            _gun.ShootRoutine(_damage.Value, _knockback.Value);
+            _gun.ShootRoutine(_damage.Value, _critChance.Value,_knockback.Value);
         }
 
         _elapsedRandomShootTime += delta;
@@ -93,7 +95,7 @@ public class Witch : MonoBehaviour
             _elapsedRandomShootTime = 0f;
             for (int i = 0; i < _randomBulletAmount; i++)
             {
-                _gun.ShootBullet(_damage.Value, _knockback.Value, Random.Range(0f, 360f));
+                _gun.ShootBullet(_damage.Value, _critChance.Value, _knockback.Value, Random.Range(0f, 360f));
             }
         }
     }

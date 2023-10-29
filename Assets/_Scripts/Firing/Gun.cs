@@ -51,12 +51,12 @@ public class Gun : MonoBehaviour
         _bulletPool.ObjectCreated -= ObjectCreated;
     }
 
-    public void ShootRoutine(float damage, float knockback)
+    public void ShootRoutine(float damage, float critChance, float knockback)
     {
-        StartCoroutine(Shot_CO(damage, knockback));
+        StartCoroutine(Shot_CO(damage, critChance, knockback));
     }
 
-    public void ShootBullet(float damage, float knockback, float angle)
+    public void ShootBullet(float damage, float critChance, float knockback, float angle)
     {
         var bullet = _bulletPool.GetObject();
         bullet.transform.SetLocalPositionAndRotation(_firePoint.position,
@@ -64,6 +64,7 @@ public class Gun : MonoBehaviour
         bullet.transform.localScale = Vector3.one * _size.Value;
         bullet.gameObject.SetActive(true);
         bullet.Hitbox.SetDamage(damage);
+        bullet.Hitbox.SetCritChance(critChance);
         bullet.Hitbox.SetKnockback(knockback);
         bullet.Projectile.Shoot(_bulletSpeed.Value, bullet.transform.right,
                                 _pierceAmount, _bounceAmount, _bulletDuration.Value);
@@ -84,14 +85,14 @@ public class Gun : MonoBehaviour
         OnDamageAppplied?.Invoke(damage);
     }
 
-    private IEnumerator Shot_CO(float damage, float knockback)
+    private IEnumerator Shot_CO(float damage, float critChance, float knockback)
     {
         WaitForSeconds yieldBetweenBurst = new(_timeToCompleteShooting / _burstAmount);
         for (int i = 0; i < _burstAmount; i++)
         {
             for (int j = 0; j < _bulletAmount; j++)
             {
-                ShootBullet(damage, knockback, GetAngle(j));
+                ShootBullet(damage, critChance, knockback, GetAngle(j));
             }
             yield return yieldBetweenBurst;
         }

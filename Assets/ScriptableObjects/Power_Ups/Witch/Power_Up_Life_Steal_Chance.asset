@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Life Steal Chance
   _effect: Increase Chance to Heal on Damage by $
+  _cost: 4
   _rarity: {fileID: 11400000, guid: 639bbac6bf1db91429066dc023f24633, type: 2}
   _limit: 40
-  _icon: {fileID: 0}
+  _icon: {fileID: -2054888225, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
   _modifier:
     _value: 0.025
     _type: 200
