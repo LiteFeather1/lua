@@ -1,4 +1,5 @@
 using LTFUtils;
+using RetroAnimation;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -151,6 +152,10 @@ public class CardManager : MonoBehaviour
             _drawnCards.Add(card);
             card.gameObject.SetActive(true);
         }
+
+        float t = _elapsedTimeToDrawCard / _timeToDrawCard.Value;
+        var index = Mathf.FloorToInt(t * (_drawerAnimation.Length - 1));
+        i_drawer.sprite = _drawerAnimation[index];
     }
 
     private void MoveCards()
