@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Recycle Effects")]
     [SerializeField] private CompositeValue _damageEnemiesOnRecycle;
+    [SerializeField] private CompositeValue _healOnRecycle;
 
     public static GameManager Instance { get; private set; }
     public static InputMapping Inputs { get; private set; }
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     public CardManager CardManager => _cardManager;
 
     public CompositeValue DamageEnemiesOnRecycle => _damageEnemiesOnRecycle;
+    public CompositeValue HealOnRecycle => _healOnRecycle;
 
     private void Awake()
     {
@@ -91,6 +93,8 @@ public class GameManager : MonoBehaviour
         {
             DamageEveryEnemy();
         }
+
+        _witch.Health.Heal(_healOnRecycle.Value);
     }
 
     private void DamageEveryEnemy()

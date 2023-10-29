@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviour
 
     public void BindToWitch(Witch witch)
     {
-        witch.OnDamaged += WitchDamaged;
+        witch.OnHPModified += WitchDamaged;
         witch.OnInvulnerabilityEnded += InvulnerabilityEnded;
 
         witch.Health.OnMaxHPIncreased += MaxHpIncreased;
@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour
 
     public void UnBindToWitch(Witch witch)
     {
-        witch.OnDamaged -= WitchDamaged;
+        witch.OnHPModified -= WitchDamaged;
         witch.OnInvulnerabilityEnded -= InvulnerabilityEnded;
 
         witch.Health.OnMaxHPIncreased -= MaxHpIncreased;

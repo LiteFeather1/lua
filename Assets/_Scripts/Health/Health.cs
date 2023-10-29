@@ -9,6 +9,7 @@ public class Health : MonoBehaviour, IDamageable
     public float HP => _health;
 
     public System.Action OnDamage { get; set; }
+    public System.Action OnHeal { get; set; }
     public System.Action OnDeath { get; set; }
 
     public void Start()
@@ -50,5 +51,7 @@ public class Health : MonoBehaviour, IDamageable
         _health += heal;
         if (_health > _maxHealth)
             _health = _maxHealth;
+
+        OnHeal?.Invoke();
     }
 }

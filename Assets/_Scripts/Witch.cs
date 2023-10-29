@@ -47,7 +47,7 @@ public class Witch : MonoBehaviour
     [SerializeField] private Collider2D _hurtBox;
 
     public Action<int> OnCurrencyModified { get; set; }
-    public Action<float> OnDamaged { get; set; }
+    public Action<float> OnHPModified { get; set; }
     public Action OnInvulnerabilityEnded { get; set; }
 
     public int Currency => _currency;
@@ -73,8 +73,10 @@ public class Witch : MonoBehaviour
     private void OnEnable()
     {
         _gun.OnDamageAppplied += TryLifeSteal;
+
         _health.OnDamage += Damaged;
         _health.OnDeath += OnDeath;
+        _health.OnHeal += HPModified;
     }
 
     private void Update()
@@ -103,8 +105,10 @@ public class Witch : MonoBehaviour
     private void OnDisable()
     {
         _gun.OnDamageAppplied -= TryLifeSteal;
+
         _health.OnDamage -= Damaged;
         _health.OnDeath -= OnDeath;
+        _health.OnHeal -= HPModified;
     }
 
     private void FixedUpdate()
@@ -145,10 +149,15 @@ public class Witch : MonoBehaviour
         }
     }
 
+    private void HPModified()
+    {
+        OnHPModified?.Invoke(_health.HP / _health.MaxHP);
+    }
+
     private void Damaged()
     {
         _hurtBox.enabled = false;
-        OnDamaged?.Invoke(_health.HP / _health.MaxHP);
+        HPModified();
         StartCoroutine(Blink());
         StartCoroutine(Invulnerability());
     }
