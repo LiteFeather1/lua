@@ -225,6 +225,9 @@ MonoBehaviour:
   _bulletPool:
     _object: {fileID: 5908951068596790919, guid: b391f4e020d7a56478086c94bdc5dc07, type: 3}
     _initialPoolSize: 10
+  _particlePool:
+    _object: {fileID: 122756984430469221, guid: 99170280f1abe6740913e59f773a155b, type: 3}
+    _initialPoolSize: 10
   _bulletSpeed:
     _baseValue: 1
   _size:

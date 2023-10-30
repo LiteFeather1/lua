@@ -43,14 +43,14 @@ public class Projectile : MonoBehaviour, IDeactivatable
         _rb.velocity = Vector2.zero;
         _elapsedTime = 0f;
         _hitAmount = 0;
-        gameObject.SetActive(false);
         Deactivated?.Invoke();
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         _hitAmount++;
-        if (_hitAmount >= _bounce + _pierce)
+        if (_hitAmount >= _bounce + _pierce + 1)
         {
             Deactivate();
             return;

@@ -7,6 +7,7 @@ public class Gun : MonoBehaviour
     [Header("Bullet")]
     [SerializeField] private Transform _firePoint;
     [SerializeField] private ObjectPool<Bullet> _bulletPool;
+    [SerializeField] private ObjectPool<DisableCallBack> _particlePool;
 
     [Header("Stats")]
     [SerializeField] private CompositeValue _bulletSpeed = new(1f);
@@ -35,19 +36,27 @@ public class Gun : MonoBehaviour
         _bulletPool.InitPool();
         foreach (Bullet bullet in _bulletPool.Objects)
         {
-            ObjectCreated(bullet);
+            BulletCreated(bullet);
         }
-        _bulletPool.ObjectCreated += ObjectCreated;
+        _bulletPool.ObjectCreated += BulletCreated;
+
+        _particlePool.InitPool();
+        foreach (var particle in _particlePool.Objects)
+        {
+            ParticleCreated(particle);
+        }
+
+        _particlePool.ObjectCreated += ParticleCreated;
     }
 
     private void OnDestroy()
     {
         foreach (var bullet in _bulletPool.Objects)
         {
-            bullet.ReturnToPool -= ReturnToPool;
+            bullet.ReturnToPool -= ReturnBulletToPool;
             bullet.Hitbox.OnDamageAppplied -= DamageAppplied;
         }
-        _bulletPool.ObjectCreated -= ObjectCreated;
+        _bulletPool.ObjectCreated -= BulletCreated;
     }
 
     public void ShootRoutine(float damage, float critChance, float knockback)
@@ -58,9 +67,12 @@ public class Gun : MonoBehaviour
     public void ShootBullet(float damage, float critChance, float knockback, float angle)
     {
         var bullet = _bulletPool.GetObject();
+        var particle = _particlePool.GetObject();
+        particle.gameObject.SetActive(true);
         bullet.transform.SetLocalPositionAndRotation(_firePoint.position,
                                                      Quaternion.Euler(0f, 0f, angle));
         bullet.transform.localScale = Vector3.one * _size.Value;
+        bullet.AttachDisable(particle);
         bullet.gameObject.SetActive(true);
         bullet.Hitbox.SetDamage(damage);
         bullet.Hitbox.SetCritChance(critChance);
@@ -69,15 +81,25 @@ public class Gun : MonoBehaviour
                                 _pierceAmount, _bounceAmount, _bulletDuration.Value);
     }
 
-    private void ObjectCreated(Bullet bullet)
+    private void BulletCreated(Bullet bullet)
     {
-        bullet.ReturnToPool += ReturnToPool;
+        bullet.ReturnToPool += ReturnBulletToPool;
         bullet.Hitbox.OnDamageAppplied += DamageAppplied;
     }
 
-    private void ReturnToPool(Bullet bullet)
+    private void ReturnBulletToPool(Bullet bullet)
     {
         _bulletPool.ReturnObject(bullet);
+    }
+
+    private void ParticleCreated(DisableCallBack particle)
+    {
+        particle.Disabled += ReturnParticleToPool;
+    }
+
+    private void ReturnParticleToPool(DisableCallBack particle)
+    {
+        _particlePool.ReturnObject(particle);
     }
 
     private void DamageAppplied(float damage, Vector2 pos)

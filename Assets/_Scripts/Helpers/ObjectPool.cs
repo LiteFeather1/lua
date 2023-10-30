@@ -9,7 +9,7 @@ namespace LTFUtils
     {
         [SerializeField] private T _object;
         [SerializeField] private int _initialPoolSize;
-        private readonly Stack<T> _inactiveObjects = new();
+        private readonly Queue<T> _inactiveObjects = new();
         public HashSet<T> Objects { get; private set; } = new();
         private GameObject _poolParent;
 
@@ -39,7 +39,7 @@ namespace LTFUtils
             for (int i = 0; i < size; i++)
             {
                 T t = Instantiate();
-                _inactiveObjects.Push(t);
+                _inactiveObjects.Enqueue(t);
             }
         }
 
@@ -51,7 +51,7 @@ namespace LTFUtils
 
             if (_inactiveObjects.Count > 0)
             {
-                object_ = _inactiveObjects.Pop();
+                object_ = _inactiveObjects.Dequeue();
             }
             else
             {
@@ -76,7 +76,7 @@ namespace LTFUtils
         public void ReturnObject(T object_)
         {
             //object_.gameObject.SetActive(false);
-            _inactiveObjects.Push(object_);
+            _inactiveObjects.Enqueue(object_);
         }
 
         ~ObjectPool()
