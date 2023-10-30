@@ -28,7 +28,8 @@ public class UIManager : MonoBehaviour
 
     public void BindToWitch(Witch witch)
     {
-        witch.OnHPModified += WitchDamaged;
+        witch.OnHPModified += HpModified;
+        witch.OnDamaged += WitchDamaged;
         witch.OnInvulnerabilityEnded += InvulnerabilityEnded;
 
         witch.Health.OnMaxHPIncreased += MaxHpIncreased;
@@ -40,7 +41,8 @@ public class UIManager : MonoBehaviour
 
     public void UnBindToWitch(Witch witch)
     {
-        witch.OnHPModified -= WitchDamaged;
+        witch.OnHPModified -= HpModified;
+        witch.OnDamaged -= WitchDamaged;
         witch.OnInvulnerabilityEnded -= InvulnerabilityEnded;
 
         witch.Health.OnMaxHPIncreased -= MaxHpIncreased;
@@ -81,10 +83,14 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void WitchDamaged(float t)
+    private void HpModified(float t)
+    {
+        i_hpFill.fillAmount = t;
+    }
+
+    private void WitchDamaged()
     {
         i_witchPortrait.sprite = _damagedSprite;
-        i_hpFill.fillAmount = t;    
     }
 
     private void MaxHpIncreased(float maxHP, float t)

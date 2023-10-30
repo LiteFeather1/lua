@@ -53,6 +53,7 @@ public class Witch : MonoBehaviour
 
     public Action<int> OnCurrencyModified { get; set; }
     public Action<float> OnHPModified { get; set; }
+    public Action OnDamaged { get; set; }
     public Action OnInvulnerabilityEnded { get; set; }
 
     public int Currency => _currency;
@@ -192,6 +193,7 @@ public class Witch : MonoBehaviour
     private void Damaged()
     {
         _hurtBox.enabled = false;
+        OnDamaged?.Invoke();
         HPModified();
         StartCoroutine(Blink());
         StartCoroutine(Invulnerability());
