@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour
 {
@@ -107,7 +108,7 @@ public class GameManager : MonoBehaviour
         var enemies = _spawnManager.ActiveEnemies.ToArray();
         for (int i = 0; i < enemies.Length; i++)
         {
-            enemies[i].Health.TakeDamage(_damageEnemiesOnRecycle.Value);
+            enemies[i].Health.TakeDamage(_damageEnemiesOnRecycle.Value, false, enemies[i].transform.position);
         }
     }
 }

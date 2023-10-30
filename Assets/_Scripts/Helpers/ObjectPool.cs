@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 namespace LTFUtils
@@ -36,6 +35,7 @@ namespace LTFUtils
                 return;
 
             _poolParent = new("Pool " + _object.name);
+
             for (int i = 0; i < size; i++)
             {
                 T t = Instantiate();

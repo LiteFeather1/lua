@@ -21,6 +21,13 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private float _candySpawnOffset = 0.04f;
     [SerializeField] private CompositeValue _chanceToExtraCandy = new(0f);
 
+    [Header("Damage Number")]
+    [SerializeField] private ObjectPool<DamageNumber> _damageNumPool;
+    [SerializeField] private Transform _worldCanvas;
+    [SerializeField] private Vector2 _xVelocityRange;
+    [SerializeField] private Vector2 _yVelocityRange;
+    [SerializeField] private Color _normalColour, _critColour;
+
     public List<Enemy> ActiveEnemies { get; private set; } = new();
 
     public CompositeValue ChanceToExtraCandy => _chanceToExtraCandy;
@@ -34,6 +41,13 @@ public class SpawnManager : MonoBehaviour
         }
         _currencyPool.ObjectCreated += CurrencyCreated;
 
+        _damageNumPool.InitPool();
+        foreach (var dmgNum in _damageNumPool.Objects)
+        {
+            DamageNumCreated(dmgNum);
+        }
+        _damageNumPool.ObjectCreated += DamageNumCreated;
+
         _enemyToPool = new(_weightedPoolOfEnemies.Count);
         for (int i = 0; i < _weightedPoolOfEnemies.Count; i++)
         {
@@ -43,8 +57,8 @@ public class SpawnManager : MonoBehaviour
             {
                 EnemyCreated(enemy);
             }
-            _enemyToPool.Add(pool.Object.Name, pool);
             pool.ObjectCreated += EnemyCreated;
+            _enemyToPool.Add(pool.Object.Name, pool);
         }
 
         _spawnTime = 1f;
@@ -58,6 +72,12 @@ public class SpawnManager : MonoBehaviour
         }
         _currencyPool.ObjectCreated -= CurrencyCreated;
 
+        foreach (var dmgNum in _damageNumPool.Objects)
+        {
+            dmgNum.Return -= ReturnDamageNum;
+        }
+        _damageNumPool.ObjectCreated -= DamageNumCreated;
+
         for (int i = 0; i < _weightedPoolOfEnemies.Count; i++)
         {
             var pool = _weightedPoolOfEnemies.Objects[i].Object;
@@ -65,6 +85,7 @@ public class SpawnManager : MonoBehaviour
             {
                 enemy.ReturnToPool -= ReturnEnemyToPool;
                 enemy.OnDied -= EnemyDied;
+                enemy.Health.OnDamage -= SpawnDamageNum;
             }
             pool.ObjectCreated -= EnemyCreated;
         }
@@ -128,11 +149,34 @@ public class SpawnManager : MonoBehaviour
         enemy.Init(GameManager.Instance.Witch);
         enemy.ReturnToPool += ReturnEnemyToPool;
         enemy.OnDied += EnemyDied;
+        enemy.Health.OnDamage += SpawnDamageNum;
     }
 
     private void ReturnEnemyToPool(Enemy enemy)
     {
         ActiveEnemies.Remove(enemy);
         _enemyToPool[enemy.Name].ReturnObject(enemy);
+    }
+
+    private void SpawnDamageNum(float damage, bool crit, Vector2 pos)
+    {
+        var dmg = _damageNumPool.GetObject();
+        dmg.SetText(damage.ToString("0.00"), crit ? _critColour : _normalColour);
+        var direction = Random.value > .5f ? 1f : -1f;
+        dmg.SetVelocity(new(_xVelocityRange.Random() * direction, _yVelocityRange.Random()));
+        dmg.transform.position = pos;
+        dmg.gameObject.SetActive(true);
+    }
+
+    private void DamageNumCreated(DamageNumber num)
+    {
+        num.transform.SetParent(_worldCanvas);
+        num.transform.localScale = Vector3.one;
+        num.Return += ReturnDamageNum;
+    }
+
+    private void ReturnDamageNum(DamageNumber num)
+    {
+        _damageNumPool.ReturnObject(num);
     }
 }

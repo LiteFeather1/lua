@@ -173,7 +173,7 @@ public class Witch : MonoBehaviour
         OnHPModified?.Invoke(_health.HP / _health.MaxHP);
     }
 
-    private void Damaged()
+    private void Damaged(float damage, bool crit, Vector2 pos)
     {
         _hurtBox.enabled = false;
         OnDamaged?.Invoke();
