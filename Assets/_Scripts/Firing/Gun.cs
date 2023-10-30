@@ -9,26 +9,6 @@ public class Gun : MonoBehaviour
     [SerializeField] private ObjectPool<Bullet> _bulletPool;
     [SerializeField] private ObjectPool<DisableCallBack> _particlePool;
 
-    [Header("Stats")]
-    [SerializeField] private CompositeValue _bulletSpeed = new(1f);
-    [SerializeField] private CompositeValue _size = new(1f);
-    [SerializeField] private CompositeValue _bulletDuration = new(1f);
-    [SerializeField] private int _bulletAmount = 1;
-    [SerializeField] private float _separationPerBullet = 12.5f;
-    [SerializeField] private int _burstAmount = 1;
-    [SerializeField] private float _timeToCompleteShooting = .25f;
-    [SerializeField] private int _bounceAmount;
-    [SerializeField] private int _pierceAmount;
-
-    public CompositeValue BulletSpeed => _bulletSpeed;
-    public CompositeValue Size => _size;
-    public CompositeValue BulletDuration => _bulletDuration;
-
-    public void AddBulletAmount(int amount) => _bulletAmount += amount;
-    public void AddBurst(int amount) => _burstAmount += amount;
-    public void AddBounce(int amount) => _bounceAmount += amount;
-    public void AddPierce(int amount) => _pierceAmount += amount;
-
     public System.Action<float, Vector2> OnDamageAppplied;
 
     private void Awake()
@@ -59,26 +39,84 @@ public class Gun : MonoBehaviour
         _bulletPool.ObjectCreated -= BulletCreated;
     }
 
-    public void ShootRoutine(float damage, float critChance, float knockback)
+    public void ShootRoutine(float damage,
+                                float critChance,
+                                float knockback,
+                                float size,
+                                float speed,
+                                int pierce,
+                                int bounce,
+                                float duration,
+                                float angle,
+                                float timeToCompleteShooting,
+                                int bulletAmount,
+                                float burstAmount,
+                                float separationPerBullet)
     {
-        StartCoroutine(Shot_CO(damage, critChance, knockback));
+        StartCoroutine(Shot_CO(damage: damage,
+                               critChance: critChance,
+                               knockback: knockback,
+                               size: size,
+                               speed: speed,
+                               pierce: pierce,
+                               bounce: bounce,
+                               duration: duration,
+                               angle: angle,
+                               timeToCompleteShooting: timeToCompleteShooting,
+                               bulletAmount: bulletAmount,
+                               burstAmount: burstAmount,
+                               separationPerBullet: separationPerBullet));
     }
 
-    public void ShootBullet(float damage, float critChance, float knockback, float angle)
+    public void ShootBullet(float damage, float critChance, float knockback , float size, 
+        float speed, int pierce, int bounce, float duration, float angle)
     {
         var bullet = _bulletPool.GetObject();
         var particle = _particlePool.GetObject();
         particle.gameObject.SetActive(true);
-        bullet.transform.SetLocalPositionAndRotation(_firePoint.position,
+        bullet.transform.SetPositionAndRotation(_firePoint.position,
                                                      Quaternion.Euler(0f, 0f, angle));
-        bullet.transform.localScale = Vector3.one * _size.Value;
+        bullet.transform.localScale = Vector3.one * size;
         bullet.AttachDisable(particle);
         bullet.gameObject.SetActive(true);
         bullet.Hitbox.SetDamage(damage);
         bullet.Hitbox.SetCritChance(critChance);
         bullet.Hitbox.SetKnockback(knockback);
-        bullet.Projectile.Shoot(_bulletSpeed.Value, (Vector2)bullet.transform.right,
-                                _pierceAmount, _bounceAmount, _bulletDuration.Value);
+        bullet.Projectile.Shoot(speed, (Vector2)bullet.transform.right,
+                                pierce, bounce, duration);
+    }
+
+    private IEnumerator Shot_CO(float damage,
+                                float critChance,
+                                float knockback,
+                                float size,
+                                float speed,
+                                int pierce,
+                                int bounce,
+                                float duration,
+                                float angle,
+                                float timeToCompleteShooting,
+                                int bulletAmount,
+                                float burstAmount,
+                                float separationPerBullet)
+    {
+        WaitForSeconds yieldBetweenBurst = new(timeToCompleteShooting / burstAmount);
+        for (int i = 0; i < burstAmount; i++)
+        {
+            for (int j = 0; j < bulletAmount; j++)
+            {
+                ShootBullet(damage: damage,
+                            critChance: critChance,
+                            knockback: knockback,
+                            size: size,
+                            speed: speed,
+                            pierce: pierce,
+                            bounce: bounce,
+                            duration: duration,
+                            angle: GetAngle(j, bulletAmount, separationPerBullet) + angle);
+            }
+            yield return yieldBetweenBurst;
+        }
     }
 
     private void BulletCreated(Bullet bullet)
@@ -92,6 +130,11 @@ public class Gun : MonoBehaviour
         _bulletPool.ReturnObject(bullet);
     }
 
+    private void DamageAppplied(float damage, Vector2 pos)
+    {
+        OnDamageAppplied?.Invoke(damage, pos);
+    }
+
     private void ParticleCreated(DisableCallBack particle)
     {
         particle.Disabled += ReturnParticleToPool;
@@ -102,29 +145,11 @@ public class Gun : MonoBehaviour
         _particlePool.ReturnObject(particle);
     }
 
-    private void DamageAppplied(float damage, Vector2 pos)
+    private float GetAngle(int bulletIndex, int bulletAmount, float separationPerBullet)
     {
-        OnDamageAppplied?.Invoke(damage, pos);
-    }
-
-    private IEnumerator Shot_CO(float damage, float critChance, float knockback)
-    {
-        WaitForSeconds yieldBetweenBurst = new(_timeToCompleteShooting / _burstAmount);
-        for (int i = 0; i < _burstAmount; i++)
-        {
-            for (int j = 0; j < _bulletAmount; j++)
-            {
-                ShootBullet(damage, critChance, knockback, GetAngle(j));
-            }
-            yield return yieldBetweenBurst;
-        }
-    }
-
-    private float GetAngle(int bulletIndex)
-    {
-        float totalAngle = (_bulletAmount - 1) * _separationPerBullet * .5f;
+        float totalAngle = (bulletAmount - 1) * separationPerBullet * .5f;
         float center = LTFHelpers_Math.AngleBetweenTwoPoints(transform.position, transform.position - _firePoint.right);
         float minAngle = center - totalAngle;
-        return minAngle + (bulletIndex * _separationPerBullet);
+        return minAngle + (bulletIndex * separationPerBullet);
     }
 }

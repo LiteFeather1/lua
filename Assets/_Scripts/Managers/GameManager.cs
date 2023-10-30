@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float _timeForMaxDifficult = 360f;
 
     [Header("Managers")]
+    [SerializeField] private Camera _camera;
     [SerializeField] private SpawnManager _spawnManager;
     [SerializeField] private UIManager _uiManager;
     [SerializeField] private CardManager _cardManager;
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     public static InputMapping Inputs { get; private set; }
 
     public Witch Witch => _witch;
+    public Camera Camera => _camera;
     public CardManager CardManager => _cardManager;
 
     public CompositeValue DamageEnemiesOnRecycle => _damageEnemiesOnRecycle;

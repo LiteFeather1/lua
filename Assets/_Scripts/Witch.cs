@@ -2,6 +2,7 @@ using LTFUtils;
 using RetroAnimation;
 using System;
 using System.Collections;
+using System.Threading;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -22,7 +23,7 @@ public class Witch : MonoBehaviour
     private Vector2 _inputDirection;
 
     [Header("Shoot")]
-    [SerializeField] private Gun _gun;
+    [SerializeField] private WitchGun _gun;
     [SerializeField] private CompositeValue _damage;
     [SerializeField] private CompositeValue _critChance = new(.01f);
     [SerializeField] private CompositeValue _knockback;
@@ -36,6 +37,9 @@ public class Witch : MonoBehaviour
     [SerializeField] private CompositeValue _chanceToLifeSteal = new(.01f);
     [SerializeField] private CompositeValue _lifeStealPercent = new(.1f);
 
+    [Header("Dragon")]
+    [SerializeField] private Dragon _dragon;
+
     [Header("Blink on Damage")]
     [SerializeField] private float _invulnerabilityDuration;
     private WaitForSeconds _waitInvulnerability;
@@ -44,7 +48,7 @@ public class Witch : MonoBehaviour
     [SerializeField] private Color _damagedColour = Color.red;
 
     [Header("Damage Explosion")]
-    [SerializeField] private ObjectPool<FlipBook> _damageExplosions;
+    [SerializeField] private ObjectPool<FlipBook> _bulletDamage;
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D _rb;
@@ -59,7 +63,7 @@ public class Witch : MonoBehaviour
     public int Currency => _currency;
     public HealthPlayer Health => _health;
 
-    public Gun Gun => _gun;
+    public WitchGun Gun => _gun;
     public CompositeValue Damage => _damage;
     public CompositeValue CritChance => _critChance;
     public CompositeValue Knockback => _knockback;
@@ -70,13 +74,15 @@ public class Witch : MonoBehaviour
     public CompositeValue ChanceToLifeSteal => _chanceToLifeSteal;
     public CompositeValue LifeStealPercent => _lifeStealPercent;
 
+    public Dragon Dragon => _dragon;
+
     private void Awake()
     {
         _rb.drag = _decelerationRange.x;
         _initialAcceleration = _acceleration.Value;
         _waitInvulnerability = new(_invulnerabilityDuration);
 
-        _damageExplosions.InitPool();
+        _bulletDamage.InitPool();
     }
 
     private void OnEnable()
@@ -87,11 +93,11 @@ public class Witch : MonoBehaviour
         _health.OnDeath += OnDeath;
         _health.OnHeal += HPModified;
 
-        foreach (var explosion in _damageExplosions.Objects)
+        foreach (var explosion in _bulletDamage.Objects)
         {
             DamageExplosionCreated(explosion);
         }
-        _damageExplosions.ObjectCreated += DamageExplosionCreated;
+        _bulletDamage.ObjectCreated += DamageExplosionCreated;
     }
 
     private void Update()
@@ -104,6 +110,7 @@ public class Witch : MonoBehaviour
         {
             _elapsedShootTime = 0f;
             _gun.ShootRoutine(_damage.Value, _critChance.Value,_knockback.Value);
+            _dragon.Shoot();
         }
 
         _elapsedRandomShootTime += delta;
@@ -125,7 +132,7 @@ public class Witch : MonoBehaviour
         _health.OnDeath -= OnDeath;
         _health.OnHeal -= HPModified;
 
-        foreach (var explosion in _damageExplosions.Objects)
+        foreach (var explosion in _bulletDamage.Objects)
         {
             explosion.FinishedAnimation -= DamageExplosionCreated;
         }
@@ -169,12 +176,12 @@ public class Witch : MonoBehaviour
     private void ReturnExplosionToPool(FlipBook explosion)
     {
         explosion.gameObject.SetActive(false);
-        _damageExplosions.ReturnObject(explosion);
+        _bulletDamage.ReturnObject(explosion);
     }
 
     private void DamagedApplied(float damage, Vector2 pos)
     {
-        var bulletExplosion = _damageExplosions.GetObject();
+        var bulletExplosion = _bulletDamage.GetObject();
         bulletExplosion.transform.position = pos;
         bulletExplosion.Play();
         bulletExplosion.gameObject.SetActive(true);
