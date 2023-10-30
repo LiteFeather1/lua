@@ -1,5 +1,7 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -38,6 +40,8 @@ public class GameManager : MonoBehaviour
         Inputs = new();
         Inputs.Enable();
 
+        Inputs.Player.Pause_UnPause.performed += PauseUnpause;
+
         _cardManager.OnCardHovered += SlowDown;
         _cardManager.OnCardUnHovered += UnSlowDown;
 
@@ -61,6 +65,8 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        Inputs.Player.Pause_UnPause.performed -= PauseUnpause;
+
         _cardManager.OnCardHovered -= SlowDown;
         _cardManager.OnCardUnHovered -= UnSlowDown;
 
@@ -69,18 +75,20 @@ public class GameManager : MonoBehaviour
         _uiManager.UnBindToWitch(_witch);
     }
 
-    public float T()
+    public void PauseUnpause()
     {
-        return _playTime / _timeForMaxDifficult;
+        bool paused = Time.timeScale > 0f;
+        Time.timeScale = paused ? 0f : 1f;
+        _uiManager.SetPauseScreen(paused);
     }
 
-    public float TClamped()
+    public void LoadSplashScreen()
     {
-        float t = _playTime / _timeForMaxDifficult;
-        if (t > 1f)
-            t = 1f;
-        return t;
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
     }
+
+    private void PauseUnpause(InputAction.CallbackContext ctx) => PauseUnpause();
 
     private void SlowDown()
     {

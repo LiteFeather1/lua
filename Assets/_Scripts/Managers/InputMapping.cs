@@ -35,6 +35,24 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Pause_UnPause"",
+                    ""type"": ""Button"",
+                    ""id"": ""4d972073-576f-4b57-94a1-fd90c28f6343"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Mute_UnMute"",
+                    ""type"": ""Button"",
+                    ""id"": ""b1c21200-5bc7-44c6-a968-b7d2cb176e41"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -147,6 +165,39 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
                     ""action"": ""Moviment"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ac4bf459-583f-4af6-9f13-f88bfa417a2d"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause_UnPause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""85d0a360-b825-4fac-a2f1-f282afab600e"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause_UnPause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3471032d-451f-4e21-a017-48a7ef7f28a2"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mute_UnMute"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -156,6 +207,8 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Moviment = m_Player.FindAction("Moviment", throwIfNotFound: true);
+        m_Player_Pause_UnPause = m_Player.FindAction("Pause_UnPause", throwIfNotFound: true);
+        m_Player_Mute_UnMute = m_Player.FindAction("Mute_UnMute", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -218,11 +271,15 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Moviment;
+    private readonly InputAction m_Player_Pause_UnPause;
+    private readonly InputAction m_Player_Mute_UnMute;
     public struct PlayerActions
     {
         private @InputMapping m_Wrapper;
         public PlayerActions(@InputMapping wrapper) { m_Wrapper = wrapper; }
         public InputAction @Moviment => m_Wrapper.m_Player_Moviment;
+        public InputAction @Pause_UnPause => m_Wrapper.m_Player_Pause_UnPause;
+        public InputAction @Mute_UnMute => m_Wrapper.m_Player_Mute_UnMute;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -235,6 +292,12 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
             @Moviment.started += instance.OnMoviment;
             @Moviment.performed += instance.OnMoviment;
             @Moviment.canceled += instance.OnMoviment;
+            @Pause_UnPause.started += instance.OnPause_UnPause;
+            @Pause_UnPause.performed += instance.OnPause_UnPause;
+            @Pause_UnPause.canceled += instance.OnPause_UnPause;
+            @Mute_UnMute.started += instance.OnMute_UnMute;
+            @Mute_UnMute.performed += instance.OnMute_UnMute;
+            @Mute_UnMute.canceled += instance.OnMute_UnMute;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -242,6 +305,12 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
             @Moviment.started -= instance.OnMoviment;
             @Moviment.performed -= instance.OnMoviment;
             @Moviment.canceled -= instance.OnMoviment;
+            @Pause_UnPause.started -= instance.OnPause_UnPause;
+            @Pause_UnPause.performed -= instance.OnPause_UnPause;
+            @Pause_UnPause.canceled -= instance.OnPause_UnPause;
+            @Mute_UnMute.started -= instance.OnMute_UnMute;
+            @Mute_UnMute.performed -= instance.OnMute_UnMute;
+            @Mute_UnMute.canceled -= instance.OnMute_UnMute;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -262,5 +331,7 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMoviment(InputAction.CallbackContext context);
+        void OnPause_UnPause(InputAction.CallbackContext context);
+        void OnMute_UnMute(InputAction.CallbackContext context);
     }
 }

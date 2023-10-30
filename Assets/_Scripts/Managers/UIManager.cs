@@ -7,6 +7,8 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI t_timeText;
 
+    [SerializeField] private GameObject _pauseScreen;
+
     [Header("Fade")]
     [SerializeField] private float _fadeAlpha = .33f;
     [SerializeField] private float _fadeTime = .5f;
@@ -50,6 +52,11 @@ public class UIManager : MonoBehaviour
         witch.Health.OnShieldGained -= ShieldGained;
 
         witch.OnCurrencyModified -= UpdateCurrency;
+    }
+
+    public void SetPauseScreen(bool value)
+    {
+        _pauseScreen.SetActive(value);
     }
 
     public void UpdateTime(float time)
