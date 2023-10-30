@@ -65,7 +65,7 @@ public class Gun : MonoBehaviour
         bullet.Hitbox.SetDamage(damage);
         bullet.Hitbox.SetCritChance(critChance);
         bullet.Hitbox.SetKnockback(knockback);
-        bullet.Projectile.Shoot(_bulletSpeed.Value, bullet.transform.right,
+        bullet.Projectile.Shoot(_bulletSpeed.Value, (Vector2)bullet.transform.right,
                                 _pierceAmount, _bounceAmount, _bulletDuration.Value);
     }
 
