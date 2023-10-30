@@ -50,18 +50,17 @@ public class Projectile : MonoBehaviour, IDeactivatable
     private void OnTriggerEnter2D(Collider2D collision)
     {
         _hitAmount++;
-        if (_hitAmount >= _bounce + _pierce + 1)
-        {
-            Deactivate();
-            return;
-        }
-
-        if (_hitAmount > _pierce)
+        if (_hitAmount > _pierce || (collision.CompareTag("Screen") && _hitAmount < _bounce + _pierce))
         {
             var contactPoint = collision.ClosestPoint(transform.position);
             var normal = (Vector2)transform.position - contactPoint;
             var reflect = Vector2.Reflect(_rb.velocity.normalized, normal.normalized);
             Shoot(_speed, reflect);
+        }
+
+        if (_hitAmount > _bounce + _pierce)
+        {
+            Deactivate();
         }
     }
 }
