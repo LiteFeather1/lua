@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class MovementChaseRigidbody : MovementChase
 {
@@ -9,7 +10,8 @@ public class MovementChaseRigidbody : MovementChase
         Vector2 direction = (_target.position - transform.position).normalized;
         if (!_followX)
             direction.x = _xDirection;
-
+        else
+            Flip(Mathf.Sign(direction.x));
         _rb.velocity = _speed * direction;
     }
 }

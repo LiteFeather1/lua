@@ -10,6 +10,7 @@ public abstract class Enemy : MonoBehaviour, IDeactivatable
     [SerializeField] protected Vector2 _damageRange;
 
     [Header("Components")]
+    [SerializeField] private SpriteRenderer _sr;
     [SerializeField] private Health _health;
     [SerializeField] private HitBox _hitBox;
 
@@ -33,6 +34,7 @@ public abstract class Enemy : MonoBehaviour, IDeactivatable
 
     public virtual void Spawn(float t, float tClamped) 
     {
+        _sr.sortingOrder = Random.Range(-1000, 0);
         _health.ResetHealth(_healthRange.Evaluate(t));
         _hitBox.SetDamage(_damageRange.Evaluate(t));
         gameObject.SetActive(true);

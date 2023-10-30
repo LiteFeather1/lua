@@ -124,7 +124,7 @@ Transform:
   m_GameObject: {fileID: 455869738570211940}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.048, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -147,6 +147,7 @@ MonoBehaviour:
   _speedRange: {x: 0.1, y: 0.5}
   _healthRange: {x: 0.5, y: 5}
   _damageRange: {x: 1, y: 10}
+  _sr: {fileID: 109992122801125493}
   _health: {fileID: 8930174284517584093}
   _hitBox: {fileID: 8996073055895518969}
   _movement: {fileID: 2810869468874211039}
