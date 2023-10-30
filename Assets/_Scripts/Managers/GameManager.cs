@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -14,20 +16,23 @@ public class GameManager : MonoBehaviour
 
     [Header("Managers")]
     [SerializeField] private Camera _camera;
-    [SerializeField] private SpawnManager _spawnManager;
     [SerializeField] private UIManager _uiManager;
+    [SerializeField] private AudioManager _audioManager;
+    [SerializeField] private SpawnManager _spawnManager;
     [SerializeField] private CardManager _cardManager;
 
     [Header("Recycle Effects")]
     [SerializeField] private CompositeValue _damageEnemiesOnRecycle;
     [SerializeField] private CompositeValue _healOnRecycle;
     [SerializeField] private CompositeValue _addCurrencyOnRecycle;
+    private IEnumerator _slowPitch;
 
     public static GameManager Instance { get; private set; }
     public static InputMapping Inputs { get; private set; }
 
     public Witch Witch => _witch;
     public Camera Camera => _camera;
+    public AudioManager AudioManager => _audioManager;
     public CardManager CardManager => _cardManager;
 
     public CompositeValue DamageEnemiesOnRecycle => _damageEnemiesOnRecycle;
@@ -41,6 +46,7 @@ public class GameManager : MonoBehaviour
         Inputs.Enable();
 
         Inputs.Player.Pause_UnPause.performed += PauseUnpause;
+        Inputs.Player.Mute_UnMute.performed += MuteUnMute;
 
         _cardManager.OnCardHovered += SlowDown;
         _cardManager.OnCardUnHovered += UnSlowDown;
@@ -48,6 +54,8 @@ public class GameManager : MonoBehaviour
         _cardManager.Recycler.OnCardUsed += CardRecycled;
 
         _uiManager.BindToWitch(_witch);
+
+        _slowPitch = SetPitch(1f);
     }
 
     private void Update()
@@ -66,6 +74,7 @@ public class GameManager : MonoBehaviour
     private void OnDestroy()
     {
         Inputs.Player.Pause_UnPause.performed -= PauseUnpause;
+        Inputs.Player.Mute_UnMute.performed -= MuteUnMute;
 
         _cardManager.OnCardHovered -= SlowDown;
         _cardManager.OnCardUnHovered -= UnSlowDown;
@@ -90,14 +99,41 @@ public class GameManager : MonoBehaviour
 
     private void PauseUnpause(InputAction.CallbackContext ctx) => PauseUnpause();
 
+    private void MuteUnMute(InputAction.CallbackContext ctx)
+    {
+        AudioListener.volume = AudioListener.volume > 0.1f ? 0f : 1f;
+    }
+
     private void SlowDown()
     {
         Time.timeScale = _slowDownScale;
+        StopCoroutine(_slowPitch);
+        _slowPitch = SetPitch(0.75f);
+        StartCoroutine(_slowPitch);
     }
 
     private void UnSlowDown()
     {
         Time.timeScale = 1f;
+        StopCoroutine(_slowPitch);
+        _slowPitch = SetPitch(1f);
+        StartCoroutine(_slowPitch);
+    }
+
+    private IEnumerator SetPitch(float pitch)
+    {
+        float eTime = 0f;
+        float currentPitch = _audioManager.MusicSource.pitch;
+        while (eTime < 0.25f)
+        {
+            float t = eTime / 0.5f;
+            _audioManager.MusicSource.pitch = Mathf.Lerp(currentPitch, pitch, t);
+            _audioManager.SFXSource.pitch = Mathf.Lerp(currentPitch, pitch, t);
+            eTime += Time.unscaledDeltaTime;
+            yield return null;
+        }
+        _audioManager.MusicSource.pitch = pitch;
+        _audioManager.SFXSource.pitch = pitch;
     }
 
     private void CardRecycled()

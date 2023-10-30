@@ -39,6 +39,7 @@ public class CardManager : MonoBehaviour
     [SerializeField] private CardUIDropContainerRecycle _recycler;
 
     [Header("Text")]
+    [SerializeField] private GameObject _textBG;
     [SerializeField] private TextMeshProUGUI t_cardName;
     [SerializeField] private TextMeshProUGUI t_cardEffect;
 
@@ -179,15 +180,13 @@ public class CardManager : MonoBehaviour
         t_cardName.text = power.Name;
         t_cardEffect.color = power.RarityColour;
         t_cardEffect.text = power.Efffect;
-        t_cardEffect.enabled = true;
-        t_cardName.enabled = true;
+        _textBG.SetActive(true);
         OnCardHovered?.Invoke();
     }
 
     private void CardUnHovered()
     {
-        t_cardName.enabled = false;
-        t_cardEffect.enabled = false;
+        _textBG.SetActive(false);
         OnCardUnHovered?.Invoke();
     }
 
