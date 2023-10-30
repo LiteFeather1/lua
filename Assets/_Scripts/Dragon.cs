@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using LTFUtils;
+using RetroAnimation;
+using UnityEngine;
 
 public class Dragon : MonoBehaviour
 {
@@ -44,14 +46,14 @@ public class Dragon : MonoBehaviour
 
     public void Shoot()
     {
-        //if (!_active)
-        //    return;
+        if (!_active)
+            return;
 
         _gun.ShootRoutine(_witch.Damage.Value * FORCE_MULTIPLIER,
                           _witch.CritChance.Value * FORCE_MULTIPLIER,
                           _witch.Knockback.Value * FORCE_MULTIPLIER,
                           _witch.Gun.Size.Value * FORCE_MULTIPLIER,
-                          _witch.Gun.BulletSpeed.Value * 1.5f,
+                          _witch.Gun.BulletSpeed.Value * 1.125f,
                           (int)(_witch.Gun.PierceAmount * FORCE_MULTIPLIER),
                           (int)(_witch.Gun.BounceAmount * FORCE_MULTIPLIER),
                           _witch.Gun.BulletDuration.Value,

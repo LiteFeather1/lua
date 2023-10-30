@@ -1685,7 +1685,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &838699383
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1747,7 +1747,7 @@ Transform:
   m_GameObject: {fileID: 838699382}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.28, y: 0.16, z: 0}
+  m_LocalPosition: {x: -2.28, y: 0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1768,7 +1768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gun: {fileID: 838699387}
   _witch: {fileID: 256337799807947314}
-  _speed: 128
+  _speed: 256
   _xOffset: -0.12
   _yMinOffset: 0.1
   _yOffset: 0.2
@@ -1810,6 +1810,9 @@ MonoBehaviour:
     _initialPoolSize: 10
   _particlePool:
     _object: {fileID: 122756984430469221, guid: d9b378b56267be64fb2a332274a7a7b7, type: 3}
+    _initialPoolSize: 10
+  _bulletDamage:
+    _object: {fileID: 9029989089869572558, guid: feaf62a4a9fda25499b48cbd6d4224c5, type: 3}
     _initialPoolSize: 10
 --- !u!1 &850318394
 GameObject:
@@ -4154,6 +4157,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 45d3bc6e450ce8f4a80863405efc89d3, type: 2}
   - {fileID: 11400000, guid: 79506618dc6a9b345b8a77ec8c4d46a1, type: 2}
   - {fileID: 11400000, guid: 5f39a668fd822cb4ebc1f7a7f1d4c92c, type: 2}
+  - {fileID: 11400000, guid: 79e8f219685a2304186a979adad12a7b, type: 2}
+  - {fileID: 11400000, guid: 71fd451d859d3324bade4c0f4af106ca, type: 2}
   _cardSize: 30
   _maxCards: 5
   _startingCards: 3

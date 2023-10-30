@@ -47,7 +47,7 @@ public class SpawnManager : MonoBehaviour
             pool.ObjectCreated += EnemyCreated;
         }
 
-        _spawnTime = Random.Range(2.75f, 4f);
+        _spawnTime = 1f;
     }
 
     private void OnDestroy()

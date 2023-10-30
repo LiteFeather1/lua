@@ -188,9 +188,6 @@ MonoBehaviour:
   _blinkAmount: 4
   _durationBetweenBlinks: 0.0625
   _damagedColour: {r: 1, g: 0.3915094, b: 0.3915094, a: 1}
-  _bulletDamage:
-    _object: {fileID: 9029989089869572558, guid: cd79c920beec33a46adc58aa416c394c, type: 3}
-    _initialPoolSize: 0
   _rb: {fileID: 6244824650771415616}
   _sr: {fileID: 5435065137700811392}
   _hurtBox: {fileID: 2089837871041214972}
@@ -228,6 +225,9 @@ MonoBehaviour:
     _initialPoolSize: 10
   _particlePool:
     _object: {fileID: 122756984430469221, guid: 99170280f1abe6740913e59f773a155b, type: 3}
+    _initialPoolSize: 10
+  _bulletDamage:
+    _object: {fileID: 9029989089869572558, guid: cd79c920beec33a46adc58aa416c394c, type: 3}
     _initialPoolSize: 10
   _bulletSpeed:
     _baseValue: 1

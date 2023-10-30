@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e245074210e4c5044a3b3b3cda2ce18e, type: 3}
+  m_Name: Power_Up_Dragon
+  m_EditorClassIdentifier: 
+  _name: Assistant to the Regional Witch
+  _effect: Unlock a Powerful Dragon
+  _cost: 4
+  _rarity: {fileID: 11400000, guid: a1df466705a8789499b19027ad855397, type: 2}
+  _limit: 1
+  _icon: {fileID: -74246491, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}

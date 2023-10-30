@@ -47,8 +47,7 @@ public class Witch : MonoBehaviour
     [SerializeField] private float _durationBetweenBlinks;
     [SerializeField] private Color _damagedColour = Color.red;
 
-    [Header("Damage Explosion")]
-    [SerializeField] private ObjectPool<FlipBook> _bulletDamage;
+
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D _rb;
@@ -82,7 +81,6 @@ public class Witch : MonoBehaviour
         _initialAcceleration = _acceleration.Value;
         _waitInvulnerability = new(_invulnerabilityDuration);
 
-        _bulletDamage.InitPool();
     }
 
     private void OnEnable()
@@ -92,12 +90,11 @@ public class Witch : MonoBehaviour
         _health.OnDamage += Damaged;
         _health.OnDeath += OnDeath;
         _health.OnHeal += HPModified;
+    }
 
-        foreach (var explosion in _bulletDamage.Objects)
-        {
-            DamageExplosionCreated(explosion);
-        }
-        _bulletDamage.ObjectCreated += DamageExplosionCreated;
+    private void Start()
+    {
+        ModifyCurrency(5);
     }
 
     private void Update()
@@ -131,11 +128,6 @@ public class Witch : MonoBehaviour
         _health.OnDamage -= Damaged;
         _health.OnDeath -= OnDeath;
         _health.OnHeal -= HPModified;
-
-        foreach (var explosion in _bulletDamage.Objects)
-        {
-            explosion.FinishedAnimation -= DamageExplosionCreated;
-        }
     }
 
     private void FixedUpdate()
@@ -168,24 +160,8 @@ public class Witch : MonoBehaviour
         _rb.drag = _decelerationRange.Evaluate(t);
     }
 
-    private void DamageExplosionCreated(FlipBook explosion)
+    private void DamagedApplied(float damage)
     {
-        explosion.FinishedAnimation += ReturnExplosionToPool;
-    }
-
-    private void ReturnExplosionToPool(FlipBook explosion)
-    {
-        explosion.gameObject.SetActive(false);
-        _bulletDamage.ReturnObject(explosion);
-    }
-
-    private void DamagedApplied(float damage, Vector2 pos)
-    {
-        var bulletExplosion = _bulletDamage.GetObject();
-        bulletExplosion.transform.position = pos;
-        bulletExplosion.Play();
-        bulletExplosion.gameObject.SetActive(true);
-
         if (Random.value < _chanceToLifeSteal.Value)
         {
             _health.Heal(damage * _lifeStealPercent.Value);

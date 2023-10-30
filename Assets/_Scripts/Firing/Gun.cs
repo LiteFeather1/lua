@@ -1,15 +1,16 @@
 ﻿using LTFUtils;
+using RetroAnimation;
 using System.Collections;
 using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    [Header("Bullet")]
     [SerializeField] private Transform _firePoint;
     [SerializeField] private ObjectPool<Bullet> _bulletPool;
     [SerializeField] private ObjectPool<DisableCallBack> _particlePool;
+    [SerializeField] private ObjectPool<FlipBook> _bulletDamage;
 
-    public System.Action<float, Vector2> OnDamageAppplied;
+    public System.Action<float> OnDamageAppplied;
 
     private void Awake()
     {
@@ -27,6 +28,13 @@ public class Gun : MonoBehaviour
         }
 
         _particlePool.ObjectCreated += ParticleCreated;
+
+        _bulletDamage.InitPool();
+        foreach (var explosion in _bulletDamage.Objects)
+        {
+            DamageExplosionCreated(explosion);
+        }
+        _bulletDamage.ObjectCreated += DamageExplosionCreated;
     }
 
     private void OnDestroy()
@@ -37,6 +45,18 @@ public class Gun : MonoBehaviour
             bullet.Hitbox.OnDamageAppplied -= DamageAppplied;
         }
         _bulletPool.ObjectCreated -= BulletCreated;
+
+        foreach (var particle in _particlePool.Objects)
+        {
+            particle.Disabled -= ReturnParticleToPool;
+        }
+        _particlePool.ObjectCreated -= ParticleCreated; ;
+
+        foreach (var explosion in _bulletDamage.Objects)
+        {
+            explosion.FinishedAnimation -= ReturnExplosionToPool;
+        }
+        _bulletDamage.ObjectCreated -= DamageExplosionCreated;
     }
 
     public void ShootRoutine(float damage,
@@ -119,6 +139,14 @@ public class Gun : MonoBehaviour
         }
     }
 
+    private float GetAngle(int bulletIndex, int bulletAmount, float separationPerBullet)
+    {
+        float totalAngle = (bulletAmount - 1) * separationPerBullet * .5f;
+        float center = LTFHelpers_Math.AngleBetweenTwoPoints(transform.position, transform.position - _firePoint.right);
+        float minAngle = center - totalAngle;
+        return minAngle + (bulletIndex * separationPerBullet);
+    }
+
     private void BulletCreated(Bullet bullet)
     {
         bullet.ReturnToPool += ReturnBulletToPool;
@@ -132,7 +160,13 @@ public class Gun : MonoBehaviour
 
     private void DamageAppplied(float damage, Vector2 pos)
     {
-        OnDamageAppplied?.Invoke(damage, pos);
+        OnDamageAppplied?.Invoke(damage);
+
+        var bulletExplosion = _bulletDamage.GetObject();
+        bulletExplosion.transform.position = pos;
+        bulletExplosion.Play();
+        bulletExplosion.gameObject.SetActive(true);
+
     }
 
     private void ParticleCreated(DisableCallBack particle)
@@ -145,11 +179,14 @@ public class Gun : MonoBehaviour
         _particlePool.ReturnObject(particle);
     }
 
-    private float GetAngle(int bulletIndex, int bulletAmount, float separationPerBullet)
+    private void DamageExplosionCreated(FlipBook explosion)
     {
-        float totalAngle = (bulletAmount - 1) * separationPerBullet * .5f;
-        float center = LTFHelpers_Math.AngleBetweenTwoPoints(transform.position, transform.position - _firePoint.right);
-        float minAngle = center - totalAngle;
-        return minAngle + (bulletIndex * separationPerBullet);
+        explosion.FinishedAnimation += ReturnExplosionToPool;
+    }
+
+    private void ReturnExplosionToPool(FlipBook explosion)
+    {
+        explosion.gameObject.SetActive(false);
+        _bulletDamage.ReturnObject(explosion);
     }
 }
