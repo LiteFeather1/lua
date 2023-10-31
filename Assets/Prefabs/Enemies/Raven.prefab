@@ -248,6 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 0
   _critChance: 0
+  _critMultiplier: 1.5
   _knockBack: 0
 --- !u!61 &8033920046837509531
 BoxCollider2D:

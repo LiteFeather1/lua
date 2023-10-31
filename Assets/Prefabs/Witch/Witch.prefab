@@ -191,7 +191,7 @@ MonoBehaviour:
   _durationBetweenBlinks: 0.0625
   _damagedColour: {r: 1, g: 0.3915094, b: 0.3915094, a: 1}
   _rb: {fileID: 6244824650771415616}
-  _sr: {fileID: 0}
+  _sr: {fileID: 1074317464920949531}
   _hurtBox: {fileID: 2089837871041214972}
 --- !u!114 &6948465981988686169
 MonoBehaviour:

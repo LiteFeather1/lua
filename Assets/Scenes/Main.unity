@@ -2526,11 +2526,11 @@ MonoBehaviour:
         _object: {fileID: 1124217388555753815, guid: 49ea02d64db183745b62ee7513381e9d, type: 3}
         _initialPoolSize: 10
       _weight: 0.5
-  _maxEnemiesPerBurstRange: {x: 5, y: 25}
-  _minEnemiesPerBurstRange: {x: 2, y: 10}
-  _enemiesPerBurstOffset: {x: 2, y: 10}
-  _maxSpawnTimeRange: {x: 12.5, y: 1}
-  _minSpawnTimeRange: {x: 7.5, y: 0.5}
+  _maxEnemiesPerBurstRange: {x: 4, y: 16}
+  _minEnemiesPerBurstRange: {x: 2, y: 8}
+  _enemiesPerBurstOffset: {x: 1, y: 5}
+  _maxSpawnTimeRange: {x: 12.5, y: 1.5}
+  _minSpawnTimeRange: {x: 7.5, y: 1}
   _spawnTimeOffset: {x: 2.5, y: 0.125}
   _spawnArea: {fileID: 850318396}
   _enemyExplosionPool:
@@ -2986,7 +2986,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.05}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2997,7 +2997,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.3}
+  m_Size: {x: 1, y: 1.4}
   m_EdgeRadius: 0
 --- !u!1 &853561077
 GameObject:
@@ -6380,7 +6380,7 @@ MonoBehaviour:
   _timeToDrawCard:
     _baseValue: 10
   _refundOnDiscard:
-    _baseValue: 0
+    _baseValue: 0.1
   _startingPowerUps:
   - {fileID: 11400000, guid: 5a5292755a2d8364dbdc683b5c850021, type: 2}
   - {fileID: 11400000, guid: 88d1342179fc9724f9d950bbde297268, type: 2}
@@ -6552,7 +6552,7 @@ MonoBehaviour:
   _witch: {fileID: 256337799807947314}
   _slowDownScale: 0.375
   _playTime: 0
-  _timeForMaxDifficult: 720
+  _timeForMaxDifficult: 900
   _camera: {fileID: 519420031}
   _uiManager: {fileID: 1699692670}
   _audioManager: {fileID: 255750584}
@@ -6563,7 +6563,7 @@ MonoBehaviour:
   _healOnRecycle:
     _baseValue: 0
   _addCurrencyOnRecycle:
-    _baseValue: 0
+    _baseValue: 1
 --- !u!4 &1886159767
 Transform:
   m_ObjectHideFlags: 0
@@ -7864,7 +7864,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 88, y: -71}
+  m_AnchoredPosition: {x: 88, y: -70}
   m_SizeDelta: {x: 28, y: 38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6191480578839410782
