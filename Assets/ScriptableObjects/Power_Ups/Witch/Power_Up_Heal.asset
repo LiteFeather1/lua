@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Heal
   _effect: Heal by $
-  _cost: 8
+  _cost: 6
   _rarity: {fileID: 11400000, guid: a7ae77a514c29d44995457b989b36476, type: 2}
   _limit: 0
   _icon: {fileID: -138975799, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}

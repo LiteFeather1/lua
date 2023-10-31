@@ -170,7 +170,7 @@ MonoBehaviour:
   _accelerationMaxForRange: 200
   _gun: {fileID: 6431089900240576536}
   _damage:
-    _baseValue: 1
+    _baseValue: 5
   _critChance:
     _baseValue: 0.01
   _critMultiplier:

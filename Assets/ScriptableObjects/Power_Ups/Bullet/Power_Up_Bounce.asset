@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Bullet Bounce
   _effect: Increase Bullet Bounce by $
-  _cost: 16
+  _cost: 12
   _rarity: {fileID: 11400000, guid: 0869bc92c695cdd4c97f8b266f87f121, type: 2}
   _limit: 0
   _icon: {fileID: -135976499, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}

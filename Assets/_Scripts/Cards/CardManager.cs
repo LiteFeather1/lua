@@ -30,7 +30,10 @@ public class CardManager : MonoBehaviour
     [Header("Drawer")]
     [SerializeField] private Image i_drawer;
     [SerializeField] private Sprite[] _drawerAnimation;
-    
+
+    [Header("Player")]
+    [SerializeField] private CardUIContainerPlay _player;
+
     [Header("Seeker")]
     [SerializeField] private CardUIDropContainerSeek _seek;
 
@@ -49,6 +52,7 @@ public class CardManager : MonoBehaviour
     public CompositeValue TimeToDrawCard => _timeToDrawCard;
     public CompositeValue RefundOnDiscard => _refundOnDiscard;
 
+    public CardUIContainerPlay Player => _player;
     public CardUIDropContainerRecycle Recycler => _recycler;
 
     public Action OnCardHovered { get; set; }

@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 
-public class CardUIPlay : CardUIDropContainer
+public class CardUIContainerPlay : CardUIDropContainer
 {
     [SerializeField] private GameManager _gm;
     [SerializeField] private AudioClip _played, _denied;
+
+    public System.Action<PowerUp> OnPowerPlayed { get; set; }
 
     protected override void UseCard(CardUIPowerUp card)
     {
@@ -17,5 +19,6 @@ public class CardUIPlay : CardUIDropContainer
         card.PowerUp.ApplyEffect(_gm);
         card.Used();
         AudioManager.Instance.PlayOneShot(_played);
+        OnPowerPlayed?.Invoke(card.PowerUp);
     }
 }

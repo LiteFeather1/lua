@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Camera _camera;
     [SerializeField] private CameraShake _shake;
     [SerializeField] private UIManager _uiManager;
+    [SerializeField] private EndScreenManager _endScreenManager;
     [SerializeField] private SpawnManager _spawnManager;
     [SerializeField] private CardManager _cardManager;
 
@@ -48,11 +49,13 @@ public class GameManager : MonoBehaviour
         Inputs.Player.Mute_UnMute.performed += MuteUnMute;
 
         _witch.OnDamaged += _shake.Shake;
+        _witch.Health.OnDeath += WitchDied;
 
         _cardManager.OnCardHovered += SlowDown;
         _cardManager.OnCardUnHovered += UnSlowDown;
 
         _cardManager.Recycler.OnCardUsed += CardRecycled;
+        _cardManager.Player.OnPowerPlayed += _endScreenManager.AddCard;
 
         _spawnManager.EnemyHurt += _shake.Shake;
 
@@ -83,6 +86,7 @@ public class GameManager : MonoBehaviour
     private void OnDestroy()
     {
         _witch.OnDamaged -= _shake.Shake;
+        _witch.Health.OnDeath -= WitchDied;
 
         Inputs.Player.Pause_UnPause.performed -= PauseUnpause;
         Inputs.Player.Mute_UnMute.performed -= MuteUnMute;
@@ -90,7 +94,8 @@ public class GameManager : MonoBehaviour
         _cardManager.OnCardHovered -= SlowDown;
         _cardManager.OnCardUnHovered -= UnSlowDown;
 
-        _cardManager.Recycler.OnCardUsed += CardRecycled;
+        _cardManager.Recycler.OnCardUsed -= CardRecycled;
+        _cardManager.Player.OnPowerPlayed -= _endScreenManager.AddCard;
 
         _spawnManager.EnemyHurt -= _shake.Shake;
      
@@ -109,6 +114,17 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
         AudioManager.Instance.MusicSource.Stop();
         Time.timeScale = 1f;
+    }
+
+    private void WitchDied()
+    {
+        Inputs.Player.Pause_UnPause.performed -= PauseUnpause;
+        _endScreenManager.gameObject.SetActive(true);
+        _uiManager.GameUi.SetActive(false);
+        _endScreenManager.SetTexts(_uiManager.TimeText,
+                                   _spawnManager.EnemiesDied,
+                                   _cardManager.Recycler.CardsRecycled,
+                                   _witch.TotalCurrencyGained);
     }
 
     private void PauseUnpause(InputAction.CallbackContext ctx) => PauseUnpause();

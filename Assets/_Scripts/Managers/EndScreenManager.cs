@@ -20,31 +20,26 @@ public class EndScreenManager : MonoBehaviour
     [SerializeField] private RectTransform rt_carousel;
     private readonly List<EndCardUi> _cards = new();
 
-    private void Start()
-    {
-        for (int i = 0; i < 32; i++)
-        {
-            var maxX = 34f * _cards.Count;
-            var card = Instantiate(_cardPrefab, rt_carousel);
-            card.transform.localPosition = new Vector2(maxX, 0f);
-            _cards.Add(card);
-        }
-    }
-
     private void Update()
     {
-        var size = _root.localScale.x / 2f;
-        var minX = -(rt_carousel.sizeDelta.x / 2f) - (34f);
-        var maxX = (rt_carousel.sizeDelta.x * size) + (34f * (_cards.Count) * _root.localScale.x);
+        var size = _root.localScale.x;
+        var minX = (-(rt_carousel.sizeDelta.x) - (34f)) * .5f;
+        var maxCards = rt_carousel.sizeDelta.x / 34f;
+        float mul = _cards.Count;
+        if (_cards.Count < maxCards)
+            mul = 1f;
+        var maxX = (rt_carousel.sizeDelta.x * .5f) + (34f * mul);
+        if (_cards.Count > maxCards)
+            maxX += minX * 2f + 17f;
         float delta = Time.deltaTime;
         for (int i = 0; i < _cards.Count; i++)
         {
             var card = _cards[i];
-            var speed = _speed * _root.localScale.x;
+            var speed = _speed * size;
             card.transform.Translate(delta * speed * Vector2.left);
             if (card.transform.localPosition.x < minX)
             {
-                card.transform.position = new Vector2(maxX + (minX * _root.localScale.x), rt_carousel.transform.position.y);
+                card.transform.localPosition = new Vector2(maxX, 0f);
             }
         }
     }

@@ -2075,6 +2075,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2133348063}
+        m_TargetAssemblyTypeName: EndScreenManager, Assembly-CSharp
+        m_MethodName: Replay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &461585623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4065,7 +4077,7 @@ GameObject:
   - component: {fileID: 930912599}
   - component: {fileID: 930912598}
   m_Layer: 5
-  m_Name: t_Cards_Discarted
+  m_Name: t_Cards_Recycled
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5680,7 +5692,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1486735841
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6955,6 +6967,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   t_timeText: {fileID: 1590040177}
   _pauseScreen: {fileID: 541586369}
+  _gameUi: {fileID: 1486735840}
   _fadeAlpha: 0.33
   _fadeTime: 0.5
   _fadeCurve:
@@ -7891,6 +7904,7 @@ MonoBehaviour:
   - {fileID: -1940148573323160650, guid: 594afdbddde13404281da5140007ded8, type: 3}
   - {fileID: 6463302028709378766, guid: 594afdbddde13404281da5140007ded8, type: 3}
   - {fileID: -864186432540928942, guid: 594afdbddde13404281da5140007ded8, type: 3}
+  _player: {fileID: 772496568}
   _seek: {fileID: 1632851719}
   _recycler: {fileID: 2414688926576157735}
   _textBG: {fileID: 1775580851}
@@ -8077,7 +8091,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1886159766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8094,10 +8108,11 @@ MonoBehaviour:
   _music: {fileID: 8300000, guid: c688c79e6650ae143baad8b44023675a, type: 3}
   _slowDownScale: 0.375
   _playTime: 0
-  _timeForMaxDifficult: 600
+  _timeForMaxDifficult: 900
   _camera: {fileID: 519420031}
   _shake: {fileID: 519420034}
   _uiManager: {fileID: 1699692670}
+  _endScreenManager: {fileID: 2133348063}
   _spawnManager: {fileID: 682165029}
   _cardManager: {fileID: 1844759271}
   _damageEnemiesOnRecycle:
@@ -9661,7 +9676,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2133348060
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9739,12 +9754,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _root: {fileID: 1699692669}
-  t_timeText: {fileID: 0}
-  t_enemies: {fileID: 0}
-  t_cardsPlayed: {fileID: 0}
-  t_cardsRecycled: {fileID: 0}
-  t_candyEarned: {fileID: 0}
-  _speed: 200
+  t_timeText: {fileID: 2005043037}
+  t_enemies: {fileID: 332495944}
+  t_cardsPlayed: {fileID: 1142769714}
+  t_cardsRecycled: {fileID: 930912598}
+  t_candyEarned: {fileID: 2115622120}
+  _speed: 28
   _cardPrefab: {fileID: 913131614038957402, guid: 9628e79ac13e1724b8489c2d441b66ab, type: 3}
   rt_carousel: {fileID: 1280082899}
 --- !u!1001 &256337799807947313
@@ -9759,10 +9774,6 @@ PrefabInstance:
       propertyPath: _dragon
       value: 
       objectReference: {fileID: 838699385}
-    - target: {fileID: 1307456679637955763, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
-      propertyPath: _damage._baseValue
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 5155081586467621625, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.19
@@ -9806,10 +9817,6 @@ PrefabInstance:
     - target: {fileID: 7450378837478392003, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
       propertyPath: m_Name
       value: Witch
-      objectReference: {fileID: 0}
-    - target: {fileID: 7450378837478392003, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

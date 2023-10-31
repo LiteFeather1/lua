@@ -7,6 +7,7 @@ public class Witch : MonoBehaviour
 {
     [Header("Currency")]
     [SerializeField] private int _currency;
+    private int _totalCurrencyGained;
 
     [Header("Health")]
     [SerializeField] private HealthPlayer _health;
@@ -59,6 +60,7 @@ public class Witch : MonoBehaviour
     public Action OnInvulnerabilityEnded { get; set; }
 
     public int Currency => _currency;
+    public int TotalCurrencyGained => _totalCurrencyGained;
     public HealthPlayer Health => _health;
 
     public WitchGun Gun => _gun;
@@ -80,7 +82,6 @@ public class Witch : MonoBehaviour
         _rb.drag = _decelerationRange.x;
         _initialAcceleration = _acceleration.Value;
         _waitInvulnerability = new(_invulnerabilityDuration);
-
     }
 
     private void OnEnable()
@@ -94,7 +95,7 @@ public class Witch : MonoBehaviour
 
     private void Start()
     {
-        ModifyCurrency(5);
+        ModifyCurrency(4);
     }
 
     private void Update()
@@ -149,6 +150,8 @@ public class Witch : MonoBehaviour
     {
         _currency += amount;
         OnCurrencyModified?.Invoke(_currency);
+        if (amount > 0) 
+            _totalCurrencyGained += amount;
     }
 
     public void AddAccelerationMofifier(CompositeValueModifier mod)

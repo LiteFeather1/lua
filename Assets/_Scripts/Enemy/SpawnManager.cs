@@ -35,6 +35,8 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private Color _normalColour, _critColour;
 
     public List<Enemy> ActiveEnemies { get; private set; } = new();
+    public int EnemiesDied { get; private set; }
+
     public System.Action EnemyHurt { get; set; }
 
     public CompositeValue ChanceToExtraCandy => _chanceToExtraCandy;
@@ -144,6 +146,7 @@ public class SpawnManager : MonoBehaviour
         AudioManager.Instance.PlayOneShot(_enemyDiedSound);
         if (Random.value < _chanceToExtraCandy.Value)
             SpawnCandy(enemy.transform.localPosition);
+        EnemiesDied++;
     }
 
     private void EnemyExplosionCreated(FlipBook explosion)

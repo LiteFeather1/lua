@@ -2,13 +2,14 @@
 using TMPro;
 using UnityEngine.UI;
 using System.Collections;
-using UnityEngine.Rendering.Universal;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI t_timeText;
 
+    [Header("Screens")]
     [SerializeField] private GameObject _pauseScreen;
+    [SerializeField] private GameObject _gameUi;
 
     [Header("Fade")]
     [SerializeField] private float _fadeAlpha = .33f;
@@ -28,6 +29,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Sprite _defaultSprite;
     [SerializeField] private Sprite _damagedSprite;
     [SerializeField] private TextMeshProUGUI t_currency;
+
+    public string TimeText => t_timeText.text;
+
+    public GameObject PauseScreen => _pauseScreen;
+    public GameObject GameUi => _gameUi;
 
     public void BindToWitch(Witch witch)
     {

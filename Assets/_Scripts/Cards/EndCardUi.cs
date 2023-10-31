@@ -9,6 +9,6 @@ public class EndCardUi : MonoBehaviour
     public void SetPower(PowerUp power)
     {
         i_frame.color = power.RarityColour;
-        i_icon.sprite = i_icon.sprite;
+        i_icon.sprite = power.Icon;
     }
 }
