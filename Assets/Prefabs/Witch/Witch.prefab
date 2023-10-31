@@ -232,7 +232,7 @@ MonoBehaviour:
   _bulletDamage:
     _object: {fileID: 9029989089869572558, guid: cd79c920beec33a46adc58aa416c394c, type: 3}
     _initialPoolSize: 10
-  _bulletShotSound: {fileID: 0}
+  _bulletShotSound: {fileID: 8300000, guid: 672fdea8e7aa8b64092be2303844210e, type: 3}
   _bulletSpeed:
     _baseValue: 1
   _size:

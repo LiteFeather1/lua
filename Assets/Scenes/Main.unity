@@ -6422,7 +6422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _root: {fileID: 1699692668}
   _timeToDrawCard:
-    _baseValue: 10
+    _baseValue: 8
   _refundOnDiscard:
     _baseValue: 0.1
   _startingPowerUps:
@@ -7540,6 +7540,10 @@ PrefabInstance:
       propertyPath: _dragon
       value: 
       objectReference: {fileID: 838699385}
+    - target: {fileID: 1307456679637955763, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
+      propertyPath: _damage._baseValue
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5155081586467621625, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.19
@@ -7580,10 +7584,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6431089900240576536, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
-      propertyPath: _bulletShotSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 672fdea8e7aa8b64092be2303844210e, type: 3}
     - target: {fileID: 7450378837478392003, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
       propertyPath: m_Name
       value: Witch
