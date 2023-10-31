@@ -1,5 +1,7 @@
 ﻿using LTFUtils;
+using RetroAnimation;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -15,6 +17,9 @@ public class SpawnManager : MonoBehaviour
     private float _spawnTime;
     private float _elapsedTime;
     [SerializeField] private BoxCollider2D _spawnArea;
+
+    [Header("Explosion")]
+    [SerializeField] private ObjectPool<FlipBook> _enemyExplosionPool;
 
     [Header("Candy")]
     [SerializeField] private ObjectPool<CurrencyBehaviour> _currencyPool;
@@ -48,6 +53,13 @@ public class SpawnManager : MonoBehaviour
         }
         _damageNumPool.ObjectCreated += DamageNumCreated;
 
+        _enemyExplosionPool.InitPool();
+        foreach (var explosion in _enemyExplosionPool.Objects)
+        {
+            EnemyExplosionCreated(explosion);
+        }
+        _enemyExplosionPool.ObjectCreated += EnemyExplosionCreated;
+
         _enemyToPool = new(_weightedPoolOfEnemies.Count);
         for (int i = 0; i < _weightedPoolOfEnemies.Count; i++)
         {
@@ -77,6 +89,12 @@ public class SpawnManager : MonoBehaviour
             dmgNum.Return -= ReturnDamageNum;
         }
         _damageNumPool.ObjectCreated -= DamageNumCreated;
+
+        foreach (var explosion in _enemyExplosionPool.Objects)
+        {
+            explosion.OnAnimationFinished -= ReturnExplosionToPool;
+        }
+        _enemyExplosionPool.ObjectCreated -= EnemyExplosionCreated;
 
         for (int i = 0; i < _weightedPoolOfEnemies.Count; i++)
         {
@@ -117,6 +135,34 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    private void EnemyDied(Enemy enemy)
+    {
+        SpawnCandy(enemy.transform.localPosition);
+        SpawnExplosion(enemy.transform.localPosition, enemy.Colour);
+        if (Random.value < _chanceToExtraCandy.Value)
+            SpawnCandy(enemy.transform.localPosition);
+    }
+
+    private void EnemyExplosionCreated(FlipBook explosion)
+    {
+        explosion.OnAnimationFinished += ReturnExplosionToPool;
+    }
+
+    private void ReturnExplosionToPool(FlipBook explosion)
+    {
+        explosion.gameObject.SetActive(false);
+        _enemyExplosionPool.ReturnObject(explosion);
+    }
+
+    private void SpawnExplosion(Vector2 pos, Color colour)
+    {
+        var explosion = _enemyExplosionPool.GetObject();
+        explosion.transform.localPosition = pos;
+        explosion.SR.color = colour;
+        explosion.Play();
+        explosion.gameObject.SetActive(true);
+    }
+
     private void CurrencyCreated(CurrencyBehaviour currency)
     {
         currency.Init(GameManager.Instance.Witch);
@@ -128,19 +174,12 @@ public class SpawnManager : MonoBehaviour
         _currencyPool.ReturnObject(currency);   
     }
 
-    private void EnemyDied(Vector2 pos)
-    {
-        SpawnCandy(pos);
-        if (Random.value < _chanceToExtraCandy.Value)
-            SpawnCandy(pos);
-    }
-
     private void SpawnCandy(Vector2 pos)
     {
         var currency = _currencyPool.GetObject();
         var randX = Random.Range(-_candySpawnOffset, _candySpawnOffset);
         var randY = Random.Range(-_candySpawnOffset, _candySpawnOffset);
-        currency.transform.position = pos + new Vector2(randX, randY);
+        currency.transform.localPosition = pos + new Vector2(randX, randY);
         currency.gameObject.SetActive(true);
     }
 

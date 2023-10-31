@@ -1,8 +1,5 @@
-using LTFUtils;
-using RetroAnimation;
 using System;
 using System.Collections;
-using System.Threading;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

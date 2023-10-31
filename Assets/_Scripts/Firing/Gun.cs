@@ -54,7 +54,7 @@ public class Gun : MonoBehaviour
 
         foreach (var explosion in _bulletDamage.Objects)
         {
-            explosion.FinishedAnimation -= ReturnExplosionToPool;
+            explosion.OnAnimationFinished -= ReturnExplosionToPool;
         }
         _bulletDamage.ObjectCreated -= DamageExplosionCreated;
     }
@@ -181,7 +181,7 @@ public class Gun : MonoBehaviour
 
     private void DamageExplosionCreated(FlipBook explosion)
     {
-        explosion.FinishedAnimation += ReturnExplosionToPool;
+        explosion.OnAnimationFinished += ReturnExplosionToPool;
     }
 
     private void ReturnExplosionToPool(FlipBook explosion)

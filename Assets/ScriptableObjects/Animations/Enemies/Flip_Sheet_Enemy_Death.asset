@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Flip_Sheet_Enemy_Death
   m_EditorClassIdentifier: 
   _sprites:
-  - {fileID: -1440763006, guid: ec6e048190957e844854655e0bd03d27, type: 3}
+  - {fileID: -1960820765, guid: ec6e048190957e844854655e0bd03d27, type: 3}
   - {fileID: 1941006321, guid: ec6e048190957e844854655e0bd03d27, type: 3}
   - {fileID: -360317106, guid: ec6e048190957e844854655e0bd03d27, type: 3}
   - {fileID: 1997353662, guid: ec6e048190957e844854655e0bd03d27, type: 3}
   - {fileID: 745030251, guid: ec6e048190957e844854655e0bd03d27, type: 3}
   - {fileID: -1960820765, guid: ec6e048190957e844854655e0bd03d27, type: 3}
-  _fps: 6
+  _fps: 12

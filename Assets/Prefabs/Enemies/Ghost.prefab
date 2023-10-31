@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Ghost
+  <Colour>k__BackingField: {r: 0.909804, g: 0.8588236, b: 0.7960785, a: 1}
   _speedRange: {x: 0.1, y: 0.7}
   _healthRange: {x: 0.5, y: 5}
   _damageRange: {x: 1, y: 10}

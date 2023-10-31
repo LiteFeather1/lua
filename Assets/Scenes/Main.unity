@@ -593,14 +593,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 1576528002, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2533,6 +2533,9 @@ MonoBehaviour:
   _minSpawnTimeRange: {x: 7.5, y: 0.25}
   _spawnTimeOffset: {x: 2.5, y: 0.125}
   _spawnArea: {fileID: 850318396}
+  _enemyExplosionPool:
+    _object: {fileID: 7855374184197628161, guid: cc8c6a3d52a421f45998b955c63834fd, type: 3}
+    _initialPoolSize: 10
   _currencyPool:
     _object: {fileID: 2748346242251297967, guid: 01b4627feeae6a645a416d881fbab9b8, type: 3}
     _initialPoolSize: 10
@@ -2831,7 +2834,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: -2044495830, guid: ccf57f976cfafa645a873217b6522385, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3595,9 +3598,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5413268195873191513, guid: 74858273c4d2e534aa4566e4a2296590, type: 3}
       propertyPath: m_text
-      value: 'Seek
-
-'
+      value: Search
       objectReference: {fileID: 0}
     - target: {fileID: 6013203024223714052, guid: 74858273c4d2e534aa4566e4a2296590, type: 3}
       propertyPath: m_Pivot.x

@@ -2,7 +2,8 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour, IDeactivatable
 {
-    [field: SerializeField] public string Name { get; set; }
+    [field: SerializeField] public string Name { get; private set; }
+    [field: SerializeField] public Color Colour { get; private set; }
 
     [Header("Ranges")]
     [SerializeField] protected Vector2 _speedRange;
@@ -18,7 +19,7 @@ public abstract class Enemy : MonoBehaviour, IDeactivatable
     public HitBox HitBox => _hitBox;
 
     public System.Action<Enemy> ReturnToPool { get; set; }
-    public System.Action<Vector2> OnDied { get; set; }
+    public System.Action<Enemy> OnDied { get; set; }
 
     protected void OnEnable()
     {
@@ -34,7 +35,7 @@ public abstract class Enemy : MonoBehaviour, IDeactivatable
 
     public virtual void Spawn(float t, float tClamped) 
     {
-        _sr.sortingOrder = Random.Range(-1000, 0);
+        _sr.sortingOrder = Random.Range(1, 500);
         _health.ResetHealth(_healthRange.Evaluate(t));
         _hitBox.SetDamage(_damageRange.Evaluate(t));
         gameObject.SetActive(true);
@@ -50,6 +51,6 @@ public abstract class Enemy : MonoBehaviour, IDeactivatable
     {
         gameObject.SetActive(false);
         ReturnToPool?.Invoke(this);
-        OnDied?.Invoke(transform.position);
+        OnDied?.Invoke(this);
     }
 }
