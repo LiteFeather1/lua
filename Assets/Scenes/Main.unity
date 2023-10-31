@@ -2529,8 +2529,8 @@ MonoBehaviour:
   _maxEnemiesPerBurstRange: {x: 5, y: 25}
   _minEnemiesPerBurstRange: {x: 2, y: 10}
   _enemiesPerBurstOffset: {x: 2, y: 10}
-  _maxSpawnTimeRange: {x: 12.5, y: 0.75}
-  _minSpawnTimeRange: {x: 7.5, y: 0.25}
+  _maxSpawnTimeRange: {x: 12.5, y: 1}
+  _minSpawnTimeRange: {x: 7.5, y: 0.5}
   _spawnTimeOffset: {x: 2.5, y: 0.125}
   _spawnArea: {fileID: 850318396}
   _enemyExplosionPool:
@@ -2834,7 +2834,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 0
   m_Sprite: {fileID: -2044495830, guid: ccf57f976cfafa645a873217b6522385, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6381,30 +6381,7 @@ MonoBehaviour:
     _baseValue: 10
   _refundOnDiscard:
     _baseValue: 0
-  _startingPowerUps:
-  - {fileID: 11400000, guid: 5a5292755a2d8364dbdc683b5c850021, type: 2}
-  - {fileID: 11400000, guid: 88d1342179fc9724f9d950bbde297268, type: 2}
-  - {fileID: 11400000, guid: 801c4fceff9e15442b8f231625c82607, type: 2}
-  - {fileID: 11400000, guid: c0d31ac65b84349469c9930fe08e674c, type: 2}
-  - {fileID: 11400000, guid: 8830cdbf48c089f4fae2ddd8b1789f9d, type: 2}
-  - {fileID: 11400000, guid: b3e24908159f725409166fae402c24f0, type: 2}
-  - {fileID: 11400000, guid: 0823dca55e61b064692f73963b97d6c6, type: 2}
-  - {fileID: 11400000, guid: 4bfaf8febf012894f9db7647ef64c6f4, type: 2}
-  - {fileID: 11400000, guid: 7f829950c3d4e7f4a8b6fa98d494f8d8, type: 2}
-  - {fileID: 11400000, guid: 334d676b15020964dad1967628ebdc1a, type: 2}
-  - {fileID: 11400000, guid: d6d478c996489324986423532c7f7cb1, type: 2}
-  - {fileID: 11400000, guid: 63b10fc08c3862147ae2eaaabf303606, type: 2}
-  - {fileID: 11400000, guid: 362121bbd495f9b4583084584767ca92, type: 2}
-  - {fileID: 11400000, guid: 111af9b328bbd6f4886dd84e21987694, type: 2}
-  - {fileID: 11400000, guid: b7f7b34c06fd9954b9c304ffc1931ef0, type: 2}
-  - {fileID: 11400000, guid: f276ff5abb397e240919e02d0e3ad9a8, type: 2}
-  - {fileID: 11400000, guid: b8889bd9e108e244ba2525e72257cf57, type: 2}
-  - {fileID: 11400000, guid: b336aee63f2d32f46a1c3835a6bccc2c, type: 2}
-  - {fileID: 11400000, guid: 45d3bc6e450ce8f4a80863405efc89d3, type: 2}
-  - {fileID: 11400000, guid: 79506618dc6a9b345b8a77ec8c4d46a1, type: 2}
-  - {fileID: 11400000, guid: 5f39a668fd822cb4ebc1f7a7f1d4c92c, type: 2}
-  - {fileID: 11400000, guid: 79e8f219685a2304186a979adad12a7b, type: 2}
-  - {fileID: 11400000, guid: 71fd451d859d3324bade4c0f4af106ca, type: 2}
+  _startingPowerUps: []
   _cardSize: 30
   _maxCards: 5
   _startingCards: 3
@@ -6547,7 +6524,7 @@ MonoBehaviour:
   _witch: {fileID: 256337799807947314}
   _slowDownScale: 0.375
   _playTime: 0
-  _timeForMaxDifficult: 360
+  _timeForMaxDifficult: 720
   _camera: {fileID: 519420031}
   _uiManager: {fileID: 1699692670}
   _audioManager: {fileID: 255750584}

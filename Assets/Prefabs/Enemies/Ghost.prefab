@@ -144,7 +144,7 @@ MonoBehaviour:
   <Name>k__BackingField: Ghost
   <Colour>k__BackingField: {r: 0.909804, g: 0.8588236, b: 0.7960785, a: 1}
   _speedRange: {x: 0.1, y: 0.7}
-  _healthRange: {x: 0.5, y: 5}
+  _healthRange: {x: 0.25, y: 20}
   _damageRange: {x: 1, y: 10}
   _sr: {fileID: 8519792015104903002}
   _health: {fileID: 7231811741441138465}

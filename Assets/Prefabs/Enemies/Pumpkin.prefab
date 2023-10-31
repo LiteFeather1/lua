@@ -144,9 +144,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Pumpkin
-  <Colour>k__BackingField: {r: 0.9294118, g: 0.06666667, b: 0.06666667, a: 1}
+  <Colour>k__BackingField: {r: 0.9294118, g: 0.52156866, b: 0.06666667, a: 1}
   _speedRange: {x: 0.1, y: 0.5}
-  _healthRange: {x: 0.5, y: 5}
+  _healthRange: {x: 0.25, y: 20}
   _damageRange: {x: 1, y: 10}
   _sr: {fileID: 109992122801125493}
   _health: {fileID: 8930174284517584093}
