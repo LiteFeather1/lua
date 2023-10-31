@@ -35,6 +35,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private Color _normalColour, _critColour;
 
     public List<Enemy> ActiveEnemies { get; private set; } = new();
+    public System.Action EnemyHurt { get; set; }
 
     public CompositeValue ChanceToExtraCandy => _chanceToExtraCandy;
 
@@ -208,6 +209,7 @@ public class SpawnManager : MonoBehaviour
         dmg.transform.position = pos;
         dmg.gameObject.SetActive(true);
         AudioManager.Instance.PlayOneShot(_enemyHurtSound);
+        EnemyHurt?.Invoke();
     }
 
     private void DamageNumCreated(DamageNumber num)

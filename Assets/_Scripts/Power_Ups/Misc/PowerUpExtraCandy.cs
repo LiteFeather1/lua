@@ -5,6 +5,6 @@ public class PowerUpExtraCandy : PowerUpModifier
 {
     public override void ApplyEffect(GameManager gm)
     {
-        gm.DamageEnemiesOnRecycle.AddModifier(_modifier);
+        gm.SpawnManager.ChanceToExtraCandy.AddModifier(_modifier);
     }
 }

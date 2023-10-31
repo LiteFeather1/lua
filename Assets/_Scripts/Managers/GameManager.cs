@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Threading.Tasks;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -17,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Managers")]
     [SerializeField] private Camera _camera;
+    [SerializeField] private CameraShake _shake;
     [SerializeField] private UIManager _uiManager;
     [SerializeField] private SpawnManager _spawnManager;
     [SerializeField] private CardManager _cardManager;
@@ -32,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     public Witch Witch => _witch;
     public Camera Camera => _camera;
+    public SpawnManager SpawnManager => _spawnManager;
     public CardManager CardManager => _cardManager;
 
     public CompositeValue DamageEnemiesOnRecycle => _damageEnemiesOnRecycle;
@@ -47,10 +47,14 @@ public class GameManager : MonoBehaviour
         Inputs.Player.Pause_UnPause.performed += PauseUnpause;
         Inputs.Player.Mute_UnMute.performed += MuteUnMute;
 
+        _witch.OnDamaged += _shake.Shake;
+
         _cardManager.OnCardHovered += SlowDown;
         _cardManager.OnCardUnHovered += UnSlowDown;
 
         _cardManager.Recycler.OnCardUsed += CardRecycled;
+
+        _spawnManager.EnemyHurt += _shake.Shake;
 
         _uiManager.BindToWitch(_witch);
 
@@ -78,6 +82,8 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        _witch.OnDamaged -= _shake.Shake;
+
         Inputs.Player.Pause_UnPause.performed -= PauseUnpause;
         Inputs.Player.Mute_UnMute.performed -= MuteUnMute;
 
@@ -86,6 +92,8 @@ public class GameManager : MonoBehaviour
 
         _cardManager.Recycler.OnCardUsed += CardRecycled;
 
+        _spawnManager.EnemyHurt -= _shake.Shake;
+     
         _uiManager.UnBindToWitch(_witch);
     }
 

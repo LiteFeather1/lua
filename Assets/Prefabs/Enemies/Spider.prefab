@@ -54,7 +54,7 @@ MonoBehaviour:
   <Name>k__BackingField: Spider
   <Colour>k__BackingField: {r: 0.9294118, g: 0.058823533, b: 0.054901965, a: 1}
   _speedRange: {x: 0.1, y: 0.7}
-  _healthRange: {x: 4, y: 40}
+  _healthRange: {x: 0.2, y: 40}
   _damageRange: {x: 1, y: 10}
   _sr: {fileID: 3687588919383611242}
   _health: {fileID: 1599531401289546909}
