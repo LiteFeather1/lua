@@ -15,8 +15,11 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDr
     private Quaternion _deriv;
     private bool _dragging;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip _grabClip, _ungrabClip;
+
     // icky
-    public Vector2 Velocity;
+    [HideInInspector] public Vector2 Velocity;
     public PowerUp PowerUp => _powerUp;
 
     public Action<CardUIPowerUp> OnPickedUp { get; set; }
@@ -58,6 +61,7 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDr
             transform.SetParent(transform.parent.parent);
             _canvasGroup.blocksRaycasts = false;
             OnCardUnHovered?.Invoke();
+            AudioManager.Instance.PlayOneShot(_grabClip);
         }
     }
 
@@ -73,6 +77,7 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDr
             _canvasGroup.blocksRaycasts = true;
             transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
             OnDropped?.Invoke(this);
+            AudioManager.Instance.PlayOneShot(_ungrabClip);
         }
     }
 
@@ -82,6 +87,7 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDr
         i_powerUp.sprite = powerUp.Icon;
         i_card.color = powerUp.RarityColour;
         t_cardCost.text = powerUp.Cost.ToString();
+        AudioManager.Instance.PlayOneShot(_grabClip);
     }
 
     public void Used()

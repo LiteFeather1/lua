@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Witch _witch;
 
     [Header("Settings")]
+    [SerializeField] private AudioClip _music;
     [SerializeField] private float _slowDownScale = .25f;
     [SerializeField] private float _playTime;
     [SerializeField] private float _timeForMaxDifficult = 360f;
@@ -17,7 +18,6 @@ public class GameManager : MonoBehaviour
     [Header("Managers")]
     [SerializeField] private Camera _camera;
     [SerializeField] private UIManager _uiManager;
-    [SerializeField] private AudioManager _audioManager;
     [SerializeField] private SpawnManager _spawnManager;
     [SerializeField] private CardManager _cardManager;
 
@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
 
     public Witch Witch => _witch;
     public Camera Camera => _camera;
-    public AudioManager AudioManager => _audioManager;
     public CardManager CardManager => _cardManager;
 
     public CompositeValue DamageEnemiesOnRecycle => _damageEnemiesOnRecycle;
@@ -56,6 +55,12 @@ public class GameManager : MonoBehaviour
         _uiManager.BindToWitch(_witch);
 
         _slowPitch = SetPitch(1f);
+    }
+
+    private void Start()
+    {
+        AudioManager.Instance.MusicSource.clip = _music;
+        AudioManager.Instance.MusicSource.Play();
     }
 
     private void Update()
@@ -94,6 +99,7 @@ public class GameManager : MonoBehaviour
     public void LoadSplashScreen()
     {
         SceneManager.LoadScene(0);
+        AudioManager.Instance.MusicSource.Stop();
         Time.timeScale = 1f;
     }
 
@@ -123,17 +129,17 @@ public class GameManager : MonoBehaviour
     private IEnumerator SetPitch(float pitch)
     {
         float eTime = 0f;
-        float currentPitch = _audioManager.MusicSource.pitch;
+        float currentPitch = AudioManager.Instance.MusicSource.pitch;
         while (eTime < 0.25f)
         {
             float t = eTime / 0.5f;
-            _audioManager.MusicSource.pitch = Mathf.Lerp(currentPitch, pitch, t);
-            _audioManager.SFXSource.pitch = Mathf.Lerp(currentPitch, pitch, t);
+            AudioManager.Instance.MusicSource.pitch = Mathf.Lerp(currentPitch, pitch, t);
+            AudioManager.Instance.SFXSource.pitch = Mathf.Lerp(currentPitch, pitch, t);
             eTime += Time.unscaledDeltaTime;
             yield return null;
         }
-        _audioManager.MusicSource.pitch = pitch;
-        _audioManager.SFXSource.pitch = pitch;
+        AudioManager.Instance.MusicSource.pitch = pitch;
+        AudioManager.Instance.SFXSource.pitch = pitch;
     }
 
     private void CardRecycled()

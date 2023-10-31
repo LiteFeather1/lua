@@ -9,7 +9,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private ObjectPool<Bullet> _bulletPool;
     [SerializeField] private ObjectPool<DisableCallBack> _particlePool;
     [SerializeField] private ObjectPool<FlipBook> _bulletDamage;
-
+    [SerializeField] private AudioClip _bulletShotSound;
     public System.Action<float> OnDamageAppplied;
 
     private void Awake()
@@ -74,6 +74,7 @@ public class Gun : MonoBehaviour
                                 float burstAmount,
                                 float separationPerBullet)
     {
+        AudioManager.Instance.PlayOneShot(_bulletShotSound);
         StartCoroutine(Shot_CO(damage: damage,
                                critChance: critChance,
                                critMultiplier: critMultiplier,

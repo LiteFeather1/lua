@@ -162,6 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currency: 0
   _health: {fileID: 6948465981988686169}
+  _hurtSound: {fileID: 8300000, guid: 0a0e01e54e2de634c834cdbef67084bb, type: 3}
   _maxSpeed: 20
   _acceleration:
     _baseValue: 2
@@ -231,6 +232,7 @@ MonoBehaviour:
   _bulletDamage:
     _object: {fileID: 9029989089869572558, guid: cd79c920beec33a46adc58aa416c394c, type: 3}
     _initialPoolSize: 10
+  _bulletShotSound: {fileID: 0}
   _bulletSpeed:
     _baseValue: 1
   _size:

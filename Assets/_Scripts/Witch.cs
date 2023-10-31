@@ -10,6 +10,7 @@ public class Witch : MonoBehaviour
 
     [Header("Health")]
     [SerializeField] private HealthPlayer _health;
+    [SerializeField] private AudioClip _hurtSound;
 
     [Header("Moviment")]
     [SerializeField] private float _maxSpeed;
@@ -174,6 +175,7 @@ public class Witch : MonoBehaviour
 
     private void Damaged(float damage, bool crit, Vector2 pos)
     {
+        AudioManager.Instance.PlayOneShot(_hurtSound, Random.Range(.4f, .6f));
         _hurtBox.enabled = false;
         OnDamaged?.Invoke();
         HPModified();

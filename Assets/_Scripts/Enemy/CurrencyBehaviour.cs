@@ -32,6 +32,7 @@ public class CurrencyBehaviour : MonoBehaviour
             _elapsedTime = 0f;
             _witch.ModifyCurrency(1);
             ReturnToPool?.Invoke(this);
+            AudioManager.Instance.PlayCandyPickUp();
         }
     }
 

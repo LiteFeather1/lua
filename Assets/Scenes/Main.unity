@@ -660,9 +660,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 9122630971354736271, guid: 8b3be5fced0652d419befc8f6e0bc163, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 912fc0834625d9e4297405160b09608d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c688c79e6650ae143baad8b44023675a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1142,14 +1142,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 255750582}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 162457757}
   - {fileID: 654536650}
-  m_Father: {fileID: 1886159767}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &255750584
 MonoBehaviour:
@@ -1165,7 +1165,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _musicSource: {fileID: 162457758}
   _sfxSource: {fileID: 654536651}
-  _randomPitchRange: {x: 0.95, y: 1.15}
+  _randomPitchRange: {x: 0.9, y: 1.2}
+  _candyPickup: {fileID: 8300000, guid: 0cc8dfcacd689d14180ac4f1f76b9fdf, type: 3}
 --- !u!1 &276720838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1878,6 +1879,7 @@ GameObject:
   - component: {fileID: 541586370}
   - component: {fileID: 541586372}
   - component: {fileID: 541586371}
+  - component: {fileID: 541586373}
   m_Layer: 5
   m_Name: Pause_Screen
   m_TagString: Untagged
@@ -1943,6 +1945,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 541586369}
   m_CullTransparentMesh: 1
+--- !u!114 &541586373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541586369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627e01b91381eb74ebf41b4ed3dc8496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clip: {fileID: 8300000, guid: 5279904e1f634c84ea75e09e30887311, type: 3}
 --- !u!1 &566894264
 GameObject:
   m_ObjectHideFlags: 0
@@ -2254,8 +2269,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -491126517600642115, guid: 8b3be5fced0652d419befc8f6e0bc163, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2526,13 +2541,15 @@ MonoBehaviour:
         _object: {fileID: 1124217388555753815, guid: 49ea02d64db183745b62ee7513381e9d, type: 3}
         _initialPoolSize: 10
       _weight: 0.5
-  _maxEnemiesPerBurstRange: {x: 4, y: 16}
-  _minEnemiesPerBurstRange: {x: 2, y: 8}
+  _maxEnemiesPerBurstRange: {x: 4, y: 25}
+  _minEnemiesPerBurstRange: {x: 2, y: 15}
   _enemiesPerBurstOffset: {x: 1, y: 5}
-  _maxSpawnTimeRange: {x: 12.5, y: 1.5}
-  _minSpawnTimeRange: {x: 7.5, y: 1}
+  _maxSpawnTimeRange: {x: 12.5, y: 1}
+  _minSpawnTimeRange: {x: 7.5, y: 0.75}
   _spawnTimeOffset: {x: 2.5, y: 0.125}
   _spawnArea: {fileID: 850318396}
+  _enemyDiedSound: {fileID: 8300000, guid: de3392003c254c0489f645c21427a941, type: 3}
+  _enemyHurtSound: {fileID: 8300000, guid: 521889176afacd649849ffc5f736e4a9, type: 3}
   _enemyExplosionPool:
     _object: {fileID: 7855374184197628161, guid: cc8c6a3d52a421f45998b955c63834fd, type: 3}
     _initialPoolSize: 10
@@ -2774,6 +2791,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   i_card: {fileID: 772496566}
   _gm: {fileID: 1886159766}
+  _played: {fileID: 8300000, guid: c1e54463e55c60740986227852698926, type: 3}
+  _denied: {fileID: 8300000, guid: 65e34a4e1e5d01042bcdc84232198171, type: 3}
 --- !u!1 &838699382
 GameObject:
   m_ObjectHideFlags: 0
@@ -2922,6 +2941,7 @@ MonoBehaviour:
   _bulletDamage:
     _object: {fileID: 9029989089869572558, guid: feaf62a4a9fda25499b48cbd6d4224c5, type: 3}
     _initialPoolSize: 10
+  _bulletShotSound: {fileID: 8300000, guid: 672fdea8e7aa8b64092be2303844210e, type: 3}
 --- !u!1 &850318394
 GameObject:
   m_ObjectHideFlags: 0
@@ -3466,6 +3486,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1886159766}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: PauseUnpause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 541586373}
+        m_TargetAssemblyTypeName: PlaySoundOnClickButton, Assembly-CSharp
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4901,9 +4933,9 @@ MonoBehaviour:
   m_fontSize: 11
   m_fontSizeBase: 11
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 5
+  m_fontSizeMax: 11
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -5795,6 +5827,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 541586373}
+        m_TargetAssemblyTypeName: PlaySoundOnClickButton, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1716253169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6550,12 +6594,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _witch: {fileID: 256337799807947314}
+  _music: {fileID: 8300000, guid: c688c79e6650ae143baad8b44023675a, type: 3}
   _slowDownScale: 0.375
   _playTime: 0
-  _timeForMaxDifficult: 900
+  _timeForMaxDifficult: 600
   _camera: {fileID: 519420031}
   _uiManager: {fileID: 1699692670}
-  _audioManager: {fileID: 255750584}
   _spawnManager: {fileID: 682165029}
   _cardManager: {fileID: 1844759271}
   _damageEnemiesOnRecycle:
@@ -6578,7 +6622,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 682165028}
-  - {fileID: 255750583}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1904676977
@@ -7537,6 +7580,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6431089900240576536, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
+      propertyPath: _bulletShotSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 672fdea8e7aa8b64092be2303844210e, type: 3}
     - target: {fileID: 7450378837478392003, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
       propertyPath: m_Name
       value: Witch
@@ -7912,6 +7959,7 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 256337799807947313}
   - {fileID: 838699384}
+  - {fileID: 255750583}
   - {fileID: 1886159767}
   - {fileID: 1699692669}
   - {fileID: 1521358744}

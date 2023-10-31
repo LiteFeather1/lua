@@ -637,6 +637,8 @@ MonoBehaviour:
   _canvasGroup: {fileID: 5317414799017092345}
   i_powerUp: {fileID: 6372922564060434421}
   t_cardCost: {fileID: 8136637695915783262}
+  _grabClip: {fileID: 8300000, guid: 61cac60b03ef3eb4b996cf9cae4b6db3, type: 3}
+  _ungrabClip: {fileID: 8300000, guid: 89f2343860b215d4ba46f6cf08799e87, type: 3}
   Velocity: {x: 0, y: 0}
 --- !u!225 &5317414799017092345
 CanvasGroup:

@@ -17,6 +17,7 @@ public class SpawnManager : MonoBehaviour
     private float _spawnTime;
     private float _elapsedTime;
     [SerializeField] private BoxCollider2D _spawnArea;
+    [SerializeField] private AudioClip _enemyDiedSound, _enemyHurtSound;
 
     [Header("Explosion")]
     [SerializeField] private ObjectPool<FlipBook> _enemyExplosionPool;
@@ -139,6 +140,7 @@ public class SpawnManager : MonoBehaviour
     {
         SpawnCandy(enemy.transform.localPosition);
         SpawnExplosion(enemy.transform.localPosition, enemy.Colour);
+        AudioManager.Instance.PlayOneShot(_enemyDiedSound);
         if (Random.value < _chanceToExtraCandy.Value)
             SpawnCandy(enemy.transform.localPosition);
     }
@@ -205,6 +207,7 @@ public class SpawnManager : MonoBehaviour
         dmg.SetVelocity(new(_xVelocityRange.Random() * direction, _yVelocityRange.Random()));
         dmg.transform.position = pos;
         dmg.gameObject.SetActive(true);
+        AudioManager.Instance.PlayOneShot(_enemyHurtSound);
     }
 
     private void DamageNumCreated(DamageNumber num)
