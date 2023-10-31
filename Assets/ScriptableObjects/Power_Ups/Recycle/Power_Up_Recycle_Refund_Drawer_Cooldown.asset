@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Power_Up_Recycle_Refund_Drawer_Cooldown
   m_EditorClassIdentifier: 
   _name: Drawer Refund
-  _effect: On Card Recycle Refund +$
+  _effect: On Card Recycle Refund $
   _cost: 12
   _rarity: {fileID: 11400000, guid: 0869bc92c695cdd4c97f8b266f87f121, type: 2}
   _limit: 10
