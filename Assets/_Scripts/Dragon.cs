@@ -51,6 +51,7 @@ public class Dragon : MonoBehaviour
 
         _gun.ShootRoutine(_witch.Damage.Value * FORCE_MULTIPLIER,
                           _witch.CritChance.Value * FORCE_MULTIPLIER,
+                          Mathf.Max(_witch.CritMultiplier.Value * FORCE_MULTIPLIER, 1f),
                           _witch.Knockback.Value * FORCE_MULTIPLIER,
                           _witch.Gun.Size.Value * FORCE_MULTIPLIER,
                           _witch.Gun.BulletSpeed.Value * 1.125f,

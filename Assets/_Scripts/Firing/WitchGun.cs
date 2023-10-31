@@ -29,10 +29,11 @@ public class WitchGun : Gun
     public float TimeToCompleteShooting => _timeToCompleteShooting;
     public float SeparationPerBullet => _separationPerBullet;
 
-    public void ShootRoutine(float damage, float critChance, float knockback)
+    public void ShootRoutine(float damage, float critChance, float critMultiplier,float knockback)
     {
         ShootRoutine(damage: damage,
                      critChance: critChance,
+                     critMultiplier: critMultiplier,
                      knockback: knockback,
                      size: _size.Value,
                      speed: _bulletSpeed.Value,
@@ -46,10 +47,11 @@ public class WitchGun : Gun
                      separationPerBullet: _separationPerBullet);
     }
 
-    public void ShootBullet(float damage, float critChance, float knockback, float angle)
+    public void ShootBullet(float damage, float critChance, float critMultiplier, float knockback, float angle)
     {
         ShootBullet(damage: damage,
                     critChance: critChance,
+                    critMultiplier: critMultiplier,
                     knockback: knockback,
                     size: _size.Value,
                     speed: _bulletSpeed.Value,

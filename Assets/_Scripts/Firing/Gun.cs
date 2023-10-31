@@ -61,6 +61,7 @@ public class Gun : MonoBehaviour
 
     public void ShootRoutine(float damage,
                                 float critChance,
+                                float critMultiplier,
                                 float knockback,
                                 float size,
                                 float speed,
@@ -75,6 +76,7 @@ public class Gun : MonoBehaviour
     {
         StartCoroutine(Shot_CO(damage: damage,
                                critChance: critChance,
+                               critMultiplier: critMultiplier,
                                knockback: knockback,
                                size: size,
                                speed: speed,
@@ -88,7 +90,7 @@ public class Gun : MonoBehaviour
                                separationPerBullet: separationPerBullet));
     }
 
-    public void ShootBullet(float damage, float critChance, float knockback , float size, 
+    public void ShootBullet(float damage, float critChance, float critMultiplier, float knockback , float size, 
         float speed, int pierce, int bounce, float duration, float angle)
     {
         var bullet = _bulletPool.GetObject();
@@ -101,6 +103,7 @@ public class Gun : MonoBehaviour
         bullet.gameObject.SetActive(true);
         bullet.Hitbox.SetDamage(damage);
         bullet.Hitbox.SetCritChance(critChance);
+        bullet.Hitbox.SetCritMultiplier(critMultiplier);
         bullet.Hitbox.SetKnockback(knockback);
         bullet.Projectile.Shoot(speed, (Vector2)bullet.transform.right,
                                 pierce, bounce, duration);
@@ -108,6 +111,7 @@ public class Gun : MonoBehaviour
 
     private IEnumerator Shot_CO(float damage,
                                 float critChance,
+                                float critMultiplier,
                                 float knockback,
                                 float size,
                                 float speed,
@@ -127,6 +131,7 @@ public class Gun : MonoBehaviour
             {
                 ShootBullet(damage: damage,
                             critChance: critChance,
+                            critMultiplier: critMultiplier,
                             knockback: knockback,
                             size: size,
                             speed: speed,
