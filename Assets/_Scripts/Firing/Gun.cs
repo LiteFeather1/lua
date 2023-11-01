@@ -7,7 +7,7 @@ public class Gun : MonoBehaviour
 {
     [SerializeField] private Transform _firePoint;
     [SerializeField] private ObjectPool<Bullet> _bulletPool;
-    [SerializeField] private ObjectPool<DisableCallBack> _particlePool;
+    [SerializeField] private ObjectPool<ParticleStoppedCallBack> _particlePool;
     [SerializeField] private ObjectPool<FlipBook> _bulletDamage;
     [SerializeField] private AudioClip _bulletShotSound;
     public System.Action<float> OnDamageAppplied;
@@ -175,12 +175,12 @@ public class Gun : MonoBehaviour
 
     }
 
-    private void ParticleCreated(DisableCallBack particle)
+    private void ParticleCreated(ParticleStoppedCallBack particle)
     {
         particle.Disabled += ReturnParticleToPool;
     }
 
-    private void ReturnParticleToPool(DisableCallBack particle)
+    private void ReturnParticleToPool(ParticleStoppedCallBack particle)
     {
         _particlePool.ReturnObject(particle);
     }

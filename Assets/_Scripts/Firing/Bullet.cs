@@ -5,7 +5,7 @@ public class Bullet : MonoBehaviour, IPoolable<Bullet>
 {
     [SerializeField] private Projectile _projectile;
     [SerializeField] private HitBox _hitBox;
-    private DisableCallBack _disableCallBack;
+    private ParticleStoppedCallBack _disableCallBack;
 
     public Projectile Projectile => _projectile;
     public HitBox Hitbox => _hitBox;
@@ -22,16 +22,17 @@ public class Bullet : MonoBehaviour, IPoolable<Bullet>
         _projectile.Deactivated -= ProjectileDeactivated;
     }
 
-    public void AttachDisable(DisableCallBack disable)
+    public void AttachDisable(ParticleStoppedCallBack disable)
     {
-        _disableCallBack = disable;
-        disable.transform.SetParent(transform);
+        disable.transform.SetParent(transform, false);
+        disable.transform.localScale = transform.localScale;
         disable.transform.localPosition = Vector3.zero;
+        _disableCallBack = disable;
     }
 
     private void ProjectileDeactivated()
     {
-        _disableCallBack.transform.SetParent(null);
+        _disableCallBack.transform.SetParent(null, false);
         ReturnToPool?.Invoke(this);
     }
 }
