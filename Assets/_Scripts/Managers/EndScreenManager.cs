@@ -22,20 +22,16 @@ public class EndScreenManager : MonoBehaviour
 
     private void Update()
     {
-        var size = _root.localScale.x;
-        var minX = (-(rt_carousel.sizeDelta.x) - (34f)) * .5f;
+        var minX = -(rt_carousel.sizeDelta.x + 34f) * .5f;
         var maxCards = rt_carousel.sizeDelta.x / 34f;
-        float mul = _cards.Count;
-        if (_cards.Count < maxCards)
-            mul = 1f;
+        float mul = _cards.Count < maxCards ? 1f : _cards.Count;
         var maxX = (rt_carousel.sizeDelta.x * .5f) + (34f * mul);
-        if (_cards.Count > maxCards)
-            maxX += minX * 2f + 17f;
+        maxX += _cards.Count > maxCards ? minX * 2f + 17f : 0f;
         float delta = Time.deltaTime;
         for (int i = 0; i < _cards.Count; i++)
         {
             var card = _cards[i];
-            var speed = _speed * size;
+            var speed = _speed * _root.localScale.x;
             card.transform.Translate(delta * speed * Vector2.left);
             if (card.transform.localPosition.x < minX)
             {

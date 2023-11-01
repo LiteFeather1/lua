@@ -5,7 +5,6 @@ public class Projectile : MonoBehaviour, IDeactivatable
 {
     [SerializeField] private int _pierce;
     [SerializeField] private int _bounce;
-    private int _hitAmount;
     [SerializeField] private float _time;
     private float _elapsedTime;
     private float _speed;
@@ -42,25 +41,25 @@ public class Projectile : MonoBehaviour, IDeactivatable
     {
         _rb.velocity = Vector2.zero;
         _elapsedTime = 0f;
-        _hitAmount = 0;
         Deactivated?.Invoke();
         gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _hitAmount++;
-        if (_hitAmount > _pierce || (collision.CompareTag("Screen") && _hitAmount < _bounce + _pierce))
+        if (_pierce > 0 && !collision.CompareTag("Screen"))
         {
+            _pierce--;
+        }
+        else if (_bounce > 0)
+        {
+            _bounce--;
             var contactPoint = collision.ClosestPoint(transform.position);
             var normal = (Vector2)transform.position - contactPoint;
             var reflect = Vector2.Reflect(_rb.velocity.normalized, normal.normalized);
             Shoot(_speed, reflect);
         }
-
-        if (_hitAmount > _bounce + _pierce)
-        {
+        else
             Deactivate();
-        }
     }
 }

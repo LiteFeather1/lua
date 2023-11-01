@@ -3131,9 +3131,9 @@ MonoBehaviour:
         _object: {fileID: 1124217388555753815, guid: 49ea02d64db183745b62ee7513381e9d, type: 3}
         _initialPoolSize: 10
       _weight: 0.5
-  _maxEnemiesPerBurstRange: {x: 4, y: 25}
-  _minEnemiesPerBurstRange: {x: 2, y: 15}
-  _enemiesPerBurstOffset: {x: 1, y: 5}
+  _maxEnemiesPerBurstRange: {x: 6, y: 30}
+  _minEnemiesPerBurstRange: {x: 4, y: 20}
+  _enemiesPerBurstOffset: {x: 2, y: 5}
   _maxSpawnTimeRange: {x: 12.5, y: 1}
   _minSpawnTimeRange: {x: 7.5, y: 0.75}
   _spawnTimeOffset: {x: 2.5, y: 0.125}
