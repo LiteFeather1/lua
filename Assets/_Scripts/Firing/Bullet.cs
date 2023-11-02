@@ -24,15 +24,13 @@ public class Bullet : MonoBehaviour, IPoolable<Bullet>
 
     public void AttachDisable(ParticleStoppedCallBack disable)
     {
-        disable.transform.SetParent(transform, false);
-        disable.transform.localScale = transform.localScale;
-        disable.transform.localPosition = Vector3.zero;
+        disable.Parent(transform);
         _disableCallBack = disable;
     }
 
     private void ProjectileDeactivated()
     {
-        _disableCallBack.transform.SetParent(null, true);
+        _disableCallBack.Unparent();
         ReturnToPool?.Invoke(this);
     }
 }

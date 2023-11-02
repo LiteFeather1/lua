@@ -52,9 +52,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Raven
   <Colour>k__BackingField: {r: 0.4431373, g: 0.06666667, b: 0.76470596, a: 1}
-  _speedRange: {x: 0.1, y: 0.7}
-  _healthRange: {x: 0.2, y: 40}
-  _damageRange: {x: 1, y: 10}
+  _speedRange: {x: 0.1, y: 0.5}
+  _healthRange: {x: 0.2, y: 80}
+  _damageRange: {x: 1, y: 50}
   _sr: {fileID: 3687588919383611242}
   _health: {fileID: 7250449085420806086}
   _hitBox: {fileID: 1580534110986226837}

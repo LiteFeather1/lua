@@ -2298,7 +2298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shakeCount: 4
-  _shakeAmount: {x: -0.02, y: 0.02}
+  _shakeAmount: {x: -0.01, y: 0.01}
   _delay: 0.0675
 --- !u!1 &541586369
 GameObject:
@@ -3131,8 +3131,8 @@ MonoBehaviour:
         _object: {fileID: 1124217388555753815, guid: 49ea02d64db183745b62ee7513381e9d, type: 3}
         _initialPoolSize: 10
       _weight: 0.5
-  _maxEnemiesPerBurstRange: {x: 6, y: 30}
-  _minEnemiesPerBurstRange: {x: 4, y: 20}
+  _maxEnemiesPerBurstRange: {x: 6, y: 16}
+  _minEnemiesPerBurstRange: {x: 4, y: 12}
   _enemiesPerBurstOffset: {x: 2, y: 5}
   _maxSpawnTimeRange: {x: 12.5, y: 1}
   _minSpawnTimeRange: {x: 7.5, y: 0.75}

@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ccecf02581b8a449348122b7d13f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ps: {fileID: 1612531614970792802}
 --- !u!198 &1612531614970792802
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -54,14 +55,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1524727452911150212}
   serializedVersion: 8
-  lengthInSec: 1
+  lengthInSec: 0.25
   simulationSpeed: 1
   stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -353,8 +354,8 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
-      minScalar: 1
+      scalar: 0.06
+      minScalar: 0.03
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -619,7 +620,7 @@ ParticleSystem:
     gravitySource: 0
     maxNumParticles: 1000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
-    size3D: 0
+    size3D: 1
     rotation3D: 0
     gravityModifier:
       serializedVersion: 2
@@ -1322,7 +1323,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 1, b: 1, a: 0}
+        key1: {r: 1, g: 1, b: 1, a: 0.17254902}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -4808,8 +4809,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -2066966967
-  m_SortingLayer: -1
+  m_SortingLayerID: -1257769023
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0

@@ -35,7 +35,7 @@ public abstract class Enemy : MonoBehaviour, IDeactivatable
 
     public virtual void Spawn(float t, float tClamped) 
     {
-        _sr.sortingOrder = Random.Range(1, 500);
+        _sr.sortingOrder = Random.Range(100, 500);
         _health.ResetHealth(_healthRange.Evaluate(t));
         _hitBox.SetDamage(_damageRange.Evaluate(t));
         gameObject.SetActive(true);
