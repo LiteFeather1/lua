@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PowerUpCriChance
   _name: Critical Damage
   _effect: Increase Critical Damage By $
-  _cost: 16
-  _rarity: {fileID: 11400000, guid: 0869bc92c695cdd4c97f8b266f87f121, type: 2}
+  _cost: 8
+  _rarity: {fileID: 11400000, guid: a7ae77a514c29d44995457b989b36476, type: 2}
   _limit: 20
   _icon: {fileID: -1651082018, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
   _modifier:

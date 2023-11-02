@@ -47,9 +47,12 @@ public class Projectile : MonoBehaviour, IDeactivatable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (_pierce > 0 && !collision.CompareTag("Screen"))
+        if (!collision.CompareTag("Screen"))
         {
-            _pierce--;
+            if (_pierce > 0)
+                _pierce--;
+            else
+                Deactivate();
         }
         else if (_bounce > 0)
         {
@@ -59,7 +62,5 @@ public class Projectile : MonoBehaviour, IDeactivatable
             var reflect = Vector2.Reflect(_rb.velocity.normalized, normal.normalized);
             Shoot(_speed, reflect);
         }
-        else
-            Deactivate();
     }
 }

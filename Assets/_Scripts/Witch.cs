@@ -47,8 +47,6 @@ public class Witch : MonoBehaviour
     [SerializeField] private float _durationBetweenBlinks;
     [SerializeField] private Color _damagedColour = Color.red;
 
-
-
     [Header("Components")]
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private SpriteRenderer _sr;
