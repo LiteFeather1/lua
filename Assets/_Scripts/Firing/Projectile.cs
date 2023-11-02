@@ -47,20 +47,20 @@ public class Projectile : MonoBehaviour, IDeactivatable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Screen"))
-        {
-            if (_pierce > 0)
-                _pierce--;
-            else
-                Deactivate();
-        }
-        else if (_bounce > 0)
+        if (_bounce > 0)
         {
             _bounce--;
             var contactPoint = collision.ClosestPoint(transform.position);
             var normal = (Vector2)transform.position - contactPoint;
             var reflect = Vector2.Reflect(_rb.velocity.normalized, normal.normalized);
             Shoot(_speed, reflect);
+        }
+        else if (!collision.CompareTag("Screen"))
+        {
+            if (_pierce > 0)
+                _pierce--;
+            else
+                Deactivate();
         }
     }
 }

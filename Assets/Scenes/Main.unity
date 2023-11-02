@@ -3131,12 +3131,12 @@ MonoBehaviour:
         _object: {fileID: 1124217388555753815, guid: 49ea02d64db183745b62ee7513381e9d, type: 3}
         _initialPoolSize: 10
       _weight: 0.5
-  _maxEnemiesPerBurstRange: {x: 6, y: 16}
-  _minEnemiesPerBurstRange: {x: 4, y: 12}
+  _maxEnemiesPerBurstRange: {x: 6, y: 14}
+  _minEnemiesPerBurstRange: {x: 4, y: 10}
   _enemiesPerBurstOffset: {x: 2, y: 5}
-  _maxSpawnTimeRange: {x: 12.5, y: 1}
-  _minSpawnTimeRange: {x: 7.5, y: 0.75}
-  _spawnTimeOffset: {x: 2.5, y: 0.125}
+  _maxSpawnTimeRange: {x: 12.5, y: 2}
+  _minSpawnTimeRange: {x: 7.5, y: 1}
+  _spawnTimeOffset: {x: 2.5, y: 0.5}
   _spawnArea: {fileID: 850318396}
   _enemyDiedSound: {fileID: 8300000, guid: de3392003c254c0489f645c21427a941, type: 3}
   _enemyHurtSound: {fileID: 8300000, guid: 521889176afacd649849ffc5f736e4a9, type: 3}

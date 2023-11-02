@@ -147,7 +147,7 @@ MonoBehaviour:
   <Name>k__BackingField: Pumpkin
   <Colour>k__BackingField: {r: 0.9294118, g: 0.52156866, b: 0.06666667, a: 1}
   _speedRange: {x: 0.1, y: 0.4}
-  _healthRange: {x: 0.2, y: 80}
+  _healthRange: {x: 0.2, y: 60}
   _damageRange: {x: 1, y: 30}
   _sr: {fileID: 109992122801125493}
   _health: {fileID: 8930174284517584093}
