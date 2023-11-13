@@ -74,7 +74,7 @@ public class SpawnManager : MonoBehaviour
                 EnemyCreated(enemy);
             }
             pool.ObjectCreated += EnemyCreated;
-            _enemyToPool.Add(pool.Object.Name, pool);
+            _enemyToPool.Add(pool.Object.Data.Name, pool);
         }
 
         _spawnTime = 1f;
@@ -142,7 +142,7 @@ public class SpawnManager : MonoBehaviour
     private void EnemyDied(Enemy enemy)
     {
         SpawnCandy(enemy.transform.localPosition);
-        SpawnExplosion(enemy.transform.localPosition, enemy.Colour);
+        SpawnExplosion(enemy.transform.localPosition, enemy.Data.Colour);
         AudioManager.Instance.PlayOneShot(_enemyDiedSound);
         if (Random.value < _chanceToExtraCandy.Value)
             SpawnCandy(enemy.transform.localPosition);
@@ -200,7 +200,7 @@ public class SpawnManager : MonoBehaviour
     private void ReturnEnemyToPool(Enemy enemy)
     {
         ActiveEnemies.Remove(enemy);
-        _enemyToPool[enemy.Name].ReturnObject(enemy);
+        _enemyToPool[enemy.Data.Name].ReturnObject(enemy);
     }
 
     private void SpawnDamageNum(float damage, bool crit, Vector2 pos)

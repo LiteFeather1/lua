@@ -2,18 +2,14 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour, IDeactivatable
 {
-    [field: SerializeField] public string Name { get; private set; }
-    [field: SerializeField] public Color Colour { get; private set; }
-
-    [Header("Ranges")]
-    [SerializeField] protected Vector2 _speedRange;
-    [SerializeField] protected Vector2 _healthRange;
-    [SerializeField] protected Vector2 _damageRange;
+    [SerializeField] protected EnemyData _data;
 
     [Header("Components")]
     [SerializeField] private SpriteRenderer _sr;
     [SerializeField] private Health _health;
     [SerializeField] private HitBox _hitBox;
+
+    public EnemyData Data => _data;
 
     public Health Health => _health;
     public HitBox HitBox => _hitBox;
@@ -36,8 +32,8 @@ public abstract class Enemy : MonoBehaviour, IDeactivatable
     public virtual void Spawn(float t, float tClamped) 
     {
         _sr.sortingOrder = Random.Range(100, 500);
-        _health.ResetHealth(_healthRange.Evaluate(t));
-        _hitBox.SetDamage(_damageRange.Evaluate(t));
+        _health.ResetHealth(_data.HealthRange.Evaluate(t));
+        _hitBox.SetDamage(_data.DamageRange.Evaluate(t));
         gameObject.SetActive(true);
     }
 

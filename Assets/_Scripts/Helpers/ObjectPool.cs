@@ -34,7 +34,7 @@ namespace LTFUtils
             if (_poolParent != null)
                 return;
 
-            _poolParent = new("Pool " + _object.name);
+            _poolParent = new("Pool_" + _object.name);
 
             for (int i = 0; i < size; i++)
             {

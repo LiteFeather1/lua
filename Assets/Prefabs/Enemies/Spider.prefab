@@ -51,11 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77ba1adf5fe3826489cce436088c1ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Spider
-  <Colour>k__BackingField: {r: 0.9294118, g: 0.058823533, b: 0.054901965, a: 1}
-  _speedRange: {x: 0.1, y: 0.5}
-  _healthRange: {x: 0.2, y: 60}
-  _damageRange: {x: 1, y: 10}
+  _data: {fileID: 11400000, guid: 72588a472a92610499e6902c0ebf5af9, type: 2}
   _sr: {fileID: 3687588919383611242}
   _health: {fileID: 1599531401289546909}
   _hitBox: {fileID: 4943662796723205737}
