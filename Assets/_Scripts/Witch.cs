@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 public class Witch : MonoBehaviour
 {
     [Header("Currency")]
-    [SerializeField] private int _currency;
+    [SerializeField, ReadOnly] private int _currency;
     private int _totalCurrencyGained;
 
     [Header("Health")]
