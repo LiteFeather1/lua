@@ -182,7 +182,7 @@ public class GameManager : MonoBehaviour
         var enemies = _spawnManager.ActiveEnemies.ToArray();
         for (int i = 0; i < enemies.Length; i++)
         {
-            enemies[i].Health.TakeDamage(_damageEnemiesOnRecycle.Value, false, enemies[i].transform.position);
+            enemies[i].Health.TakeDamage(_damageEnemiesOnRecycle.Value, 0f, false, enemies[i].transform.position);
         }
     }
 }

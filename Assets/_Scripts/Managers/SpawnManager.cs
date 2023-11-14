@@ -107,7 +107,7 @@ public class SpawnManager : MonoBehaviour
             {
                 enemy.ReturnToPool -= ReturnEnemyToPool;
                 enemy.OnDied -= EnemyDied;
-                enemy.Health.OnDamage -= SpawnDamageNum;
+                enemy.Health.OnDamaged -= SpawnDamageNum;
             }
             pool.ObjectCreated -= EnemyCreated;
         }
@@ -194,7 +194,7 @@ public class SpawnManager : MonoBehaviour
         enemy.Init(GameManager.Instance.Witch);
         enemy.ReturnToPool += ReturnEnemyToPool;
         enemy.OnDied += EnemyDied;
-        enemy.Health.OnDamage += SpawnDamageNum;
+        enemy.Health.OnDamaged += SpawnDamageNum;
     }
 
     private void ReturnEnemyToPool(Enemy enemy)
@@ -203,7 +203,7 @@ public class SpawnManager : MonoBehaviour
         _enemyToPool[enemy.Data.Name].ReturnObject(enemy);
     }
 
-    private void SpawnDamageNum(float damage, bool crit, Vector2 pos)
+    private void SpawnDamageNum(float damage, float knockback, bool crit, Vector2 pos)
     {
         var dmg = _damageNumPool.GetObject();
         dmg.SetText(damage.ToString("0.00"), crit ? _critColour : _normalColour);

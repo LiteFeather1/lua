@@ -12,19 +12,19 @@ public class HealthPlayer : Health
     public System.Action<int> OnShieldGained { get; set; }
     public CompositeValue Defence => _defence;
 
-    public override bool TakeDamage(float damage, bool crit, Vector2 pos)
+    public override bool TakeDamage(float damage, float knockback, bool crit, Vector2 pos)
     {
         if (_shield > 0)
         {
             _shield--;
-            OnDamage?.Invoke(0f, crit, pos);
+            OnDamaged?.Invoke(0f, knockback, crit, pos);
             OnShieldDamaged?.Invoke();
             return false;   
         }
 
         damage *= 100f / (100f + _defence.Value);
 
-        return base.TakeDamage(damage, crit, pos);
+        return base.TakeDamage(damage, knockback, crit, pos);
     }
 
     public void IncreaseMaxHP(float amount)

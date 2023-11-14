@@ -5,6 +5,7 @@ public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
     [SerializeField] protected EnemyData _data;
 
     [Header("Base States")]
+    [SerializeField] private float _minKnockbackDistance = .25f;
     [SerializeField] private MovementKnockback _knockbackState;
 
     [Header("Components")]
