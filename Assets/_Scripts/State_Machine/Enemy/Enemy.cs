@@ -23,12 +23,18 @@ public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
 
     protected void OnEnable()
     {
+        _health.OnDamaged += Damaged;
         _health.OnDeath += Died;
+
+        _knockbackState.OnStateComplete += KnockBackComplete;
     }
 
     protected void OnDisable()
     {
+        _health.OnDamaged -= Damaged;
         _health.OnDeath -= Died;
+
+        _knockbackState.OnStateComplete -= KnockBackComplete;
     }
 
     public virtual void Init(Witch witch) { }
@@ -47,7 +53,17 @@ public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
         ReturnToPool?.Invoke(this);
     }
 
-    protected void Died()
+    protected abstract void KnockBackComplete();
+
+    private void Damaged(float damage, float knockback, bool crit, Vector2 pos)
+    {
+        var mult = crit ? knockback * 1.5f : knockback;
+        var direction = _minKnockbackDistance * mult * (Position - pos).normalized;
+        _knockbackState.SetDestination(direction + Position);
+        Set(_knockbackState);
+    }
+
+    private void Died()
     {
         gameObject.SetActive(false);
         ReturnToPool?.Invoke(this);

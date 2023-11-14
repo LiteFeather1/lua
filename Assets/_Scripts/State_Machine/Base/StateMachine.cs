@@ -12,7 +12,7 @@ namespace StateMachine
         /// <summary>
         /// Set a new state, can be used by the state machine or by the a state
         /// </summary>
-        public void Set(State nextState, bool _override = false)
+        protected void Set(State nextState, bool _override = false)
         {
             if (_currentState != nextState || _override)
             {

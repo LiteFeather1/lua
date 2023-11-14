@@ -176,7 +176,7 @@ MonoBehaviour:
   _critMultiplier:
     _baseValue: 1.5
   _knockback:
-    _baseValue: 0
+    _baseValue: 1
   _shootTime:
     _baseValue: 1
   _randomBulletShootTime:

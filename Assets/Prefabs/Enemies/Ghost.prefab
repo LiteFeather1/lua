@@ -128,6 +128,7 @@ Transform:
   m_Children:
   - {fileID: 1432069445449190680}
   - {fileID: 5743386497933959492}
+  - {fileID: 2062787907536486437}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1124217388555753815
@@ -144,7 +145,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentState: {fileID: 0}
   _data: {fileID: 11400000, guid: 7fe42db5e4928794c8e760fe6eaaac0a, type: 2}
-  _knockbackState: {fileID: 0}
+  _minKnockbackDistance: 0.125
+  _knockbackState: {fileID: 4359455037360589266}
   _sr: {fileID: 8519792015104903002}
   _health: {fileID: 7231811741441138465}
   _hitBox: {fileID: 2741852666325930557}
@@ -183,6 +185,56 @@ MonoBehaviour:
   _childState: {fileID: 0}
   _speed: 1
   _direction: {x: -1, y: 0}
+--- !u!1 &5997261604457926169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2062787907536486437}
+  - component: {fileID: 4359455037360589266}
+  m_Layer: 7
+  m_Name: State_Knockback
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2062787907536486437
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5997261604457926169}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4557867895462103551}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4359455037360589266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5997261604457926169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3782fa999b03379499468d3be8c45b46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _core: {fileID: 1124217388555753815}
+  _completedMessage: 
+  _parentState: {fileID: 0}
+  _childState: {fileID: 0}
+  _speed: 0.5
+  _destination: {x: 0, y: 0}
 --- !u!1 &6819220182453634984
 GameObject:
   m_ObjectHideFlags: 0

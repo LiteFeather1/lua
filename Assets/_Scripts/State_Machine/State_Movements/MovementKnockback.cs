@@ -3,6 +3,8 @@
 public class MovementKnockback : MovementState
 {
     private const float MIN_DISTANCE = .01f;
+
+    [Header("Knockback State")]
     [SerializeField] private Vector2 _destination;
 
     public void SetDestination(Vector2 destination) => _destination = destination;

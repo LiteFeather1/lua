@@ -15,4 +15,6 @@ public class EnemyLinear : Enemy
         base.Spawn(t, tClamped);
         _movement.SetSpeed(_data.SpeedRange.Evaluate(tClamped));
     }
+
+    protected override void KnockBackComplete() => Set(_movement);
 }
