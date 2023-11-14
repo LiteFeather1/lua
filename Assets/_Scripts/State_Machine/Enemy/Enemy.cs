@@ -5,7 +5,6 @@ public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
     [SerializeField] protected EnemyData _data;
 
     [Header("Base States")]
-    [SerializeField] private float _minKnockbackDistance = .25f;
     [SerializeField] private MovementKnockback _knockbackState;
 
     [Header("Components")]
@@ -57,9 +56,7 @@ public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
 
     private void Damaged(float damage, float knockback, bool crit, Vector2 pos)
     {
-        var mult = crit ? knockback * 1.5f : knockback;
-        var direction = _minKnockbackDistance * mult * (Position - pos).normalized;
-        _knockbackState.SetDestination(direction + Position);
+        _knockbackState.SetUp((Position - pos).normalized, crit ? knockback * 1.5f : knockback);
         Set(_knockbackState);
     }
 

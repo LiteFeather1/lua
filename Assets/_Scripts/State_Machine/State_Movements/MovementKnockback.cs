@@ -1,18 +1,40 @@
 ﻿using UnityEngine;
 
-public class MovementKnockback : MovementState
+public class MovementKnockback : StateMachine.State
 {
-    private const float MIN_DISTANCE = .01f;
+    private const int TIMES_TO_SHAKE = 7;
 
     [Header("Knockback State")]
-    [SerializeField] private Vector2 _destination;
+    private float _duration = .20f;
+    private float _speed = .75f;
+    private float _knockbackForce = 1f;
+    [SerializeField] private Vector2 _direction;
+    private readonly Vector2 _rockyOffsetRange = new(.2f, .25f);
+    private Vector2 _offset;
+    private int _timesShaked;
 
-    public void SetDestination(Vector2 destination) => _destination = destination;
+    public void SetUp(Vector2 direction, float knockbackForce)
+    {
+        _direction = direction;
+        _knockbackForce = knockbackForce;
+        _timesShaked = 0;
+    }
 
     public override void Do()
     {
-        _core.transform.position = Vector2.MoveTowards(_core.Position, _destination, Time.deltaTime * _speed);
-        if (Vector2.Distance(_destination, _core.Position) < MIN_DISTANCE)
-            CompleteState("Reached Destination");
+        if (StateTime > _duration / TIMES_TO_SHAKE * _timesShaked)
+        {
+            _timesShaked++;
+            float sign = _timesShaked % 2 == 0 ? 1f : -1f;
+            _offset = new(_rockyOffsetRange.Random() / 2f, _rockyOffsetRange.Random() * sign);
+        }
+
+        var delta = Time.deltaTime * _speed * _knockbackForce;
+        var x = (_offset.x + _direction.x) * delta;
+        var y = (_offset.y + _direction.y) * delta;
+        _core.transform.position += new Vector3(x, y);
+
+        if (StateTime > _duration)
+            CompleteState("State Time Ended");
     }
 }
