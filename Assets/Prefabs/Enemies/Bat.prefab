@@ -50,7 +50,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77ba1adf5fe3826489cce436088c1ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentState: {fileID: 0}
   _data: {fileID: 11400000, guid: 59f6438c7d8ada04c89a7bb08293a1b5, type: 2}
+  _knockbackState: {fileID: 0}
   _sr: {fileID: 3687588919383611242}
   _health: {fileID: 7250449085420806086}
   _hitBox: {fileID: 1580534110986226837}
@@ -96,6 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57cebdf2667da684b98815c718f79d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _core: {fileID: 1124217388555753815}
+  _completedMessage: 
+  _parentState: {fileID: 0}
+  _childState: {fileID: 0}
   _speed: 1
   _target: {fileID: 0}
   _followX: 0

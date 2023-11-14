@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class MovementChase : Movement
+public abstract class MovementChase : MovementState
 {
     [SerializeField] protected Transform _target;
     [SerializeField] protected bool _followX = false;

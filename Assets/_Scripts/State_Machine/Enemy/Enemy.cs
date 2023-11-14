@@ -1,8 +1,11 @@
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour, IDeactivatable
+public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
 {
     [SerializeField] protected EnemyData _data;
+
+    [Header("Base States")]
+    [SerializeField] private MovementKnockback _knockbackState;
 
     [Header("Components")]
     [SerializeField] private SpriteRenderer _sr;

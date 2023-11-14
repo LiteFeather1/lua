@@ -4,7 +4,7 @@ namespace StateMachine
 {
     public class StateMachine : MonoBehaviour
     {
-        [SerializeField] protected State _currentState;
+        [SerializeField, ReadOnly] protected State _currentState;
 
         public State CurrentState => _currentState;
         public Vector2 Position => transform.position;

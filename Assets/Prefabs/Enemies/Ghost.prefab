@@ -142,7 +142,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce52fd43188abad44901a74b9e5e3c8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentState: {fileID: 0}
   _data: {fileID: 11400000, guid: 7fe42db5e4928794c8e760fe6eaaac0a, type: 2}
+  _knockbackState: {fileID: 0}
   _sr: {fileID: 8519792015104903002}
   _health: {fileID: 7231811741441138465}
   _hitBox: {fileID: 2741852666325930557}
@@ -175,6 +177,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead17004ed09de44f983e833b8f4666b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _core: {fileID: 1124217388555753815}
+  _completedMessage: 
+  _parentState: {fileID: 0}
+  _childState: {fileID: 0}
   _speed: 1
   _direction: {x: -1, y: 0}
 --- !u!1 &6819220182453634984

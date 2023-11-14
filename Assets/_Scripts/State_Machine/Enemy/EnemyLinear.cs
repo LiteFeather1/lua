@@ -2,7 +2,13 @@
 
 public class EnemyLinear : Enemy
 {
+    [Header("States")]
     [SerializeField] private MovementLinear _movement;
+
+    private void Start()
+    {
+        Set(_movement);
+    }
 
     public override void Spawn(float t, float tClamped)
     {

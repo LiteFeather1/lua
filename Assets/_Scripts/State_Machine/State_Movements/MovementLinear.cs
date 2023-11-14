@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 
-public class MovementLinear : Movement
+public class MovementLinear : MovementState
 {
     [SerializeField] private Vector2 _direction;
 
     public void SetDirection(Vector2 direction) => _direction = direction;
 
-    private void Update()
+    public override void Do()
     {
-        transform.Translate(_speed * Time.deltaTime * _direction);
+        _core.transform.Translate(_speed * Time.deltaTime * _direction);
     }
 }

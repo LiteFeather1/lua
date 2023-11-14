@@ -4,9 +4,9 @@ public class MovementChaseRigidbody : MovementChase
 {
     [SerializeField] private Rigidbody2D _rb;
 
-    private void FixedUpdate()
+    public override void FixedDo()
     {
-        Vector2 direction = (_target.position - transform.position).normalized;
+        Vector2 direction = ((Vector2)_target.position - _core.Position).normalized;
         if (!_followX)
             direction.x = _xDirection;
         else
