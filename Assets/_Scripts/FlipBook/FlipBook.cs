@@ -15,8 +15,6 @@ namespace RetroAnimation
         [SerializeField] private bool _looping;
 
         public SpriteRenderer SR => _sr;
-        public FlipSheet FlipSheet => _flipSheet;
-        public int Frame => _frame + 1;
         public bool Playing => _playing;
         /// <summary>
         /// Current time on animation, restarts on zero when a new animation is set to be played

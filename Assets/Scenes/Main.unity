@@ -3143,6 +3143,13 @@ MonoBehaviour:
   _enemyExplosionPool:
     _object: {fileID: 7855374184197628161, guid: cc8c6a3d52a421f45998b955c63834fd, type: 3}
     _initialPoolSize: 10
+  _explosionEnemySheet: {fileID: 11400000, guid: d20ec7e211aaa7c48bac35c4bcc2689b, type: 2}
+  _explosionDamageSheet: {fileID: 11400000, guid: 01ce49ae33e4b784b923271afe884945, type: 2}
+  _chanceDamageExplosion:
+    _baseValue: 0.01
+  _explosionDamage:
+    _baseValue: 5
+  _explosionRadius: 0.16
   _currencyPool:
     _object: {fileID: 2748346242251297967, guid: 01b4627feeae6a645a416d881fbab9b8, type: 3}
     _initialPoolSize: 10
@@ -9775,10 +9782,6 @@ PrefabInstance:
       propertyPath: _dragon
       value: 
       objectReference: {fileID: 838699385}
-    - target: {fileID: 1307456679637955763, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
-      propertyPath: _damage._baseValue
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5155081586467621625, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.19

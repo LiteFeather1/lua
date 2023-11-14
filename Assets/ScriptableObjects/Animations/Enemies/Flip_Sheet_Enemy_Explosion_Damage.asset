@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcb65df7f86d0da4089f34789d7ed7c1, type: 3}
+  m_Name: Flip_Sheet_Enemy_Explosion_Damage
+  m_EditorClassIdentifier: 
+  _sprites:
+  - {fileID: -1240580677, guid: 335999e31885a7743bfaaeacb27f3b90, type: 3}
+  - {fileID: 786840789, guid: 335999e31885a7743bfaaeacb27f3b90, type: 3}
+  - {fileID: 96621742, guid: 335999e31885a7743bfaaeacb27f3b90, type: 3}
+  - {fileID: -1479802676, guid: 335999e31885a7743bfaaeacb27f3b90, type: 3}
+  - {fileID: 2139099305, guid: 335999e31885a7743bfaaeacb27f3b90, type: 3}
+  - {fileID: -1131683306, guid: 335999e31885a7743bfaaeacb27f3b90, type: 3}
+  _fps: 12

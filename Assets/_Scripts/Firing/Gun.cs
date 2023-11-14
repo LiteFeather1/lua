@@ -10,7 +10,8 @@ public class Gun : MonoBehaviour
     [SerializeField] private ObjectPool<ParticleStoppedCallBack> _particlePool;
     [SerializeField] private ObjectPool<FlipBook> _bulletDamage;
     [SerializeField] private AudioClip _bulletShotSound;
-    public System.Action<float> OnDamageAppplied;
+
+    public System.Action<float> OnDamageAppplied { get; set; }
 
     private void Awake()
     {

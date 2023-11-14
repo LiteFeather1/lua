@@ -1,11 +1,11 @@
 ﻿using LTFUtils;
 using RetroAnimation;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    [Header("Enemy")]
     [SerializeField] private Weighter<ObjectPool<Enemy>> _weightedPoolOfEnemies;
     private Dictionary<string, ObjectPool<Enemy>> _enemyToPool;
     [SerializeField] private Vector2Int _maxEnemiesPerBurstRange;
@@ -21,6 +21,11 @@ public class SpawnManager : MonoBehaviour
 
     [Header("Explosion")]
     [SerializeField] private ObjectPool<FlipBook> _enemyExplosionPool;
+    [SerializeField] private FlipSheet _explosionEnemySheet;
+    [SerializeField] private FlipSheet _explosionDamageSheet;
+    [SerializeField] private CompositeValue _chanceDamageExplosion = new(.01f);
+    [SerializeField] private CompositeValue _explosionDamage = new(5f);
+    [SerializeField] private float _explosionRadius;
 
     [Header("Candy")]
     [SerializeField] private ObjectPool<CurrencyBehaviour> _currencyPool;
@@ -163,6 +168,20 @@ public class SpawnManager : MonoBehaviour
     private void SpawnExplosion(Vector2 pos, Color colour)
     {
         var explosion = _enemyExplosionPool.GetObject();
+        // Damage Explosion
+        if (Random.value < _chanceDamageExplosion.Value)
+        {
+            explosion.SetSheet(_explosionDamageSheet);
+            for (int i = 0; i < ActiveEnemies.Count; i++)
+            {
+                var enemy = ActiveEnemies[i];
+                if (Vector2.Distance(pos, enemy.Position) < _explosionRadius)
+                    enemy.Health.TakeDamage(_explosionDamage.Value, 0f, false, pos);
+            }
+        }
+        else
+            explosion.SetSheet(_explosionEnemySheet);
+
         explosion.transform.localPosition = pos;
         explosion.SR.color = colour;
         explosion.Play();
