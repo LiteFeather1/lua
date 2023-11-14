@@ -2297,7 +2297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e18c9936807a8b428da8346832df28b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shakeCount: 4
+  _shakeCount: 5
   _shakeAmount: {x: -0.01, y: 0.01}
   _delay: 0.0675
 --- !u!1 &541586369
@@ -7857,7 +7857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _root: {fileID: 1699692668}
   _timeToDrawCard:
-    _baseValue: 8
+    _baseValue: 7
   _refundOnDiscard:
     _baseValue: 0.1
   _startingPowerUps:
@@ -7889,6 +7889,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 79506618dc6a9b345b8a77ec8c4d46a1, type: 2}
   - {fileID: 11400000, guid: 5f39a668fd822cb4ebc1f7a7f1d4c92c, type: 2}
   - {fileID: 11400000, guid: 0a818ee11d7896b44a09b118d7fbd499, type: 2}
+  - {fileID: 11400000, guid: 910844b429242784c8691b7187647d88, type: 2}
   _cardSize: 30
   _maxCards: 5
   _startingCards: 3
@@ -9774,6 +9775,10 @@ PrefabInstance:
       propertyPath: _dragon
       value: 
       objectReference: {fileID: 838699385}
+    - target: {fileID: 1307456679637955763, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
+      propertyPath: _damage._baseValue
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5155081586467621625, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.19
