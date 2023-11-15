@@ -41,8 +41,10 @@ public class SpawnManager : MonoBehaviour
 
     public List<Enemy> ActiveEnemies { get; private set; } = new();
     public int EnemiesDied { get; private set; }
-
     public System.Action EnemyHurt { get; set; }
+
+    public CompositeValue ChanceDamageExplosion => _chanceDamageExplosion;
+    public CompositeValue ExplosionDamage => _explosionDamage;
 
     public CompositeValue ChanceToExtraCandy => _chanceToExtraCandy;
 

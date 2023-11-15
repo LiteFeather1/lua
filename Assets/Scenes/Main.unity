@@ -7897,6 +7897,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5f39a668fd822cb4ebc1f7a7f1d4c92c, type: 2}
   - {fileID: 11400000, guid: 0a818ee11d7896b44a09b118d7fbd499, type: 2}
   - {fileID: 11400000, guid: 910844b429242784c8691b7187647d88, type: 2}
+  - {fileID: 11400000, guid: bc5fbc743cf527346970aefafe1800c7, type: 2}
+  - {fileID: 11400000, guid: 2f3ca70996f48e1419639c5b99ee62dc, type: 2}
   _cardSize: 30
   _maxCards: 5
   _startingCards: 3
