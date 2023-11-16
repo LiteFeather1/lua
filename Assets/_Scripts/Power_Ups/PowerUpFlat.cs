@@ -15,7 +15,7 @@ public abstract class PowerUpFlat : PowerUp
         var amount = ModifyValue(gm)(_amount);
 
         bool isMaxed;
-        if (_removeValue.Value > 0)
+        if (_amount > 0)
             isMaxed = amount >= _removeValue.Value;
         else
             isMaxed = amount <= _removeValue.Value;

@@ -1,5 +1,7 @@
 ﻿using LTFUtils;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 
 public abstract class PowerUpModifier : PowerUp
 {
@@ -29,7 +31,7 @@ public abstract class PowerUpModifier : PowerUp
         compositeValue.AddModifier(_modifier);
 
         bool isMaxed;
-        if (_removeValue.Value > 0f)
+        if (_modifier.Value > 0f)
             isMaxed = compositeValue.Value >= _removeValue.Value;
         else
             isMaxed = compositeValue.Value <= _removeValue.Value;
