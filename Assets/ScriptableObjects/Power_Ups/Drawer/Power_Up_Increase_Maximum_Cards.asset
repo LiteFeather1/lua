@@ -19,5 +19,5 @@ MonoBehaviour:
   _icon: {fileID: -1387932027, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
   _amount: 1
   _removeValue:
-    _value: 0
-    _enabled: 0
+    _value: 5
+    _enabled: 1
