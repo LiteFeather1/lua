@@ -77,7 +77,6 @@ public class CardManager : MonoBehaviour
         {
             var powerUp = _startingPowerUps[i];
             weightedObjects[i] = new(powerUp, powerUp.Weight);  
-            powerUp.Reset();
         }
 
         _weightedPowerUps = new(weightedObjects);
@@ -149,8 +148,6 @@ public class CardManager : MonoBehaviour
             _cardsToDraw.RemoveAt(0);
             var weightedObject = _weightedPowerUps.GetWeightedObject();
             var powerUp = weightedObject.Object;
-            if (powerUp.IncreasePickedAmount())
-                _weightedPowerUps.RemoveObject(weightedObject);
             card.SetPowerUp(powerUp);
             card.transform.position = i_drawer.transform.position;
             _drawnCards.Add(card);

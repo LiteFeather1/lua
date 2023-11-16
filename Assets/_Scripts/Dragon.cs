@@ -20,9 +20,7 @@ public class Dragon : MonoBehaviour
     [SerializeField] private float _xCosAmplitude = 0.04f;
     private Vector2 _velocity;
 
-    private bool _active;
-
-    public void Update()
+    private void Update()
     {
         var time = Time.time;
         Vector2 to = _witch.transform.localPosition;
@@ -38,17 +36,22 @@ public class Dragon : MonoBehaviour
         transform.localPosition = Vector2.SmoothDamp(transform.localPosition, to, ref _velocity, _speed * Time.deltaTime);  
     }
 
-    public void Activate()
+    private void OnDisable()
     {
-        gameObject.SetActive(true);
-        _active = true;
+        if (_witch == null)
+            return;
+
+        _witch.OnMainShoot -= Shoot;
+    }
+
+    public void Activate(Witch witch)
+    {
+        _witch = witch;
+        witch.OnMainShoot += Shoot;
     }
 
     public void Shoot()
     {
-        if (!_active)
-            return;
-
         _gun.ShootRoutine(_witch.Damage.Value * FORCE_MULTIPLIER,
                           _witch.CritChance.Value * FORCE_MULTIPLIER,
                           Mathf.Max(_witch.CritMultiplier.Value * FORCE_MULTIPLIER, 1f),

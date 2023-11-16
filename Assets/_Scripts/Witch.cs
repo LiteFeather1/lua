@@ -37,8 +37,6 @@ public class Witch : MonoBehaviour
     [SerializeField] private CompositeValue _chanceToLifeSteal = new(.01f);
     [SerializeField] private CompositeValue _lifeStealPercent = new(.1f);
 
-    [Header("Dragon")]
-    [SerializeField] private Dragon _dragon;
 
     [Header("Blink on Damage")]
     [SerializeField] private float _invulnerabilityDuration;
@@ -57,6 +55,8 @@ public class Witch : MonoBehaviour
     public Action OnDamaged { get; set; }
     public Action OnInvulnerabilityEnded { get; set; }
 
+    public Action OnMainShoot { get; set; }
+
     public int Currency => _currency;
     public int TotalCurrencyGained => _totalCurrencyGained;
     public HealthPlayer Health => _health;
@@ -72,8 +72,6 @@ public class Witch : MonoBehaviour
 
     public CompositeValue ChanceToLifeSteal => _chanceToLifeSteal;
     public CompositeValue LifeStealPercent => _lifeStealPercent;
-
-    public Dragon Dragon => _dragon;
 
     private void Awake()
     {
@@ -106,7 +104,7 @@ public class Witch : MonoBehaviour
         {
             _elapsedShootTime = 0f;
             _gun.ShootRoutine(_damage.Value, _critChance.Value , _critMultiplier.Value, _knockback.Value);
-            _dragon.Shoot();
+            OnMainShoot?.Invoke();
         }
 
         _elapsedRandomShootTime += delta;
