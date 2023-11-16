@@ -3,8 +3,8 @@
 [CreateAssetMenu(menuName = "Power Up/Bullet/Bullet Speed")]
 public class PowerUpBulletSpeed : PowerUpModifier
 {
-    public override void ApplyEffect(GameManager gm)
+    protected override CompositeValue ValueToModify(GameManager gm)
     {
-        gm.Witch.Gun.BulletSpeed.AddModifier(_modifier);
+        return gm.Witch.Gun.BulletSpeed;
     }
 }

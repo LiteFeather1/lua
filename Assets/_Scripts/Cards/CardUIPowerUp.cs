@@ -23,7 +23,7 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDr
     public PowerUp PowerUp => _powerUp;
 
     public Action<CardUIPowerUp> OnPickedUp { get; set; }
-    public Action<CardUIPowerUp> OnUsed { get; set; }
+    public Action<CardUIPowerUp> OnReturnToPile { get; set; }
     public Action<CardUIPowerUp> OnDropped { get; set; }
     public Action<PowerUp> OnShowDescription { get; set; }
 
@@ -90,12 +90,9 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDr
         AudioManager.Instance.PlayOneShot(_grabClip);
     }
 
-    public void Used()
-    {
-        OnUsed?.Invoke(this);
-    }
+    public void ReturnToPile() => OnReturnToPile?.Invoke(this);
 
-    public static Quaternion SmoothDamp(Quaternion rot, Quaternion target, ref Quaternion deriv, float time)
+    private static Quaternion SmoothDamp(Quaternion rot, Quaternion target, ref Quaternion deriv, float time)
     {
         if (Time.deltaTime < Mathf.Epsilon) return rot;
         // account for double-cover
@@ -120,6 +117,6 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDr
         deriv.z -= derivError.z;
         deriv.w -= derivError.w;
 
-        return new Quaternion(Result.x, Result.y, Result.z, Result.w);
+        return new(Result.x, Result.y, Result.z, Result.w);
     }
 }

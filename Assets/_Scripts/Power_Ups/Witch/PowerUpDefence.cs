@@ -3,8 +3,8 @@
 [CreateAssetMenu(menuName = "Power Up/Witch/Defence")]
 public class PowerUpDefence : PowerUpModifier
 {
-    public override void ApplyEffect(GameManager gm)
+    protected override CompositeValue ValueToModify(GameManager gm)
     {
-        gm.Witch.Health.Defence.AddModifier(_modifier);
+        return gm.Witch.Health.Defence;
     }
 }

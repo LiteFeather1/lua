@@ -3,8 +3,14 @@
 [CreateAssetMenu(menuName = "Power Up/Witch/Speed")]
 public class PowerUpSpeed : PowerUpModifier
 {
-    public override void ApplyEffect(GameManager gm)
+    protected override CompositeValue ValueToModify(GameManager gm)
     {
-        gm.Witch.AddAccelerationMofifier(_modifier);
+        return gm.Witch.Acceleration;
+    }
+
+    protected override void ApplyEffect(GameManager gm)
+    {
+        base.ApplyEffect(gm);
+        gm.Witch.EvaluateDrag();
     }
 }

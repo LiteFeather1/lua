@@ -61,14 +61,16 @@ public class Witch : MonoBehaviour
     public int TotalCurrencyGained => _totalCurrencyGained;
     public HealthPlayer Health => _health;
 
+    public CompositeValue Acceleration => _acceleration;
+
     public WitchGun Gun => _gun;
     public CompositeValue Damage => _damage;
     public CompositeValue CritChance => _critChance;
     public CompositeValue CritMultiplier => _critMultiplier;
     public CompositeValue Knockback => _knockback;
-    public CompositeValue ShootTime => _shootTime;
+    public CompositeValue ShootTime => _shootTime;  
     public CompositeValue RandomBulletShootTime => _randomBulletShootTime;
-    public void AddRandomBullet(int amount) => _randomBulletAmount += amount;
+    public int AddRandomBullet(int amount) => _randomBulletAmount += amount;
 
     public CompositeValue ChanceToLifeSteal => _chanceToLifeSteal;
     public CompositeValue LifeStealPercent => _lifeStealPercent;
@@ -150,9 +152,8 @@ public class Witch : MonoBehaviour
             _totalCurrencyGained += amount;
     }
 
-    public void AddAccelerationMofifier(CompositeValueModifier mod)
+    public void EvaluateDrag()
     {
-        _acceleration.AddModifier(mod);
         float t = (_acceleration.Value - _initialAcceleration) / _accelerationMaxForRange;
         if (t > 1f)
             t = 1f;

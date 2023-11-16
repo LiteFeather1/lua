@@ -3,8 +3,8 @@
 [CreateAssetMenu(menuName = "Power Up/Witch/Fire Rate")]
 public class PowerUpFireRate : PowerUpModifier
 {
-    public override void ApplyEffect(GameManager gm)
+    protected override CompositeValue ValueToModify(GameManager gm)
     {
-        gm.Witch.ShootTime.AddModifier(_modifier);
+        return gm.Witch.ShootTime;
     }
 }

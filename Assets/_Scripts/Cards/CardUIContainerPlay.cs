@@ -16,8 +16,8 @@ public class CardUIContainerPlay : CardUIDropContainer
         }
 
         _gm.Witch.ModifyCurrency(-card.PowerUp.Cost);
-        card.PowerUp.ApplyEffect(_gm);
-        card.Used();
+        card.PowerUp.PowerUpPlayed(_gm);
+        card.ReturnToPile();
         AudioManager.Instance.PlayOneShot(_played);
         OnPowerPlayed?.Invoke(card.PowerUp);
     }

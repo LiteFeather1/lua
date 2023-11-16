@@ -55,4 +55,10 @@ public class Health : MonoBehaviour, IDamageable
 
         OnHeal?.Invoke();
     }
+
+    public int Heal(int heal)
+    {
+        Heal(heal);
+        return (int)_health;
+    }
 }

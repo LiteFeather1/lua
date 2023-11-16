@@ -3,8 +3,8 @@
 [CreateAssetMenu(menuName = "Power Up/Witch/Crit Chance")]
 public class PowerUpCritChance : PowerUpModifier
 {
-    public override void ApplyEffect(GameManager gm)
+    protected override CompositeValue ValueToModify(GameManager gm)
     {
-        gm.Witch.CritChance.AddModifier(_modifier);
+        return gm.Witch.CritChance;
     }
 }

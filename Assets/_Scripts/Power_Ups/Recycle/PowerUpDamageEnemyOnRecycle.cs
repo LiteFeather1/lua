@@ -3,8 +3,8 @@
 [CreateAssetMenu(menuName = "Power Up/Recycle/Damage Enemy")]
 public class PowerUpDamageEnemyOnRecycle : PowerUpModifier
 {
-    public override void ApplyEffect(GameManager gm)
+    protected override CompositeValue ValueToModify(GameManager gm)
     {
-        gm.DamageEnemiesOnRecycle.AddModifier(_modifier);
+        return gm.DamageEnemiesOnRecycle;
     }
 }

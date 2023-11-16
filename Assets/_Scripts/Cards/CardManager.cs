@@ -17,11 +17,13 @@ public class CardManager : MonoBehaviour
     [Header("Power Ups")]
     [SerializeField] private PowerUp[] _startingPowerUps;
     private Weighter<PowerUp> _weightedPowerUps;
+    private readonly Dictionary<string, HashSet<WeightedObject<PowerUp>>> _powerUpToPowerUps = new();
 
     [Header("Cards")]
     [SerializeField] private float _cardSize = 30f;
     [SerializeField] private int _maxCards = 6;
     [SerializeField] private int _startingCards = 3;
+    private int _cards;
     [SerializeField] private CardUIPowerUp _cardPrefab;
     private List<CardUIPowerUp> _cardsToDraw;
     private List<CardUIPowerUp> _drawnCards;
@@ -62,8 +64,9 @@ public class CardManager : MonoBehaviour
     {
         _drawnCards = new();
         _cardsToDraw = new(_startingCards);
+        _cards += _startingCards;
         for (int i = 0; i < _startingCards; i++)
-            AddCard();
+            CreateCard();
 
         _seek.OnPowerUpDropped += SeekDropped;
 
@@ -76,15 +79,22 @@ public class CardManager : MonoBehaviour
         for (int i = 0; i < _startingPowerUps.Length; i++)
         {
             var powerUp = _startingPowerUps[i];
-            weightedObjects[i] = new(powerUp, powerUp.Weight);  
+            weightedObjects[i] = new(powerUp, powerUp.Weight);
+
+            var powerUpType = powerUp.PowerUpType;
+            if (_powerUpToPowerUps.ContainsKey(powerUpType))
+                _powerUpToPowerUps[powerUpType].Add(weightedObjects[i]);
+            else
+                _powerUpToPowerUps.Add(powerUpType, new(1) { weightedObjects[i] });
         }
 
         _weightedPowerUps = new(weightedObjects);
+        print(_weightedPowerUps.Count);
     }
 
     private void Update()
     {
-        DrawCards();
+        DrawCardsUpdate();
         MoveCards();
     }
 
@@ -108,7 +118,27 @@ public class CardManager : MonoBehaviour
     }
 
     [ContextMenu("Add Card")]
-    public void AddCard()
+    public int AddCard(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+            CreateCard();
+
+        _cards += amount;
+        return _cards;
+    }
+
+    public void RemoveCardsOfType(string type)
+    {
+        if (!_powerUpToPowerUps.ContainsKey(type))
+            return;
+
+        foreach (var powerup in _powerUpToPowerUps[type])
+            _weightedPowerUps.RemoveObject(powerup);
+
+        print(_weightedPowerUps.Count);
+    }
+
+    private void CreateCard()
     {
         var card = Instantiate(_cardPrefab, _cardArea);
         card.gameObject.SetActive(false);
@@ -122,7 +152,7 @@ public class CardManager : MonoBehaviour
         card.OnCardUnHovered += CardUnHovered;
         card.OnPickedUp += CardPickedUp;
         card.OnDropped += CardDropped;
-        card.OnUsed += OnUsed;
+        card.OnReturnToPile += ReturnToDrawnPile;
     }
 
     private void UnSubToCard(CardUIPowerUp card)
@@ -131,10 +161,10 @@ public class CardManager : MonoBehaviour
         card.OnCardUnHovered -= CardUnHovered;
         card.OnPickedUp -= CardPickedUp;
         card.OnDropped -= CardDropped;
-        card.OnUsed -= OnUsed;
+        card.OnReturnToPile -= ReturnToDrawnPile;
     }
 
-    private void DrawCards()
+    private void DrawCardsUpdate()
     {
         if (_cardsToDraw.Count == 0)
             return;
@@ -200,7 +230,7 @@ public class CardManager : MonoBehaviour
         _drawnCards.Remove(card);
     }
 
-    private void OnUsed(CardUIPowerUp card)
+    private void ReturnToDrawnPile(CardUIPowerUp card)
     {
         card.gameObject.SetActive(false);
         _drawnCards.Remove(card);

@@ -16,6 +16,8 @@ MonoBehaviour:
   _effect: Increase Maximum Hand Cards by $
   _cost: 16
   _rarity: {fileID: 11400000, guid: 994856a3f8937bb4dba3e0990a364b53, type: 2}
-  _limit: 2
   _icon: {fileID: -1387932027, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
   _amount: 1
+  _removeValue:
+    _value: 0
+    _enabled: 0

@@ -11,7 +11,7 @@ public class CardUIDropContainerSeek : CardUIDropContainer
 
     protected override void UseCard(CardUIPowerUp card)
     {
-        card.Used();
+        card.ReturnToPile();
         var newWeight = new WeightedObject<PowerUp>(card.PowerUp, Mathf.Min(card.PowerUp.Weight * 3f, 0.5f));
         OnPowerUpDropped?.Invoke(WeightedPowerUpSeeking, newWeight);
         WeightedPowerUpSeeking = newWeight;

@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [CreateAssetMenu(menuName = "Power Up/Bullet/Random Bullet")]
 public class PowerUpRandomBullet : PowerUpFlat
 {
-    public override void ApplyEffect(GameManager gm)
+    protected override Func<int, int> ModifyValue(GameManager gm)
     {
-        gm.Witch.AddRandomBullet(_amount);
+        return gm.Witch.AddRandomBullet;
     }
 }

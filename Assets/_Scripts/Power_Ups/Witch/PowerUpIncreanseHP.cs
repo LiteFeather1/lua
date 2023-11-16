@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [CreateAssetMenu(menuName = "Power Up/Witch/Increase HP")]
 public class PowerUpIncreanseHP : PowerUpFlat
 {
-    public override void ApplyEffect(GameManager gm)
+    protected override Func<int, int> ModifyValue(GameManager gm)
     {
-        gm.Witch.Health.IncreaseMaxHP(_amount);
+        return gm.Witch.Health.IncreaseMaxHP;
     }
 }

@@ -3,12 +3,13 @@
 [CreateAssetMenu(menuName = "Power Up/Misc/Dragon")]
 public class PowerUpDragon : PowerUp
 {
+    [Header("Power Up Dragon")]
     [SerializeField] private Dragon _dragonPrefab;
     protected override string Num => "";
 
-    public override void ApplyEffect(GameManager gm)
+    protected override void ApplyEffect(GameManager gm)
     {
-        var dragon = Instantiate(_dragonPrefab);
-        dragon.Activate(gm.Witch);
+        Instantiate(_dragonPrefab).Activate(gm.Witch);
+        gm.CardManager.RemoveCardsOfType(PowerUpType);
     }
 }

@@ -2,6 +2,6 @@
 {
     protected override void UseCard(CardUIPowerUp card)
     {
-        card.Used();
+        card.ReturnToPile();
     }
 }

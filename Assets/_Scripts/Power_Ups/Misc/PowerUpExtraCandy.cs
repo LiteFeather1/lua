@@ -3,8 +3,8 @@
 [CreateAssetMenu(menuName = "Power Up/Misc/Extra Candy")]
 public class PowerUpExtraCandy : PowerUpModifier
 {
-    public override void ApplyEffect(GameManager gm)
+    protected override CompositeValue ValueToModify(GameManager gm)
     {
-        gm.SpawnManager.ChanceToExtraCandy.AddModifier(_modifier);
+        return gm.SpawnManager.ChanceToExtraCandy;
     }
 }

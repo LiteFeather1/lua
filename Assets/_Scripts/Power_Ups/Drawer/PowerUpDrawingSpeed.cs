@@ -3,8 +3,8 @@
 [CreateAssetMenu(menuName = "Power Up/Drawer/Drawing Speed")]
 public class PowerUpDrawingSpeed : PowerUpModifier
 {
-    public override void ApplyEffect(GameManager gm)
+    protected override CompositeValue ValueToModify(GameManager gm)
     {
-        gm.CardManager.TimeToDrawCard.AddModifier(_modifier);
+        return gm.CardManager.TimeToDrawCard;
     }
 }

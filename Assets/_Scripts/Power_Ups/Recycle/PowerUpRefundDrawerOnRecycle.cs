@@ -3,8 +3,8 @@
 [CreateAssetMenu(menuName = "Power Up/Recycle/Refund Drawer")]
 public class PowerUpRefundDrawerOnRecycle : PowerUpModifier
 {
-    public override void ApplyEffect(GameManager gm)
+    protected override CompositeValue ValueToModify(GameManager gm)
     {
-        gm.CardManager.RefundOnDiscard.AddModifier(_modifier);
+        return gm.CardManager.RefundOnDiscard;
     }
 }

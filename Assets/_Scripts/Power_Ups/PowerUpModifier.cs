@@ -1,8 +1,11 @@
-﻿using UnityEngine;
+﻿using LTFUtils;
+using UnityEngine;
 
 public abstract class PowerUpModifier : PowerUp
 {
+    [Header("Power Up Modifier")]
     [SerializeField] protected CompositeValueModifier _modifier;
+    [SerializeField] protected OptionalValue<float> _removeValue;
 
     protected override string Num
     {
@@ -16,6 +19,23 @@ public abstract class PowerUpModifier : PowerUp
                 _ => ""
             };
         }
+    }
+
+    protected abstract CompositeValue ValueToModify(GameManager gm);
+
+    protected override void ApplyEffect(GameManager gm)
+    {
+        var compositeValue = ValueToModify(gm);
+        compositeValue.AddModifier(_modifier);
+
+        bool isMaxed;
+        if (_removeValue.Value > 0f)
+            isMaxed = compositeValue.Value >= _removeValue.Value;
+        else
+            isMaxed = compositeValue.Value <= _removeValue.Value;
+
+        if (_removeValue.Enabled && isMaxed)
+            gm.CardManager.RemoveCardsOfType(PowerUpType);
     }
 
     private string FlatModifier()

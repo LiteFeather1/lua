@@ -3,8 +3,8 @@
 [CreateAssetMenu(menuName = "Power Up/Witch/Random Bullet Fire Rate")]
 public class PowerUpRandomBulletFireRate : PowerUpModifier
 {
-    public override void ApplyEffect(GameManager gm)
+    protected override CompositeValue ValueToModify(GameManager gm)
     {
-        gm.Witch.RandomBulletShootTime.AddModifier(_modifier);
+        return gm.Witch.RandomBulletShootTime;
     }
 }

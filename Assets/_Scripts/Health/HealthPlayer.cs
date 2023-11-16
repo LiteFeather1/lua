@@ -34,9 +34,16 @@ public class HealthPlayer : Health
         OnMaxHPIncreased?.Invoke(_maxHealth, _health / _maxHealth);
     }
 
-    public void AddShield(int amount)
+    public int IncreaseMaxHP(int amount)
+    {
+        IncreaseMaxHP(amount);
+        return (int)_maxHealth;
+    }
+
+    public int AddShield(int amount)
     {
         _shield += amount;
         OnShieldGained?.Invoke(amount);
+        return _shield;
     }
 }

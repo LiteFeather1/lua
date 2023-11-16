@@ -18,13 +18,13 @@ public class WitchGun : Gun
     public CompositeValue BulletDuration => _bulletDuration;
 
     public int BulletAmount => _bulletAmount;
-    public void AddBulletAmount(int amount) => _bulletAmount += amount;
+    public int AddBulletAmount(int amount) => _bulletAmount += amount;
     public int BurstAmount => _burstAmount;
-    public void AddBurst(int amount) => _burstAmount += amount;
+    public int AddBurst(int amount) => _burstAmount += amount;
     public int BounceAmount => _bounceAmount;
-    public void AddBounce(int amount) => _bounceAmount += amount;
+    public int AddBounce(int amount) => _bounceAmount += amount;
     public int PierceAmount => _pierceAmount;
-    public void AddPierce(int amount) => _pierceAmount += amount;
+    public int AddPierce(int amount) => _pierceAmount += amount;
 
     public float TimeToCompleteShooting => _timeToCompleteShooting;
     public float SeparationPerBullet => _separationPerBullet;
