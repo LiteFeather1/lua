@@ -34,7 +34,7 @@ namespace LTFUtils
                 _sumOfWeights += object_.Weight;
         }
 
-        public Weighter(IList<WeightedObject<T>> objects)
+        public Weighter(IEnumerable<WeightedObject<T>> objects)
         {
             _objects = new(objects);
             _isDirty = true;
@@ -67,15 +67,21 @@ namespace LTFUtils
             return objectToReturn;
         }
 
-        public void RemoveObject(WeightedObject<T> objectToRemove)
-        {
-            _objects.Remove(objectToRemove);
-            _isDirty = true;
-        }
-
         public void AddObject(WeightedObject<T> objectToAdd)
         {
             _objects.Add(objectToAdd);
+            _isDirty = true;
+        }
+
+        public void AddRange(IEnumerable<WeightedObject<T>> objectsToAdd)
+        {
+            _objects.AddRange(objectsToAdd); 
+            _isDirty = true;
+        }
+
+        public void RemoveObject(WeightedObject<T> objectToRemove)
+        {
+            _objects.Remove(objectToRemove);
             _isDirty = true;
         }
     }

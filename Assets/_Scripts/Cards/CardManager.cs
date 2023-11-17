@@ -1,5 +1,6 @@
 using LTFUtils;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -75,20 +76,7 @@ public class CardManager : MonoBehaviour
 
     private void Start()
     {
-        var weightedObjects = new WeightedObject<PowerUp>[_startingPowerUps.Length];
-        for (int i = 0; i < _startingPowerUps.Length; i++)
-        {
-            var powerUp = _startingPowerUps[i];
-            weightedObjects[i] = new(powerUp, powerUp.Weight);
-
-            var powerUpType = powerUp.PowerUpType;
-            if (_powerUpToPowerUps.ContainsKey(powerUpType))
-                _powerUpToPowerUps[powerUpType].Add(weightedObjects[i]);
-            else
-                _powerUpToPowerUps.Add(powerUpType, new(1) { weightedObjects[i] });
-        }
-
-        _weightedPowerUps = new(weightedObjects);
+        _weightedPowerUps = new(CreateRangeWeightedPowerUp(_startingPowerUps));
         print(_weightedPowerUps.Count);
     }
 
@@ -127,6 +115,11 @@ public class CardManager : MonoBehaviour
         return _cards;
     }
 
+    public void AddWeightedPowerUps(IEnumerable<PowerUp> powerUps)
+    {
+        _weightedPowerUps.AddRange(CreateRangeWeightedPowerUp(powerUps));
+    }
+
     public void RemoveCardsOfType(string type)
     {
         if (!_powerUpToPowerUps.ContainsKey(type))
@@ -137,6 +130,21 @@ public class CardManager : MonoBehaviour
 
         _powerUpToPowerUps.Remove(type);
         print(_weightedPowerUps.Count);
+    }
+
+    private IEnumerable<WeightedObject<PowerUp>> CreateRangeWeightedPowerUp(IEnumerable<PowerUp> powerUps)
+    {
+        foreach (var powerUp in powerUps)
+        {
+            var weightedObject = new WeightedObject<PowerUp>(powerUp, powerUp.Weight);
+            var powerUpType = powerUp.PowerUpType;
+            if (_powerUpToPowerUps.ContainsKey(powerUpType))
+                _powerUpToPowerUps[powerUpType].Add(weightedObject);
+            else
+                _powerUpToPowerUps.Add(powerUpType, new(1) { weightedObject });
+
+            yield return weightedObject;
+        }
     }
 
     private void CreateCard()
