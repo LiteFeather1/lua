@@ -36,14 +36,13 @@ public class HealthPlayer : Health
 
     public int IncreaseMaxHP(int amount)
     {
-        IncreaseMaxHP(amount);
+        IncreaseMaxHP((float)amount);
         return (int)_maxHealth;
     }
 
     public int AddShield(int amount)
     {
-        _shield += amount;
         OnShieldGained?.Invoke(amount);
-        return _shield;
+        return _shield += amount;
     }
 }

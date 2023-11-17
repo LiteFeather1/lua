@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32e873ff79999ae4d99e9680930cc04e, type: 3}
-  m_Name: Rariry_Debug
+  m_Name: Rarity_Debug
   m_EditorClassIdentifier: 
   <Weight>k__BackingField: 20
   <RarityColour>k__BackingField: {r: 1, g: 0, b: 0.7734499, a: 1}

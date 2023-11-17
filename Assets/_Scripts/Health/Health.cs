@@ -58,7 +58,7 @@ public class Health : MonoBehaviour, IDamageable
 
     public int Heal(int heal)
     {
-        Heal(heal);
+        Heal((float)heal);
         return (int)_health;
     }
 }
