@@ -21,3 +21,4 @@ MonoBehaviour:
   _removeValue:
     _value: 5
     _enabled: 1
+  _valueToRemove: {fileID: 11400000, guid: 668e377ed01c0f54eb774f666328103c, type: 2}

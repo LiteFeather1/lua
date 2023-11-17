@@ -15,7 +15,8 @@ public class EllipseMovement : MonoBehaviour
     private void OnValidate()
     {
         _transform.localPosition = Ellipse(_t);
-        print($"Time : {_timeToComplete * ((_t + 1f) * .5f)}");
+        if (gameObject == UnityEditor.Selection.activeGameObject)
+            print($"Time : {_timeToComplete * ((_t + 1f) * .5f)}");
     }
 #endif
 

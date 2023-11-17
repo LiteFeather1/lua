@@ -135,6 +135,7 @@ public class CardManager : MonoBehaviour
         foreach (var powerup in _powerUpToPowerUps[type])
             _weightedPowerUps.RemoveObject(powerup);
 
+        _powerUpToPowerUps.Remove(type);
         print(_weightedPowerUps.Count);
     }
 

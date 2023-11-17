@@ -20,6 +20,7 @@ MonoBehaviour:
   _modifier:
     _value: 0.1
     _type: 100
-  _maxValue:
-    _value: 1
-    _enabled: 1
+  _removeValue:
+    _value: 0
+    _enabled: 0
+  _valueToRemove: {fileID: 11400000, guid: ea62fd313cda8be4392d51c7c6c732ff, type: 2}

@@ -1,11 +1,10 @@
-﻿using LTFUtils;
-using System;
+﻿using System;
 using UnityEngine;
 
 public abstract class PowerUpFlat : PowerUp
 {
-    [SerializeField] protected int _amount;
-    [SerializeField] private OptionalValue<int> _removeValue;
+    [SerializeField] private int _amount;
+    [SerializeField] private ValueInt _valueToRemove;
     protected override string Num => $"+{_amount}";
 
     protected abstract Func<int, int> ModifyValue(GameManager gm);
@@ -14,13 +13,16 @@ public abstract class PowerUpFlat : PowerUp
     {
         var amount = ModifyValue(gm)(_amount);
 
+        if (_valueToRemove != null)
+            return;
+
         bool isMaxed;
         if (_amount > 0)
-            isMaxed = amount >= _removeValue.Value;
+            isMaxed = amount >= _valueToRemove.Value;
         else
-            isMaxed = amount <= _removeValue.Value;
+            isMaxed = amount <= _valueToRemove.Value;
 
-        if (_removeValue.Enabled && isMaxed)
+        if (isMaxed)
             gm.CardManager.RemoveCardsOfType(PowerUpType);
     }
 }

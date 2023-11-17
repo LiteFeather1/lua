@@ -1,13 +1,11 @@
 ﻿using LTFUtils;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
-using UnityEngine.InputSystem.LowLevel;
 
 public abstract class PowerUpModifier : PowerUp
 {
     [Header("Power Up Modifier")]
-    [SerializeField] protected CompositeValueModifier _modifier;
-    [SerializeField] protected OptionalValue<float> _removeValue;
+    [SerializeField] private CompositeValueModifier _modifier;
+    [SerializeField] private ValueFloat _valueToRemove;
 
     protected override string Num
     {
@@ -30,13 +28,16 @@ public abstract class PowerUpModifier : PowerUp
         var compositeValue = ValueToModify(gm);
         compositeValue.AddModifier(_modifier);
 
+        if (_valueToRemove == null)
+            return;
+
         bool isMaxed;
         if (_modifier.Value > 0f)
-            isMaxed = compositeValue.Value >= _removeValue.Value;
+            isMaxed = compositeValue.Value >= _valueToRemove.Value;
         else
-            isMaxed = compositeValue.Value <= _removeValue.Value;
+            isMaxed = compositeValue.Value <= _valueToRemove.Value;
 
-        if (_removeValue.Enabled && isMaxed)
+        if (isMaxed)
             gm.CardManager.RemoveCardsOfType(PowerUpType);
     }
 
