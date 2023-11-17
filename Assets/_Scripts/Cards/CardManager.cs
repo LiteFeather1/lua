@@ -77,7 +77,6 @@ public class CardManager : MonoBehaviour
     private void Start()
     {
         _weightedPowerUps = new(CreateRangeWeightedPowerUp(_startingPowerUps));
-        print(_weightedPowerUps.Count);
     }
 
     private void Update()
@@ -129,13 +128,14 @@ public class CardManager : MonoBehaviour
             _weightedPowerUps.RemoveObject(powerup);
 
         _powerUpToPowerUps.Remove(type);
-        print(_weightedPowerUps.Count);
     }
 
     private IEnumerable<WeightedObject<PowerUp>> CreateRangeWeightedPowerUp(IEnumerable<PowerUp> powerUps)
     {
         foreach (var powerUp in powerUps)
         {
+            powerUp.Reset();
+
             var weightedObject = new WeightedObject<PowerUp>(powerUp, powerUp.Weight);
             var powerUpType = powerUp.PowerUpType;
             if (_powerUpToPowerUps.ContainsKey(powerUpType))

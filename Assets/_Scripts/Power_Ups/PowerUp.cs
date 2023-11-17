@@ -1,3 +1,4 @@
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public abstract class PowerUp : ScriptableObject
@@ -8,6 +9,8 @@ public abstract class PowerUp : ScriptableObject
     [SerializeField] private int _cost = 4;
     [SerializeField] private Rarity _rarity;
     [SerializeField] private Sprite _icon;
+    [SerializeField] private PowerUp[] _powerUpsToUnlock;
+    private bool _unlockedPowerUps;
 
     public string PowerUpType => GetType().Name;
     public string Name => _name;
@@ -19,9 +22,20 @@ public abstract class PowerUp : ScriptableObject
 
     protected abstract string Num { get; }
 
+    public void Reset()
+    {
+        _unlockedPowerUps = false;
+    }
+
     public void PowerUpPlayed(GameManager gm)
     {
         ApplyEffect(gm);
+
+        if (_unlockedPowerUps || _powerUpsToUnlock.Length == 0)
+            return;
+
+        _unlockedPowerUps = true;
+        gm.CardManager.AddWeightedPowerUps(_powerUpsToUnlock);
     }
 
     protected abstract void ApplyEffect(GameManager gm);

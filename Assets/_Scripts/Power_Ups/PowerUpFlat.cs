@@ -13,7 +13,7 @@ public abstract class PowerUpFlat : PowerUp
     {
         var amount = ModifyValue(gm)(_amount);
 
-        if (_valueToRemove != null)
+        if (_valueToRemove == null)
             return;
 
         bool isMaxed;
