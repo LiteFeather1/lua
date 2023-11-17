@@ -7753,6 +7753,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bc5fbc743cf527346970aefafe1800c7, type: 2}
   - {fileID: 11400000, guid: 2f3ca70996f48e1419639c5b99ee62dc, type: 2}
   - {fileID: 11400000, guid: 2686035772f78784aa7e311e98717759, type: 2}
+  _weightedPowerUps:
+    _objects: []
   _cardSize: 30
   _maxCards: 5
   _startingCards: 3
