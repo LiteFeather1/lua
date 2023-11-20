@@ -18,7 +18,7 @@
         if (_elapsedTime > _tickTime * _ticks)
         {
             _ticks++;
-            damageable.TakeDamage(_damage, 0f, false, default);
+            damageable.TakeDamage(_damage, 0f, false, damageable.Pos);
         }
 
         return base.Tick(damageable, delta);
