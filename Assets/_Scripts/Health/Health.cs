@@ -5,18 +5,19 @@ public class Health : MonoBehaviour, IDamageable
 {
     [SerializeField] protected float _maxHealth;
     protected float _health;
-    private readonly HashSet<int> _uniqueDamageEffects;
+    private readonly HashSet<int> _uniqueDamageEffects = new();
     private readonly List<IDamageEffect> _damageEffects = new();
 
     public float MaxHP => _maxHealth;
     public float HP => _health;
+    public Vector2 Pos => transform.localPosition;
 
-    public delegate void OnDamage(float damage, float knockback, bool crit, Vector2? pos);
+    public delegate void OnDamage(float damage, float knockback, bool crit, Vector2 pos);
     public OnDamage OnDamaged { get; set; }
     public System.Action OnHeal { get; set; }
     public System.Action OnDeath { get; set; }
 
-    public System.Action<int> OnDamageEffectApplied { get; set; }
+    public System.Action<int> OnDamageEffectApplied { get; set; }   
     public System.Action<int> OnDamageEffectRemoved { get; set; }
 
     public void Start() => _health = _maxHealth;
@@ -36,7 +37,7 @@ public class Health : MonoBehaviour, IDamageable
         }
     }
 
-    public virtual bool TakeDamage(float damage, float knockback, bool crit, Vector2? pos)
+    public virtual bool TakeDamage(float damage, float knockback, bool crit, Vector2 pos)
     {
         // Is alive check
         if (_health <= 0f)
@@ -79,13 +80,14 @@ public class Health : MonoBehaviour, IDamageable
         return (int)_health;
     }
 
-    public void TryAddDamageEffect(IDamageEffect damageEffect)
+    public bool TryAddDamageEffect(IDamageEffect damageEffect)
     {
-        if (!_uniqueDamageEffects.Contains(damageEffect.ID))
-            return;
+        if (_uniqueDamageEffects.Contains(damageEffect.ID))
+            return false;
 
         _uniqueDamageEffects.Add(damageEffect.ID);
         _damageEffects.Add(damageEffect);
         OnDamageEffectApplied?.Invoke(damageEffect.ID);
+        return true;
     }
 }

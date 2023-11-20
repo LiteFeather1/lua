@@ -186,7 +186,14 @@ MonoBehaviour:
     _baseValue: 0.01
   _lifeStealPercent:
     _baseValue: 0.1
-  _dragon: {fileID: 0}
+  _effectCreatorFire:
+    <Chance>k__BackingField:
+      _baseValue: 1
+    <Duration>k__BackingField:
+      _baseValue: 5
+    <DamageMultiplier>k__BackingField:
+      _baseValue: 1
+    <TickAmount>k__BackingField: 5
   _invulnerabilityDuration: 0.5
   _blinkAmount: 4
   _durationBetweenBlinks: 0.0625

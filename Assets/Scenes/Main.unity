@@ -7753,8 +7753,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bc5fbc743cf527346970aefafe1800c7, type: 2}
   - {fileID: 11400000, guid: 2f3ca70996f48e1419639c5b99ee62dc, type: 2}
   - {fileID: 11400000, guid: 2686035772f78784aa7e311e98717759, type: 2}
-  _weightedPowerUps:
-    _objects: []
   _cardSize: 30
   _maxCards: 5
   _startingCards: 3
@@ -9637,12 +9635,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1307456679637955763, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
-      propertyPath: _dragon
-      value: 
+      propertyPath: _damage._baseValue
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 5155081586467621625, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.19
+      value: -1.16
       objectReference: {fileID: 0}
     - target: {fileID: 5155081586467621625, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
       propertyPath: m_LocalPosition.y

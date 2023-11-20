@@ -1,5 +1,4 @@
-﻿
-public class DamageEffectFire : DamageEffect
+﻿public class DamageEffectFire : DamageEffect
 {
     private readonly float _damage;
     private readonly float _tickTime;
@@ -14,14 +13,15 @@ public class DamageEffectFire : DamageEffect
         _ticks = 0;
     }
 
-    public override bool Tick(IDamageable health, float delta)
+    public override bool Tick(IDamageable damageable, float delta)
     {
         if (_elapsedTime > _tickTime * _ticks)
         {
             _ticks++;
-            health.TakeDamage(_damage, 0f, false, null);
+            UnityEngine.Debug.Log("Tick");
+            damageable.TakeDamage(_damage, 0f, false, damageable.Pos);
         }
 
-        return base.Tick(health, delta);
+        return base.Tick(damageable, delta);
     }
 }

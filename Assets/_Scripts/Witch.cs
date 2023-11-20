@@ -169,7 +169,8 @@ public class Witch : MonoBehaviour
 
         if (randomValue < _effectCreatorFire.Chance.Value)
         {
-            damageable.TryAddDamageEffect(_effectCreatorFire.Get(damage));
+            if (damageable.TryAddDamageEffect(_effectCreatorFire.Get(damage)))
+                print("fire created");
         }
     }
 
@@ -178,7 +179,7 @@ public class Witch : MonoBehaviour
         OnHPModified?.Invoke(_health.HP / _health.MaxHP);
     }
 
-    private void Damaged(float damage, float knockbakc, bool crit, Vector2? pos)
+    private void Damaged(float damage, float knockbakc, bool crit, Vector2 pos)
     {
         AudioManager.Instance.PlayOneShot(_hurtSound, Random.Range(.4f, .6f));
         _hurtBox.enabled = false;

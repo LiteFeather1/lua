@@ -11,7 +11,7 @@ public abstract class DamageEffect : IDamageEffect
         _duration = duration;
     }
 
-    public virtual bool Tick(IDamageable health, float delta)
+    public virtual bool Tick(IDamageable damageable, float delta)
     {
         _elapsedTime += delta;
         if (_elapsedTime > _duration)
