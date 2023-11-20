@@ -226,13 +226,19 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnDamageNum(float damage, float knockback, bool crit, Vector2 pos)
     {
+        if (pos == Vector2.zero)
+            return;
+
         var dmg = _damageNumPool.GetObject();
         dmg.SetText(damage.ToString("0.00"), crit ? _critColour : _normalColour);
+
         var direction = Random.value > .5f ? 1f : -1f;
         dmg.SetVelocity(new(_xVelocityRange.Random() * direction, _yVelocityRange.Random()));
         dmg.transform.position = pos;
         dmg.gameObject.SetActive(true);
+
         AudioManager.Instance.PlayOneShot(_enemyHurtSound);
+
         EnemyHurt?.Invoke();
     }
 

@@ -18,8 +18,7 @@
         if (_elapsedTime > _tickTime * _ticks)
         {
             _ticks++;
-            UnityEngine.Debug.Log("Tick");
-            damageable.TakeDamage(_damage, 0f, false, damageable.Pos);
+            damageable.TakeDamage(_damage, 0f, false, default);
         }
 
         return base.Tick(damageable, delta);

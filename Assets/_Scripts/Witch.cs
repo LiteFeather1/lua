@@ -169,8 +169,7 @@ public class Witch : MonoBehaviour
 
         if (randomValue < _effectCreatorFire.Chance.Value)
         {
-            if (damageable.TryAddDamageEffect(_effectCreatorFire.Get(damage)))
-                print("fire created");
+            damageable.TryAddDamageEffect(_effectCreatorFire.Get(damage));
         }
     }
 
