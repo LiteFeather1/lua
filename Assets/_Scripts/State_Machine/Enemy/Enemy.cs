@@ -54,9 +54,12 @@ public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
 
     protected abstract void KnockBackComplete();
 
-    private void Damaged(float damage, float knockback, bool crit, Vector2 pos)
+    private void Damaged(float damage, float knockback, bool crit, Vector2? pos)
     {
-        _knockbackState.SetUp((Position - pos).normalized, crit ? knockback * 1.5f : knockback);
+        if (pos is null)
+            return;
+
+        _knockbackState.SetUp((Position - pos.Value).normalized, crit ? knockback * 1.5f : knockback);
         Set(_knockbackState);
     }
 

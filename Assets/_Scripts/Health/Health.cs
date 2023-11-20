@@ -1,24 +1,38 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Health : MonoBehaviour, IDamageable
 {
     [SerializeField] protected float _maxHealth;
     protected float _health;
+    private readonly HashSet<int> _uniqueDamageEffects;
+    private readonly List<IDamageEffect> _damageEffects = new();
 
     public float MaxHP => _maxHealth;
     public float HP => _health;
 
-    public delegate void OnDamage(float damage, float knockback, bool crit, Vector2 pos);
+    public delegate void OnDamage(float damage, float knockback, bool crit, Vector2? pos);
     public OnDamage OnDamaged { get; set; }
     public System.Action OnHeal { get; set; }
     public System.Action OnDeath { get; set; }
 
-    public void Start()
+    public void Start() => _health = _maxHealth;
+
+    private void Update()
     {
-        _health = _maxHealth;    
+        var delta = Time.deltaTime;
+        for (int i = _damageEffects.Count - 1; i >= 0; i--)
+        {
+            var damageEffect = _damageEffects[i];
+            if (!damageEffect.Tick(this, delta))
+                continue;
+
+            _damageEffects.RemoveAt(i);
+            _uniqueDamageEffects.Remove(damageEffect.ID);
+        }
     }
 
-    public virtual bool TakeDamage(float damage, float knockback, bool crit, Vector2 pos)
+    public virtual bool TakeDamage(float damage, float knockback, bool crit, Vector2? pos)
     {
         // Is alive check
         if (_health <= 0f)
@@ -30,16 +44,15 @@ public class Health : MonoBehaviour, IDamageable
         {
             _health = 0f;
             OnDeath?.Invoke();
+            _uniqueDamageEffects.Clear();
+            _damageEffects.Clear();
             return true;
         }
 
         return false;
-    }  
-    
-    public void ResetHealth()
-    {
-        _health = _maxHealth;
     }
+
+    public void ResetHealth() => _health = _maxHealth;
 
     public void ResetHealth(float newMax)
     {
@@ -60,5 +73,14 @@ public class Health : MonoBehaviour, IDamageable
     {
         Heal((float)heal);
         return (int)_health;
+    }
+
+    public void TryAddDamageEffect(IDamageEffect damageEffect)
+    {
+        if (!_uniqueDamageEffects.Contains(damageEffect.ID))
+            return;
+
+        _uniqueDamageEffects.Add(damageEffect.ID);
+        _damageEffects.Add(damageEffect);
     }
 }

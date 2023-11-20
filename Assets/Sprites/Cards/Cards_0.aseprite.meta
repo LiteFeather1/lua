@@ -142,20 +142,20 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -917059685
-    name: Cards
+    guid: 267400746
+    name: Cards_0
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Cards
+    - name: Cards_0
       frameIndex: 0
       cellRect:
         x: 4
         y: 30
         width: 293
         height: 147
-      spriteId: b8bc46fc3ca984f488484b4139892f72
+      spriteId: 3ffb726dfe09c204b9bea5943db34540
     linkedCells: []
     parentIndex: -1
   platformSettings:

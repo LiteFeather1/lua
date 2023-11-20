@@ -11,7 +11,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private ObjectPool<FlipBook> _bulletDamage;
     [SerializeField] private AudioClip _bulletShotSound;
 
-    public System.Action<float> OnDamageAppplied { get; set; }
+    public System.Action<IDamageable, float> OnDamageAppplied { get; set; }
 
     private void Awake()
     {
@@ -165,9 +165,9 @@ public class Gun : MonoBehaviour
         _bulletPool.ReturnObject(bullet);
     }
 
-    private void DamageAppplied(float damage, Vector2 pos)
+    private void DamageAppplied(IDamageable damageable, float damage, Vector2 pos)
     {
-        OnDamageAppplied?.Invoke(damage);
+        OnDamageAppplied?.Invoke(damageable, damage);
 
         var bulletExplosion = _bulletDamage.GetObject();
         bulletExplosion.transform.position = pos;

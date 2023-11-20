@@ -37,7 +37,6 @@ public class Witch : MonoBehaviour
     [SerializeField] private CompositeValue _chanceToLifeSteal = new(.01f);
     [SerializeField] private CompositeValue _lifeStealPercent = new(.1f);
 
-
     [Header("Blink on Damage")]
     [SerializeField] private float _invulnerabilityDuration;
     private WaitForSeconds _waitInvulnerability;
@@ -91,10 +90,7 @@ public class Witch : MonoBehaviour
         _health.OnHeal += HPModified;
     }
 
-    private void Start()
-    {
-        ModifyCurrency(4);
-    }
+    private void Start() => ModifyCurrency(4);
 
     private void Update()
     {
@@ -160,9 +156,10 @@ public class Witch : MonoBehaviour
         _rb.drag = _decelerationRange.Evaluate(t);
     }
 
-    private void DamagedApplied(float damage)
+    private void DamagedApplied(IDamageable damageable,float damage)
     {
-        if (Random.value < _chanceToLifeSteal.Value)
+        float randomValue = Random.value;
+        if (randomValue < _chanceToLifeSteal.Value)
         {
             _health.Heal(damage * _lifeStealPercent.Value);
         }
@@ -173,7 +170,7 @@ public class Witch : MonoBehaviour
         OnHPModified?.Invoke(_health.HP / _health.MaxHP);
     }
 
-    private void Damaged(float damage, float knockbakc, bool crit, Vector2 pos)
+    private void Damaged(float damage, float knockbakc, bool crit, Vector2? pos)
     {
         AudioManager.Instance.PlayOneShot(_hurtSound, Random.Range(.4f, .6f));
         _hurtBox.enabled = false;

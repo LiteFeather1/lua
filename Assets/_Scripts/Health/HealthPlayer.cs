@@ -12,7 +12,7 @@ public class HealthPlayer : Health
     public System.Action<int> OnShieldGained { get; set; }
     public CompositeValue Defence => _defence;
 
-    public override bool TakeDamage(float damage, float knockback, bool crit, Vector2 pos)
+    public override bool TakeDamage(float damage, float knockback, bool crit, Vector2? pos)
     {
         if (_shield > 0)
         {
