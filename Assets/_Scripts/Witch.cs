@@ -37,6 +37,9 @@ public class Witch : MonoBehaviour
     [SerializeField] private CompositeValue _chanceToLifeSteal = new(.01f);
     [SerializeField] private CompositeValue _lifeStealPercent = new(.1f);
 
+    [Header("Burn Effect")]
+    [SerializeField] private EffectCreatorFire _effectCreatorFire;
+
     [Header("Blink on Damage")]
     [SerializeField] private float _invulnerabilityDuration;
     private WaitForSeconds _waitInvulnerability;
@@ -156,12 +159,17 @@ public class Witch : MonoBehaviour
         _rb.drag = _decelerationRange.Evaluate(t);
     }
 
-    private void DamagedApplied(IDamageable damageable,float damage)
+    private void DamagedApplied(IDamageable damageable, float damage)
     {
         float randomValue = Random.value;
         if (randomValue < _chanceToLifeSteal.Value)
         {
             _health.Heal(damage * _lifeStealPercent.Value);
+        }
+
+        if (randomValue < _effectCreatorFire.Chance.Value)
+        {
+            damageable.TryAddDamageEffect(_effectCreatorFire.Get(damage));
         }
     }
 

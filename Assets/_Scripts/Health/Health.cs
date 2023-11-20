@@ -16,6 +16,9 @@ public class Health : MonoBehaviour, IDamageable
     public System.Action OnHeal { get; set; }
     public System.Action OnDeath { get; set; }
 
+    public System.Action<int> OnDamageEffectApplied { get; set; }
+    public System.Action<int> OnDamageEffectRemoved { get; set; }
+
     public void Start() => _health = _maxHealth;
 
     private void Update()
@@ -29,6 +32,7 @@ public class Health : MonoBehaviour, IDamageable
 
             _damageEffects.RemoveAt(i);
             _uniqueDamageEffects.Remove(damageEffect.ID);
+            OnDamageEffectRemoved?.Invoke(damageEffect.ID);
         }
     }
 
@@ -82,5 +86,6 @@ public class Health : MonoBehaviour, IDamageable
 
         _uniqueDamageEffects.Add(damageEffect.ID);
         _damageEffects.Add(damageEffect);
+        OnDamageEffectApplied?.Invoke(damageEffect.ID);
     }
 }

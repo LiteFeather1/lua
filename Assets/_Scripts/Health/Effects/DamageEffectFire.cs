@@ -1,10 +1,11 @@
-﻿public class DamageEffectFire : DamageEffect
+﻿
+public class DamageEffectFire : DamageEffect
 {
     private readonly float _damage;
     private readonly float _tickTime;
     private int _ticks;
 
-    public override int ID => 4153;
+    public override int ID => (int)IDamageEffect.DamageEffectID.FIRE_ID;
 
     public DamageEffectFire(float duration, float damage, int tickAmount) : base(duration)
     {
