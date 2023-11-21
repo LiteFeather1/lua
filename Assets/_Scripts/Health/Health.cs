@@ -82,6 +82,9 @@ public class Health : MonoBehaviour, IDamageable
 
     public bool TryAddDamageEffect(IDamageEffect damageEffect)
     {
+        if (_health <= 0f)
+            return false;
+
         if (_uniqueDamageEffects.Contains(damageEffect.ID))
             return false;
 
