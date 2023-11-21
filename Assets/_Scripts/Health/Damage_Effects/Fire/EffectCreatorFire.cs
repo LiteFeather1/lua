@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class EffectCreatorFire
 {
     [field: SerializeField] public CompositeValue Chance { get; private set; }
