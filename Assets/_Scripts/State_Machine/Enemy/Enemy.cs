@@ -56,7 +56,7 @@ public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
 
     private void Damaged(float damage, float knockback, bool crit, Vector2 pos)
     {
-        if (pos == Vector2.zero)
+        if (knockback == 0f)
             return;
 
         _knockbackState.SetUp((Position - pos).normalized, crit ? knockback * 1.5f : knockback);
