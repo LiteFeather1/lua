@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
@@ -12,6 +13,8 @@ public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
     [SerializeField] private Health _health;
     [SerializeField] private HitBox _hitBox;
 
+    private ParticleStoppedCallBack _fireParticle;
+
     public EnemyData Data => _data;
 
     public Health Health => _health;
@@ -20,10 +23,15 @@ public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
     public System.Action<Enemy> ReturnToPool { get; set; }
     public System.Action<Enemy> OnDied { get; set; }
 
+    public System.Func<ParticleStoppedCallBack> OnFireEffectApplied { get; set; }
+
     protected void OnEnable()
     {
         _health.OnDamaged += Damaged;
         _health.OnDeath += Died;
+
+        _health.OnDamageEffectApplied += EffectApplied;
+        _health.OnDamageEffectRemoved += EffectRemoved;
 
         _knockbackState.OnStateComplete += KnockBackComplete;
     }
@@ -32,6 +40,9 @@ public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
     {
         _health.OnDamaged -= Damaged;
         _health.OnDeath -= Died;
+
+        _health.OnDamageEffectApplied -= EffectApplied;
+        _health.OnDamageEffectRemoved -= EffectRemoved;
 
         _knockbackState.OnStateComplete -= KnockBackComplete;
     }
@@ -65,8 +76,27 @@ public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
 
     private void Died()
     {
+        _fireParticle?.UnParent();
+
         gameObject.SetActive(false);
         ReturnToPool?.Invoke(this);
         OnDied?.Invoke(this);
+    }
+
+    private void EffectApplied(int effectID)
+    {
+        if (effectID == (int)IDamageEffect.DamageEffectID.FIRE_ID)
+        {
+            _fireParticle = OnFireEffectApplied?.Invoke();
+            _fireParticle.Parent(transform);
+        }
+    }
+
+    private void EffectRemoved(int effectID)
+    {
+        if (effectID == (int)IDamageEffect.DamageEffectID.FIRE_ID)
+        {
+            _fireParticle.UnParent();
+        }
     }
 }

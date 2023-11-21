@@ -1,6 +1,7 @@
 ﻿using LTFUtils;
 using RetroAnimation;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -39,6 +40,9 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private Vector2 _yVelocityRange;
     [SerializeField] private Color _normalColour, _critColour;
 
+    [Header("Fire Particle")]
+    [SerializeField] private ObjectPool<ParticleStoppedCallBack> _fireParticlePool;
+
     public List<Enemy> ActiveEnemies { get; private set; } = new();
     public int EnemiesDied { get; private set; }
     public System.Action EnemyHurt { get; set; }
@@ -50,26 +54,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
-        _currencyPool.InitPool();
-        foreach (var currency in _currencyPool.Objects)
-        {
-            CurrencyCreated(currency);
-        }
-        _currencyPool.ObjectCreated += CurrencyCreated;
-
-        _damageNumPool.InitPool();
-        foreach (var dmgNum in _damageNumPool.Objects)
-        {
-            DamageNumCreated(dmgNum);
-        }
-        _damageNumPool.ObjectCreated += DamageNumCreated;
-
-        _enemyExplosionPool.InitPool();
-        foreach (var explosion in _enemyExplosionPool.Objects)
-        {
-            EnemyExplosionCreated(explosion);
-        }
-        _enemyExplosionPool.ObjectCreated += EnemyExplosionCreated;
+        _spawnTime = 1f;
 
         _enemyToPool = new(_weightedPoolOfEnemies.Count);
         for (int i = 0; i < _weightedPoolOfEnemies.Count; i++)
@@ -84,22 +69,52 @@ public class SpawnManager : MonoBehaviour
             _enemyToPool.Add(pool.Object.Data.Name, pool);
         }
 
-        _spawnTime = 1f;
+        _currencyPool.InitPool();
+        foreach (var currency in _currencyPool.Objects)
+        {
+            CurrencyCreated(currency);
+        }
+        _currencyPool.ObjectCreated += CurrencyCreated;
+
+        _enemyExplosionPool.InitPool();
+        foreach (var explosion in _enemyExplosionPool.Objects)
+        {
+            EnemyExplosionCreated(explosion);
+        }
+        _enemyExplosionPool.ObjectCreated += EnemyExplosionCreated;
+
+        _damageNumPool.InitPool();
+        foreach (var dmgNum in _damageNumPool.Objects)
+        {
+            DamageNumCreated(dmgNum);
+        }
+        _damageNumPool.ObjectCreated += DamageNumCreated;
+
+        _fireParticlePool.InitPool();
+        foreach (var fire in _fireParticlePool.Objects)
+        {
+            FireParticleCreated(fire);
+        }
+        _fireParticlePool.ObjectCreated += FireParticleCreated;
     }
 
     private void OnDestroy()
     {
+        for (int i = 0; i < _weightedPoolOfEnemies.Count; i++)
+        {
+            var pool = _weightedPoolOfEnemies.Objects[i].Object;
+            foreach (var enemy in pool.Objects)
+            {
+                UnSubToEnemy(enemy);
+            }
+            pool.ObjectCreated -= EnemyCreated;
+        }
+
         foreach (var currency in _currencyPool.Objects)
         {
             currency.ReturnToPool -= ReturnCurrencyToPool;
         }
         _currencyPool.ObjectCreated -= CurrencyCreated;
-
-        foreach (var dmgNum in _damageNumPool.Objects)
-        {
-            dmgNum.Return -= ReturnDamageNum;
-        }
-        _damageNumPool.ObjectCreated -= DamageNumCreated;
 
         foreach (var explosion in _enemyExplosionPool.Objects)
         {
@@ -107,17 +122,17 @@ public class SpawnManager : MonoBehaviour
         }
         _enemyExplosionPool.ObjectCreated -= EnemyExplosionCreated;
 
-        for (int i = 0; i < _weightedPoolOfEnemies.Count; i++)
+        foreach (var dmgNum in _damageNumPool.Objects)
         {
-            var pool = _weightedPoolOfEnemies.Objects[i].Object;
-            foreach (var enemy in pool.Objects)
-            {
-                enemy.ReturnToPool -= ReturnEnemyToPool;
-                enemy.OnDied -= EnemyDied;
-                enemy.Health.OnDamaged -= SpawnDamageNum;
-            }
-            pool.ObjectCreated -= EnemyCreated;
+            dmgNum.Return -= ReturnDamageNum;
         }
+        _damageNumPool.ObjectCreated -= DamageNumCreated;
+
+        foreach (var fire in _fireParticlePool.Objects)
+        {
+            fire.OnReturn -= FireParticleCreated;
+        }
+        _fireParticlePool.ObjectCreated -= FireParticleCreated;
     }
 
     public void Tick(float t, float tClamped)
@@ -144,6 +159,30 @@ public class SpawnManager : MonoBehaviour
                 ActiveEnemies.Add(enemy);
             }
         }
+    }
+
+    private void EnemyCreated(Enemy enemy)
+    {
+        enemy.Init(GameManager.Instance.Witch);
+        enemy.ReturnToPool += ReturnEnemyToPool;
+        enemy.OnDied += EnemyDied;
+        enemy.Health.OnDamaged += SpawnDamageNum;
+
+        enemy.OnFireEffectApplied += _fireParticlePool.GetObject;
+    }
+
+    private void UnSubToEnemy(Enemy enemy)
+    {
+        enemy.ReturnToPool -= ReturnEnemyToPool;
+        enemy.OnDied -= EnemyDied;
+        enemy.Health.OnDamaged -= SpawnDamageNum;
+        enemy.OnFireEffectApplied -= _fireParticlePool.GetObject;
+    }
+
+    private void ReturnEnemyToPool(Enemy enemy)
+    {
+        ActiveEnemies.Remove(enemy);
+        _enemyToPool[enemy.Data.Name].ReturnObject(enemy);
     }
 
     private void EnemyDied(Enemy enemy)
@@ -210,20 +249,6 @@ public class SpawnManager : MonoBehaviour
         currency.gameObject.SetActive(true);
     }
 
-    private void EnemyCreated(Enemy enemy)
-    {
-        enemy.Init(GameManager.Instance.Witch);
-        enemy.ReturnToPool += ReturnEnemyToPool;
-        enemy.OnDied += EnemyDied;
-        enemy.Health.OnDamaged += SpawnDamageNum;
-    }
-
-    private void ReturnEnemyToPool(Enemy enemy)
-    {
-        ActiveEnemies.Remove(enemy);
-        _enemyToPool[enemy.Data.Name].ReturnObject(enemy);
-    }
-
     private void SpawnDamageNum(float damage, float knockback, bool crit, Vector2 pos)
     {
         var dmg = _damageNumPool.GetObject();
@@ -252,5 +277,16 @@ public class SpawnManager : MonoBehaviour
     private void ReturnDamageNum(DamageNumber num)
     {
         _damageNumPool.ReturnObject(num);
+    }
+
+    private void FireParticleCreated(ParticleStoppedCallBack fireParticle)
+    {
+        fireParticle.gameObject.SetActive(true);
+        fireParticle.OnReturn += ReturnFireParticle;
+    }
+
+    private void ReturnFireParticle(ParticleStoppedCallBack fireParticle)
+    {
+        _fireParticlePool.ReturnObject(fireParticle);
     }
 }

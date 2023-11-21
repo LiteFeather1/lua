@@ -97,7 +97,6 @@ public class Gun : MonoBehaviour
     {
         var bullet = _bulletPool.GetObject();
         var particle = _particlePool.GetObject();
-        particle.gameObject.SetActive(true);
         bullet.transform.SetPositionAndRotation(_firePoint.position,
                                                      Quaternion.Euler(0f, 0f, angle));
         bullet.transform.localScale = Vector3.one * size;
@@ -173,11 +172,11 @@ public class Gun : MonoBehaviour
         bulletExplosion.transform.position = pos;
         bulletExplosion.Play();
         bulletExplosion.gameObject.SetActive(true);
-
     }
 
     private void ParticleCreated(ParticleStoppedCallBack particle)
     {
+        particle.gameObject.SetActive(true);
         particle.OnReturn += ReturnParticleToPool;
     }
 
