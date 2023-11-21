@@ -49,7 +49,7 @@ public class Gun : MonoBehaviour
 
         foreach (var particle in _particlePool.Objects)
         {
-            particle.Disabled -= ReturnParticleToPool;
+            particle.OnReturn -= ReturnParticleToPool;
         }
         _particlePool.ObjectCreated -= ParticleCreated; ;
 
@@ -178,7 +178,7 @@ public class Gun : MonoBehaviour
 
     private void ParticleCreated(ParticleStoppedCallBack particle)
     {
-        particle.Disabled += ReturnParticleToPool;
+        particle.OnReturn += ReturnParticleToPool;
     }
 
     private void ReturnParticleToPool(ParticleStoppedCallBack particle)

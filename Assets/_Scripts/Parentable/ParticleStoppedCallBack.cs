@@ -1,11 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class ParticleStoppedCallBack : Parentable
+public class ParticleStoppedCallBack : Parentable<ParticleStoppedCallBack>
 {
-    [SerializeField] private ParticleSystem _ps;
-
-    public System.Action<ParticleStoppedCallBack> Disabled { get; set; }
+    [SerializeField] protected ParticleSystem _ps;
 
     public override void Parent(Transform parent)
     {
@@ -25,6 +23,6 @@ public class ParticleStoppedCallBack : Parentable
     private IEnumerator OnParticleSystemStopped()
     {
         yield return null;
-        Disabled?.Invoke(this);
+        OnReturn?.Invoke(this);
     }
 }
