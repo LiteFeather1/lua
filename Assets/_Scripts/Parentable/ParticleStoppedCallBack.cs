@@ -1,28 +1,23 @@
 using System.Collections;
 using UnityEngine;
 
-
-public class ParticleStoppedCallBack : MonoBehaviour
+public class ParticleStoppedCallBack : Parentable
 {
     [SerializeField] private ParticleSystem _ps;
 
     public System.Action<ParticleStoppedCallBack> Disabled { get; set; }
 
-    public void Parent(Transform parent)
+    public override void Parent(Transform parent)
     {
-        transform.SetParent(parent, false);
-        transform.localScale = parent.localScale;
-        transform.localPosition = Vector3.zero;
+        base.Parent(parent);
         var mainModule = _ps.main;
         mainModule.loop = true;
         _ps.Play();
     }
 
-    public void Unparent()
+    public override void UnParent()
     {
-        var pos  = transform.position;
-        transform.SetParent(null, false);
-        transform.position = pos;
+        base.UnParent();
         var mainModule = _ps.main;
         mainModule.loop = false;
     }

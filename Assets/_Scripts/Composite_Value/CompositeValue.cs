@@ -6,10 +6,10 @@ using UnityEngine;
 public class CompositeValue
 {
     [SerializeField] private float _baseValue;
+    [SerializeField, DrawInEditorMode(false)] private float _value;
     private float _lastValue = float.MinValue;
     // Used to determine if it should recalculate
     private bool _isDirty = true;
-    private float _value;
 
     public float BaseValue => _baseValue;
 

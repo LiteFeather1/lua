@@ -133,6 +133,7 @@ public class Witch : MonoBehaviour
         var velocity = _rb.velocity;
         velocity.x += _inputDirection.x * _acceleration.Value;
         velocity.y += _inputDirection.y * _acceleration.Value;
+
         if (Mathf.Sign(_inputDirection.x) == Mathf.Sign(_rb.velocity.x) 
             && Mathf.Abs(_rb.velocity.x) > _maxSpeed)
             velocity.x = 0f;

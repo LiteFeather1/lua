@@ -30,7 +30,7 @@ public class Bullet : MonoBehaviour, IPoolable<Bullet>
 
     private void ProjectileDeactivated()
     {
-        _disableCallBack.Unparent();
+        _disableCallBack.UnParent();
         ReturnToPool?.Invoke(this);
     }
 }
