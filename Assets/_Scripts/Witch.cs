@@ -77,6 +77,8 @@ public class Witch : MonoBehaviour
     public CompositeValue ChanceToLifeSteal => _chanceToLifeSteal;
     public CompositeValue LifeStealPercent => _lifeStealPercent;
 
+    public EffectCreatorFire EffectCreatorFire => _effectCreatorFire;
+
     private void Awake()
     {
         _rb.drag = _decelerationRange.x;

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d10a0722915266c459aaa6772a2a9f5a, type: 3}
+  m_Name: Power_Up_Fire_Chance
+  m_EditorClassIdentifier: 
+  _name: Fiery Touch
+  _effect: Increase Chance To Burn Enemies On Damage By $
+  _cost: 12
+  _rarity: {fileID: 11400000, guid: 0869bc92c695cdd4c97f8b266f87f121, type: 2}
+  _icon: {fileID: 0}
+  _powerUpsToUnlock: []
+  _modifier:
+    _value: 0.1
+    _type: 100
+  _valueToRemove: {fileID: 11400000, guid: ea62fd313cda8be4392d51c7c6c732ff, type: 2}

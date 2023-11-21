@@ -3095,6 +3095,9 @@ MonoBehaviour:
   _yVelocityRange: {x: 50, y: 25}
   _normalColour: {r: 1, g: 1, b: 1, a: 1}
   _critColour: {r: 0.7383719, g: 0.8117647, b: 0.14901958, a: 1}
+  _fireParticlePool:
+    _object: {fileID: 4463116695840279212, guid: 596118e0077cd3b4b9a964af55617c5d, type: 3}
+    _initialPoolSize: 10
 --- !u!1 &733809782
 GameObject:
   m_ObjectHideFlags: 0
