@@ -168,9 +168,10 @@ public class Witch : MonoBehaviour
             _health.Heal(damage * _lifeStealPercent.Value);
         }
 
-        if (randomValue < _effectCreatorFire.Chance.Value)
+        if (randomValue < _effectCreatorFire.Chance.Value 
+            && damageable.CanAddDamageEffect((int)IDamageEffect.DamageEffectID.FIRE_ID))
         {
-            damageable.TryAddDamageEffect(_effectCreatorFire.Get(damage));
+            damageable.AddDamageEffect(_effectCreatorFire.Get(damage));
         }
     }
 

@@ -80,17 +80,18 @@ public class Health : MonoBehaviour, IDamageable
         return (int)_health;
     }
 
-    public bool TryAddDamageEffect(IDamageEffect damageEffect)
+    public bool CanAddDamageEffect(int ID)
     {
-        if (_health <= 0f)
+        if (_health <= 0f || _uniqueDamageEffects.Contains(ID))
             return false;
 
-        if (_uniqueDamageEffects.Contains(damageEffect.ID))
-            return false;
+        return true;
+    }
 
+    public void AddDamageEffect(IDamageEffect damageEffect)
+    {
         _uniqueDamageEffects.Add(damageEffect.ID);
         _damageEffects.Add(damageEffect);
         OnDamageEffectApplied?.Invoke(damageEffect.ID);
-        return true;
     }
 }

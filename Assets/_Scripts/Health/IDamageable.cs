@@ -8,5 +8,6 @@ public interface IDamageable
 
     public bool TakeDamage(float damage, float knockback, bool crit, Vector2 pos = default);
     public void Heal(float Heal);
-    public bool TryAddDamageEffect(IDamageEffect effect);
+    public bool CanAddDamageEffect(int ID);
+    public void AddDamageEffect(IDamageEffect effect);
 }
