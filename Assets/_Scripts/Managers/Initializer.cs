@@ -44,10 +44,16 @@ public class Initializer : MonoBehaviour
             seasonal.Set(season);
     }
 
-    [ContextMenu("Get Seasonal Flip Sheets")]
-    private void GetSeasonalFlipSheets<T>()
+    private T[] GetSeasonal<T>() where T : ScriptableObject
     {
-        _seasonalFlipSheets = LTFHelpers_Misc.GetScriptableObjects<SeasonalFlipSheet>();
+        UnityEditor.Undo.RegisterCompleteObjectUndo(this, "Seasonals");
+        return LTFHelpers_Misc.GetScriptableObjects<T>();
+    }
+
+    [ContextMenu("Get Seasonal Flip Sheets")]
+    private void GetSeasonalFlipSheet()
+    {
+        _seasonalFlipSheets = GetSeasonal<SeasonalFlipSheet>();
     }
 
     [Serializable]

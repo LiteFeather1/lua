@@ -1,7 +1,7 @@
 using LTFUtils;
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +16,7 @@ public class CardManager : MonoBehaviour
     private float _elapsedTimeToDrawCard;
 
     [Header("Power Ups")]
+    [ContextMenuItem("Find All Powerups", nameof(FindPowerUps))]
     [SerializeField] private PowerUp[] _startingPowerUps;
     private Weighter<PowerUp> _weightedPowerUps;
     private readonly Dictionary<string, HashSet<WeightedObject<PowerUp>>> _powerUpToPowerUps = new();
@@ -104,7 +105,6 @@ public class CardManager : MonoBehaviour
         _elapsedTimeToDrawCard += refund;
     }
 
-    [ContextMenu("Add Card")]
     public int AddCard(int amount)
     {
         for (int i = 0; i < amount; i++)
@@ -246,11 +246,27 @@ public class CardManager : MonoBehaviour
         _cardsToDraw.Add(card);
     }
 
-    private void SeekDropped(WeightedObject<PowerUp> old, WeightedObject<PowerUp> new_)
+    private void SeekDropped(WeightedObject<PowerUp> old, WeightedObject<PowerUp> @new)
     {
         if (old != null)
             _weightedPowerUps.RemoveObject(old);
 
-        _weightedPowerUps.AddObject(new_);
+        _weightedPowerUps.AddObject(@new);
+    }
+
+    [ContextMenu("Find Power Ups")]
+    private void FindPowerUps()
+    {
+        UnityEditor.Undo.RegisterCompleteObjectUndo(this, "Find Power Ups");
+        var allPowers = LTFHelpers_Misc.GetScriptableObjects<PowerUp>();
+        _startingPowerUps = (from powerUp in allPowers
+                 where
+                  !(from otherPowerUp in allPowers
+                    from unlockPowerUp in otherPowerUp.PowerUpsToUnlock
+                    where unlockPowerUp == powerUp
+                    select unlockPowerUp
+                    ).Any()
+                 select powerUp)
+                .ToArray();
     }
 }

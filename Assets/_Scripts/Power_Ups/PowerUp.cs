@@ -1,4 +1,3 @@
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public abstract class PowerUp : ScriptableObject
@@ -19,6 +18,7 @@ public abstract class PowerUp : ScriptableObject
     public float Weight => _rarity.Weight;
     public Color RarityColour => _rarity.RarityColour;
     public Sprite Icon => _icon;   
+    public PowerUp[] PowerUpsToUnlock => _powerUpsToUnlock;
 
     protected abstract string Num { get; }
 
