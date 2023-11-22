@@ -8,12 +8,12 @@ public abstract class Seasonal<T, G> : ScriptableObject, ISeasonal where G : ISe
     };
     [SerializeField] private G _toSet;
 
-    public void Set(string key)
+    public void Set(string season)
     {
-        if (!_dictionary.ContainsKey(key))
+        if (!_dictionary.ContainsKey(season))
             return;
 
-        _toSet.SetSeasonal(_dictionary[key]);
+        _toSet.SetSeasonal(_dictionary[season]);
     }
 
     public void Add(string name) => _dictionary.TryAdd(name, default);
