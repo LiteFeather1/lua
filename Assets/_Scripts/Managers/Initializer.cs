@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LTFUtils;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,6 +42,12 @@ public class Initializer : MonoBehaviour
     {
         foreach (var seasonal in seasonals)
             seasonal.Set(season);
+    }
+
+    [ContextMenu("Get Seasonal Flip Sheets")]
+    private void GetSeasonalFlipSheets<T>()
+    {
+        _seasonalFlipSheets = LTFHelpers_Misc.GetScriptableObjects<SeasonalFlipSheet>();
     }
 
     [Serializable]
