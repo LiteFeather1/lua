@@ -6,9 +6,9 @@ public abstract class Seasonal<T, G> : ScriptableObject, ISeasonal where G : ISe
     {
         { "Christmas", default },
     };
-    [SerializeField] private G _toSet;
+    [SerializeField] protected G _toSet;
 
-    public void Set(string season)
+    public virtual void Set(string season)
     {
         if (!_dictionary.ContainsKey(season))
             return;

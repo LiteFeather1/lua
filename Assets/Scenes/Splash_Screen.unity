@@ -1152,6 +1152,7 @@ MonoBehaviour:
     _monthEnd: 12
     _yearPlus: 0
   _seasonalFlipSheets: []
+  _seasonalSprites: []
 --- !u!1 &1560942888
 GameObject:
   m_ObjectHideFlags: 0

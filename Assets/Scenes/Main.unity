@@ -2145,9 +2145,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
-    width: 1
-    height: 1
+    y: 0.055555556
+    width: 0.33333334
+    height: 0.3333333
   near clip plane: 0
   far clip plane: 500
   field of view: 34
@@ -6439,6 +6439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sr: {fileID: 372150708}
+  _seasonalSprite: {fileID: 11400000, guid: 029acac3cc4eb7147a8ca0a52a80e58b, type: 2}
   _moonPhases:
   - {fileID: 21300000, guid: c01dd71946beeda4e9834d8503655ef2, type: 3}
   - {fileID: 21300000, guid: c58e682ad9c1e7d45981d5af1d2ce909, type: 3}

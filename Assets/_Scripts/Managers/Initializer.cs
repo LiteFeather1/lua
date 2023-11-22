@@ -5,12 +5,11 @@ using UnityEngine;
 
 public class Initializer : MonoBehaviour
 {
-    private const string NOT_IN_ANY_SEASON = "Not in any Season";
-
     private static bool _initialized = false;
 
     [SerializeField] private Season[] _seasons;
     [SerializeField] private SeasonalFlipSheet[] _seasonalFlipSheets;
+    [SerializeField] private SeasonalSprite[] _seasonalSprites;
 
     private void Awake()
     {
@@ -21,11 +20,11 @@ public class Initializer : MonoBehaviour
 
         var season = GetSeason(DateTime.Now);
 
-        if (season.Equals(NOT_IN_ANY_SEASON))
+        if (season.Equals(SeasonNames.NOT_IN_ANY_SEASON))
             return;
             
         SetSeasonals(_seasonalFlipSheets, season);
-
+        SetSeasonals(_seasonalSprites, season);
     }
 
     private string GetSeason(DateTime date)
@@ -35,7 +34,7 @@ public class Initializer : MonoBehaviour
             if (_seasons[i].IsDateInBetween(date))
                 return _seasons[i].SeasonName;
         }
-        return NOT_IN_ANY_SEASON;
+        return SeasonNames.NOT_IN_ANY_SEASON;
     }
 
     private void SetSeasonals(IEnumerable<ISeasonal> seasonals, string season)
@@ -54,6 +53,12 @@ public class Initializer : MonoBehaviour
     private void GetSeasonalFlipSheet()
     {
         _seasonalFlipSheets = GetSeasonal<SeasonalFlipSheet>();
+    }
+
+    [ContextMenu("Get Seasonal Flip Sprite")]
+    private void GetSeasonalSprite()
+    {
+        _seasonalSprites = GetSeasonal<SeasonalSprite>();
     }
 
     [Serializable]
