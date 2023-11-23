@@ -10,6 +10,6 @@ public abstract class MovementChase : MovementState
 
     protected void Flip(float direction)
     {
-        transform.localScale = Vector3.one * -direction; 
+        transform.localScale = new(1f * -direction, 1f, 1f); 
     }
 }

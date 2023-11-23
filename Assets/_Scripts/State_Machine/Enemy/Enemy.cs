@@ -69,7 +69,7 @@ public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
     protected virtual void KnockBackComplete()
     {
         _flipBook.Play(true);
-        transform.localScale = new(1f, 1f);
+        transform.localScale = new(1f, 1f, 1f);
     }
 
     private void Damaged(float damage, float knockback, bool crit, Vector2 pos)
@@ -81,7 +81,7 @@ public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
         _flipBook.SR.sprite = _knockbackSprite.Value;
 
         var knockbackDirection = (Position - pos).normalized;
-        transform.localScale = new(-Mathf.Sign(knockbackDirection.x), 1f);
+        transform.localScale = new(-Mathf.Sign(knockbackDirection.x), 1f, 1f);
         _knockbackState.SetUp(knockbackDirection, crit ? knockback * 1.5f : knockback);
         Set(_knockbackState);
     }
