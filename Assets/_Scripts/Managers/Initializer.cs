@@ -1,6 +1,5 @@
 ﻿using LTFUtils;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Initializer : MonoBehaviour
@@ -37,10 +36,10 @@ public class Initializer : MonoBehaviour
         return SeasonNames.NOT_IN_ANY_SEASON;
     }
 
-    private void SetSeasonals(IEnumerable<ISeasonal> seasonals, string season)
+    private void SetSeasonals(ISeasonal[] seasonals, string season)
     {
-        foreach (var seasonal in seasonals)
-            seasonal.Set(season);
+        for (int i = 0; i < seasonals.Length; i++)
+            seasonals[i].Set(season);
     }
 
     private T[] GetSeasonal<T>() where T : ScriptableObject

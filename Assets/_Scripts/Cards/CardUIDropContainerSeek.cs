@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class CardUIDropContainerSeek : CardUIDropContainer
 {
     [SerializeField] private Image i_powerUpIcon;
+    [SerializeField] private Image i_powerUpTier;
     public WeightedObject<PowerUp> WeightedPowerUpSeeking { get; private set; }
 
     public System.Action<WeightedObject<PowerUp>, WeightedObject<PowerUp>> OnPowerUpDropped { get; set; }
@@ -16,6 +17,7 @@ public class CardUIDropContainerSeek : CardUIDropContainer
         OnPowerUpDropped?.Invoke(WeightedPowerUpSeeking, newWeight);
         WeightedPowerUpSeeking = newWeight;
         i_powerUpIcon.sprite = card.PowerUp.Icon;
+        i_powerUpTier.sprite = card.PowerUp.TierIcon;
         i_card.color = card.PowerUp.RarityColour;
     }
 }

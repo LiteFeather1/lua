@@ -1152,7 +1152,8 @@ MonoBehaviour:
     _monthEnd: 12
     _yearPlus: 0
   _seasonalFlipSheets: []
-  _seasonalSprites: []
+  _seasonalSprites:
+  - {fileID: 11400000, guid: b4cc70bfb2794d84d891725517126a93, type: 2}
 --- !u!1 &1560942888
 GameObject:
   m_ObjectHideFlags: 0

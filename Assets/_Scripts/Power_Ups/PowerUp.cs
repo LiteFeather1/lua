@@ -8,6 +8,7 @@ public abstract class PowerUp : ScriptableObject
     [SerializeField] private int _cost = 4;
     [SerializeField] private Rarity _rarity;
     [SerializeField] private Sprite _icon;
+    [SerializeField] private Sprite _tierIcon;
     [SerializeField] private PowerUp[] _powerUpsToUnlock;
     private bool _unlockedPowerUps;
 
@@ -18,6 +19,7 @@ public abstract class PowerUp : ScriptableObject
     public float Weight => _rarity.Weight;
     public Color RarityColour => _rarity.RarityColour;
     public Sprite Icon => _icon;   
+    public Sprite TierIcon => _tierIcon;   
     public PowerUp[] PowerUpsToUnlock => _powerUpsToUnlock;
 
     protected abstract string Num { get; }

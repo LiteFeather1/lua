@@ -9,6 +9,7 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDr
     [SerializeField] private float _defaultAlpha = .9f;
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private Image i_powerUp;
+    [SerializeField] private Image i_powerUpTierIcon;
     [SerializeField] private TextMeshProUGUI t_cardCost;
     private Transform _originalParent;
     private PowerUp _powerUp;
@@ -85,6 +86,7 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDr
     {
         _powerUp = powerUp;
         i_powerUp.sprite = powerUp.Icon;
+        i_powerUpTierIcon.sprite = powerUp.TierIcon;
         i_card.color = powerUp.RarityColour;
         t_cardCost.text = powerUp.Cost.ToString();
         AudioManager.Instance.PlayOneShot(_grabClip);
