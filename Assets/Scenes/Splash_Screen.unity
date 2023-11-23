@@ -1147,12 +1147,24 @@ MonoBehaviour:
   _seasons:
   - <SeasonName>k__BackingField: Christmas
     _dayStart: 12
-    _monthStart: 11
+    _monthStart: 12
     _dayEnd: 31
     _monthEnd: 12
     _yearPlus: 0
-  _seasonalFlipSheets: []
+  _seasonalFlipSheets:
+  - {fileID: 11400000, guid: 579673c57ec4a684aa68394c5e9d28a4, type: 2}
+  - {fileID: 11400000, guid: 2669408eb0a2f2545bc44ae9692727ea, type: 2}
+  - {fileID: 11400000, guid: f2c0c29519e60054280186bba1d5afc1, type: 2}
+  - {fileID: 11400000, guid: 04396b1275ae53c48ad352b61aa6fc34, type: 2}
+  - {fileID: 11400000, guid: bede929818122fe49af8a03bdecaecdd, type: 2}
+  - {fileID: 11400000, guid: 64c7627e8c487f147aa1285ab70cf790, type: 2}
+  - {fileID: 11400000, guid: 7466eeaf3f9fb7649b45f517c53e0ce3, type: 2}
   _seasonalSprites:
+  - {fileID: 11400000, guid: 7fd1d1eaf8226c14d8628d00689ae6bc, type: 2}
+  - {fileID: 11400000, guid: 449b4a9a949aa9e4cbdbe06f773569af, type: 2}
+  - {fileID: 11400000, guid: c7462e329464d014591acb9c43ee259a, type: 2}
+  - {fileID: 11400000, guid: cc941f5537bdae240a13941060ce84be, type: 2}
+  - {fileID: 11400000, guid: 526972562be109c45953167e1a7d1b77, type: 2}
   - {fileID: 11400000, guid: b4cc70bfb2794d84d891725517126a93, type: 2}
 --- !u!1 &1560942888
 GameObject:

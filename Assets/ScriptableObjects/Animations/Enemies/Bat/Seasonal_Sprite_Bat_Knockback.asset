@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2930d9186ee12c4db044a2c421a875d, type: 3}
   m_Name: Seasonal_Sprite_Bat_Knockback
   m_EditorClassIdentifier: 
+  _default: {fileID: -859042088, guid: 02170a328aa97ae45a9c85a7b4fc2471, type: 3}
   _dictionary:
     _entries:
     - Key: Christmas

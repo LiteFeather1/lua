@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c5c8395e1e85374a963c21121bd5e78, type: 3}
   m_Name: Season_Flip_Sheet_Bat_Move
   m_EditorClassIdentifier: 
+  _default:
+    <Sprites>k__BackingField:
+    - {fileID: 1505244323, guid: 73100cd29e6b98b449dbc4f8b7545453, type: 3}
+    - {fileID: 593552922, guid: 73100cd29e6b98b449dbc4f8b7545453, type: 3}
+    <Fps>k__BackingField: 2
   _dictionary:
     _entries:
     - Key: Christmas

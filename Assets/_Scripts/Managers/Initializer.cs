@@ -18,14 +18,19 @@ public class Initializer : MonoBehaviour
         _initialized = true;
 
         var season = GetSeason(DateTime.Now);
+        if (!season.Equals(SeasonNames.NOT_IN_ANY_SEASON))
+        {
+            SetSeasonals(_seasonalFlipSheets, season);
+            SetSeasonals(_seasonalSprites, season);
+        }
 #if UNITY_EDITOR
+        else
+        {
+            SetSeasonalDefault(_seasonalFlipSheets);
+            SetSeasonalDefault(_seasonalSprites);
+        }
         print(season);
 #endif
-        if (season.Equals(SeasonNames.NOT_IN_ANY_SEASON))
-            return;
-            
-        SetSeasonals(_seasonalFlipSheets, season);
-        SetSeasonals(_seasonalSprites, season);
     }
 
     private string GetSeason(DateTime date)
@@ -42,6 +47,12 @@ public class Initializer : MonoBehaviour
     {
         for (int i = 0; i < seasonals.Length; i++)
             seasonals[i].Set(season);
+    }
+
+    private void SetSeasonalDefault(ISeasonal[] seasonals)
+    {
+        for (int i = 0; i < seasonals.Length; i++)
+            seasonals[i].SetDefault();
     }
 
     private T[] GetSeasonal<T>() where T : ScriptableObject

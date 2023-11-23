@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c5c8395e1e85374a963c21121bd5e78, type: 3}
-  m_Name: Season_Flip_Sheet_Raven_Move
+  m_Name: Seasonal_Flip_Sheet_Witch
   m_EditorClassIdentifier: 
   _default:
     <Sprites>k__BackingField:
-    - {fileID: 77399906, guid: 5aefff18cd615ab4a93ef65281c2108a, type: 3}
-    - {fileID: -1578972162, guid: 5aefff18cd615ab4a93ef65281c2108a, type: 3}
+    - {fileID: -1749105108, guid: a687b8d592ed8c54084ee07b7ebd65d6, type: 3}
+    - {fileID: 1341439777, guid: a687b8d592ed8c54084ee07b7ebd65d6, type: 3}
     <Fps>k__BackingField: 2
   _dictionary:
     _entries:
     - Key: Christmas
       Value:
         <Sprites>k__BackingField:
-        - {fileID: 1844765799, guid: 10e31fb934d7cd74cb3e57f7768b5b5d, type: 3}
-        - {fileID: 309496791, guid: 10e31fb934d7cd74cb3e57f7768b5b5d, type: 3}
+        - {fileID: 536153677, guid: 58a28e8d6cd0c224b82a277048ef10f4, type: 3}
+        - {fileID: -1265221348, guid: 58a28e8d6cd0c224b82a277048ef10f4, type: 3}
         <Fps>k__BackingField: 2
-  _toSet: {fileID: 11400000, guid: 236afe74aa204a24393c7683e040f27c, type: 2}
+  _toSet: {fileID: 11400000, guid: 64c7f2a6987db87428fe3c0c9d7d2432, type: 2}
