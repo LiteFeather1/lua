@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -4825785271480909483}
   - component: {fileID: 3566666758495182051}
   - component: {fileID: 3687588919383611242}
-  - component: {fileID: 7672098373207395047}
+  - component: {fileID: 8778848977162477875}
   m_Layer: 7
   m_Name: Bat
   m_TagString: Untagged
@@ -160,8 +160,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &7672098373207395047
-BoxCollider2D:
+--- !u!58 &8778848977162477875
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -193,18 +193,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.12, y: 0.12}
-  m_EdgeRadius: 0
+  m_Radius: 0.06
 --- !u!1 &7444254118816387904
 GameObject:
   m_ObjectHideFlags: 0

@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: -1133484447314753069}
   - component: {fileID: 2810869468874211039}
   - component: {fileID: 109992122801125493}
-  - component: {fileID: -8276200113158299438}
+  - component: {fileID: 7944391783107006493}
   m_Layer: 7
   m_Name: Pumpkin
   m_TagString: Untagged
@@ -252,8 +252,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &-8276200113158299438
-BoxCollider2D:
+--- !u!58 &7944391783107006493
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -285,18 +285,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.12, y: 0.12}
-  m_EdgeRadius: 0
+  m_Radius: 0.06
 --- !u!1 &8451183830308344529
 GameObject:
   m_ObjectHideFlags: 0
