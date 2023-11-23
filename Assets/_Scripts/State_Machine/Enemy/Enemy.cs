@@ -88,7 +88,7 @@ public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
         if (effectID == (int)IDamageEffect.DamageEffectID.FIRE_ID)
         {
             _fireParticle = OnFireEffectApplied?.Invoke();
-            _fireParticle.Parent(transform);
+            _fireParticle.Parent(_health.transform);
         }
     }
 

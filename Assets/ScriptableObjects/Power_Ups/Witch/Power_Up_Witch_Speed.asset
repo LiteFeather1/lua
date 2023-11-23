@@ -17,10 +17,9 @@ MonoBehaviour:
   _cost: 6
   _rarity: {fileID: 11400000, guid: a7ae77a514c29d44995457b989b36476, type: 2}
   _icon: {fileID: -1814855783, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
+  _tierIcon: {fileID: 21300000, guid: d6ce55b762145284ab0cfed4c9c3e509, type: 3}
+  _powerUpsToUnlock: []
   _modifier:
     _value: 0.1
     _type: 200
-  _removeValue:
-    _value: 0
-    _enabled: 0
   _valueToRemove: {fileID: 0}
