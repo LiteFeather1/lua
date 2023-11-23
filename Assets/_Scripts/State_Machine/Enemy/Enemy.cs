@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using RetroAnimation;
 using UnityEngine;
 
 public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
@@ -8,8 +8,11 @@ public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
     [Header("Base States")]
     [SerializeField] private MovementKnockback _knockbackState;
 
+    [Header("Sprite")]
+    [SerializeField] private ValueSprite _knockbackSprite;
+
     [Header("Components")]
-    [SerializeField] private SpriteRenderer _sr;
+    [SerializeField] private FlipBook _flipBook;
     [SerializeField] private Health _health;
     [SerializeField] private HitBox _hitBox;
 
@@ -51,7 +54,7 @@ public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
 
     public virtual void Spawn(float t, float tClamped) 
     {
-        _sr.sortingOrder = Random.Range(100, 500);
+        _flipBook.SR.sortingOrder = Random.Range(100, 500);
         _health.ResetHealth(_data.HealthRange.Evaluate(t));
         _hitBox.SetDamage(_data.DamageRange.Evaluate(t));
         gameObject.SetActive(true);
@@ -63,14 +66,24 @@ public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
         ReturnToPool?.Invoke(this);
     }
 
-    protected abstract void KnockBackComplete();
+    protected virtual void KnockBackComplete()
+    {
+        _flipBook.Play(true);
+        transform.localScale = new(1f, 1f);
+    }
 
     private void Damaged(float damage, float knockback, bool crit, Vector2 pos)
     {
         if (knockback == 0f)
             return;
 
-        _knockbackState.SetUp((Position - pos).normalized, crit ? knockback * 1.5f : knockback);
+        _flipBook.Stop();
+        _flipBook.SR.sprite = _knockbackSprite.Value;
+
+        var knockbackDirection = (Position - pos).normalized;
+        transform.localScale = new(-Mathf.Sign(knockbackDirection.x), 1f);
+
+        _knockbackState.SetUp(knockbackDirection, crit ? knockback * 1.5f : knockback);
         Set(_knockbackState);
     }
 

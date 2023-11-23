@@ -53,9 +53,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentState: {fileID: 0}
   _data: {fileID: 11400000, guid: 59f6438c7d8ada04c89a7bb08293a1b5, type: 2}
-  _minKnockbackDistance: 0.125
   _knockbackState: {fileID: 218077878474640220}
-  _sr: {fileID: 3687588919383611242}
+  _knockbackSprite: {fileID: 11400000, guid: db185c230f7ae6b4a8c3c204f51cc37c, type: 2}
+  _flipBook: {fileID: -4825785271480909483}
   _health: {fileID: 7250449085420806086}
   _hitBox: {fileID: 1580534110986226837}
   _movement: {fileID: 3566666758495182051}
@@ -347,5 +347,6 @@ MonoBehaviour:
   _completedMessage: 
   _parentState: {fileID: 0}
   _childState: {fileID: 0}
+  _duration: 0.15
   _speed: 0.5
-  _destination: {x: 0, y: 0}
+  _direction: {x: 0, y: 0}

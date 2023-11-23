@@ -16,5 +16,9 @@ public class EnemyLinear : Enemy
         _movement.SetSpeed(_data.SpeedRange.Evaluate(tClamped));
     }
 
-    protected override void KnockBackComplete() => Set(_movement);
+    protected override void KnockBackComplete()
+    {
+        Set(_movement);
+        base.KnockBackComplete();
+    }
 }
