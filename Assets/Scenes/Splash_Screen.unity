@@ -1147,7 +1147,7 @@ MonoBehaviour:
   _seasons:
   - <SeasonName>k__BackingField: Christmas
     _dayStart: 12
-    _monthStart: 12
+    _monthStart: 11
     _dayEnd: 31
     _monthEnd: 12
     _yearPlus: 0

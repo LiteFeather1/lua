@@ -18,7 +18,9 @@ public class Initializer : MonoBehaviour
         _initialized = true;
 
         var season = GetSeason(DateTime.Now);
-
+#if UNITY_EDITOR
+        print(season);
+#endif
         if (season.Equals(SeasonNames.NOT_IN_ANY_SEASON))
             return;
             
@@ -48,6 +50,7 @@ public class Initializer : MonoBehaviour
         return LTFHelpers_Misc.GetScriptableObjects<T>();
     }
 
+#if UNITY_EDITOR
     [ContextMenu("Get Seasonal Flip Sheets")]
     private void GetSeasonalFlipSheet()
     {
@@ -59,9 +62,10 @@ public class Initializer : MonoBehaviour
     {
         _seasonalSprites = GetSeasonal<SeasonalSprite>();
     }
+#endif
 
     [Serializable]
-    private class Season
+    private struct Season
     {
         [field: SerializeField] public string SeasonName { get; private set; }
         [SerializeField] private int _dayStart;
@@ -70,7 +74,7 @@ public class Initializer : MonoBehaviour
         [SerializeField] private int _monthEnd;
         [SerializeField] private int _yearPlus;
 
-        public bool IsDateInBetween(DateTime date)
+        public readonly bool IsDateInBetween(DateTime date)
         {
             var startDate = new DateTime(date.Year, _monthStart, _dayStart);
             var endDate = new DateTime(date.Year + _yearPlus, _monthEnd, _dayEnd);

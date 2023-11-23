@@ -82,7 +82,6 @@ public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
 
         var knockbackDirection = (Position - pos).normalized;
         transform.localScale = new(-Mathf.Sign(knockbackDirection.x), 1f);
-
         _knockbackState.SetUp(knockbackDirection, crit ? knockback * 1.5f : knockback);
         Set(_knockbackState);
     }

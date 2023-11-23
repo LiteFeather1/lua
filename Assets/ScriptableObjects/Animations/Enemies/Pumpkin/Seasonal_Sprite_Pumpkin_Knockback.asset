@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2930d9186ee12c4db044a2c421a875d, type: 3}
-  m_Name: Seasonal_Sprite_Moon
+  m_Name: Seasonal_Sprite_Pumpkin_Knockback
   m_EditorClassIdentifier: 
   _dictionary:
     _entries:
     - Key: Christmas
-      Value: {fileID: 0}
-  _toSet: {fileID: 11400000, guid: 029acac3cc4eb7147a8ca0a52a80e58b, type: 2}
+      Value: {fileID: -1669923355, guid: 6edd9efad928b2c4bb56da680a8045d5, type: 3}
+  _toSet: {fileID: 11400000, guid: e41fd9b628cd2484e89860711d2d2c85, type: 2}

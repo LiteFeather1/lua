@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2930d9186ee12c4db044a2c421a875d, type: 3}
+  m_Name: Seasonal_Sprite_Spider_Knockback
+  m_EditorClassIdentifier: 
+  _dictionary:
+    _entries:
+    - Key: Christmas
+      Value: {fileID: -1967668302, guid: 6edd9efad928b2c4bb56da680a8045d5, type: 3}
+  _toSet: {fileID: 11400000, guid: ca42f50e0a331e74f949f07772b977c1, type: 2}
