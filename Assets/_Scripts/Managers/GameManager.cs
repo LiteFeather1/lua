@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         Inputs.Player.Pause_UnPause.performed += PauseUnpause;
         Inputs.Player.Mute_UnMute.performed += MuteUnMute;
 
-        _witch.OnDamaged += _shake.Shake;
+        _witch.OnDamaged += _shake.ShakeStrong;
         _witch.Health.OnDeath += WitchDied;
 
         _cardManager.OnCardHovered += SlowDown;
@@ -85,11 +85,11 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        _witch.OnDamaged -= _shake.Shake;
-        _witch.Health.OnDeath -= WitchDied;
-
         Inputs.Player.Pause_UnPause.performed -= PauseUnpause;
         Inputs.Player.Mute_UnMute.performed -= MuteUnMute;
+
+        _witch.OnDamaged -= _shake.ShakeStrong;
+        _witch.Health.OnDeath -= WitchDied;
 
         _cardManager.OnCardHovered -= SlowDown;
         _cardManager.OnCardUnHovered -= UnSlowDown;
