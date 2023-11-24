@@ -76,13 +76,12 @@ public class CardManager : MonoBehaviour
         _seek.OnPowerUpDropped += SeekDropped;
 
         _recycler.OnCardUsed += RefundCooldown;
-
-        StartCoroutine(_drawerMove.MoveUp());
     }
 
     private void Start()
     {
         _weightedPowerUps = new(CreateRangeWeightedPowerUp(_startingPowerUps));
+        StartCoroutine(_drawerMove.MoveUp());
     }
 
     private void Update()
