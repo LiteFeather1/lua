@@ -33,6 +33,8 @@ public class CardManager : MonoBehaviour
 
     [Header("Drawer")]
     [SerializeField] private Image i_drawer;
+    [SerializeField] private MoveOnPointerEnter _drawerMove;
+    [SerializeField] private Color _drawerDisabledColour = Color.grey;
     [SerializeField] private Sprite[] _drawerAnimation;
 
     [Header("Player")]
@@ -74,6 +76,8 @@ public class CardManager : MonoBehaviour
         _seek.OnPowerUpDropped += SeekDropped;
 
         _recycler.OnCardUsed += RefundCooldown;
+
+        StartCoroutine(_drawerMove.MoveUp());
     }
 
     private void Start()
@@ -163,7 +167,7 @@ public class CardManager : MonoBehaviour
         card.OnCardUnHovered += CardUnHovered;
         card.OnPickedUp += CardPickedUp;
         card.OnDropped += CardDropped;
-        card.OnReturnToPile += ReturnToDrawnPile;
+        card.OnReturnToPile += ReturnToDrawPile;
     }
 
     private void UnSubToCard(CardUIPowerUp card)
@@ -172,7 +176,7 @@ public class CardManager : MonoBehaviour
         card.OnCardUnHovered -= CardUnHovered;
         card.OnPickedUp -= CardPickedUp;
         card.OnDropped -= CardDropped;
-        card.OnReturnToPile -= ReturnToDrawnPile;
+        card.OnReturnToPile -= ReturnToDrawPile;
     }
 
     private void DrawCardsUpdate()
@@ -187,9 +191,6 @@ public class CardManager : MonoBehaviour
             _elapsedTimeToDrawCard = 0f;
             for (int i = 0; i < _cardToDrawPerDraw; i++)
             {
-                if (_cardsToDraw.Count == 0)
-                    break;
-
                 var card = _cardsToDraw[0];
                 _cardsToDraw.RemoveAt(0);
                 var weightedObject = _weightedPowerUps.GetWeightedObject();
@@ -198,6 +199,13 @@ public class CardManager : MonoBehaviour
                 card.transform.position = i_drawer.transform.position;
                 _drawnCards.Add(card);
                 card.gameObject.SetActive(true);
+
+                if (_cardsToDraw.Count == 0)
+                {
+                    i_drawer.color = _drawerDisabledColour;
+                    StartCoroutine(_drawerMove.MoveDown());
+                    break;
+                }
             }
         }
 
@@ -247,11 +255,17 @@ public class CardManager : MonoBehaviour
         _drawnCards.Remove(card);
     }
 
-    private void ReturnToDrawnPile(CardUIPowerUp card)
+    private void ReturnToDrawPile(CardUIPowerUp card)
     {
         card.gameObject.SetActive(false);
         _drawnCards.Remove(card);
         _cardsToDraw.Add(card);
+
+        if (_cardsToDraw.Count == 1)
+        {
+            i_drawer.color = Color.white;
+            StartCoroutine(_drawerMove.MoveUp());
+        }
     }
 
     private void SeekDropped(WeightedObject<PowerUp> old, WeightedObject<PowerUp> @new)
@@ -261,6 +275,7 @@ public class CardManager : MonoBehaviour
 
         _weightedPowerUps.AddObject(@new);
     }
+
 #if UNITY_EDITOR
     [ContextMenu("Find Power Ups")]
     private void FindPowerUps()

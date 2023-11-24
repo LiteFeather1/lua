@@ -11,7 +11,7 @@ public class MoveOnPointerEnter : MonoBehaviour, IPointerEnterHandler, IPointerE
     private Vector2 _startPos;
     private IEnumerator _movement;
 
-    private void Start()
+    private void Awake()
     {
         _startPos = _transformToMove.localPosition;
         _movement = Movement(Vector2.zero, Vector2.zero);
