@@ -22,8 +22,8 @@ public class CardManager : MonoBehaviour
     private readonly Dictionary<string, HashSet<WeightedObject<PowerUp>>> _powerUpToPowerUps = new();
 
     [Header("Cards")]
-    [SerializeField] private float _cardSize = 30f;
-    [SerializeField] private int _maxCards = 6;
+    [SerializeField] private int _cardToDrawPerDraw = 1;
+    [SerializeField] private int _maxCards = 5;
     [SerializeField] private int _startingCards = 3;
     private int _cards;
     [SerializeField] private CardUIPowerUp _cardPrefab;
@@ -50,6 +50,7 @@ public class CardManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI t_cardEffect;
 
     [Header("Card Moviment")]
+    [SerializeField] private float _cardSize = 30f;
     [SerializeField] private float _cardMoveSpeed = 5f;
     [SerializeField] private Vector2 _spacingBetweenCardsRange = new(16f, 12f);
 
@@ -111,6 +112,7 @@ public class CardManager : MonoBehaviour
             CreateCard();
 
         _cards += amount;
+        _cardToDrawPerDraw += amount;
         return _cards;
     }
 
@@ -183,14 +185,20 @@ public class CardManager : MonoBehaviour
         if (_elapsedTimeToDrawCard > _timeToDrawCard.Value)
         {
             _elapsedTimeToDrawCard = 0f;
-            var card = _cardsToDraw[0];
-            _cardsToDraw.RemoveAt(0);
-            var weightedObject = _weightedPowerUps.GetWeightedObject();
-            var powerUp = weightedObject.Object;
-            card.SetPowerUp(powerUp);
-            card.transform.position = i_drawer.transform.position;
-            _drawnCards.Add(card);
-            card.gameObject.SetActive(true);
+            for (int i = 0; i < _cardToDrawPerDraw; i++)
+            {
+                if (_cardsToDraw.Count == 0)
+                    break;
+
+                var card = _cardsToDraw[0];
+                _cardsToDraw.RemoveAt(0);
+                var weightedObject = _weightedPowerUps.GetWeightedObject();
+                var powerUp = weightedObject.Object;
+                card.SetPowerUp(powerUp);
+                card.transform.position = i_drawer.transform.position;
+                _drawnCards.Add(card);
+                card.gameObject.SetActive(true);
+            }
         }
 
         float t = _elapsedTimeToDrawCard / _timeToDrawCard.Value;
@@ -253,20 +261,21 @@ public class CardManager : MonoBehaviour
 
         _weightedPowerUps.AddObject(@new);
     }
-
+#if UNITY_EDITOR
     [ContextMenu("Find Power Ups")]
     private void FindPowerUps()
     {
         UnityEditor.Undo.RegisterCompleteObjectUndo(this, "Find Power Ups");
         var allPowers = LTFHelpers_Misc.GetScriptableObjects<PowerUp>();
         _startingPowerUps = (from powerUp in allPowers
-                 where
-                  !(from otherPowerUp in allPowers
-                    from unlockPowerUp in otherPowerUp.PowerUpsToUnlock
-                    where unlockPowerUp == powerUp
-                    select unlockPowerUp
-                    ).Any()
-                 select powerUp)
-                .ToArray();
+                             where
+                                !(from otherPowerUp in allPowers
+                                  from unlockPowerUp in otherPowerUp.PowerUpsToUnlock
+                                  where unlockPowerUp == powerUp
+                                  select unlockPowerUp)
+                                .Any()
+                             select powerUp)
+                             .ToArray();
     }
+#endif
 }

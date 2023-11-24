@@ -4,7 +4,7 @@ public abstract class PowerUp : ScriptableObject
 {
     [Header("Power Up")]
     [SerializeField] private string _name;
-    [SerializeField] private string _effect;
+    [SerializeField, TextArea] private string _effect;
     [SerializeField] private int _cost = 4;
     [SerializeField] private Rarity _rarity;
     [SerializeField] private Sprite _icon;

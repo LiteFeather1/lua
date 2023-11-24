@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Power_Up_Increase_Maximum_Cards
   m_EditorClassIdentifier: 
   _name: Stacked Deck
-  _effect: Increase Maximum Hand Cards by $
-  _cost: 16
+  _effect: Increase Maximum Cards in Hand and Draw Amount by $
+  _cost: 24
   _rarity: {fileID: 11400000, guid: 994856a3f8937bb4dba3e0990a364b53, type: 2}
   _icon: {fileID: -1387932027, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
   _tierIcon: {fileID: 21300000, guid: d6ce55b762145284ab0cfed4c9c3e509, type: 3}
