@@ -29,6 +29,8 @@ public class CompositeValue
 
     private List<CompositeValueModifier> _compositeModifiers;
 
+    public Action<float> OnValueModified { get; set; }
+
     public int ModifierCount => _compositeModifiers.Count;
 
     public CompositeValue()
@@ -89,6 +91,7 @@ public class CompositeValue
         _compositeModifiers.Add(modifier);
         _isDirty = true;
         _compositeModifiers.Sort(CompareModifierOrder);
+        OnValueModified?.Invoke(Value);
     }
 
     public void AddMultipleModifiers(IEnumerable<CompositeValueModifier> modifiers)
@@ -99,6 +102,7 @@ public class CompositeValue
         }
         _isDirty = true;
         _compositeModifiers.Sort(CompareModifierOrder);
+        OnValueModified?.Invoke(Value);
     }
 
     public bool RemoveModifier(CompositeValueModifier modifier)
@@ -106,10 +110,10 @@ public class CompositeValue
         if (_compositeModifiers.Remove(modifier))
         {
             _isDirty = true;
-            return true;
+            OnValueModified?.Invoke(Value);
         }
 
-        return false;
+        return _isDirty;
     }
 
     public bool RemoveAllModifiersFromSource(object source)
@@ -125,6 +129,10 @@ public class CompositeValue
             didRemove = true;
             _compositeModifiers.RemoveAt(i);
         }
+
+        if (didRemove)
+            OnValueModified?.Invoke(Value);
+
         return didRemove;
     }
 
@@ -135,6 +143,7 @@ public class CompositeValue
     {
         _compositeModifiers = new();
         _value = _baseValue;
+        OnValueModified.Invoke(_baseValue);
     }
 
     /// <summary>
@@ -149,9 +158,9 @@ public class CompositeValue
 
     private int CompareModifierOrder(CompositeValueModifier a, CompositeValueModifier b)
     {
-        if(a.Order < b.Order)
+        if (a.Order < b.Order)
             return -1;
-        else if(a.Order > b.Order)
+        else if (a.Order > b.Order)
             return 1;
         else
             return 0;

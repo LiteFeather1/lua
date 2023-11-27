@@ -31,11 +31,9 @@ public abstract class PowerUpModifier : PowerUp
         if (_valueToRemove == null)
             return;
 
-        bool isMaxed;
-        if (_modifier.Value > 0f)
-            isMaxed = compositeValue.Value >= _valueToRemove.Value;
-        else
-            isMaxed = compositeValue.Value <= _valueToRemove.Value;
+        bool isMaxed = _modifier.Value > 0f
+                       ? compositeValue.Value >= _valueToRemove.Value
+                       : compositeValue.Value <= _valueToRemove.Value;
 
         if (isMaxed)
             gm.CardManager.RemoveCardsOfType(PowerUpType);
