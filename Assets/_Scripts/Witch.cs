@@ -40,6 +40,9 @@ public class Witch : MonoBehaviour
     [Header("Burn Effect")]
     [SerializeField] private EffectCreatorFire _effectCreatorFire;
 
+    [Header("Aura")]
+    [SerializeField] private Aura _aura;
+
     [Header("Blink on Damage")]
     [SerializeField] private float _invulnerabilityDuration;
     private WaitForSeconds _waitInvulnerability;
@@ -79,6 +82,8 @@ public class Witch : MonoBehaviour
 
     public EffectCreatorFire EffectCreatorFire => _effectCreatorFire;
 
+    public Aura Aura => _aura;
+
     private void Awake()
     {
         _rb.drag = _decelerationRange.x;
@@ -93,6 +98,8 @@ public class Witch : MonoBehaviour
         _health.OnDamaged += Damaged;
         _health.OnDeath += OnDeath;
         _health.OnHeal += HPModified;
+
+        _damage.OnValueModified += _aura.SetDamage;
     }
 
     private void Start() => ModifyCurrency(4);
@@ -128,6 +135,8 @@ public class Witch : MonoBehaviour
         _health.OnDamaged -= Damaged;
         _health.OnDeath -= OnDeath;
         _health.OnHeal -= HPModified;
+
+        _damage.OnValueModified -= _aura.SetDamage;
     }
 
     private void FixedUpdate()
