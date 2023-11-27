@@ -42,6 +42,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _Size: 64
+    - _step1: 0.01
+    - _step2: 0.01
     m_Colors: []
   m_BuildTextureStacks: []
 --- !u!114 &6811305023694838816

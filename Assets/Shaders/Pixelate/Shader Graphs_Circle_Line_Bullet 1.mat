@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_Circle_Line_Bullet
+  m_Name: Shader Graphs_Circle_Line_Bullet 1
   m_Shader: {fileID: -6465566751694194690, guid: 7b884bc2c44b53b49af5f4145e2ab434, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -42,8 +42,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _Size: 64
-    - _step1: 0.01
-    - _step2: 0.04
+    - _step1: 0
+    - _step2: 0.06
     m_Colors: []
   m_BuildTextureStacks: []
 --- !u!114 &6811305023694838816
