@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Power Up/Witch/Aura Size")]
+[CreateAssetMenu(menuName = "Power Up/Witch/Aura/Aura Size")]
 public class PowerUpIncreaseAura : PowerUp
 {
     [Header("Increase Witch Aura")]

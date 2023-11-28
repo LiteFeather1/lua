@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Power Up/Witch/Aura Unlock")]
+[CreateAssetMenu(menuName = "Power Up/Witch/Aura/Aura Unlock")]
 public class PowerUpUnlockAura : PowerUp
 {
     [Header("Unlock Witch Aura")]
