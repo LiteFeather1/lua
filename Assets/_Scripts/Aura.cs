@@ -15,11 +15,9 @@ public class Aura : MonoBehaviour
     [SerializeField] private SpriteRenderer sr_Aura;
     [SerializeField] private CircleCollider2D _c;
 
-    public System.Action<IDamageable, float> OnDamageApplied { get; set; }
+    public Action<IDamageable, float> OnDamageApplied { get; set; }
 
     public CompositeValue DamagePercent => _damagePercent;
-
-    // TODO: Crit ???
 
     private void Awake()
     {
@@ -56,7 +54,9 @@ public class Aura : MonoBehaviour
         return _currentAuraIndex == _auraSprites.Length;
     }
 
-    public void SetDamage(float value) => _hitbox.SetDamage(value * _damagePercent.Value);
+    public void SetDamage(float value) => _hitbox.SetDamage(value * _damagePercent);
+    public void SetCrit(float value) => _hitbox.SetCritChance(value * .33f);
+    public void SetCritMultiplier(float value) => _hitbox.SetCritMultiplier(Mathf.Max(value * .5f , 1f));
 
     private void DamageApplied(IDamageable damageable, float damage, Vector2 pos)
     {

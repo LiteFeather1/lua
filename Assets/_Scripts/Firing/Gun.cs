@@ -166,12 +166,12 @@ public class Gun : MonoBehaviour
 
     private void DamageAppplied(IDamageable damageable, float damage, Vector2 pos)
     {
-        OnDamageAppplied?.Invoke(damageable, damage);
-
         var bulletExplosion = _bulletDamage.GetObject();
         bulletExplosion.transform.position = pos;
         bulletExplosion.Play();
         bulletExplosion.gameObject.SetActive(true);
+
+        OnDamageAppplied?.Invoke(damageable, damage);
     }
 
     private void ParticleCreated(ParticleStoppedCallBack particle)

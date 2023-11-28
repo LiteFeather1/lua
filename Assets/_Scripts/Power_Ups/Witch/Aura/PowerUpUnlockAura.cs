@@ -12,6 +12,8 @@ public class PowerUpUnlockAura : PowerUp
     {
         gm.Witch.Aura.SetAura(_auraSprite);
         gm.Witch.Damage.ForceRecalculate();
+        gm.Witch.CritChance.ForceRecalculate();
+        gm.Witch.CritMultiplier.ForceRecalculate();
         Remove(gm.CardManager);
     }
 }

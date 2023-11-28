@@ -100,6 +100,8 @@ public class Witch : MonoBehaviour
         _health.OnHeal += HPModified;
 
         _damage.OnValueModified += _aura.SetDamage;
+        _critChance.OnValueModified += _aura.SetCrit;
+        _critMultiplier.OnValueModified += _aura.SetCritMultiplier;
 
         _aura.OnDamageApplied += DamagedApplied;
     }
@@ -153,6 +155,10 @@ public class Witch : MonoBehaviour
         _health.OnHeal -= HPModified;
 
         _damage.OnValueModified -= _aura.SetDamage;
+        _critChance.OnValueModified -= _aura.SetCrit;
+        _critMultiplier.OnValueModified -= _aura.SetCritMultiplier;
+
+        _aura.OnDamageApplied -= DamagedApplied;
     }
 
     public void ModifyCurrency(int amount)
