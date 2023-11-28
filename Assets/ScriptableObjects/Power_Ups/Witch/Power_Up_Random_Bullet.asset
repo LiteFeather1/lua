@@ -22,3 +22,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 56aef1e733faee24cbdb82793ceac438, type: 2}
   _amount: 1
   _valueToRemove: {fileID: 0}
+  _unlockText: Periodically Shot Bullets in Random Directions
