@@ -9,15 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a015cc1913a0d6241b0b2151e28c363f, type: 3}
-  m_Name: Power_Up_Aura_Unlock
+  m_Script: {fileID: 11500000, guid: c083caf384a874b45ad67f8e9a635181, type: 3}
+  m_Name: Power_Up_Aura_Increase_Size_Tier_2
   m_EditorClassIdentifier: 
-  _name: Witch Aura
-  _effect: Unlocks a Damaging Aura Around Lua
+  _name: Aura Size
+  _effect: Increase Aura by $ Pixels
   _cost: 12
   _rarity: {fileID: 11400000, guid: 0869bc92c695cdd4c97f8b266f87f121, type: 2}
   _icon: {fileID: 1095602417, guid: 9597046be1f803a45bde8069dd619320, type: 3}
-  _tierIcon: {fileID: -1081683514, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
-  _powerUpsToUnlock:
-  - {fileID: 11400000, guid: a6b9375e89d7f264589040e0b54add02, type: 2}
-  _auraSprite: {fileID: -1766102230568296128, guid: 9731a7f38f0260a448afd07282a25790, type: 3}
+  _tierIcon: {fileID: 1374594584, guid: 9597046be1f803a45bde8069dd619320, type: 3}
+  _powerUpsToUnlock: []
+  _auraIncrease: 2

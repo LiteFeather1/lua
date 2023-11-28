@@ -405,6 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b344bf1f1189545b3178832339cc8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _auraSprites: {fileID: 11400000, guid: 7db32a9f2e0832f4ea6fda7a1c34762a, type: 2}
   _tickRateTimer: {fileID: 5092606559990903128}
   _hitbox: {fileID: 5263069347915584189}
   sr_Aura: {fileID: 9027821827532596157}

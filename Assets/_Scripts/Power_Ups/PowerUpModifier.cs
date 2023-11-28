@@ -43,6 +43,7 @@ public abstract class PowerUpModifier : PowerUp
     {
         if (_modifier.Value < 1f)
             return PercentModifer();
+
         return $"+{_modifier.Value}";
     }
 
