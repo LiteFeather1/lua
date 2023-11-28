@@ -7828,17 +7828,22 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4eaeeddb849d9df4e803aad003d665be, type: 2}
   - {fileID: 11400000, guid: 71fd451d859d3324bade4c0f4af106ca, type: 2}
   - {fileID: 11400000, guid: 79e8f219685a2304186a979adad12a7b, type: 2}
+  - {fileID: 11400000, guid: a2b3feeb3b1335a4199c87a7d82e69fd, type: 2}
   - {fileID: 11400000, guid: e9417bb56815bad40aa4d594fb55e422, type: 2}
   - {fileID: 11400000, guid: b8889bd9e108e244ba2525e72257cf57, type: 2}
   - {fileID: 11400000, guid: b336aee63f2d32f46a1c3835a6bccc2c, type: 2}
   - {fileID: 11400000, guid: 45d3bc6e450ce8f4a80863405efc89d3, type: 2}
+  - {fileID: 11400000, guid: 6164d162048f5ad49abc4dfb0c1a6d97, type: 2}
   - {fileID: 11400000, guid: bf83bdf565a019e4db2283e11d61954c, type: 2}
   - {fileID: 11400000, guid: 0823dca55e61b064692f73963b97d6c6, type: 2}
+  - {fileID: 11400000, guid: 1537ecb59e9bd8643be32902225cbdbc, type: 2}
   - {fileID: 11400000, guid: 0a818ee11d7896b44a09b118d7fbd499, type: 2}
   - {fileID: 11400000, guid: 98a476555a75c7b41aed429cd9c33dc1, type: 2}
   - {fileID: 11400000, guid: 2686035772f78784aa7e311e98717759, type: 2}
   - {fileID: 11400000, guid: 4bfaf8febf012894f9db7647ef64c6f4, type: 2}
+  - {fileID: 11400000, guid: 6a2d2a734f1f730489ffe2fc45157ca7, type: 2}
   - {fileID: 11400000, guid: 334d676b15020964dad1967628ebdc1a, type: 2}
+  - {fileID: 11400000, guid: 47813c8b2395f664d9d9b86c51960aa0, type: 2}
   - {fileID: 11400000, guid: d6d478c996489324986423532c7f7cb1, type: 2}
   - {fileID: 11400000, guid: 63b10fc08c3862147ae2eaaabf303606, type: 2}
   - {fileID: 11400000, guid: 910844b429242784c8691b7187647d88, type: 2}
@@ -7846,6 +7851,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 111af9b328bbd6f4886dd84e21987694, type: 2}
   - {fileID: 11400000, guid: f276ff5abb397e240919e02d0e3ad9a8, type: 2}
   - {fileID: 11400000, guid: 79506618dc6a9b345b8a77ec8c4d46a1, type: 2}
+  - {fileID: 11400000, guid: 5f870b6423fd5234ca6de4b5e724fcf8, type: 2}
   - {fileID: 11400000, guid: 5f39a668fd822cb4ebc1f7a7f1d4c92c, type: 2}
   _cardToDrawPerDraw: 1
   _maxCards: 5
@@ -8084,6 +8090,9 @@ MonoBehaviour:
     _value: 0
   _addCurrencyOnRecycle:
     _baseValue: 1
+    _value: 0
+  _healOnCardPlayed:
+    _baseValue: 0
     _value: 0
 --- !u!4 &1886159767
 Transform:

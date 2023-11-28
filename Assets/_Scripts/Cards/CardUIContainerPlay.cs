@@ -15,10 +15,10 @@ public class CardUIContainerPlay : CardUIDropContainer
             return;
         }
 
+        AudioManager.Instance.PlayOneShot(_played);
         _gm.Witch.ModifyCurrency(-card.PowerUp.Cost);
         card.PowerUp.PowerUpPlayed(_gm);
         card.ReturnToPile();
-        AudioManager.Instance.PlayOneShot(_played);
         OnPowerPlayed?.Invoke(card.PowerUp);
     }
 }
