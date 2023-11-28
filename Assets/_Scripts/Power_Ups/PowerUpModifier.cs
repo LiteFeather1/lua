@@ -1,5 +1,4 @@
-﻿using LTFUtils;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class PowerUpModifier : PowerUp
 {
@@ -30,12 +29,8 @@ public abstract class PowerUpModifier : PowerUp
 
         if (_valueToRemove == null)
             return;
-
-        bool isMaxed = _modifier.Value > 0f
-                       ? compositeValue.Value >= _valueToRemove.Value
-                       : compositeValue.Value <= _valueToRemove.Value;
-
-        if (isMaxed)
+        // is Maxed
+        if (_modifier > 0f ? compositeValue >= _valueToRemove : compositeValue <= _valueToRemove)
             Remove(gm.CardManager);
     }
 
