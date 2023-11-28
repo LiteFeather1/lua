@@ -14,7 +14,7 @@ public abstract class PowerUp : ScriptableObject
 
     public string PowerUpType => GetType().Name;
     public string Name => _name;
-    public string Efffect => _effect.Replace("$", Num);
+    public string Effect => _effect.Replace("$", Num);
     public int Cost => _cost;
     public float Weight => _rarity.Weight;
     public Color RarityColour => _rarity.RarityColour;
@@ -24,7 +24,7 @@ public abstract class PowerUp : ScriptableObject
 
     protected abstract string Num { get; }
 
-    public void Reset()
+    public virtual void Reset()
     {
         _unlockedPowerUps = false;
     }

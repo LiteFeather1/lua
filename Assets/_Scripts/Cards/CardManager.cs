@@ -233,7 +233,7 @@ public class CardManager : MonoBehaviour
     {
         t_cardName.text = power.Name;
         t_cardEffect.color = power.RarityColour;
-        t_cardEffect.text = power.Efffect;
+        t_cardEffect.text = power.Effect;
         _textBG.SetActive(true);
         OnCardHovered?.Invoke();
     }

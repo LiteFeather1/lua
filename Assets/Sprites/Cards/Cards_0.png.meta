@@ -887,7 +887,7 @@ TextureImporter:
         width: 30
         height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -895,6 +895,27 @@ TextureImporter:
       bones: []
       spriteID: e30d18ae7c221aa4481899ab001f4a17
       internalID: 543231189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: No_Tier
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 104
+        width: 30
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79e5516cd36c2c945bbc640a9e9a161b
+      internalID: -1081683514
       vertices: []
       indices: 
       edges: []
@@ -948,6 +969,7 @@ TextureImporter:
       Cards_Shield: -1649963791
       Cards_Shooting_Moon: 1297781831
       Cards_Staff_Burst: -1286512544
+      No_Tier: -1081683514
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

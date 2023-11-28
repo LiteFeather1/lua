@@ -26,7 +26,6 @@ public class Aura : MonoBehaviour
 
     public void SetAura(Sprite sprite)
     {
-        _c.enabled = true;
         sr_Aura.sprite = sprite;
         _c.radius = sprite.textureRect.width * 0.005f;
     }
