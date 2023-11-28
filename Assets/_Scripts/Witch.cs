@@ -100,6 +100,8 @@ public class Witch : MonoBehaviour
         _health.OnHeal += HPModified;
 
         _damage.OnValueModified += _aura.SetDamage;
+
+        _aura.OnDamageApplied += DamagedApplied;
     }
 
     private void Start() => ModifyCurrency(4);
@@ -128,6 +130,20 @@ public class Witch : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        var velocity = _rb.velocity;
+        velocity.x += _inputDirection.x * _acceleration.Value;
+        velocity.y += _inputDirection.y * _acceleration.Value;
+
+        if (Mathf.Sign(_inputDirection.x) == Mathf.Sign(_rb.velocity.x) && Mathf.Abs(_rb.velocity.x) > _maxSpeed)
+            velocity.x = 0f;
+        if (Mathf.Sign(_inputDirection.y) == Mathf.Sign(_rb.velocity.y) && Mathf.Abs(_rb.velocity.y) > _maxSpeed)
+            velocity.y = 0f;
+
+        _rb.AddForce(velocity, ForceMode2D.Force);
+    }
+
     private void OnDisable()
     {
         _gun.OnDamageAppplied -= DamagedApplied;
@@ -137,22 +153,6 @@ public class Witch : MonoBehaviour
         _health.OnHeal -= HPModified;
 
         _damage.OnValueModified -= _aura.SetDamage;
-    }
-
-    private void FixedUpdate()
-    {
-        var velocity = _rb.velocity;
-        velocity.x += _inputDirection.x * _acceleration.Value;
-        velocity.y += _inputDirection.y * _acceleration.Value;
-
-        if (Mathf.Sign(_inputDirection.x) == Mathf.Sign(_rb.velocity.x) 
-            && Mathf.Abs(_rb.velocity.x) > _maxSpeed)
-            velocity.x = 0f;
-        if (Mathf.Sign(_inputDirection.y) == Mathf.Sign(_rb.velocity.y) 
-            && Mathf.Abs(_rb.velocity.y) > _maxSpeed)
-            velocity.y = 0f;
-
-        _rb.AddForce(velocity, ForceMode2D.Force);
     }
 
     public void ModifyCurrency(int amount)
