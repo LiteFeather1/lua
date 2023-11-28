@@ -36,7 +36,7 @@ public abstract class PowerUpModifier : PowerUp
                        : compositeValue.Value <= _valueToRemove.Value;
 
         if (isMaxed)
-            gm.CardManager.RemoveCardsOfType(PowerUpType);
+            Remove(gm.CardManager);
     }
 
     private string FlatModifier()

@@ -40,7 +40,7 @@ public abstract class PowerUp : ScriptableObject
         gm.CardManager.AddWeightedPowerUps(_powerUpsToUnlock);
     }
 
-    // TODO: Simplify Removing
+    protected void Remove(CardManager cardManager) => cardManager.RemoveCardsOfType(GetType().Name);
 
     protected abstract void ApplyEffect(GameManager gm);
 }

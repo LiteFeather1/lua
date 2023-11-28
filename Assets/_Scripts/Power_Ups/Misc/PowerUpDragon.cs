@@ -10,6 +10,6 @@ public class PowerUpDragon : PowerUp
     protected override void ApplyEffect(GameManager gm)
     {
         Instantiate(_dragonPrefab).Activate(gm.Witch);
-        gm.CardManager.RemoveCardsOfType(PowerUpType);
+        Remove(gm.CardManager);
     }
 }

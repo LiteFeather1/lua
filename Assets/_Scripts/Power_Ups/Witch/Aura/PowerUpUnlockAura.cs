@@ -11,7 +11,7 @@ public class PowerUpUnlockAura : PowerUp
     protected override void ApplyEffect(GameManager gm)
     {
         gm.Witch.Aura.SetAura(_auraSprite);
-        gm.CardManager.RemoveCardsOfType(PowerUpType);
         gm.Witch.Damage.ForceRecalculate();
+        Remove(gm.CardManager);
     }
 }

@@ -16,13 +16,11 @@ public abstract class PowerUpFlat : PowerUp
         if (_valueToRemove == null)
             return;
 
-        bool isMaxed;
-        if (_amount > 0)
-            isMaxed = amount >= _valueToRemove.Value;
-        else
-            isMaxed = amount <= _valueToRemove.Value;
+        bool isMaxed = _amount > 0 
+                       ? amount >= _valueToRemove.Value 
+                       : amount <= _valueToRemove.Value;
 
         if (isMaxed)
-            gm.CardManager.RemoveCardsOfType(PowerUpType);
-    }
+            Remove(gm.CardManager);
+    }   
 }

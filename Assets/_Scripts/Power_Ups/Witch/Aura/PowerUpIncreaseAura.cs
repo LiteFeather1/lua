@@ -11,6 +11,6 @@ public class PowerUpIncreaseAura : PowerUp
     protected override void ApplyEffect(GameManager gm)
     {
         if (gm.Witch.Aura.IncreaseAura(_auraIncrease))
-            gm.CardManager.RemoveCardsOfType(PowerUpType);
+            Remove(gm.CardManager);
     }
 }
