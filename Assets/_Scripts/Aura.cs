@@ -2,6 +2,8 @@
 
 public class Aura : MonoBehaviour
 {
+    [SerializeField] private CompositeValue _damagePercent = new(.1f);
+
     [Header("Sizes")]
     [SerializeField] private ValueSpriteArray _auraSprites;
     private int _currentAuraIndex = 0;
@@ -11,6 +13,8 @@ public class Aura : MonoBehaviour
     [SerializeField] private HitBox _hitbox;
     [SerializeField] private SpriteRenderer sr_Aura;
     [SerializeField] private CircleCollider2D _c;
+
+    public CompositeValue DamagePercent => _damagePercent;
 
     // TODO: LifeSteal from here
     // TODO: Crit ???
@@ -48,5 +52,5 @@ public class Aura : MonoBehaviour
         return _currentAuraIndex == _auraSprites.Length;
     }
 
-    public void SetDamage(float value) => _hitbox.SetDamage(value * .33f);
+    public void SetDamage(float value) => _hitbox.SetDamage(value * _damagePercent.Value);
 }
