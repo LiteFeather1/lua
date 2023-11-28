@@ -84,6 +84,7 @@ public class CompositeValue
         _lastValue = _baseValue;
         _value = CalculateFinalValue();
         _isDirty = false;
+        OnValueModified?.Invoke(_value);
     }
 
     public void AddModifier(CompositeValueModifier modifier)
