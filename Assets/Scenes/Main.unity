@@ -7560,7 +7560,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 43}
-  m_SizeDelta: {x: 190, y: 30}
+  m_SizeDelta: {x: 172, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1775580853
 MonoBehaviour:
@@ -7828,6 +7828,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4eaeeddb849d9df4e803aad003d665be, type: 2}
   - {fileID: 11400000, guid: 71fd451d859d3324bade4c0f4af106ca, type: 2}
   - {fileID: 11400000, guid: 79e8f219685a2304186a979adad12a7b, type: 2}
+  - {fileID: 11400000, guid: 112385f36fba6f340b089504bf36fa3b, type: 2}
   - {fileID: 11400000, guid: a2b3feeb3b1335a4199c87a7d82e69fd, type: 2}
   - {fileID: 11400000, guid: e9417bb56815bad40aa4d594fb55e422, type: 2}
   - {fileID: 11400000, guid: b8889bd9e108e244ba2525e72257cf57, type: 2}
@@ -8091,7 +8092,10 @@ MonoBehaviour:
   _addCurrencyOnRecycle:
     _baseValue: 1
     _value: 0
-  _healOnCardPlayed:
+  _onCardPlayedDamageEnemies:
+    _baseValue: 0
+    _value: 0
+  _onCardPlayedHeal:
     _baseValue: 0
     _value: 0
 --- !u!4 &1886159767
@@ -8510,7 +8514,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -17.999996}
-  m_SizeDelta: {x: 190, y: 18}
+  m_SizeDelta: {x: 172, y: 18}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1971697729
 MonoBehaviour:

@@ -27,7 +27,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CompositeValue _addCurrencyOnRecycle;
 
     [Header("On Card Played Effect")]
-    [SerializeField] private CompositeValue _healOnCardPlayed;
+    [SerializeField] private CompositeValue _onCardPlayedDamageEnemies;
+    [SerializeField] private CompositeValue _onCardPlayedHeal;
 
     private IEnumerator _slowPitch;
 
@@ -43,7 +44,7 @@ public class GameManager : MonoBehaviour
     public CompositeValue HealOnRecycle => _healOnRecycle;
     public CompositeValue AddCurrencyOnRecycle => _addCurrencyOnRecycle;
 
-    public CompositeValue HealOnCardPlayed => _healOnCardPlayed;
+    public CompositeValue OnCardPlayedHeal => _onCardPlayedHeal;
 
     private void Awake()
     {
@@ -172,29 +173,29 @@ public class GameManager : MonoBehaviour
 
     private void CardRecycled()
     {
-        if (_damageEnemiesOnRecycle > 0f)
-        {
-            DamageEveryEnemy();
-        }
+        DamageEveryEnemy(_damageEnemiesOnRecycle);
 
         _witch.Health.Heal(_healOnRecycle);
         _witch.ModifyCurrency((int)_addCurrencyOnRecycle);
     }
 
-    private void DamageEveryEnemy()
+    private void DamageEveryEnemy(float damage)
     {
-        // Coping array so we don't get out of index 
+        if (damage < 0.01f)
+            return;
+
+        // Coping array so we don't get out of index  // 
         var enemies = _spawnManager.ActiveEnemies.ToArray();
         for (int i = 0; i < enemies.Length; i++)
-        {
-            enemies[i].Health.TakeDamage(_damageEnemiesOnRecycle, 0f, false, enemies[i].transform.position);
-        }
+            enemies[i].Health.TakeDamage(damage, 0f, false, enemies[i].transform.position);
     }
 
     private void CardPlayed(PowerUp powerUp)
     {
         _endScreenManager.AddCard(powerUp);
 
-        _witch.Health.Heal(_healOnCardPlayed);
+        DamageEveryEnemy(_onCardPlayedDamageEnemies);
+
+        _witch.Health.Heal(_onCardPlayedHeal);
     }
 }
