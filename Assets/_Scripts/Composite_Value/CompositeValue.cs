@@ -166,4 +166,25 @@ public class CompositeValue
         else
             return 0;
     }
+
+    #region Operator
+    public static implicit operator float(CompositeValue a) => a.Value;
+
+    public static bool operator >(CompositeValue lhs, CompositeValue rhs) => lhs.Value > rhs.Value;
+    public static bool operator >(CompositeValue lhs, float rhs) => lhs.Value > rhs;
+    public static bool operator >(float lhs, CompositeValue rhs) => lhs > rhs.Value;
+    
+    public static bool operator <(CompositeValue lhs, CompositeValue rhs) => lhs.Value < rhs.Value;
+    public static bool operator <(CompositeValue lhs, float rhs) => lhs.Value < rhs;
+    public static bool operator <(float lhs, CompositeValue rhs) => lhs < rhs.Value;
+
+    public static bool operator >=(CompositeValue lhs, CompositeValue rhs) => lhs.Value >= rhs.Value;
+    public static bool operator >=(CompositeValue lhs, float rhs) => lhs.Value >= rhs;
+    public static bool operator >=(float lhs, CompositeValue rhs) => lhs >= rhs.Value;
+
+    public static bool operator <=(CompositeValue lhs, CompositeValue rhs) => lhs.Value <= rhs.Value;
+    public static bool operator <=(CompositeValue lhs, float rhs) => lhs.Value <= rhs;
+    public static bool operator <=(float lhs, CompositeValue rhs) => lhs <= rhs.Value;
+
+    #endregion
 }

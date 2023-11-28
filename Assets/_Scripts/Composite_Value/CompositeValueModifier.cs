@@ -34,4 +34,25 @@ public class CompositeValueModifier
     {
         return _value != 0 && _type != CompositeValueModifierType.None;
     }
+
+    #region Operator
+    public static implicit operator float(CompositeValueModifier a) => a._value;
+
+    public static bool operator >(CompositeValueModifier lhs, CompositeValueModifier rhs) => lhs._value > rhs._value;
+    public static bool operator >(CompositeValueModifier lhs, float rhs) => lhs._value > rhs;
+    public static bool operator >(float lhs, CompositeValueModifier rhs) => lhs > rhs._value;
+
+    public static bool operator <(CompositeValueModifier lhs, CompositeValueModifier rhs) => lhs._value < rhs._value;
+    public static bool operator <(CompositeValueModifier lhs, float rhs) => lhs._value < rhs;
+    public static bool operator <(float lhs, CompositeValueModifier rhs) => lhs < rhs._value;
+
+    public static bool operator >=(CompositeValueModifier lhs, CompositeValueModifier rhs) => lhs._value >= rhs._value;
+    public static bool operator >=(CompositeValueModifier lhs, float rhs) => lhs._value >= rhs;
+    public static bool operator >=(float lhs, CompositeValueModifier rhs) => lhs >= rhs._value;
+
+    public static bool operator <=(CompositeValueModifier lhs, CompositeValueModifier rhs) => lhs._value <= rhs._value;
+    public static bool operator <=(CompositeValueModifier lhs, float rhs) => lhs._value <= rhs;
+    public static bool operator <=(float lhs, CompositeValueModifier rhs) => lhs <= rhs._value;
+
+    #endregion
 }
