@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Assistant to the Regional Witch
   _effect: Unlock a Powerful Dragon
-  _cost: 24
-  _rarity: {fileID: 11400000, guid: 994856a3f8937bb4dba3e0990a364b53, type: 2}
+  _cost: 16
+  _rarity: {fileID: 11400000, guid: 0869bc92c695cdd4c97f8b266f87f121, type: 2}
   _icon: {fileID: -74246491, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
   _tierIcon: {fileID: 21300000, guid: d6ce55b762145284ab0cfed4c9c3e509, type: 3}
   _powerUpsToUnlock: []

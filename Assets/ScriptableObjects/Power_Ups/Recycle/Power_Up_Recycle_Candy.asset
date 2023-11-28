@@ -20,6 +20,6 @@ MonoBehaviour:
   _tierIcon: {fileID: 21300000, guid: d6ce55b762145284ab0cfed4c9c3e509, type: 3}
   _powerUpsToUnlock: []
   _modifier:
-    _value: 1
+    _value: 2
     _type: 100
   _valueToRemove: {fileID: 0}
