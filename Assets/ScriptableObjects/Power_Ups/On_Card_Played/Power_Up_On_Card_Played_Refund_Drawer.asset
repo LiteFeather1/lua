@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Power_Up_On_Card_Played_Refund_Drawer
   m_EditorClassIdentifier: 
   _name: Wild Cards
-  _effect: 'Refund Drawing Time On Card Played.
+  _effect: 'Refund Drawing Time On Card Played
 
     Increase by $'
   _cost: 18

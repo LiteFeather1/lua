@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Power_Up_On_Card_Played_Heal
   m_EditorClassIdentifier: 
   _name: Healing Play
-  _effect: 'Heal On Card Played.
+  _effect: 'Heal On Card Played
 
     Increase by $'
   _cost: 10

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Power_Up_On_Card_Played_Damage_Enemies
   m_EditorClassIdentifier: 
   _name: Strinking Play
-  _effect: 'Damage Every Enemy on Card Played.
+  _effect: 'Damage Every Enemy on Card Played
 
     Increase Damage by $'
   _cost: 10
