@@ -671,7 +671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8969968865876324067, guid: 74858273c4d2e534aa4566e4a2296590, type: 3}
       propertyPath: _pixels
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8969968865876324067, guid: 74858273c4d2e534aa4566e4a2296590, type: 3}
       propertyPath: _transformToMove
