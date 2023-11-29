@@ -46,6 +46,7 @@ public class Witch : MonoBehaviour
     [Header("Thorn")]
     [SerializeField] private CompositeValue _thornRange = new(.64f);
     [SerializeField] private CompositeValue _thornDamage;
+    [SerializeField] private CompositeValue _thornDefenceDamageMultiplier = new(.5f);
 
     [Header("Blink on Damage")]
     [SerializeField] private float _invulnerabilityDuration;
@@ -90,6 +91,8 @@ public class Witch : MonoBehaviour
 
     public CompositeValue ThornRange => _thornRange;
     public CompositeValue ThornDamage => _thornDamage;
+    public CompositeValue ThornDefenceDamageMultiplier => _thornDefenceDamageMultiplier;
+    public float ThornTotalDamage() => _thornDamage + (_health.Defence * _thornDamage) + (_health.Shield * 5f);
 
     private void Awake()
     {

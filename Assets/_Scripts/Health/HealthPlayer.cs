@@ -10,6 +10,8 @@ public class HealthPlayer : Health
     public MaxHPIncreased OnMaxHPIncreased { get; set; }
     public System.Action OnShieldDamaged { get; set; }
     public System.Action<int> OnShieldGained { get; set; }
+
+    public int Shield => _shield;
     public CompositeValue Defence => _defence;
 
     public override bool TakeDamage(float damage, float knockback, bool crit, Vector2 pos)

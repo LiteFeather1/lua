@@ -180,9 +180,6 @@ public class SpawnManager : MonoBehaviour
 
     public void DamageEveryEnemy(float damage)
     {
-        if (damage < 0.01f)
-            return;
-
         // Coping array so we don't get out of index. Or do double damage to the same thing
         var enemies = _activeEnemies.ToArray();
         for (int i = 0; i < enemies.Length; i++)
@@ -191,9 +188,6 @@ public class SpawnManager : MonoBehaviour
 
     public void DamageEveryEnemyInRange(float damage, float knockback, Vector2 pos, float range, Action<Enemy> action)
     {
-        if (damage < 0.01f)
-            return;
-
         var enemies = _activeEnemies.ToArray();
         for (int i = 0; i < enemies.Length; i++)
         {

@@ -130,11 +130,12 @@ public class GameManager : MonoBehaviour
     {
         _shake.ShakeStrong();
 
-        _spawnManager.DamageEveryEnemyInRange(_witch.ThornDamage,
-                                              _witch.Knockback * .25f,
-                                              _witch.transform.position,
-                                              _witch.ThornRange, 
-                                              _spawnManager.SpawnThornAnimation);
+        if (_witch.ThornDamage > 0.01f)
+            _spawnManager.DamageEveryEnemyInRange(_witch.ThornTotalDamage(),
+                                                  _witch.Knockback * .25f,
+                                                  _witch.transform.position,
+                                                  _witch.ThornRange,
+                                                  _spawnManager.SpawnThornAnimation);
     }
 
     private void WitchDied()
@@ -189,7 +190,8 @@ public class GameManager : MonoBehaviour
 
     private void CardRecycled()
     {
-        _spawnManager.DamageEveryEnemy(_onRecycleDamageEnemies);
+        if (_onCardPlayedDamageEnemies > 0.01f)
+            _spawnManager.DamageEveryEnemy(_onRecycleDamageEnemies);
 
         _witch.Health.Heal(_onRecycleHeal);
         _witch.ModifyCurrency((int)_onRecycleAddCurrency);

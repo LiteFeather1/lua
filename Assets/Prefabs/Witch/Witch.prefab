@@ -209,7 +209,7 @@ MonoBehaviour:
   _aura: {fileID: 1775757007608571629}
   _thornRange:
     _baseValue: 0.48
-    _value: 0
+    _value: 0.48
   _thornDamage:
     _baseValue: 0
     _value: 0
