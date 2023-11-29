@@ -1,7 +1,9 @@
 ﻿using LTFUtils;
 using RetroAnimation;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -43,8 +45,11 @@ public class SpawnManager : MonoBehaviour
     [Header("Fire Particle")]
     [SerializeField] private ObjectPool<ParticleStoppedCallBack> _fireParticlePool;
 
+    [Header("Thorn Damage")]
+    [SerializeField] private ObjectPool<FlipBook> _thornAnimationPool; 
+
     public int EnemiesDied { get; private set; }
-    public System.Action EnemyHurt { get; set; }
+    public Action EnemyHurt { get; set; }
 
     public CompositeValue ChanceDamageExplosion => _chanceDamageExplosion;
     public CompositeValue ExplosionDamage => _explosionDamage;
@@ -95,6 +100,13 @@ public class SpawnManager : MonoBehaviour
             FireParticleCreated(fire);
         }
         _fireParticlePool.ObjectCreated += FireParticleCreated;
+
+        _thornAnimationPool.InitPool();
+        foreach (var thorn in _thornAnimationPool.Objects)
+        {
+            ThornAnimationCreated(thorn);
+        }
+        _thornAnimationPool.ObjectCreated += ThornAnimationCreated;
     }
 
     private void OnDestroy()
@@ -132,6 +144,12 @@ public class SpawnManager : MonoBehaviour
             fire.OnReturn -= FireParticleCreated;
         }
         _fireParticlePool.ObjectCreated -= FireParticleCreated;
+
+        foreach (var thorn in _thornAnimationPool.Objects)
+        {
+            thorn.OnAnimationFinished -= ThornAnimationCreated;
+        }
+        _thornAnimationPool.ObjectCreated -= ThornAnimationCreated;
     }
 
     public void Tick(float t, float tClamped)
@@ -171,13 +189,37 @@ public class SpawnManager : MonoBehaviour
             enemies[i].Health.TakeDamage(damage, 0f, false, enemies[i].transform.position);
     }
 
+    public void DamageEveryEnemyInRange(float damage, float knockback, Vector2 pos, float range, Action<Enemy> action)
+    {
+        if (damage < 0.01f)
+            return;
+
+        var enemies = _activeEnemies.ToArray();
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            var enemy = enemies[i];
+            if (Vector2.Distance(enemy.Position, pos) > range)
+                continue;
+
+            enemy.Health.TakeDamage(damage, knockback, false, pos);
+            action(enemy);
+        }
+    }
+
+    public void SpawnThornAnimation(Enemy enemy)
+    {
+        var thorn = _thornAnimationPool.GetObject();
+        thorn.transform.localPosition = enemy.Position;
+        thorn.Play(overRide: true);
+        thorn.gameObject.SetActive(true);
+    }
+
     private void EnemyCreated(Enemy enemy)
     {
         enemy.Init(GameManager.Instance.Witch);
         enemy.ReturnToPool += ReturnEnemyToPool;
         enemy.OnDied += EnemyDied;
         enemy.Health.OnDamaged += SpawnDamageNum;
-
         enemy.OnFireEffectApplied += _fireParticlePool.GetObject;
     }
 
@@ -220,7 +262,7 @@ public class SpawnManager : MonoBehaviour
     {
         var explosion = _enemyExplosionPool.GetObject();
         // Damage Explosion
-        if (Random.value < _chanceDamageExplosion.Value)
+        if (Random.value < _chanceDamageExplosion)
         {
             explosion.SetSheet(_explosionDamageSheet);
             for (int i = 0; i < _activeEnemies.Count; i++)
@@ -235,7 +277,7 @@ public class SpawnManager : MonoBehaviour
 
         explosion.transform.localPosition = pos;
         explosion.SR.color = colour;
-        explosion.Play();
+        explosion.Play(overRide: true);
         explosion.gameObject.SetActive(true);
     }
 
@@ -264,8 +306,7 @@ public class SpawnManager : MonoBehaviour
         var dmg = _damageNumPool.GetObject();
         dmg.SetText(damage.ToString("0.00"), crit ? _critColour : _normalColour);
 
-        var direction = Random.value > .5f ? 1f : -1f;
-        dmg.SetVelocity(new(_xVelocityRange.Random() * direction, _yVelocityRange.Random()));
+        dmg.SetVelocity(new(_xVelocityRange.Random() * Random.value > .5f ? 1f : -1f, _yVelocityRange.Random()));
         dmg.transform.position = pos;
         dmg.gameObject.SetActive(true);
 
@@ -298,5 +339,16 @@ public class SpawnManager : MonoBehaviour
     private void ReturnFireParticle(ParticleStoppedCallBack fireParticle)
     {
         _fireParticlePool.ReturnObject(fireParticle);
+    }
+
+    private void ThornAnimationCreated(FlipBook flipBook)
+    {
+        flipBook.OnAnimationFinished += ReturnThornAnimation;
+    }
+
+    private void ReturnThornAnimation(FlipBook flipBook)
+    {
+        flipBook.gameObject.SetActive(false);
+        _thornAnimationPool.ReturnObject(flipBook);
     }
 }

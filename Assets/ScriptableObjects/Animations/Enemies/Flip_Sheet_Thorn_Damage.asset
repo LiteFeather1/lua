@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Flip_Sheet_Thorn_Damage
   m_EditorClassIdentifier: 
   _sprites:
-  - {fileID: 6735030903458709673, guid: dcbcbdb1b2ce3e245821e221d2e6fd76, type: 3}
-  - {fileID: -1512573108869135888, guid: dcbcbdb1b2ce3e245821e221d2e6fd76, type: 3}
-  - {fileID: 1445610402197714821, guid: dcbcbdb1b2ce3e245821e221d2e6fd76, type: 3}
-  - {fileID: 7342677462598752393, guid: dcbcbdb1b2ce3e245821e221d2e6fd76, type: 3}
-  - {fileID: 9157727716230933453, guid: dcbcbdb1b2ce3e245821e221d2e6fd76, type: 3}
-  - {fileID: 3553416032257605216, guid: dcbcbdb1b2ce3e245821e221d2e6fd76, type: 3}
-  - {fileID: 6965457339722281381, guid: dcbcbdb1b2ce3e245821e221d2e6fd76, type: 3}
-  _fps: 10.5
+  - {fileID: 1273772941, guid: 609729a0a4c30df488ebe1948c79ece1, type: 3}
+  - {fileID: 1273772941, guid: 609729a0a4c30df488ebe1948c79ece1, type: 3}
+  - {fileID: 1613542331, guid: 609729a0a4c30df488ebe1948c79ece1, type: 3}
+  - {fileID: -36748355, guid: 609729a0a4c30df488ebe1948c79ece1, type: 3}
+  - {fileID: -353610298, guid: 609729a0a4c30df488ebe1948c79ece1, type: 3}
+  - {fileID: -735287109, guid: 609729a0a4c30df488ebe1948c79ece1, type: 3}
+  - {fileID: -1095386761, guid: 609729a0a4c30df488ebe1948c79ece1, type: 3}
+  - {fileID: 589631426, guid: 609729a0a4c30df488ebe1948c79ece1, type: 3}
+  _fps: 12

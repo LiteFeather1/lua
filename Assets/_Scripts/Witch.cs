@@ -43,6 +43,10 @@ public class Witch : MonoBehaviour
     [Header("Aura")]
     [SerializeField] private Aura _aura;
 
+    [Header("Thorn")]
+    [SerializeField] private CompositeValue _thornRange = new(.64f);
+    [SerializeField] private CompositeValue _thornDamage;
+
     [Header("Blink on Damage")]
     [SerializeField] private float _invulnerabilityDuration;
     private WaitForSeconds _waitInvulnerability;
@@ -83,6 +87,9 @@ public class Witch : MonoBehaviour
     public EffectCreatorFire EffectCreatorFire => _effectCreatorFire;
 
     public Aura Aura => _aura;
+
+    public CompositeValue ThornRange => _thornRange;
+    public CompositeValue ThornDamage => _thornDamage;
 
     private void Awake()
     {
@@ -180,12 +187,12 @@ public class Witch : MonoBehaviour
     private void DamagedApplied(IDamageable damageable, float damage)
     {
         float randomValue = Random.value;
-        if (randomValue < _chanceToLifeSteal.Value)
+        if (randomValue < _chanceToLifeSteal)
         {
-            _health.Heal(damage * _lifeStealPercent.Value);
+            _health.Heal(damage * _lifeStealPercent);
         }
 
-        if (randomValue < _effectCreatorFire.Chance.Value 
+        if (randomValue < _effectCreatorFire.Chance 
             && damageable.CanAddDamageEffect((int)IDamageEffect.DamageEffectID.FIRE_ID))
         {
             damageable.AddDamageEffect(_effectCreatorFire.Get(damage));

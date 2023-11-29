@@ -3100,6 +3100,9 @@ MonoBehaviour:
   _fireParticlePool:
     _object: {fileID: 4463116695840279212, guid: 596118e0077cd3b4b9a964af55617c5d, type: 3}
     _initialPoolSize: 10
+  _thornAnimationPool:
+    _object: {fileID: 7855374184197628161, guid: d3cc8c0b9c20f22489520ab6d3a9332f, type: 3}
+    _initialPoolSize: 10
 --- !u!1 &733809782
 GameObject:
   m_ObjectHideFlags: 0
@@ -9752,6 +9755,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1307456679637955763, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
+      propertyPath: _thornRange._value
+      value: 0.48
+      objectReference: {fileID: 0}
     - target: {fileID: 5155081586467621625, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.16

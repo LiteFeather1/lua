@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         Inputs.Player.Pause_UnPause.performed += PauseUnpause;
         Inputs.Player.Mute_UnMute.performed += MuteUnMute;
 
-        _witch.OnDamaged += _shake.ShakeStrong;
+        _witch.OnDamaged += WitchDamaged;
         _witch.Health.OnDeath += WitchDied;
 
         _cardManager.OnCardHovered += SlowDown;
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
         Inputs.Player.Pause_UnPause.performed -= PauseUnpause;
         Inputs.Player.Mute_UnMute.performed -= MuteUnMute;
 
-        _witch.OnDamaged -= _shake.ShakeStrong;
+        _witch.OnDamaged -= WitchDamaged;
         _witch.Health.OnDeath -= WitchDied;
 
         _cardManager.OnCardHovered -= SlowDown;
@@ -124,6 +124,17 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
         AudioManager.Instance.MusicSource.Stop();
         Time.timeScale = 1f;
+    }
+
+    private void WitchDamaged()
+    {
+        _shake.ShakeStrong();
+
+        _spawnManager.DamageEveryEnemyInRange(_witch.ThornDamage,
+                                              _witch.Knockback * .25f,
+                                              _witch.transform.position,
+                                              _witch.ThornRange, 
+                                              _spawnManager.SpawnThornAnimation);
     }
 
     private void WitchDied()
