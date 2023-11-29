@@ -7808,9 +7808,6 @@ MonoBehaviour:
   _timeToDrawCard:
     _baseValue: 7
     _value: 0
-  _refundOnDiscard:
-    _baseValue: 0.1
-    _value: 0
   _startingPowerUps:
   - {fileID: 11400000, guid: 5a5292755a2d8364dbdc683b5c850021, type: 2}
   - {fileID: 11400000, guid: 88d1342179fc9724f9d950bbde297268, type: 2}
@@ -7830,6 +7827,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 79e8f219685a2304186a979adad12a7b, type: 2}
   - {fileID: 11400000, guid: 112385f36fba6f340b089504bf36fa3b, type: 2}
   - {fileID: 11400000, guid: a2b3feeb3b1335a4199c87a7d82e69fd, type: 2}
+  - {fileID: 11400000, guid: 3e565f69de944bf489016144e2498c8e, type: 2}
   - {fileID: 11400000, guid: e9417bb56815bad40aa4d594fb55e422, type: 2}
   - {fileID: 11400000, guid: b8889bd9e108e244ba2525e72257cf57, type: 2}
   - {fileID: 11400000, guid: b336aee63f2d32f46a1c3835a6bccc2c, type: 2}
@@ -8092,10 +8090,16 @@ MonoBehaviour:
   _addCurrencyOnRecycle:
     _baseValue: 1
     _value: 0
-  _onCardPlayedDamageEnemies:
+  _refundOnRecycle:
     _baseValue: 0
     _value: 0
-  _onCardPlayedHeal:
+  _damageEnemiesOnCardPlayed:
+    _baseValue: 0
+    _value: 0
+  _healOnCardPlayed:
+    _baseValue: 0
+    _value: 0
+  _refundOnCardPlayed:
     _baseValue: 0
     _value: 0
 --- !u!4 &1886159767

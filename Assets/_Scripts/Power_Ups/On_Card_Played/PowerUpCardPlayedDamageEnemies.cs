@@ -5,6 +5,6 @@ public class PowerUpCardPlayedDamageEnemies : PowerUpModifier
 {
     protected override CompositeValue ValueToModify(GameManager gm)
     {
-        return gm.OnCardPlayedHeal;
+        return gm.DamageEnemiesOnCardPlayed;
     }
 }

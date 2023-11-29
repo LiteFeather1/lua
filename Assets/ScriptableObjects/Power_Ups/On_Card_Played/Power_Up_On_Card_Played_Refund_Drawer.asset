@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b12157128e1e0554f9611f85771f7058, type: 3}
+  m_Name: Power_Up_On_Card_Played_Refund_Drawer
+  m_EditorClassIdentifier: 
+  _name: Wild Cards
+  _effect: 'Refund Drawing Time On Card Played.
+
+    Increase by $'
+  _cost: 18
+  _rarity: {fileID: 11400000, guid: 994856a3f8937bb4dba3e0990a364b53, type: 2}
+  _icon: {fileID: 1873071602, guid: 9597046be1f803a45bde8069dd619320, type: 3}
+  _tierIcon: {fileID: -1081683514, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
+  _powerUpsToUnlock: []
+  _modifier:
+    _value: 0.1
+    _type: 100
+  _valueToRemove: {fileID: 11400000, guid: 87456abb2a877984c8aba73cde39cd5c, type: 2}
