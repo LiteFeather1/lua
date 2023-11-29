@@ -1,5 +1,6 @@
 using LTFUtils;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -129,9 +130,10 @@ public class CardManager : MonoBehaviour
         _powerUpToPowerUps.Remove(type);
     }
 
-    public void RedrawHand()
+    public IEnumerator RedrawHand()
     {
-        for (int i = 0; i < _drawnCards.Count; i++)
+        yield return null;
+        for (int i = _drawnCards.Count - 1; i >= 0; i--)
         {
             _recycler.DropCard(_drawnCards[i]);
         }
@@ -140,7 +142,9 @@ public class CardManager : MonoBehaviour
         {
             ActivateCard(_cardsToDraw[i]);
         }
+
         _cardsToDraw.Clear();
+        i_drawer.color = _drawerDisabledColour;
     }
 
     private IEnumerable<WeightedObject<PowerUp>> CreateRangeWeightedPowerUp(IEnumerable<PowerUp> powerUps)

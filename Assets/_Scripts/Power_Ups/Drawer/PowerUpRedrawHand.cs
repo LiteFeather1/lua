@@ -7,6 +7,6 @@ public class PowerUpRedrawHand : PowerUp
 
     protected override void ApplyEffect(GameManager gm)
     {
-        gm.CardManager.RedrawHand();
+        gm.StartCoroutine(gm.CardManager.RedrawHand());
     }
 }
