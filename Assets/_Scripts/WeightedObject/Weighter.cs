@@ -67,6 +67,8 @@ namespace LTFUtils
             return objectToReturn;
         }
 
+        public T GetObject() => GetWeightedObject().Object;
+
         public void AddObject(WeightedObject<T> objectToAdd)
         {
             _objects.Add(objectToAdd);

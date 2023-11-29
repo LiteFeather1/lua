@@ -7820,6 +7820,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2f3ca70996f48e1419639c5b99ee62dc, type: 2}
   - {fileID: 11400000, guid: 7f829950c3d4e7f4a8b6fa98d494f8d8, type: 2}
   - {fileID: 11400000, guid: c3344c93157a06440b5b658fd5c8bcf8, type: 2}
+  - {fileID: 11400000, guid: b8c4f061a05d65c45885223445aa71a0, type: 2}
   - {fileID: 11400000, guid: 8c6a259d34569ab469341af94b2f3ae7, type: 2}
   - {fileID: 11400000, guid: c2be24ad760fcab41a1e51d241d9bea6, type: 2}
   - {fileID: 11400000, guid: 4eaeeddb849d9df4e803aad003d665be, type: 2}
@@ -7857,6 +7858,9 @@ MonoBehaviour:
   _startingCards: 3
   _cardPrefab: {fileID: 8160194077367729612, guid: 95feaec6ef718e141b0ab90c1d489d39, type: 3}
   _cardArea: {fileID: 133767066}
+  _cardSize: 30
+  _cardMoveSpeed: 48
+  _spacingBetweenCardsRange: {x: 32, y: 4}
   i_drawer: {fileID: 1151395990}
   _drawerMove: {fileID: 6191480578839410783}
   _drawerDisabledColour: {r: 0.3882353, g: 0.3882353, b: 0.3882353, a: 1}
@@ -7875,9 +7879,6 @@ MonoBehaviour:
   _textBG: {fileID: 1775580851}
   t_cardName: {fileID: 926434836}
   t_cardEffect: {fileID: 1971697729}
-  _cardSize: 30
-  _cardMoveSpeed: 48
-  _spacingBetweenCardsRange: {x: 32, y: 4}
 --- !u!225 &1844759272
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -8081,25 +8082,25 @@ MonoBehaviour:
   _endScreenManager: {fileID: 2133348063}
   _spawnManager: {fileID: 682165029}
   _cardManager: {fileID: 1844759271}
-  _damageEnemiesOnRecycle:
+  _onRecycleDamageEnemies:
     _baseValue: 0
     _value: 0
-  _healOnRecycle:
+  _onRecycleHeal:
     _baseValue: 0
     _value: 0
-  _addCurrencyOnRecycle:
-    _baseValue: 1
-    _value: 0
-  _refundOnRecycle:
+  _onRecycleAddCurrency:
     _baseValue: 0
     _value: 0
-  _damageEnemiesOnCardPlayed:
+  _onRecycleRefund:
     _baseValue: 0
     _value: 0
-  _healOnCardPlayed:
+  _onCardPlayedDamageEnemies:
     _baseValue: 0
     _value: 0
-  _refundOnCardPlayed:
+  _onCardPlayedHeal:
+    _baseValue: 0
+    _value: 0
+  _onCardPlayedRefund:
     _baseValue: 0
     _value: 0
 --- !u!4 &1886159767

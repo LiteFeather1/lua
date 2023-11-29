@@ -98,10 +98,9 @@ public class CardManager : MonoBehaviour
         _seek.OnPowerUpDropped -= SeekDropped;
     }
 
-    public void CardRefundDrawer(float t)
+    public void CardRefundDrawer(float unitInterval)
     {
-        var refund = (_timeToDrawCard - _elapsedTimeToDrawCard) * t;
-        _elapsedTimeToDrawCard += refund;
+        _elapsedTimeToDrawCard += (_timeToDrawCard - _elapsedTimeToDrawCard) * unitInterval;
     }
 
     public int AddCard(int amount)
@@ -128,6 +127,20 @@ public class CardManager : MonoBehaviour
             _weightedPowerUps.RemoveObject(powerup);
 
         _powerUpToPowerUps.Remove(type);
+    }
+
+    public void RedrawHand()
+    {
+        for (int i = 0; i < _drawnCards.Count; i++)
+        {
+            _recycler.DropCard(_drawnCards[i]);
+        }
+
+        for (int i = _cardsToDraw.Count - 1; i >= 0; i--)
+        {
+            ActivateCard(_cardsToDraw[i]);
+        }
+        _cardsToDraw.Clear();
     }
 
     private IEnumerable<WeightedObject<PowerUp>> CreateRangeWeightedPowerUp(IEnumerable<PowerUp> powerUps)
@@ -173,6 +186,14 @@ public class CardManager : MonoBehaviour
         card.OnReturnToPile -= ReturnToDrawPile;
     }
 
+    private void ActivateCard(CardUIPowerUp card)
+    {
+        card.SetPowerUp(_weightedPowerUps.GetObject());
+        card.transform.position = i_drawer.transform.position;
+        _drawnCards.Add(card);
+        card.gameObject.SetActive(true);
+    }
+
     private void DrawCardsUpdate()
     {
         if (_cardsToDraw.Count == 0)
@@ -187,12 +208,7 @@ public class CardManager : MonoBehaviour
             {
                 var card = _cardsToDraw[0];
                 _cardsToDraw.RemoveAt(0);
-                var weightedObject = _weightedPowerUps.GetWeightedObject();
-                var powerUp = weightedObject.Object;
-                card.SetPowerUp(powerUp);
-                card.transform.position = i_drawer.transform.position;
-                _drawnCards.Add(card);
-                card.gameObject.SetActive(true);
+                ActivateCard(card);
 
                 if (_cardsToDraw.Count == 0)
                 {
