@@ -5,6 +5,6 @@ public class PowerUpCurrencyOnRecycle : PowerUpModifier
 {
     protected override CompositeValue ValueToModify(GameManager gm)
     {
-        return gm.AddCurrencyOnRecycle;
+        return gm.OnRecycleAddCurrency;
     }
 }

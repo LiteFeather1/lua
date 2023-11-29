@@ -5,6 +5,6 @@ public class PowerUpRefundDrawerOnRecycle : PowerUpModifier
 {
     protected override CompositeValue ValueToModify(GameManager gm)
     {
-        return gm.RefundOnRecycle;
+        return gm.OnRecycleRefund;
     }
 }

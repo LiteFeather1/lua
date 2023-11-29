@@ -5,6 +5,6 @@ public class PowerUpCardPlayedHeal : PowerUpModifier
 {
     protected override CompositeValue ValueToModify(GameManager gm)
     {
-        return gm.HealOnCardPlayed;
+        return gm.OnCardPlayedHeal;
     }
 }

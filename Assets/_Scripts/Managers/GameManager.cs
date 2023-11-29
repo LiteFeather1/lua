@@ -22,15 +22,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CardManager _cardManager;
 
     [Header("Recycle Effects")]
-    [SerializeField] private CompositeValue _damageEnemiesOnRecycle;
-    [SerializeField] private CompositeValue _healOnRecycle;
-    [SerializeField] private CompositeValue _addCurrencyOnRecycle;
-    [SerializeField] private CompositeValue _refundOnRecycle = new(0f);
+    [SerializeField] private CompositeValue _onRecycleDamageEnemies;
+    [SerializeField] private CompositeValue _onRecycleHeal;
+    [SerializeField] private CompositeValue _onRecycleAddCurrency;
+    [SerializeField] private CompositeValue _onRecycleRefund;
 
     [Header("On Card Played Effect")]
-    [SerializeField] private CompositeValue _damageEnemiesOnCardPlayed;
-    [SerializeField] private CompositeValue _healOnCardPlayed;
-    [SerializeField] private CompositeValue _refundOnCardPlayed;
+    [SerializeField] private CompositeValue _onCardPlayedDamageEnemies;
+    [SerializeField] private CompositeValue _onCardPlayedHeal;
+    [SerializeField] private CompositeValue _onCardPlayedRefund;
 
     private IEnumerator _slowPitch;
 
@@ -42,14 +42,14 @@ public class GameManager : MonoBehaviour
     public SpawnManager SpawnManager => _spawnManager;
     public CardManager CardManager => _cardManager;
 
-    public CompositeValue DamageEnemiesOnRecycle => _damageEnemiesOnRecycle;
-    public CompositeValue HealOnRecycle => _healOnRecycle;
-    public CompositeValue AddCurrencyOnRecycle => _addCurrencyOnRecycle;
-    public CompositeValue RefundOnRecycle => _refundOnRecycle;
+    public CompositeValue OnRecycleDamageEnemies => _onRecycleDamageEnemies;
+    public CompositeValue OnRecycleHeal => _onRecycleHeal;
+    public CompositeValue OnRecycleAddCurrency => _onRecycleAddCurrency;
+    public CompositeValue OnRecycleRefund => _onRecycleRefund;
 
-    public CompositeValue DamageEnemiesOnCardPlayed => _damageEnemiesOnCardPlayed;
-    public CompositeValue HealOnCardPlayed => _healOnCardPlayed;
-    public CompositeValue RefundOnCardPlayed => _refundOnCardPlayed;
+    public CompositeValue OnCardPlayedDamageEnemies => _onCardPlayedDamageEnemies;
+    public CompositeValue OnCardPlayedHeal => _onCardPlayedHeal;
+    public CompositeValue OnCardPlayedRefund => _onCardPlayedRefund;
 
     private void Awake()
     {
@@ -189,22 +189,22 @@ public class GameManager : MonoBehaviour
 
     private void CardRecycled()
     {
-        DamageEveryEnemy(_damageEnemiesOnRecycle);
+        DamageEveryEnemy(_onRecycleDamageEnemies);
 
-        _witch.Health.Heal(_healOnRecycle);
-        _witch.ModifyCurrency((int)_addCurrencyOnRecycle);
+        _witch.Health.Heal(_onRecycleHeal);
+        _witch.ModifyCurrency((int)_onRecycleAddCurrency);
 
-        _cardManager.CardRefundDrawer(_refundOnRecycle);
+        _cardManager.CardRefundDrawer(_onRecycleRefund);
     }
 
     private void CardPlayed(PowerUp powerUp)
     {
         _endScreenManager.AddCard(powerUp);
 
-        DamageEveryEnemy(_damageEnemiesOnCardPlayed);
+        DamageEveryEnemy(_onCardPlayedDamageEnemies);
 
-        _witch.Health.Heal(_healOnCardPlayed);
+        _witch.Health.Heal(_onCardPlayedHeal);
 
-        _cardManager.CardRefundDrawer(_refundOnCardPlayed);
+        _cardManager.CardRefundDrawer(_onCardPlayedRefund);
     }
 }

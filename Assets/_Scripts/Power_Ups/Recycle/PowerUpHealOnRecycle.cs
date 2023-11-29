@@ -5,6 +5,6 @@ public class PowerUpHealOnRecycle : PowerUpModifier
 {
     protected override CompositeValue ValueToModify(GameManager gm)
     {
-        return gm.HealOnRecycle;
+        return gm.OnRecycleHeal;
     }
 }

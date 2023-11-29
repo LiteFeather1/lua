@@ -5,6 +5,6 @@ public class PowerUpCardPlayedRefundDrawer : PowerUpModifier
 {
     protected override CompositeValue ValueToModify(GameManager gm)
     {
-        return gm.RefundOnCardPlayed;
+        return gm.OnCardPlayedRefund;
     }
 }

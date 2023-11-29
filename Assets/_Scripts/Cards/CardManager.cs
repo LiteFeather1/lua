@@ -30,6 +30,11 @@ public class CardManager : MonoBehaviour
     private List<CardUIPowerUp> _drawnCards;
     [SerializeField] private RectTransform _cardArea;
 
+    [Header("Card Moviment")]
+    [SerializeField] private float _cardSize = 30f;
+    [SerializeField] private float _cardMoveSpeed = 5f;
+    [SerializeField] private Vector2 _spacingBetweenCardsRange = new(16f, 12f);
+
     [Header("Drawer")]
     [SerializeField] private Image i_drawer;
     [SerializeField] private MoveOnPointerEnter _drawerMove;
@@ -50,18 +55,14 @@ public class CardManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI t_cardName;
     [SerializeField] private TextMeshProUGUI t_cardEffect;
 
-    [Header("Card Moviment")]
-    [SerializeField] private float _cardSize = 30f;
-    [SerializeField] private float _cardMoveSpeed = 5f;
-    [SerializeField] private Vector2 _spacingBetweenCardsRange = new(16f, 12f);
+    public Action OnCardHovered { get; set; }
+    public Action OnCardUnHovered { get; set; }
 
     public CompositeValue TimeToDrawCard => _timeToDrawCard;
 
     public CardUIContainerPlay PlayArea => _player;
-    public CardUIDropContainerRecycle Recycler => _recycler;
 
-    public Action OnCardHovered { get; set; }
-    public Action OnCardUnHovered { get; set; }
+    public CardUIDropContainerRecycle Recycler => _recycler;
 
     private void Awake()
     {

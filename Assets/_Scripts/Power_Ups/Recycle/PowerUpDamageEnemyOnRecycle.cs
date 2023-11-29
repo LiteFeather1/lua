@@ -5,6 +5,6 @@ public class PowerUpDamageEnemyOnRecycle : PowerUpModifier
 {
     protected override CompositeValue ValueToModify(GameManager gm)
     {
-        return gm.DamageEnemiesOnRecycle;
+        return gm.OnRecycleDamageEnemies;
     }
 }
