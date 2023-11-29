@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CompositeValue _damageEnemiesOnRecycle;
     [SerializeField] private CompositeValue _healOnRecycle;
     [SerializeField] private CompositeValue _addCurrencyOnRecycle;
+    [SerializeField] private CompositeValue _refundOnRecycle = new(0f);
 
     [Header("On Card Played Effect")]
     [SerializeField] private CompositeValue _onCardPlayedDamageEnemies;
@@ -43,7 +44,9 @@ public class GameManager : MonoBehaviour
     public CompositeValue DamageEnemiesOnRecycle => _damageEnemiesOnRecycle;
     public CompositeValue HealOnRecycle => _healOnRecycle;
     public CompositeValue AddCurrencyOnRecycle => _addCurrencyOnRecycle;
+    public CompositeValue RefundOnRecycle => _refundOnRecycle;
 
+    public CompositeValue OnCardPlayedDamageEnemies => _onCardPlayedDamageEnemies;
     public CompositeValue OnCardPlayedHeal => _onCardPlayedHeal;
 
     private void Awake()
@@ -177,6 +180,8 @@ public class GameManager : MonoBehaviour
 
         _witch.Health.Heal(_healOnRecycle);
         _witch.ModifyCurrency((int)_addCurrencyOnRecycle);
+
+        _cardManager.CardRefundDrawer(_refundOnRecycle);
     }
 
     private void DamageEveryEnemy(float damage)
