@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
         _cardManager.PlayArea.OnPowerPlayed += CardPlayed;
 
         _spawnManager.EnemyHurt += _shake.Shake;
+        _spawnManager.EnemyDamagedInRange += EnemyDamagedInRange;
 
         _uiManager.BindToWitch(_witch);
 
@@ -108,7 +109,8 @@ public class GameManager : MonoBehaviour
         _cardManager.PlayArea.OnPowerPlayed -= CardPlayed;
 
         _spawnManager.EnemyHurt -= _shake.Shake;
-     
+        _spawnManager.EnemyDamagedInRange -= EnemyDamagedInRange;
+
         _uiManager.UnBindToWitch(_witch);
     }
 
@@ -147,6 +149,11 @@ public class GameManager : MonoBehaviour
                                    _spawnManager.EnemiesDied,
                                    _cardManager.Recycler.CardsRecycled,
                                    _witch.TotalCurrencyGained);
+    }
+
+    private void EnemyDamagedInRange(float damage)
+    {
+        _witch.TryLifeSteal(Random.value, damage);
     }
 
     private void PauseUnpause(InputAction.CallbackContext ctx) => PauseUnpause();

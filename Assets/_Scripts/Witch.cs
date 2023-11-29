@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 public class Witch : MonoBehaviour
@@ -187,13 +188,18 @@ public class Witch : MonoBehaviour
         _rb.drag = _decelerationRange.Evaluate(t);
     }
 
-    private void DamagedApplied(IDamageable damageable, float damage)
+    public void TryLifeSteal(float randomValue, float damage)
     {
-        float randomValue = Random.value;
         if (randomValue < _chanceToLifeSteal)
         {
             _health.Heal(damage * _lifeStealPercent);
         }
+    }
+
+    private void DamagedApplied(IDamageable damageable, float damage)
+    {
+        float randomValue = Random.value;
+        TryLifeSteal(randomValue, damage);
 
         if (randomValue < _effectCreatorFire.Chance 
             && damageable.CanAddDamageEffect((int)IDamageEffect.DamageEffectID.FIRE_ID))

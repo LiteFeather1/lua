@@ -50,6 +50,7 @@ public class SpawnManager : MonoBehaviour
 
     public int EnemiesDied { get; private set; }
     public Action EnemyHurt { get; set; }
+    public Action<float> EnemyDamagedInRange { get; set; }
 
     public CompositeValue ChanceDamageExplosion => _chanceDamageExplosion;
     public CompositeValue ExplosionDamage => _explosionDamage;
@@ -198,8 +199,10 @@ public class SpawnManager : MonoBehaviour
             const float RANGE = .08f;
             float x = enemy.Position.x + Mathf.Clamp(pos.x - enemy.Position.x, -RANGE, RANGE);
             float y = enemy.Position.y + Mathf.Clamp(pos.y - enemy.Position.y, -RANGE, RANGE);
+            var enemyHealth = enemy.Health.HP;
             enemy.Health.TakeDamage(damage, knockback, false, new(x, y));
             action(enemy);
+            EnemyDamagedInRange?.Invoke(enemyHealth - enemy.Health.HP);
         }
     }
 
