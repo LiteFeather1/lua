@@ -176,20 +176,9 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.SFXSource.pitch = pitch;
     }
 
-    private void DamageEveryEnemy(float damage)
-    {
-        if (damage < 0.01f)
-            return;
-
-        // Coping array so we don't get out of index  // 
-        var enemies = _spawnManager.ActiveEnemies.ToArray();
-        for (int i = 0; i < enemies.Length; i++)
-            enemies[i].Health.TakeDamage(damage, 0f, false, enemies[i].transform.position);
-    }
-
     private void CardRecycled()
     {
-        DamageEveryEnemy(_onRecycleDamageEnemies);
+        _spawnManager.DamageEveryEnemy(_onRecycleDamageEnemies);
 
         _witch.Health.Heal(_onRecycleHeal);
         _witch.ModifyCurrency((int)_onRecycleAddCurrency);
@@ -201,7 +190,7 @@ public class GameManager : MonoBehaviour
     {
         _endScreenManager.AddCard(powerUp);
 
-        DamageEveryEnemy(_onCardPlayedDamageEnemies);
+        _spawnManager.DamageEveryEnemy(_onCardPlayedDamageEnemies);
 
         _witch.Health.Heal(_onCardPlayedHeal);
 

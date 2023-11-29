@@ -1,7 +1,6 @@
 ﻿using LTFUtils;
 using RetroAnimation;
 using System.Collections.Generic;
-using System.Net.NetworkInformation;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -9,6 +8,7 @@ public class SpawnManager : MonoBehaviour
     [Header("Enemy")]
     [SerializeField] private Weighter<ObjectPool<Enemy>> _weightedPoolOfEnemies;
     private Dictionary<string, ObjectPool<Enemy>> _enemyToPool;
+    private readonly List<Enemy> _activeEnemies = new();
     [SerializeField] private Vector2Int _maxEnemiesPerBurstRange;
     [SerializeField] private Vector2Int _minEnemiesPerBurstRange;
     [SerializeField] private Vector2Int _enemiesPerBurstOffset;
@@ -43,7 +43,6 @@ public class SpawnManager : MonoBehaviour
     [Header("Fire Particle")]
     [SerializeField] private ObjectPool<ParticleStoppedCallBack> _fireParticlePool;
 
-    public List<Enemy> ActiveEnemies { get; private set; } = new();
     public int EnemiesDied { get; private set; }
     public System.Action EnemyHurt { get; set; }
 
@@ -156,9 +155,20 @@ public class SpawnManager : MonoBehaviour
                 var randY = Random.Range(_spawnArea.bounds.min.y, _spawnArea.bounds.max.y);
                 enemy.transform.localPosition = new(randX, randY);
                 enemy.Spawn(t, tClamped);
-                ActiveEnemies.Add(enemy);
+                _activeEnemies.Add(enemy);
             }
         }
+    }
+
+    public void DamageEveryEnemy(float damage)
+    {
+        if (damage < 0.01f)
+            return;
+
+        // Coping array so we don't get out of index. Or do double damage to the same thing
+        var enemies = _activeEnemies.ToArray();
+        for (int i = 0; i < enemies.Length; i++)
+            enemies[i].Health.TakeDamage(damage, 0f, false, enemies[i].transform.position);
     }
 
     private void EnemyCreated(Enemy enemy)
@@ -181,7 +191,7 @@ public class SpawnManager : MonoBehaviour
 
     private void ReturnEnemyToPool(Enemy enemy)
     {
-        ActiveEnemies.Remove(enemy);
+        _activeEnemies.Remove(enemy);
         _enemyToPool[enemy.Data.Name].ReturnObject(enemy);
     }
 
@@ -213,9 +223,9 @@ public class SpawnManager : MonoBehaviour
         if (Random.value < _chanceDamageExplosion.Value)
         {
             explosion.SetSheet(_explosionDamageSheet);
-            for (int i = 0; i < ActiveEnemies.Count; i++)
+            for (int i = 0; i < _activeEnemies.Count; i++)
             {
-                var enemy = ActiveEnemies[i];
+                var enemy = _activeEnemies[i];
                 if (Vector2.Distance(pos, enemy.Position) < _explosionRadius)
                     enemy.Health.TakeDamage(_explosionDamage.Value, 0f, false, pos);
             }
