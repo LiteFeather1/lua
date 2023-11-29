@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 [CreateAssetMenu(menuName = "Power Up/Witch/Random Bullet Fire Rate")]
 public class PowerUpRandomBulletFireRate : PowerUpModifier

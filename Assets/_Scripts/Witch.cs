@@ -92,7 +92,7 @@ public class Witch : MonoBehaviour
     public CompositeValue ThornRange => _thornRange;
     public CompositeValue ThornDamage => _thornDamage;
     public CompositeValue ThornDefenceDamageMultiplier => _thornDefenceDamageMultiplier;
-    public float ThornTotalDamage() => _thornDamage + (_health.Defence * _thornDamage) + (_health.Shield * 5f);
+    public float ThornTotalDamage() => _thornDamage + (_health.Defence * _thornDefenceDamageMultiplier) + (_health.Shield * 5f);
 
     private void Awake()
     {

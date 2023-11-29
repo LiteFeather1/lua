@@ -9,17 +9,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 672c06272546db048bd6cd798f5a6efe, type: 3}
-  m_Name: Power_Up_Life_Steal
+  m_Script: {fileID: 11500000, guid: 4c972693a11edd7448949643fbeb2a08, type: 3}
+  m_Name: Power_Up_Thorn_Damage
   m_EditorClassIdentifier: 
-  _name: Life Steal
-  _effect: Increase Heal on Damage by $
-  _cost: 12
+  _name: Spiked Shell
+  _effect: 'Increase Thorn Base Damage by $
+
+    Increase Defence Damage by $2'
+  _cost: 16
   _rarity: {fileID: 11400000, guid: 0869bc92c695cdd4c97f8b266f87f121, type: 2}
-  _icon: {fileID: -1379203050, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
+  _icon: {fileID: -704660371, guid: 9597046be1f803a45bde8069dd619320, type: 3}
   _tierIcon: {fileID: -1081683514, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
   _powerUpsToUnlock: []
   _modifier:
-    _value: 0.05
-    _type: 200
+    _value: 5
+    _type: 100
   _valueToRemove: {fileID: 0}
+  _unlockText: "When Taking Damage, Damage Enemies Around Lua \nBased on Lua's Defences"
+  _defenceDamageMultiplier:
+    _value: 0.05
+    _type: 100

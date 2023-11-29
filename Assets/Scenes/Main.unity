@@ -7855,6 +7855,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f276ff5abb397e240919e02d0e3ad9a8, type: 2}
   - {fileID: 11400000, guid: 79506618dc6a9b345b8a77ec8c4d46a1, type: 2}
   - {fileID: 11400000, guid: 5f870b6423fd5234ca6de4b5e724fcf8, type: 2}
+  - {fileID: 11400000, guid: 216fab92f92d4034cbb8d6cc4399be53, type: 2}
   - {fileID: 11400000, guid: 5f39a668fd822cb4ebc1f7a7f1d4c92c, type: 2}
   _cardToDrawPerDraw: 1
   _maxCards: 5

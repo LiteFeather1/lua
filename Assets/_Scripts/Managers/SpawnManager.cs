@@ -195,7 +195,10 @@ public class SpawnManager : MonoBehaviour
             if (Vector2.Distance(enemy.Position, pos) > range)
                 continue;
 
-            enemy.Health.TakeDamage(damage, knockback, false, pos);
+            const float RANGE = .08f;
+            float x = enemy.Position.x + Mathf.Clamp(pos.x - enemy.Position.x, -RANGE, RANGE);
+            float y = enemy.Position.y + Mathf.Clamp(pos.y - enemy.Position.y, -RANGE, RANGE);
+            enemy.Health.TakeDamage(damage, knockback, false, new(x, y));
             action(enemy);
         }
     }

@@ -190,7 +190,7 @@ public class GameManager : MonoBehaviour
 
     private void CardRecycled()
     {
-        if (_onCardPlayedDamageEnemies > 0.01f)
+        if (_onRecycleDamageEnemies > 0.01f)
             _spawnManager.DamageEveryEnemy(_onRecycleDamageEnemies);
 
         _witch.Health.Heal(_onRecycleHeal);
@@ -203,7 +203,8 @@ public class GameManager : MonoBehaviour
     {
         _endScreenManager.AddCard(powerUp);
 
-        _spawnManager.DamageEveryEnemy(_onCardPlayedDamageEnemies);
+        if (_onCardPlayedDamageEnemies > 0.01f)
+            _spawnManager.DamageEveryEnemy(_onCardPlayedDamageEnemies);
 
         _witch.Health.Heal(_onCardPlayedHeal);
 
