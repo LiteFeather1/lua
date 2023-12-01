@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Aura : MonoBehaviour
 {
@@ -15,20 +14,16 @@ public class Aura : MonoBehaviour
     [SerializeField] private SpriteRenderer sr_Aura;
     [SerializeField] private CircleCollider2D _c;
 
-    public Action<IDamageable, float> OnDamageApplied { get; set; }
-
     public CompositeValue DamagePercent => _damagePercent;
 
     private void Awake()
     {
         _tickRateTimer.TimeEvent += Tick;
-        _hitbox.OnDamageAppplied += DamageApplied;
     }
 
     private void OnDestroy()
     {
         _tickRateTimer.TimeEvent -= Tick;
-        _hitbox.OnDamageAppplied -= DamageApplied;
     }
 
     private void Tick()
@@ -57,9 +52,4 @@ public class Aura : MonoBehaviour
     public void SetDamage(float value) => _hitbox.SetDamage(value * _damagePercent);
     public void SetCrit(float value) => _hitbox.SetCritChance(value * .33f);
     public void SetCritMultiplier(float value) => _hitbox.SetCritMultiplier(Mathf.Max(value * .5f , 1f));
-
-    private void DamageApplied(IDamageable damageable, float damage, Vector2 pos)
-    {
-        OnDamageApplied?.Invoke(damageable, damage * .33f);
-    }
 }

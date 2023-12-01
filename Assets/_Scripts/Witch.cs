@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
@@ -46,8 +47,14 @@ public class Witch : MonoBehaviour
 
     [Header("Thorn")]
     [SerializeField] private CompositeValue _thornRange = new(.64f);
-    [SerializeField] private CompositeValue _thornDamage;
+    [SerializeField] private CompositeValue _thorBaseDamage;
     [SerializeField] private CompositeValue _thornDefenceDamageMultiplier = new(.5f);
+
+    [Header("Lightning")]
+    [SerializeField] private CompositeValue _lightningChance = new(0f);
+    [SerializeField] private CompositeValue _lightningBaseDamage = new(5f);
+    [SerializeField] private CompositeValue _lightningRange = new(.64f);
+    [SerializeField] private int _lightningMinChain = 1;
 
     [Header("Blink on Damage")]
     [SerializeField] private float _invulnerabilityDuration;
@@ -62,11 +69,15 @@ public class Witch : MonoBehaviour
     [SerializeField] private Collider2D _hurtBox;
 
     public Action<int> OnCurrencyModified { get; set; }
+
     public Action<float> OnHPModified { get; set; }
     public Action OnDamaged { get; set; }
     public Action OnInvulnerabilityEnded { get; set; }
 
+
     public Action OnMainShoot { get; set; }
+
+    public Action<IDamageable> OnLightningEffectApplied { get; set; }
 
     public int Currency => _currency;
     public int TotalCurrencyGained => _totalCurrencyGained;
@@ -91,9 +102,16 @@ public class Witch : MonoBehaviour
     public Aura Aura => _aura;
 
     public CompositeValue ThornRange => _thornRange;
-    public CompositeValue ThornDamage => _thornDamage;
+    public CompositeValue ThornBaseDamage => _thorBaseDamage;
     public CompositeValue ThornDefenceDamageMultiplier => _thornDefenceDamageMultiplier;
-    public float ThornTotalDamage() => _thornDamage + (_health.Defence * _thornDefenceDamageMultiplier) + (_health.Shield * 5f);
+    public float ThornTotalDamage() => _thorBaseDamage + (_health.Defence * _thornDefenceDamageMultiplier) + (_health.Shield * 5f);
+
+    public CompositeValue LightningChance => _lightningChance;
+    public CompositeValue LightningBaseDamage => _lightningBaseDamage;
+    public CompositeValue LightningRange => _lightningRange;
+    public int LightningMinChain => _lightningMinChain;
+    public int ChangeLightningMinChain(int amount) => _lightningMinChain += amount;
+    public float LightningTotalDamage() => _lightningBaseDamage + (_damage * 0.1f);
 
     private void Awake()
     {
@@ -104,7 +122,7 @@ public class Witch : MonoBehaviour
 
     private void OnEnable()
     {
-        _gun.OnDamageAppplied += DamagedApplied;
+        _gun.OnDamageAppplied += DamageAppliedGun;
 
         _health.OnDamaged += Damaged;
         _health.OnDeath += OnDeath;
@@ -113,8 +131,6 @@ public class Witch : MonoBehaviour
         _damage.OnValueModified += _aura.SetDamage;
         _critChance.OnValueModified += _aura.SetCrit;
         _critMultiplier.OnValueModified += _aura.SetCritMultiplier;
-
-        _aura.OnDamageApplied += DamagedApplied;
     }
 
     private void Start() => ModifyCurrency(4);
@@ -159,7 +175,7 @@ public class Witch : MonoBehaviour
 
     private void OnDisable()
     {
-        _gun.OnDamageAppplied -= DamagedApplied;
+        _gun.OnDamageAppplied -= DamageAppliedGun;
 
         _health.OnDamaged -= Damaged;
         _health.OnDeath -= OnDeath;
@@ -168,8 +184,6 @@ public class Witch : MonoBehaviour
         _damage.OnValueModified -= _aura.SetDamage;
         _critChance.OnValueModified -= _aura.SetCrit;
         _critMultiplier.OnValueModified -= _aura.SetCritMultiplier;
-
-        _aura.OnDamageApplied -= DamagedApplied;
     }
 
     public void ModifyCurrency(int amount)
@@ -196,15 +210,26 @@ public class Witch : MonoBehaviour
         }
     }
 
-    private void DamagedApplied(IDamageable damageable, float damage)
+    private void DamageApplied(float damage)
     {
         float randomValue = Random.value;
         TryLifeSteal(randomValue, damage);
+    }
 
-        if (randomValue < _effectCreatorFire.Chance 
+    private void DamageAppliedGun(IDamageable damageable, float damage)
+    {
+        DamageApplied(damage);
+        float randomValue = Random.value;
+        if (randomValue < _effectCreatorFire.Chance
             && damageable.CanAddDamageEffect((int)IDamageEffect.DamageEffectID.FIRE_ID))
         {
             damageable.AddDamageEffect(_effectCreatorFire.Get(damage));
+        }
+
+        if (randomValue < _lightningChance)
+        {
+            OnLightningEffectApplied?.Invoke(damageable);
+
         }
     }
 

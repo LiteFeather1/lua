@@ -1,4 +1,4 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Ganeric Value/Int")]
+[CreateAssetMenu(menuName = "Generic Value/Int")]
 public class ValueInt : ValueGeneric<int> { }

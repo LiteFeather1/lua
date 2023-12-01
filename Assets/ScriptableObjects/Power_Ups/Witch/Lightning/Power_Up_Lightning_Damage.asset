@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75eb706010be96b46b7aa7352a00428c, type: 3}
+  m_Name: Power_Up_Lightning_Damage
+  m_EditorClassIdentifier: 
+  _name: Spark Surge
+  _effect: Increase Lightning Damage by $
+  _cost: 8
+  _rarity: {fileID: 11400000, guid: a7ae77a514c29d44995457b989b36476, type: 2}
+  _icon: {fileID: -930283316, guid: 9597046be1f803a45bde8069dd619320, type: 3}
+  _tierIcon: {fileID: -1081683514, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
+  _powerUpsToUnlock: []
+  _modifier:
+    _value: 4
+    _type: 100
+  _valueToRemove: {fileID: 0}

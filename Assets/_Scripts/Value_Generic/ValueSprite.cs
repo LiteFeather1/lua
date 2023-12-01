@@ -1,4 +1,4 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Ganeric Value/Sprite")]
+[CreateAssetMenu(menuName = "Generic Value/Sprite")]
 public class ValueSprite : ValueGeneric<Sprite> { }

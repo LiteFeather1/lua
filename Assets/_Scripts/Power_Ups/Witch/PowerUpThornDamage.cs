@@ -19,7 +19,7 @@ public class PowerUpThornDamage : PowerUpModifier
 
     protected override CompositeValue ValueToModify(GameManager gm)
     {
-        return gm.Witch.ThornDamage;
+        return gm.Witch.ThornBaseDamage;
     }
 
     protected override void ApplyEffect(GameManager gm)
