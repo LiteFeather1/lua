@@ -4,7 +4,7 @@ using UnityEngine;
 namespace LTFUtils
 {
     [System.Serializable]
-    public class ObjectPool<T> where T : MonoBehaviour
+    public class ObjectPool<T> where T : Component
     {
         [SerializeField] private T _object;
         [SerializeField] private int _initialPoolSize;
@@ -64,7 +64,7 @@ namespace LTFUtils
 
         private T Instantiate()
         {
-            T object_ = GameObject.Instantiate(_object);
+            T object_ = UnityEngine.Object.Instantiate(_object);
             object_.gameObject.SetActive(false);
             object_.transform.SetParent(_poolParent.transform);
             ObjectCreated?.Invoke(object_);
@@ -87,7 +87,7 @@ namespace LTFUtils
         public void Destroy()
         {
             Objects.Clear();
-            GameObject.Destroy(_poolParent);
+            UnityEngine.Object.Destroy(_poolParent);
         }
     }
 }

@@ -1,22 +1,20 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public class ChainLightning : MonoBehaviour
 {
     [Header("Prefabs")]
-    public GameObject lineRendererPrefab;
-    public GameObject lightRendererPrefab;
+    [SerializeField] private LineRenderer lineRendererPrefab;
 
     [Header("Config")]
-    public int chainLength;
-    public int lightnings;
+    [SerializeField] private int chainLength;
+    [SerializeField] private int lightnings;
 
     private float nextRefresh;
     private readonly float segmentLength = 0.2f;
 
     private List<LightningBolt> LightningBolts { get; set; }
-    private List<Vector2> Targets { get; set; }
+    [field: SerializeField] private List<Vector2> Targets { get; set; }
 
     void Awake()
     {
@@ -26,7 +24,7 @@ public class ChainLightning : MonoBehaviour
         for (int i = 0; i < chainLength; i++)
         {
             var tmpLightningBolt = new LightningBolt(segmentLength, i);
-            tmpLightningBolt.Init(lightnings, lineRendererPrefab, lightRendererPrefab);
+            tmpLightningBolt.Init(lightnings, lineRendererPrefab);
             LightningBolts.Add(tmpLightningBolt);
         }
         BuildChain();
@@ -61,7 +59,7 @@ public class ChainLightning : MonoBehaviour
                     LightningBolts[i].DrawLightning(Targets[i - 1], Targets[i]);
                 }
             }
-            nextRefresh = Time.time + 0.01f;
+            nextRefresh = Time.time + 0.1f;
         }
     }
 }

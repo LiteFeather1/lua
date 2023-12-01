@@ -1,7 +1,9 @@
-﻿using LTFUtils;
-using RetroAnimation;
-using System;
+﻿using System;
+using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
+using LTFUtils;
+using RetroAnimation;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -46,7 +48,15 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private ObjectPool<ParticleStoppedCallBack> _fireParticlePool;
 
     [Header("Thorn Damage")]
-    [SerializeField] private ObjectPool<FlipBook> _thornAnimationPool; 
+    [SerializeField] private ObjectPool<FlipBook> _thornAnimationPool;
+
+    [Header("Lightning Effect")]
+    [SerializeField] private ObjectPool<LineRenderer> _lightningEffectPool;
+    [SerializeField] private Vector2 _lightningTimeRange = new(.25f, .5f);
+    [SerializeField] private Vector2Int _lightningUpdatesRange = new(3, 5);
+    [SerializeField] private Vector2Int _lightningsPerSegmentRange = new(2, 5);
+    [SerializeField] private Vector2 _lightningSegmentLengthRange = new(.04f, .12f);
+    [SerializeField] private Vector2 _lightningSegmentOffsetRange = new(0.04f, 0.12f);
 
     public int EnemiesDied { get; private set; }
     public Action EnemyHurt { get; set; }
@@ -108,6 +118,8 @@ public class SpawnManager : MonoBehaviour
             ThornAnimationCreated(thorn);
         }
         _thornAnimationPool.ObjectCreated += ThornAnimationCreated;
+
+        _lightningEffectPool.InitPool();
     }
 
     private void OnDestroy()
@@ -212,6 +224,111 @@ public class SpawnManager : MonoBehaviour
         thorn.transform.localPosition = enemy.Position;
         thorn.Play(overRide: true);
         thorn.gameObject.SetActive(true);
+    }
+
+    public void LightningDamage(float damage, float range, Vector2 firstPoint, IDamageable firstDamageable, float lightningChance, int minChains)
+    {
+        var enemies = _activeEnemies.ToArray();
+        var lightingPoints = new List<Vector2>()
+        {
+            firstPoint,
+            firstDamageable.Pos
+        };
+        firstDamageable.TakeDamage(damage, 0.05f, false, firstDamageable.Pos);
+
+        var prevPos = firstDamageable.Pos;
+        while (Random.value < lightningChance || lightingPoints.Count - 2 < minChains)
+        {
+            float prevDistance = 0f;
+            Enemy enemyToAffect = null;
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                var enemy = enemies[i];
+                float distance = Vector2.Distance(prevPos, enemy.Position);
+                if (distance < range && distance > prevDistance)
+                {
+                    enemyToAffect = enemy;
+                    prevDistance = distance;
+                    prevPos = enemy.Position;
+                    enemy.Health.TakeDamage(damage, 0.05f, false, enemy.Position);
+                }
+            }
+
+            if (enemyToAffect == null)
+                break;
+
+            lightingPoints.Add(prevPos);
+        }
+    }
+
+    public Vector2[] pos;
+
+    [ContextMenu("Test")]
+    public void Test()
+    {
+        StartCoroutine(LightiningEffect(pos));
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        for (int i = 0; i < pos.Length; i++)
+            Gizmos.DrawWireSphere(pos[i], .04f);       
+    }
+
+    private IEnumerator LightiningEffect(Vector2[] positions)
+    {
+        // Get Lightnings
+        LineRenderer[][] lightnings = new LineRenderer[positions.Length - 1][];
+        float[] segmentLengths = new float[positions.Length];
+        for (int i = 0; i < lightnings.Length; i++)
+        {
+            int v = _lightningsPerSegmentRange.Random();
+            lightnings[i] = new LineRenderer[v];
+            for (int j = 0; j < lightnings[i].Length; j++)
+            {
+                lightnings[i][j] = _lightningEffectPool.GetObject();
+                lightnings[i][j].gameObject.SetActive(true);
+            }
+
+            segmentLengths[i] = _lightningSegmentLengthRange.Random();
+        }
+
+        var updates = _lightningUpdatesRange.Random();
+        var wait = new WaitForSeconds(_lightningTimeRange.Random() /  updates);
+        for (int i = 0; i < updates; i++)
+        {
+            for (int j = 0; j < lightnings.Length; j++)
+            {
+                var source = positions[j];
+                var target = positions[j + 1];
+                float distance = Vector2.Distance(source, target);
+                int segments = 4;
+                if (distance > segmentLengths[j])
+                    segments = Mathf.FloorToInt(distance / segmentLengths[j]) + 2;
+                for (int k = 0; k < lightnings[j].Length; k++)
+                {
+                    var lightning = lightnings[j][k];
+                    lightning.positionCount = segments;
+                    lightning.SetPosition(0, source);
+                    for (int l = 1; l < segments - 1; l++)
+                    {
+                        var tmp = Vector2.Lerp(source, target, (float)l / segments);
+                        lightning.SetPosition(l, new(tmp.x + _lightningSegmentOffsetRange.Random(), tmp.y + _lightningSegmentOffsetRange.Random()));
+                    }
+                    lightning.SetPosition(segments - 1, target);
+                }
+            }
+
+            yield return wait;
+        }
+
+        for (int i = 0; i < lightnings.Length; i++)
+            for (int j = 0; j < lightnings[i].Length; j++)
+            {
+                _lightningEffectPool.ReturnObject(lightnings[i][j]);
+                lightnings[i][j].gameObject.SetActive(false);
+            }
     }
 
     private void EnemyCreated(Enemy enemy)

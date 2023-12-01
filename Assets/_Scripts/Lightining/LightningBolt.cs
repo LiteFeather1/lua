@@ -3,7 +3,6 @@
 public class LightningBolt
 {
     public LineRenderer[] LineRenderer { get; set; }
-    public LineRenderer LightRenderer { get; set; }
 
     public float SegmentLength { get; set; }
     public int Index { get; private set; }
@@ -15,15 +14,14 @@ public class LightningBolt
         Index = index;
     }
 
-    public void Init(int lineRendererCount, GameObject lineRenderPrefab, GameObject lightRendererPrefab)
+    public void Init(int lineRendererCount, LineRenderer lineRenderPrefab)
     {
         LineRenderer = new LineRenderer[lineRendererCount];
         for (int i = 0; i < lineRendererCount; i++)
         {
-            LineRenderer[i] = Object.Instantiate(lineRenderPrefab).GetComponent<LineRenderer>();
+            LineRenderer[i] = Object.Instantiate(lineRenderPrefab);
             LineRenderer[i].enabled = false;
         }
-        //LightRenderer = Object.Instantiate(lightRendererPrefab).GetComponent<LineRenderer>();
         IsActive = false;
     }
 
@@ -34,7 +32,6 @@ public class LightningBolt
             LineRenderer[i].enabled = true;
         }
 
-        //LightRenderer.enabled = true;
         IsActive = true;
     }
 
@@ -51,22 +48,15 @@ public class LightningBolt
         {
             LineRenderer[i].positionCount = segments;
             LineRenderer[i].SetPosition(0, source);
-            for (int j = 0; j < segments - 1; j++)
+            for (int j = 1; j < segments - 1; j++)
             {
                 var t = (float)j / segments;
                 Vector2 tmp = Vector2.Lerp(source, target, t);
-                const float RANGE = .1f;
+                const float RANGE = .08f;
                 Vector2 lastPosition = new(tmp.x + Random.Range(-RANGE, RANGE), tmp.y + Random.Range(-RANGE, RANGE));
                 LineRenderer[i].SetPosition(j, lastPosition); ;
             }
             LineRenderer[i].SetPosition(segments - 1, target);
         }
-
-        //LightRenderer.SetPosition(0, source);
-        //LightRenderer.SetPosition(1, target);
-
-        //Color lightColor = new(.5647f, .58823f, 1f, Random.Range(0.2f, 1f));
-        //LightRenderer.startColor = lightColor;
-        //LightRenderer.endColor = lightColor;
     }
 }

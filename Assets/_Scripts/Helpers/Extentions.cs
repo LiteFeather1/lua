@@ -24,7 +24,7 @@ public static class Extentions
         return UnityEngine.Random.Range(v2.x, v2.y);
     }
 
-    public static float Random(this Vector2Int v2)
+    public static int Random(this Vector2Int v2)
     {
         return UnityEngine.Random.Range(v2.x, v2.y);
     }
