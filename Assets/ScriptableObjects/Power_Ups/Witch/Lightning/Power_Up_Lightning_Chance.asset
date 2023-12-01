@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b26f5a5f42d6e14f8855dbecb15e303, type: 3}
+  m_Name: Power_Up_Lightning_Chance
+  m_EditorClassIdentifier: 
+  _name: Living Battery!
+  _effect: Increase Lightining Strike Chance by $
+  _cost: 12
+  _rarity: {fileID: 11400000, guid: 0869bc92c695cdd4c97f8b266f87f121, type: 2}
+  _icon: {fileID: 1735702734, guid: 9597046be1f803a45bde8069dd619320, type: 3}
+  _tierIcon: {fileID: -1081683514, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
+  _powerUpsToUnlock:
+  - {fileID: 11400000, guid: bdddfa68f650d0440a62211be746b61e, type: 2}
+  - {fileID: 11400000, guid: 6d26f4b67ca022d46975e5b1e1aed0ee, type: 2}
+  - {fileID: 11400000, guid: 56a909b38ec74b240bd6ba045b7c11c3, type: 2}
+  _modifier:
+    _value: 0.1
+    _type: 100
+  _valueToRemove: {fileID: 11400000, guid: 87456abb2a877984c8aba73cde39cd5c, type: 2}
+  _unlockText: Chance to Start a Powerful Lightning Chain When Damaging Enemies

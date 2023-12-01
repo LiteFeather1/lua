@@ -1,4 +1,4 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Value Generic/Sprite Array")]
+[CreateAssetMenu(menuName = "Generic Value/Sprite Array")]
 public class ValueSpriteArray : ValueGenericArray<Sprite> { }

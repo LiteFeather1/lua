@@ -1,4 +1,4 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Ganeric Value/Float")]
+[CreateAssetMenu(menuName = "Generic Value/Float")]
 public class ValueFloat : ValueGeneric<float> { }
