@@ -256,9 +256,6 @@ public class SpawnManager : MonoBehaviour
                 break;
 
             lightingPoints.Add(prevPos);
-
-            if (lightingPoints.Count == 10)
-                break;
         }
 
         StartCoroutine(LightiningEffect(lightingPoints));
@@ -278,6 +275,7 @@ public class SpawnManager : MonoBehaviour
 
         var updates = _lightningUpdatesRange.Random();
         var wait = new WaitForSeconds(_lightningTimeRange.Random() /  updates);
+        // Draw Lightnings
         for (int i = 0; i < updates; i++)
         {
             for (int j = 0; j < lightnings.Length; j++)
@@ -303,6 +301,7 @@ public class SpawnManager : MonoBehaviour
             yield return wait;
         }
 
+        // Return Lightnings
         for (int i = 0; i < lightnings.Length; i++)
         {
             _lightningEffectPool.ReturnObject(lightnings[i]);
