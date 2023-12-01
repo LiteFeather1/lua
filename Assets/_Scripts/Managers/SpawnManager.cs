@@ -257,29 +257,19 @@ public class SpawnManager : MonoBehaviour
                 break;
 
             lightingPoints.Add(prevPos);
+
+            if (lightingPoints.Count == 10)
+                break;
         }
+
+        StartCoroutine(LightiningEffect(lightingPoints));
     }
 
-    public Vector2[] pos;
-
-    [ContextMenu("Test")]
-    public void Test()
-    {
-        StartCoroutine(LightiningEffect(pos));
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        for (int i = 0; i < pos.Length; i++)
-            Gizmos.DrawWireSphere(pos[i], .04f);       
-    }
-
-    private IEnumerator LightiningEffect(Vector2[] positions)
+    private IEnumerator LightiningEffect(IList<Vector2> positions)
     {
         // Get Lightnings
-        LineRenderer[][] lightnings = new LineRenderer[positions.Length - 1][];
-        float[] segmentLengths = new float[positions.Length];
+        LineRenderer[][] lightnings = new LineRenderer[positions.Count - 1][];
+        float[] segmentLengths = new float[positions.Count];
         for (int i = 0; i < lightnings.Length; i++)
         {
             int v = _lightningsPerSegmentRange.Random();

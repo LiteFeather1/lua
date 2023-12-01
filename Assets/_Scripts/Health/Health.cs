@@ -10,7 +10,7 @@ public class Health : MonoBehaviour, IDamageable
 
     public float MaxHP => _maxHealth;
     public float HP => _health;
-    public Vector2 Pos => transform.localPosition;
+    public Vector2 Pos => transform.position;
 
     public delegate void OnDamage(float damage, float knockback, bool crit, Vector2 pos);
     public OnDamage OnDamaged { get; set; }

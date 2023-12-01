@@ -53,6 +53,7 @@ public class Witch : MonoBehaviour
     [Header("Lightning")]
     [SerializeField] private CompositeValue _lightningChance = new(0f);
     [SerializeField] private CompositeValue _lightningDamage = new();
+    [SerializeField] private CompositeValue _lightningRange = new(.64f);
     [SerializeField] private int _lightningMinChain = 1;
 
     [Header("Blink on Damage")]
@@ -76,7 +77,7 @@ public class Witch : MonoBehaviour
 
     public Action OnMainShoot { get; set; }
 
-    public Action OnLightningEffectApplied { get; set; }
+    public Action<IDamageable> OnLightningEffectApplied { get; set; }
 
     public int Currency => _currency;
     public int TotalCurrencyGained => _totalCurrencyGained;
@@ -107,6 +108,7 @@ public class Witch : MonoBehaviour
 
     public CompositeValue LightningChance => _lightningChance;
     public CompositeValue LightningDamage => _lightningDamage;
+    public CompositeValue LightningRange => _lightningRange;
     public int LightningMinChain => _lightningMinChain;
     public int ChangeLightningMinChain(int amount) => _lightningMinChain += amount;
 
@@ -181,7 +183,6 @@ public class Witch : MonoBehaviour
         _damage.OnValueModified -= _aura.SetDamage;
         _critChance.OnValueModified -= _aura.SetCrit;
         _critMultiplier.OnValueModified -= _aura.SetCritMultiplier;
-
     }
 
     public void ModifyCurrency(int amount)
@@ -208,7 +209,7 @@ public class Witch : MonoBehaviour
         }
     }
 
-    private void DamageApplied(IDamageable damageable, float damage)
+    private void DamageApplied(float damage)
     {
         float randomValue = Random.value;
         TryLifeSteal(randomValue, damage);
@@ -216,7 +217,7 @@ public class Witch : MonoBehaviour
 
     private void DamageAppliedGun(IDamageable damageable, float damage)
     {
-        DamageApplied(damageable, damage);
+        DamageApplied(damage);
         float randomValue = Random.value;
         if (randomValue < _effectCreatorFire.Chance
             && damageable.CanAddDamageEffect((int)IDamageEffect.DamageEffectID.FIRE_ID))
@@ -225,7 +226,10 @@ public class Witch : MonoBehaviour
         }
 
         if (randomValue < _lightningChance)
-            OnLightningEffectApplied?.Invoke();
+        {
+            OnLightningEffectApplied?.Invoke(damageable);
+
+        }
     }
 
     private void HPModified()

@@ -210,12 +210,22 @@ MonoBehaviour:
   _thornRange:
     _baseValue: 0.48
     _value: 0.48
-  _thornDamage:
+  _thorBaseDamage:
     _baseValue: 0
     _value: 0
   _thornDefenceDamageMultiplier:
     _baseValue: 0.1
     _value: 0
+  _lightningChance:
+    _baseValue: 0
+    _value: 0
+  _lightningDamage:
+    _baseValue: 5
+    _value: 0
+  _lightningRange:
+    _baseValue: 0.64
+    _value: 0
+  _lightningMinChain: 1
   _invulnerabilityDuration: 0.5
   _blinkAmount: 4
   _durationBetweenBlinks: 0.0625

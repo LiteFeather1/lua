@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
 
         _witch.OnDamaged += WitchDamaged;
         _witch.Health.OnDeath += WitchDied;
+        _witch.OnLightningEffectApplied += WitchLightning;
 
         _cardManager.OnCardHovered += SlowDown;
         _cardManager.OnCardUnHovered += UnSlowDown;
@@ -102,6 +103,7 @@ public class GameManager : MonoBehaviour
 
         _witch.OnDamaged -= WitchDamaged;
         _witch.Health.OnDeath -= WitchDied;
+        _witch.OnLightningEffectApplied -= WitchLightning;
 
         _cardManager.OnCardHovered -= SlowDown;
         _cardManager.OnCardUnHovered -= UnSlowDown;
@@ -149,6 +151,16 @@ public class GameManager : MonoBehaviour
                                    _spawnManager.EnemiesDied,
                                    _cardManager.Recycler.CardsRecycled,
                                    _witch.TotalCurrencyGained);
+    }
+
+    private void WitchLightning(IDamageable firstDamageable)
+    {
+        _spawnManager.LightningDamage(_witch.LightningDamage,
+                                      _witch.LightningRange,
+                                      _witch.transform.localPosition,
+                                      firstDamageable,
+                                      _witch.LightningChance,
+                                      _witch.LightningMinChain);
     }
 
     private void EnemyDamagedInRange(float damage)
