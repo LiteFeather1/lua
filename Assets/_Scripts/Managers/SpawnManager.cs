@@ -117,7 +117,7 @@ public class SpawnManager : MonoBehaviour
         }
         _thornAnimationPool.ObjectCreated += ThornAnimationCreated;
 
-        _lightningEffectPool.InitPool();
+        _lightningEffectPool.InitPool(true);
     }
 
     private void OnDestroy()
@@ -269,7 +269,7 @@ public class SpawnManager : MonoBehaviour
         for (int i = 0; i < lightnings.Length; i++)
         {
             lightnings[i] = _lightningEffectPool.GetObject();
-            lightnings[i].gameObject.SetActive(true);
+            lightnings[i].enabled = true;
             segmentLengths[i] = _lightningSegmentLengthRange.Random();
         }
 
@@ -305,7 +305,7 @@ public class SpawnManager : MonoBehaviour
         for (int i = 0; i < lightnings.Length; i++)
         {
             _lightningEffectPool.ReturnObject(lightnings[i]);
-            lightnings[i].gameObject.SetActive(false);
+            lightnings[i].enabled = false;
         }
     }
 

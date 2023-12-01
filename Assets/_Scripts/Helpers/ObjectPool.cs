@@ -8,9 +8,10 @@ namespace LTFUtils
     {
         [SerializeField] private T _object;
         [SerializeField] private int _initialPoolSize;
+        private GameObject _poolParent;
+        private bool _spawnActive = false;
         private readonly Queue<T> _inactiveObjects = new();
         public HashSet<T> Objects { get; private set; } = new();
-        private GameObject _poolParent;
 
         public T Object => _object;
         public GameObject PoolParent => _poolParent;
@@ -29,21 +30,23 @@ namespace LTFUtils
 
         public ObjectPool() { }
 
-        public void InitPool(int size)
+        public void InitPool(int size, bool spawnActive = false)
         {
             if (_poolParent != null)
                 return;
 
+            _spawnActive = spawnActive;
             _poolParent = new("Pool_" + _object.name);
-
+            _object.gameObject.SetActive(_spawnActive);
             for (int i = 0; i < size; i++)
             {
                 T t = Instantiate();
                 _inactiveObjects.Enqueue(t);
             }
+            _object.gameObject.SetActive(true);
         }
 
-        public void InitPool() => InitPool(_initialPoolSize);
+        public void InitPool(bool spawnActive = false) => InitPool(_initialPoolSize, spawnActive);
 
         public T GetObject()
         {
@@ -55,27 +58,26 @@ namespace LTFUtils
             }
             else
             {
+                _object.gameObject.SetActive(_spawnActive);
                 object_ = Instantiate();
+                _object.gameObject.SetActive(true);
             }
 
-            //object_.gameObject.SetActive(true);
             return object_;
         }
 
         private T Instantiate()
         {
             T object_ = UnityEngine.Object.Instantiate(_object);
-            object_.gameObject.SetActive(false);
             object_.transform.SetParent(_poolParent.transform);
-            ObjectCreated?.Invoke(object_);
             object_.name += _inactiveObjects.Count;
             Objects.Add(object_);
+            ObjectCreated?.Invoke(object_);
             return object_;
         }
 
         public void ReturnObject(T object_)
         {
-            //object_.gameObject.SetActive(false);
             _inactiveObjects.Enqueue(object_);
         }
 
