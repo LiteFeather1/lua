@@ -52,7 +52,7 @@ public class Witch : MonoBehaviour
 
     [Header("Lightning")]
     [SerializeField] private CompositeValue _lightningChance = new(0f);
-    [SerializeField] private CompositeValue _lightningDamage = new();
+    [SerializeField] private CompositeValue _lightningBaseDamage = new(5f);
     [SerializeField] private CompositeValue _lightningRange = new(.64f);
     [SerializeField] private int _lightningMinChain = 1;
 
@@ -107,10 +107,11 @@ public class Witch : MonoBehaviour
     public float ThornTotalDamage() => _thorBaseDamage + (_health.Defence * _thornDefenceDamageMultiplier) + (_health.Shield * 5f);
 
     public CompositeValue LightningChance => _lightningChance;
-    public CompositeValue LightningDamage => _lightningDamage;
+    public CompositeValue LightningBaseDamage => _lightningBaseDamage;
     public CompositeValue LightningRange => _lightningRange;
     public int LightningMinChain => _lightningMinChain;
     public int ChangeLightningMinChain(int amount) => _lightningMinChain += amount;
+    public float LightningTotalDamage() => _lightningBaseDamage + (_damage * 0.1f);
 
     private void Awake()
     {

@@ -5,6 +5,6 @@ public class PowerUpLightningDamage : PowerUpModifier
 {
     protected override CompositeValue ValueToModify(GameManager gm)
     {
-        return gm.Witch.LightningDamage;
+        return gm.Witch.LightningBaseDamage;
     }
 }

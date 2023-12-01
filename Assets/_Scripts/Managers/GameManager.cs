@@ -155,7 +155,7 @@ public class GameManager : MonoBehaviour
 
     private void WitchLightning(IDamageable firstDamageable)
     {
-        _spawnManager.LightningDamage(_witch.LightningDamage,
+        _spawnManager.LightningDamage(_witch.LightningTotalDamage(),
                                       _witch.LightningRange,
                                       _witch.transform.localPosition,
                                       firstDamageable,
