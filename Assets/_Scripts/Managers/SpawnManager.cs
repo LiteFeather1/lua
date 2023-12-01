@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using LTFUtils;
@@ -300,9 +299,9 @@ public class SpawnManager : MonoBehaviour
         {
             for (int j = 0; j < lightnings.Length; j++)
             {
-                var source = positions[j];
-                var target = positions[j + 1];
-                float distance = Vector2.Distance(source, target);
+                var from = positions[j];
+                var to = positions[j + 1];
+                float distance = Vector2.Distance(from, to);
                 int segments = 4;
                 if (distance > segmentLengths[j])
                     segments = Mathf.FloorToInt(distance / segmentLengths[j]) + 2;
@@ -310,13 +309,13 @@ public class SpawnManager : MonoBehaviour
                 {
                     var lightning = lightnings[j][k];
                     lightning.positionCount = segments;
-                    lightning.SetPosition(0, source);
+                    lightning.SetPosition(0, from);
                     for (int l = 1; l < segments - 1; l++)
                     {
-                        var tmp = Vector2.Lerp(source, target, (float)l / segments);
+                        var tmp = Vector2.Lerp(from, to, (float)l / segments);
                         lightning.SetPosition(l, new(tmp.x + _lightningSegmentOffsetRange.Random(), tmp.y + _lightningSegmentOffsetRange.Random()));
                     }
-                    lightning.SetPosition(segments - 1, target);
+                    lightning.SetPosition(segments - 1, to);
                 }
             }
 

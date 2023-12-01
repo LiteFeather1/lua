@@ -3152,7 +3152,7 @@ MonoBehaviour:
     _object: {fileID: 7855374184197628161, guid: d3cc8c0b9c20f22489520ab6d3a9332f, type: 3}
     _initialPoolSize: 10
   _lightningEffectPool:
-    _object: {fileID: 0}
+    _object: {fileID: 7230517125207176632, guid: 767e31e41a19c5f498cf568cc555d925, type: 3}
     _initialPoolSize: 20
   _lightningTimeRange: {x: 0.25, y: 0.4}
   _lightningUpdatesRange: {x: 5, y: 7}

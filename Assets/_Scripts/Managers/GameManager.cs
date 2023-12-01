@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour
     {
         _shake.ShakeStrong();
 
-        if (_witch.ThornDamage > 0.01f)
+        if (_witch.ThornBaseDamage > 0.01f)
             _spawnManager.DamageEveryEnemyInRange(_witch.ThornTotalDamage(),
                                                   _witch.Knockback * .25f,
                                                   _witch.transform.position,
