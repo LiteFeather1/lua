@@ -3153,10 +3153,9 @@ MonoBehaviour:
     _initialPoolSize: 10
   _lightningEffectPool:
     _object: {fileID: 7230517125207176632, guid: 767e31e41a19c5f498cf568cc555d925, type: 3}
-    _initialPoolSize: 20
-  _lightningTimeRange: {x: 0.25, y: 0.33}
+    _initialPoolSize: 10
+  _lightningTimeRange: {x: 0.2, y: 0.25}
   _lightningUpdatesRange: {x: 3, y: 6}
-  _lightningsPerSegmentRange: {x: 1, y: 3}
   _lightningSegmentLengthRange: {x: 0.04, y: 0.08}
   _lightningSegmentOffsetRange: {x: -0.06, y: 0.06}
 --- !u!1 &733809782
@@ -9814,10 +9813,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1307456679637955763, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
-      propertyPath: _lightningChance._baseValue
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5155081586467621625, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.16

@@ -53,7 +53,6 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private ObjectPool<LineRenderer> _lightningEffectPool;
     [SerializeField] private Vector2 _lightningTimeRange = new(.25f, .5f);
     [SerializeField] private Vector2Int _lightningUpdatesRange = new(3, 5);
-    [SerializeField] private Vector2Int _lightningsPerSegmentRange = new(2, 5);
     [SerializeField] private Vector2 _lightningSegmentLengthRange = new(.04f, .12f);
     [SerializeField] private Vector2 _lightningSegmentOffsetRange = new(0.04f, 0.12f);
 
@@ -268,18 +267,12 @@ public class SpawnManager : MonoBehaviour
     private IEnumerator LightiningEffect(IList<Vector2> positions)
     {
         // Get Lightnings
-        LineRenderer[][] lightnings = new LineRenderer[positions.Count - 1][];
-        float[] segmentLengths = new float[positions.Count];
+        LineRenderer[] lightnings = new LineRenderer[positions.Count - 1];
+        float[] segmentLengths = new float[positions.Count - 1];
         for (int i = 0; i < lightnings.Length; i++)
         {
-            int v = _lightningsPerSegmentRange.Random();
-            lightnings[i] = new LineRenderer[v];
-            for (int j = 0; j < lightnings[i].Length; j++)
-            {
-                lightnings[i][j] = _lightningEffectPool.GetObject();
-                lightnings[i][j].gameObject.SetActive(true);
-            }
-
+            lightnings[i] = _lightningEffectPool.GetObject();
+            lightnings[i].gameObject.SetActive(true);
             segmentLengths[i] = _lightningSegmentLengthRange.Random();
         }
 
@@ -295,29 +288,26 @@ public class SpawnManager : MonoBehaviour
                 int segments = 4;
                 if (distance > segmentLengths[j])
                     segments = Mathf.FloorToInt(distance / segmentLengths[j]) + 2;
-                for (int k = 0; k < lightnings[j].Length; k++)
+
+                var lightning = lightnings[j];
+                lightning.positionCount = segments;
+                lightning.SetPosition(0, from);
+                for (int l = 1; l < segments - 1; l++)
                 {
-                    var lightning = lightnings[j][k];
-                    lightning.positionCount = segments;
-                    lightning.SetPosition(0, from);
-                    for (int l = 1; l < segments - 1; l++)
-                    {
-                        var tmp = Vector2.Lerp(from, to, (float)l / segments);
-                        lightning.SetPosition(l, new(tmp.x + _lightningSegmentOffsetRange.Random(), tmp.y + _lightningSegmentOffsetRange.Random()));
-                    }
-                    lightning.SetPosition(segments - 1, to);
+                    var tmp = Vector2.Lerp(from, to, (float)l / segments);
+                    lightning.SetPosition(l, new(tmp.x + _lightningSegmentOffsetRange.Random(), tmp.y + _lightningSegmentOffsetRange.Random()));
                 }
+                lightning.SetPosition(segments - 1, to);
             }
 
             yield return wait;
         }
 
         for (int i = 0; i < lightnings.Length; i++)
-            for (int j = 0; j < lightnings[i].Length; j++)
-            {
-                _lightningEffectPool.ReturnObject(lightnings[i][j]);
-                lightnings[i][j].gameObject.SetActive(false);
-            }
+        {
+            _lightningEffectPool.ReturnObject(lightnings[i]);
+            lightnings[i].gameObject.SetActive(false);
+        }
     }
 
     private void EnemyCreated(Enemy enemy)
