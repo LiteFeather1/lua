@@ -21,6 +21,7 @@ public class HealthPlayer : Health
     {
         if (Random.value < _dodgeChance)
         {
+            print(DodgeChance);
             return false;
         }
 
@@ -32,7 +33,7 @@ public class HealthPlayer : Health
             return false;   
         }
 
-        damage *= 100f / (100f + _defence.Value);
+        damage *= 100f / (100f + _defence);
 
         return base.TakeDamage(damage, knockback, crit, pos);
     }
