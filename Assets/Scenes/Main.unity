@@ -1257,12 +1257,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 241432714}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2.08, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1886159767}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &246102834
 GameObject:
@@ -8143,6 +8143,9 @@ MonoBehaviour:
   _endScreenManager: {fileID: 2133348063}
   _spawnManager: {fileID: 682165029}
   _cardManager: {fileID: 1844759271}
+  _volume: {fileID: 241432715}
+  _aberrationIntensity: 0.75
+  _aberrationDuration: 0.5
   _onRecycleDamageEnemies:
     _baseValue: 0
     _value: 0
@@ -8178,6 +8181,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 682165028}
+  - {fileID: 241432716}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1904676977
@@ -10139,4 +10143,3 @@ SceneRoots:
   - {fileID: 52593823}
   - {fileID: 863080840}
   - {fileID: 315477931}
-  - {fileID: 241432716}

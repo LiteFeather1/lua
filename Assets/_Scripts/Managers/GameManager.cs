@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -20,6 +22,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private EndScreenManager _endScreenManager;
     [SerializeField] private SpawnManager _spawnManager;
     [SerializeField] private CardManager _cardManager;
+
+    [Header("Volume")]
+    [SerializeField] private Volume _volume;
+    [SerializeField] private float _aberrationIntensity = 1f;
+    [SerializeField] private float _aberrationDuration = .5f;
 
     [Header("Recycle Effects")]
     [SerializeField] private CompositeValue _onRecycleDamageEnemies;
@@ -133,7 +140,8 @@ public class GameManager : MonoBehaviour
     private void WitchDamaged()
     {
         _shake.ShakeStrong();
-
+        _volume.profile.TryGet(out ChromaticAberration aberration);
+        StartCoroutine(Aberration(aberration));
         if (_witch.ThornBaseDamage > 0.01f)
             _spawnManager.DamageEveryEnemyInRange(_witch.ThornTotalDamage(),
                                                   _witch.Knockback * .25f,
@@ -191,22 +199,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(_slowPitch);
     }
 
-    private IEnumerator SetPitch(float pitch)
-    {
-        float eTime = 0f;
-        float currentPitch = AudioManager.Instance.MusicSource.pitch;
-        while (eTime < 0.25f)
-        {
-            float t = eTime / 0.5f;
-            AudioManager.Instance.MusicSource.pitch = Mathf.Lerp(currentPitch, pitch, t);
-            AudioManager.Instance.SFXSource.pitch = Mathf.Lerp(currentPitch, pitch, t);
-            eTime += Time.unscaledDeltaTime;
-            yield return null;
-        }
-        AudioManager.Instance.MusicSource.pitch = pitch;
-        AudioManager.Instance.SFXSource.pitch = pitch;
-    }
-
     private void CardRecycled()
     {
         if (_onRecycleDamageEnemies > 0.01f)
@@ -228,5 +220,33 @@ public class GameManager : MonoBehaviour
         _witch.Health.Heal(_onCardPlayedHeal);
 
         _cardManager.CardRefundDrawer(_onCardPlayedRefund);
+    }
+
+    private IEnumerator SetPitch(float pitch)
+    {
+        float eTime = 0f;
+        float currentPitch = AudioManager.Instance.MusicSource.pitch;
+        while (eTime < 0.25f)
+        {
+            float t = eTime / 0.5f;
+            AudioManager.Instance.MusicSource.pitch = Mathf.Lerp(currentPitch, pitch, t);
+            AudioManager.Instance.SFXSource.pitch = Mathf.Lerp(currentPitch, pitch, t);
+            eTime += Time.unscaledDeltaTime;
+            yield return null;
+        }
+        AudioManager.Instance.MusicSource.pitch = pitch;
+        AudioManager.Instance.SFXSource.pitch = pitch;
+    }
+
+    private IEnumerator Aberration(ChromaticAberration aberration)
+    {
+        var eTime = 0f;
+        while (eTime < _aberrationDuration)
+        {
+            eTime += Time.unscaledDeltaTime;
+            aberration.intensity.value = Mathf.Lerp(_aberrationIntensity, 0f, eTime/ _aberrationDuration);
+            yield return null;
+        }
+        aberration.intensity.value = 0f;
     }
 }
