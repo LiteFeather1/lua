@@ -5,6 +5,7 @@ public class HealthPlayer : Health
     [Header("Player Health")]
     [SerializeField] private int _shield;
     [SerializeField] private CompositeValue _defence = new(10f);
+    [SerializeField] private CompositeValue _dodgeChance = new(0f);
 
     public delegate void MaxHPIncreased(float maxHp, float t);
     public MaxHPIncreased OnMaxHPIncreased { get; set; }
@@ -14,8 +15,15 @@ public class HealthPlayer : Health
     public int Shield => _shield;
     public CompositeValue Defence => _defence;
 
+    public CompositeValue DodgeChance => _dodgeChance;
+
     public override bool TakeDamage(float damage, float knockback, bool crit, Vector2 pos)
     {
+        if (Random.value < _dodgeChance)
+        {
+            return false;
+        }
+
         if (_shield > 0)
         {
             _shield--;

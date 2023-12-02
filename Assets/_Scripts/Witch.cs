@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Rendering.UI;
-using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 public class Witch : MonoBehaviour
@@ -16,8 +14,8 @@ public class Witch : MonoBehaviour
     [SerializeField] private AudioClip _hurtSound;
 
     [Header("Moviment")]
-    [SerializeField] private float _maxSpeed;
-    [SerializeField] private CompositeValue _acceleration;
+    [SerializeField] private float _maxSpeed = 20f;
+    [SerializeField] private CompositeValue _acceleration = new(2f);
     private float _initialAcceleration;
     [SerializeField] private Vector2 _decelerationRange = new(.95f, .75f);
     [SerializeField] private float _accelerationMaxForRange = 50f;
@@ -25,13 +23,13 @@ public class Witch : MonoBehaviour
 
     [Header("Shoot")]
     [SerializeField] private WitchGun _gun;
-    [SerializeField] private CompositeValue _damage;
+    [SerializeField] private CompositeValue _damage = new(5f); 
     [SerializeField] private CompositeValue _critChance = new(.01f);
     [SerializeField] private CompositeValue _critMultiplier = new(1.5f);
-    [SerializeField] private CompositeValue _knockback;
+    [SerializeField] private CompositeValue _knockback = new(1f);
     [SerializeField] private CompositeValue _shootTime = new(1f);
     [SerializeField] private CompositeValue _randomBulletShootTime = new(1f);
-    [SerializeField] private int _randomBulletAmount;
+    [SerializeField] private int _randomBulletAmount = 0;
     private float _elapsedShootTime;
     private float _elapsedRandomShootTime;
 
