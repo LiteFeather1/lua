@@ -219,7 +219,7 @@ MonoBehaviour:
   _lightningChance:
     _baseValue: 0
     _value: 0
-  _lightningDamage:
+  _lightningBaseDamage:
     _baseValue: 5
     _value: 0
   _lightningRange:
@@ -462,7 +462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canTick: 1
   _timeType: 0
-  _time: 0.25
+  _time: 0.75
 --- !u!212 &9027821827532596157
 SpriteRenderer:
   m_ObjectHideFlags: 0
