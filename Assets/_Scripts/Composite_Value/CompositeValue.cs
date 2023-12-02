@@ -167,6 +167,11 @@ public class CompositeValue
             return 0;
     }
 
+    public override string ToString()
+    {
+        return $"Base Value {_baseValue}. Value {Value}";
+    }
+
     #region Operator
     public static implicit operator float(CompositeValue a) => a.Value;
 

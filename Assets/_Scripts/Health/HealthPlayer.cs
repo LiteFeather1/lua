@@ -14,7 +14,6 @@ public class HealthPlayer : Health
 
     public int Shield => _shield;
     public CompositeValue Defence => _defence;
-
     public CompositeValue DodgeChance => _dodgeChance;
 
     public override bool TakeDamage(float damage, float knockback, bool crit, Vector2 pos)
