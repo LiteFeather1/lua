@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CompositeValue _onCardPlayedHeal;
     [SerializeField] private CompositeValue _onCardPlayedRefund;
 
+    private static readonly WaitForSecondsRealtime _hitStop = new(.1f);
     private IEnumerator _slowPitch;
 
     public static GameManager Instance { get; private set; }
@@ -240,6 +241,10 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator Aberration(ChromaticAberration aberration)
     {
+        Time.timeScale = 0f;
+        yield return _hitStop;
+        Time.timeScale =  1f;
+
         var eTime = 0f;
         while (eTime < _aberrationDuration)
         {
