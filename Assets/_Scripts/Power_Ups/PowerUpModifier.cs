@@ -44,6 +44,6 @@ public abstract class PowerUpModifier : PowerUp
 
     private string PercentModifer()
     {
-        return (_modifier.Value * 100f).ToString("+0; -#");
+        return _modifier.Value.ToString("+0%; -#%");
     }
 }

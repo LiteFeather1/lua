@@ -9,7 +9,7 @@ public class PowerUpThornDamage : PowerUpModifier
 
     private static bool _picked = false;
 
-    public override string Effect => _picked ? base.Effect.Replace("$2", $"+{_defenceDamageMultiplier.Value * 100f:0.00}%") : _unlockText;
+    public override string Effect => _picked ? base.Effect.Replace("$2", _defenceDamageMultiplier.Value.ToString("+0%; -#%")) : _unlockText;
 
     public override void Reset()
     {
