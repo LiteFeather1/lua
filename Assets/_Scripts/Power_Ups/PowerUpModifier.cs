@@ -39,11 +39,11 @@ public abstract class PowerUpModifier : PowerUp
         if (_modifier.Value < 1f)
             return PercentModifer();
 
-        return $"+{_modifier.Value}";
+        return _modifier.Value.ToString("+0; -#");
     }
 
     private string PercentModifer()
     {
-        return $"+{Mathf.Abs(_modifier.Value) * 100f:0.00}%";
+        return (_modifier.Value * 100f).ToString("+0; -#");
     }
 }

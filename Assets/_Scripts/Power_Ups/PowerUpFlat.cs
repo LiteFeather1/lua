@@ -5,7 +5,8 @@ public abstract class PowerUpFlat : PowerUp
 {
     [SerializeField] private int _amount;
     [SerializeField] private ValueInt _valueToRemove;
-    protected override string Num => $"+{_amount}";
+
+    protected override string Num => _amount.ToString("+0;-#");
 
     protected abstract Func<int, int> ModifyValue(GameManager gm);
 

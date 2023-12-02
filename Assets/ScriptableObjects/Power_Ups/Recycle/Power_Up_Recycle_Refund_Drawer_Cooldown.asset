@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbd436068fbf7f04599b6f22783343e0, type: 3}
   m_Name: Power_Up_Recycle_Refund_Drawer_Cooldown
   m_EditorClassIdentifier: 
-  _name: Drawer Refund
+  _name: Tactical Redraw
   _effect: 'On Card Recycle Refund Drawing Time
 
     Increase by $'

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75eb706010be96b46b7aa7352a00428c, type: 3}
   m_Name: Power_Up_Lightning_Damage_Tier_1
   m_EditorClassIdentifier: 
-  _name: Spark Surge Tier 2
+  _name: Spark Surge+
   _effect: Increase Lightning Damage by $
   _cost: 12
   _rarity: {fileID: 11400000, guid: 0869bc92c695cdd4c97f8b266f87f121, type: 2}

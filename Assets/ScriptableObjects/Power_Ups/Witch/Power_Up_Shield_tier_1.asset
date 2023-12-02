@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d61f3b3b6bf7b647a4e4fbb04bc4ed7, type: 3}
   m_Name: Power_Up_Shield_tier_1
   m_EditorClassIdentifier: 
-  _name: Shield
+  _name: Shield+
   _effect: Gain $ Damage Block
   _cost: 8
   _rarity: {fileID: 11400000, guid: a7ae77a514c29d44995457b989b36476, type: 2}
