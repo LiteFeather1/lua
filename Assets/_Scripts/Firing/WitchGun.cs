@@ -2,7 +2,7 @@
 
 public class WitchGun : Gun
 {
-    [Header("Stats")]
+    [Header("Witch Gun")]
     [SerializeField] private CompositeValue _bulletSpeed = new(1f);
     [SerializeField] private CompositeValue _size = new(1f);
     [SerializeField] private CompositeValue _bulletDuration = new(1f);

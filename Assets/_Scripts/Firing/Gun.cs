@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    [Header("Gun")]
     [SerializeField] private Transform _firePoint;
-    [SerializeField] private ObjectPool<Bullet> _bulletPool;
+    [SerializeField] protected ObjectPool<Bullet> _bulletPool;
     [SerializeField] private ObjectPool<ParticleStoppedCallBack> _particlePool;
     [SerializeField] private ObjectPool<FlipBook> _bulletDamage;
     [SerializeField] private AudioClip _bulletShotSound;
@@ -96,17 +97,13 @@ public class Gun : MonoBehaviour
         float speed, int pierce, int bounce, float duration, float angle)
     {
         var bullet = _bulletPool.GetObject();
-        var particle = _particlePool.GetObject();
         bullet.transform.SetPositionAndRotation(_firePoint.position,
                                                      Quaternion.Euler(0f, 0f, angle));
         bullet.transform.localScale = Vector3.one * size;
-        bullet.AttachDisable(particle);
+        bullet.AttachDisable(_particlePool.GetObject());
         bullet.gameObject.SetActive(true);
-        bullet.Hitbox.SetDamage(damage);
-        bullet.Hitbox.SetCritChance(critChance);
-        bullet.Hitbox.SetCritMultiplier(critMultiplier);
-        bullet.Hitbox.SetKnockback(knockback);
-        bullet.Projectile.Shoot(speed, (Vector2)bullet.transform.right,
+        bullet.Hitbox.SetStats(damage, critChance, critMultiplier, knockback);
+        bullet.Projectile.Shoot(speed, bullet.transform.right,
                                 pierce, bounce, duration);
     }
 

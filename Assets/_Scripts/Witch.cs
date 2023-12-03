@@ -165,6 +165,7 @@ public class Witch : MonoBehaviour
 
         if (Mathf.Sign(_inputDirection.x) == Mathf.Sign(_rb.velocity.x) && Mathf.Abs(_rb.velocity.x) > _maxSpeed)
             velocity.x = 0f;
+
         if (Mathf.Sign(_inputDirection.y) == Mathf.Sign(_rb.velocity.y) && Mathf.Abs(_rb.velocity.y) > _maxSpeed)
             velocity.y = 0f;
 

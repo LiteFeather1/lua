@@ -13,6 +13,14 @@ public class HitBox : MonoBehaviour
     public void SetCritMultiplier(float multiplier) => _critMultiplier = multiplier;
     public void SetKnockback(float knockBack) => _knockBack = knockBack;
 
+    public void SetStats(float damage, float critChance, float critMultiplier, float knockBack)
+    {
+        _damage = damage;
+        _critChance = critChance;
+        _critMultiplier = critMultiplier;
+        _knockBack = knockBack;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out IDamageable damageable))
