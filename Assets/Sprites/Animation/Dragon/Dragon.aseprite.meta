@@ -1,0 +1,620 @@
+fileFormatVersion: 2
+guid: 1f48546ad62116b4b9656df1b3b02b12
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 638372305819465008
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: Dragon_Frame_0
+    originalName: 
+    pivot: {x: 0.5, y: -1.3333334}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 55
+      y: 84
+      width: 10
+      height: 9
+    spriteID: 616ee7d1b81388d4ca4a1e70b71f8e6d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 55, y: 84}
+  - name: Dragon_Frame_1
+    originalName: 
+    pivot: {x: 0.44444445, y: -1.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 116
+      width: 9
+      height: 8
+    spriteID: 90ee7e2d9739b8e45bebaa1477ad17b0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 116}
+  - name: Dragon_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: -0.8333334}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 74
+      y: 4
+      width: 12
+      height: 12
+    spriteID: 811487aec1b299547a63e0481d36627a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 74, y: 4}
+  - name: Dragon_Frame_3
+    originalName: 
+    pivot: {x: 0.45454547, y: -0.90909094}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 55
+      y: 26
+      width: 11
+      height: 11
+    spriteID: ad08316e022e9dd42bec105171440b40
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 55, y: 26}
+  - name: Dragon_Frame_4
+    originalName: 
+    pivot: {x: 0.5, y: -0.6}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 55
+      width: 16
+      height: 15
+    spriteID: 9ba48a23df7ba3541b5f7bcfb1471f35
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 31, y: 55}
+  - name: Dragon_Frame_5
+    originalName: 
+    pivot: {x: 0.4666667, y: -0.6428572}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 78
+      width: 15
+      height: 14
+    spriteID: 2676dff8f1284524dbcf77ab478ec889
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 31, y: 78}
+  - name: Dragon_Frame_6
+    originalName: 
+    pivot: {x: 0.47368422, y: -0.36842105}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 63
+      width: 19
+      height: 19
+    spriteID: d58d7b1a1a7894f408e9857355f9173f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 63}
+  - name: Dragon_Frame_7
+    originalName: 
+    pivot: {x: 0.47368422, y: -0.3888889}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 90
+      width: 19
+      height: 18
+    spriteID: bccc8fbe118abfa41b517da77de22d2e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 90}
+  - name: Dragon_Frame_8
+    originalName: 
+    pivot: {x: 0.5, y: -1}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 55
+      y: 45
+      width: 10
+      height: 12
+    spriteID: b08f0ec4090891d43a832383250abe2d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 55, y: 45}
+  - name: Dragon_Frame_9
+    originalName: 
+    pivot: {x: 0.44444445, y: -1.0909091}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 55
+      y: 65
+      width: 9
+      height: 11
+    spriteID: 6a7f75b57233c5443963f979b25e0e7a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 55, y: 65}
+  - name: Dragon_Frame_10
+    originalName: 
+    pivot: {x: 0.5, y: -0.6666667}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 100
+      width: 12
+      height: 15
+    spriteID: 4c211e6af62c6644c8ba168e286758ba
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 31, y: 100}
+  - name: Dragon_Frame_11
+    originalName: 
+    pivot: {x: 0.45454547, y: -0.71428573}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 55
+      y: 4
+      width: 11
+      height: 14
+    spriteID: c6c3bb7dddfc89048bd399ac83589f4f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 55, y: 4}
+  - name: Dragon_Frame_12
+    originalName: 
+    pivot: {x: 0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 4
+      width: 16
+      height: 18
+    spriteID: 20e1155d28183e246a1a4c7a4b314f74
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 31, y: 4}
+  - name: Dragon_Frame_13
+    originalName: 
+    pivot: {x: 0.4666667, y: -0.5294118}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 30
+      width: 15
+      height: 17
+    spriteID: 0a9632dc385480949920e1f03f9053b4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 31, y: 30}
+  - name: Dragon_Frame_14
+    originalName: 
+    pivot: {x: 0.47368422, y: -0.3181818}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 19
+      height: 22
+    spriteID: 5fcf22ec153b2c64dad8c59cde9f66d9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: Dragon_Frame_15
+    originalName: 
+    pivot: {x: 0.47368422, y: -0.33333334}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 34
+      width: 19
+      height: 21
+    spriteID: 06b31ba6841e96049b4db21010d80dd6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 34}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: 1030613185
+    name: Dragon
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Dragon_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 11
+        y: 12
+        width: 10
+        height: 9
+      spriteId: 616ee7d1b81388d4ca4a1e70b71f8e6d
+    - name: Dragon_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 12
+        y: 12
+        width: 9
+        height: 8
+      spriteId: 90ee7e2d9739b8e45bebaa1477ad17b0
+    - name: Dragon_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 10
+        y: 10
+        width: 12
+        height: 12
+      spriteId: 811487aec1b299547a63e0481d36627a
+    - name: Dragon_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 11
+        y: 10
+        width: 11
+        height: 11
+      spriteId: ad08316e022e9dd42bec105171440b40
+    - name: Dragon_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 8
+        y: 9
+        width: 16
+        height: 15
+      spriteId: 9ba48a23df7ba3541b5f7bcfb1471f35
+    - name: Dragon_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 9
+        y: 9
+        width: 15
+        height: 14
+      spriteId: 2676dff8f1284524dbcf77ab478ec889
+    - name: Dragon_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 7
+        y: 7
+        width: 19
+        height: 19
+      spriteId: d58d7b1a1a7894f408e9857355f9173f
+    - name: Dragon_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 7
+        y: 7
+        width: 19
+        height: 18
+      spriteId: bccc8fbe118abfa41b517da77de22d2e
+    - name: Dragon_Frame_8
+      frameIndex: 8
+      cellRect:
+        x: 11
+        y: 12
+        width: 10
+        height: 12
+      spriteId: b08f0ec4090891d43a832383250abe2d
+    - name: Dragon_Frame_9
+      frameIndex: 9
+      cellRect:
+        x: 12
+        y: 12
+        width: 9
+        height: 11
+      spriteId: 6a7f75b57233c5443963f979b25e0e7a
+    - name: Dragon_Frame_10
+      frameIndex: 10
+      cellRect:
+        x: 10
+        y: 10
+        width: 12
+        height: 15
+      spriteId: 4c211e6af62c6644c8ba168e286758ba
+    - name: Dragon_Frame_11
+      frameIndex: 11
+      cellRect:
+        x: 11
+        y: 10
+        width: 11
+        height: 14
+      spriteId: c6c3bb7dddfc89048bd399ac83589f4f
+    - name: Dragon_Frame_12
+      frameIndex: 12
+      cellRect:
+        x: 8
+        y: 9
+        width: 16
+        height: 18
+      spriteId: 20e1155d28183e246a1a4c7a4b314f74
+    - name: Dragon_Frame_13
+      frameIndex: 13
+      cellRect:
+        x: 9
+        y: 9
+        width: 15
+        height: 17
+      spriteId: 0a9632dc385480949920e1f03f9053b4
+    - name: Dragon_Frame_14
+      frameIndex: 14
+      cellRect:
+        x: 7
+        y: 7
+        width: 19
+        height: 22
+      spriteId: 5fcf22ec153b2c64dad8c59cde9f66d9
+    - name: Dragon_Frame_15
+      frameIndex: 15
+      cellRect:
+        x: 7
+        y: 7
+        width: 19
+        height: 21
+      spriteId: 06b31ba6841e96049b4db21010d80dd6
+    linkedCells: []
+    parentIndex: -1
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Server
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 32, y: 32}

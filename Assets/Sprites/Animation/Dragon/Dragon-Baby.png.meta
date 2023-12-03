@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ccf57f976cfafa645a873217b6522385
+guid: 55b387a01a286b8498c0e888aace8458
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Animation-Dragon_0
+      name: Dragon-Baby_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06f5a8629f120e845ae603bdace533d5
-      internalID: -2044495830
+      spriteID: f6ae937793e2f884d8468d8e40251d1b
+      internalID: -1913796649
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Animation-Dragon_1
+      name: Dragon-Baby_1
       rect:
         serializedVersion: 2
         x: 32
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b279388fd902f1d44a78465a91e9f5ea
-      internalID: -1981883825
+      spriteID: 4279cafd3d2ef86469e9b17658cfceff
+      internalID: 162760684
       vertices: []
       indices: 
       edges: []
@@ -162,8 +162,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Animation-Dragon_0: -2044495830
-      Animation-Dragon_1: -1981883825
+      Dragon-Baby_0: -1913796649
+      Dragon-Baby_1: 162760684
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
