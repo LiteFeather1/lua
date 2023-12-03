@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc33661053151784e9d2a6a2918768cb, type: 3}
   m_Name: Power_Up_Orbital_Rotation_Speed
   m_EditorClassIdentifier: 
-  _name: Revolution
+  _name: Orbital Revolution
   _effect: $ Orbital Revolution
   _cost: 8
   _rarity: {fileID: 11400000, guid: a7ae77a514c29d44995457b989b36476, type: 2}

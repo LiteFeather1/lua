@@ -3125,7 +3125,7 @@ MonoBehaviour:
   _explosionEnemySheet: {fileID: 11400000, guid: d20ec7e211aaa7c48bac35c4bcc2689b, type: 2}
   _explosionDamageSheet: {fileID: 11400000, guid: 01ce49ae33e4b784b923271afe884945, type: 2}
   _chanceDamageExplosion:
-    _baseValue: 0.01
+    _baseValue: 0
     _value: 0
   _explosionDamage:
     _baseValue: 5
@@ -9823,6 +9823,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1307456679637955763, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
+      propertyPath: _lightningChance._baseValue
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 5155081586467621625, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.16

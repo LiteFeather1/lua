@@ -338,9 +338,9 @@ ScriptedImporter:
       frameIndex: 0
       cellRect:
         x: 14
-        y: 57
-        width: 292
-        height: 119
+        y: 5
+        width: 305
+        height: 171
       spriteId: d9b6d080a5cf4b64c9a2be335e743a39
     linkedCells: []
     parentIndex: 1
@@ -355,114 +355,12 @@ ScriptedImporter:
       frameIndex: 0
       cellRect:
         x: 13
-        y: 61
-        width: 264
-        height: 106
+        y: 17
+        width: 285
+        height: 150
       spriteId: a9c33ad53a2d95847be0e196f6321914
     linkedCells: []
     parentIndex: 1
-  - layerIndex: 4
-    guid: 1911963676
-    name: Lua
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Lua
-      frameIndex: 0
-      cellRect:
-        x: 257
-        y: 127
-        width: 37
-        height: 37
-      spriteId: 72a2d5b67d19fe340b8736bbe869fca2
-    linkedCells: []
-    parentIndex: -1
-  - layerIndex: 5
-    guid: -778884765
-    name: Bg3
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Bg3
-      frameIndex: 0
-      cellRect:
-        x: 24
-        y: 0
-        width: 263
-        height: 42
-      spriteId: f04152ed140b725499519deb979c6ae1
-    linkedCells: []
-    parentIndex: -1
-  - layerIndex: 6
-    guid: -778884363
-    name: Bg2
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Bg2
-      frameIndex: 0
-      cellRect:
-        x: 0
-        y: 0
-        width: 320
-        height: 47
-      spriteId: b5edbb201f8ce354ba0dcbb27a96113b
-    linkedCells: []
-    parentIndex: -1
-  - layerIndex: 7
-    guid: -778883961
-    name: Bg1
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Bg1
-      frameIndex: 0
-      cellRect:
-        x: 0
-        y: 0
-        width: 320
-        height: 31
-      spriteId: 2596224c43858fa42af1230f7e1c2bb8
-    linkedCells: []
-    parentIndex: -1
-  - layerIndex: 9
-    guid: 1910928766
-    name: Bruxinha
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Bruxinha
-      frameIndex: 0
-      cellRect:
-        x: 139
-        y: 99
-        width: 22
-        height: 20
-      spriteId: d527d3a6d76b6684e9a5cdb3749d9c37
-    linkedCells: []
-    parentIndex: -1
-  - layerIndex: 10
-    guid: 1317221940
-    name: Layer 3
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Layer 3
-      frameIndex: 0
-      cellRect:
-        x: 223
-        y: 121
-        width: 42
-        height: 40
-      spriteId: dd1a15c71b8e24d47b2d30b964a07c00
-    linkedCells: []
-    parentIndex: -1
   platformSettings:
   - name: DefaultTexturePlatform
     overridden: 0

@@ -181,7 +181,7 @@ public class Witch : MonoBehaviour
         {
             _elapsedOrbitalShootTime = 0f;
             _orbitalDeltaMult = 0f;
-            _orbitalGun.StartShootRoutine(_damage * .33f,
+            _orbitalGun.StartShootRoutine(_damage * .5f,
                                           _critChance,
                                           _critMultiplier,
                                           _knockback * .33f,
