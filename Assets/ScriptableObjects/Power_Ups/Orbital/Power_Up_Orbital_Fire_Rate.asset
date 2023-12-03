@@ -9,15 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f170bcbe1d14d8344961f9c9c086723e, type: 3}
-  m_Name: Power_Up_Bullet_Amount
+  m_Script: {fileID: 11500000, guid: 0be6478978683d54c9d14e6fc9618c2a, type: 3}
+  m_Name: Power_Up_Orbital_Fire_Rate
   m_EditorClassIdentifier: 
-  _name: Bullet Amount
-  _effect: Increase Amount of Bullets Shot by $
-  _cost: 20
-  _rarity: {fileID: 11400000, guid: 994856a3f8937bb4dba3e0990a364b53, type: 2}
-  _icon: {fileID: 503048727, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
+  _name: Orbital Fire Rate
+  _effect: $ Orbital Fire Rate
+  _cost: 10
+  _rarity: {fileID: 11400000, guid: a7ae77a514c29d44995457b989b36476, type: 2}
+  _icon: {fileID: -1422033114, guid: 9597046be1f803a45bde8069dd619320, type: 3}
   _tierIcon: {fileID: -1081683514, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
   _powerUpsToUnlock: []
-  _amount: 1
+  _modifier:
+    _value: -0.1
+    _type: 300
   _valueToRemove: {fileID: 0}

@@ -20,7 +20,7 @@ public class CardManager : MonoBehaviour
     [SerializeField] private PowerUp[] _startingPowerUps;
     private Weighter<PowerUp> _weightedPowerUps;
     private readonly Dictionary<string, HashSet<WeightedObject<PowerUp>>> _powerUpToPowerUps = new();
-    private readonly HashSet<PowerUp> _allPowerUps;
+    private readonly HashSet<PowerUp> _allPowerUps = new();
 
     [Header("Cards")]
     [SerializeField] private int _cardToDrawPerDraw = 1;

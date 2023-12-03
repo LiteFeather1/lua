@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a4093003f15954d99eac80c6a2a9ea, type: 3}
+  m_Name: Power_Up_Orbital_Bullet_Amount_tier_1
+  m_EditorClassIdentifier: 
+  _name: Orbital Bullet+
+  _effect: Increase Amount of Orbital Bullets Shot by $
+  _cost: 20
+  _rarity: {fileID: 11400000, guid: 994856a3f8937bb4dba3e0990a364b53, type: 2}
+  _icon: {fileID: -592067398, guid: 9597046be1f803a45bde8069dd619320, type: 3}
+  _tierIcon: {fileID: -1081683514, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
+  _powerUpsToUnlock:
+  - {fileID: 11400000, guid: 7047eb2207d92d94db7a67f5c0c9f06b, type: 2}
+  - {fileID: 11400000, guid: 24bc7d20922bf1d45b33f1b3cbe23dd7, type: 2}
+  _amount: 2
+  _valueToRemove: {fileID: 11400000, guid: e6e46945ed3c83f419ab6712c43adbb2, type: 2}
+  _unlockText: Unlock Orbital Bullet
