@@ -8,7 +8,7 @@ public class OrbitalGun : Gun
     [SerializeField] private Transform _antiClockWiseRotation;
     [SerializeField] private CompositeValue _rotationSpeed;
     [SerializeField] private int _orbitalAmount = 0;
-    [SerializeField] private float _timeToCompleteShooting = 0f;
+    [SerializeField] private float _waitBetweenBursts = .75f;
 
     private readonly List<Bullet> _activeBullets = new();
 
@@ -43,7 +43,7 @@ public class OrbitalGun : Gun
                      bounce: 0,
                      duration: duration,
                      angle: 0f,
-                     timeToCompleteShooting: _timeToCompleteShooting,
+                     waitBetweenBursts: _waitBetweenBursts,
                      bulletAmount: 1,
                      burstAmount: _orbitalAmount,
                      separationPerBullet: 0f);

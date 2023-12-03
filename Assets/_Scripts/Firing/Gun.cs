@@ -1,5 +1,6 @@
 ﻿using LTFUtils;
 using RetroAnimation;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -12,7 +13,9 @@ public class Gun : MonoBehaviour
     [SerializeField] private ObjectPool<FlipBook> _bulletDamage;
     [SerializeField] private AudioClip _bulletShotSound;
 
-    public System.Action<IDamageable, float> OnDamageAppplied { get; set; }
+    public Action<IDamageable, float> OnDamageAppplied { get; set; }
+
+    public Action OnFinishedShooting { get; set; }
 
     private void Awake()
     {
@@ -71,7 +74,7 @@ public class Gun : MonoBehaviour
                                 int bounce,
                                 float duration,
                                 float angle,
-                                float timeToCompleteShooting,
+                                float waitBetweenBursts,
                                 int bulletAmount,
                                 int burstAmount,
                                 float separationPerBullet)
@@ -87,7 +90,7 @@ public class Gun : MonoBehaviour
                                bounce: bounce,
                                duration: duration,
                                angle: angle,
-                               timeToCompleteShooting: timeToCompleteShooting,
+                               waitBetweenBursts: waitBetweenBursts,
                                bulletAmount: bulletAmount,
                                burstAmount: burstAmount,
                                separationPerBullet: separationPerBullet));
@@ -126,12 +129,13 @@ public class Gun : MonoBehaviour
                                 int bounce,
                                 float duration,
                                 float angle,
-                                float timeToCompleteShooting,
+                                float waitBetweenBursts,
                                 int bulletAmount,
                                 int burstAmount,
                                 float separationPerBullet)
     {
-        WaitForSeconds yieldBetweenBurst = new(timeToCompleteShooting / burstAmount);
+
+        WaitForSeconds yieldBetweenBurst = burstAmount > 1 ? new(waitBetweenBursts) : null;
         for (int i = 0; i < burstAmount; i++)
         {
             for (int j = 0; j < bulletAmount; j++)
@@ -149,6 +153,8 @@ public class Gun : MonoBehaviour
             }
             yield return yieldBetweenBurst;
         }
+
+        OnFinishedShooting?.Invoke(); 
     }
 
     private float GetAngle(int bulletIndex, int bulletAmount, float separationPerBullet)

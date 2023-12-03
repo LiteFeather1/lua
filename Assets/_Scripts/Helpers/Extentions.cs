@@ -7,6 +7,16 @@ public static class Extentions
         return v2.x + (v2.y - v2.x) * t;
     }
 
+    public static float EvaluateClamped(this Vector2 v2, float t)
+    {
+        if (t > 1f)
+            t = 1f;
+        else if (t < 0f)
+            t = 0f;
+
+        return v2.x + (v2.y - v2.x) * t;
+    }
+
     public static float Evaluate(this Vector4 v4, float t)
     {
         float min = v4.x + (v4.y - v4.x) * t;

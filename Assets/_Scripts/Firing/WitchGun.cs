@@ -9,7 +9,7 @@ public class WitchGun : Gun
     [SerializeField] private int _bulletAmount = 1;
     [SerializeField] private float _separationPerBullet = 12.5f;
     [SerializeField] private int _burstAmount = 1;
-    [SerializeField] private float _timeToCompleteShooting = .25f;
+    [SerializeField] private Vector2 _timeBetweenBurstsRange = new(.5f, .1f);
     [SerializeField] private int _bounceAmount;
     [SerializeField] private int _pierceAmount;
 
@@ -26,7 +26,7 @@ public class WitchGun : Gun
     public int PierceAmount => _pierceAmount;
     public int AddPierce(int amount) => _pierceAmount += amount;
 
-    public float TimeToCompleteShooting => _timeToCompleteShooting;
+    public float TimeToCompleteShooting => _timeBetweenBurstsRange.EvaluateClamped((_burstAmount - 1) / 9f);
     public float SeparationPerBullet => _separationPerBullet;
 
     public void StartShootRoutine(float damage, float critChance, float critMultiplier, float knockback)
@@ -41,7 +41,7 @@ public class WitchGun : Gun
                      bounce: _bounceAmount,
                      duration: _bulletDuration.Value,
                      angle: 0f,
-                     timeToCompleteShooting: _timeToCompleteShooting,
+                     waitBetweenBursts: TimeToCompleteShooting,
                      bulletAmount: _bulletAmount,
                      burstAmount: _burstAmount,
                      separationPerBullet: _separationPerBullet);

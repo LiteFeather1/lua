@@ -144,7 +144,7 @@ MonoBehaviour:
   _bulletAmount: 1
   _separationPerBullet: 12.5
   _burstAmount: 1
-  _timeToCompleteShooting: 0.25
+  _timeBetweenBurstsRange: {x: 0.4, y: 0.1}
   _bounceAmount: 0
   _pierceAmount: 0
 --- !u!1 &1416317522891326035
@@ -241,7 +241,7 @@ MonoBehaviour:
     _baseValue: 180
     _value: 0
   _orbitalAmount: 0
-  _timeToCompleteShooting: 0
+  _waitBetweenBursts: 0.5
 --- !u!1 &7326085589023437230
 GameObject:
   m_ObjectHideFlags: 0
