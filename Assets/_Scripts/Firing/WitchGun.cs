@@ -29,7 +29,7 @@ public class WitchGun : Gun
     public float TimeToCompleteShooting => _timeToCompleteShooting;
     public float SeparationPerBullet => _separationPerBullet;
 
-    public void ShootRoutine(float damage, float critChance, float critMultiplier,float knockback)
+    public void StartShootRoutine(float damage, float critChance, float critMultiplier, float knockback)
     {
         ShootRoutine(damage: damage,
                      critChance: critChance,

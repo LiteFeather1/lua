@@ -21,17 +21,24 @@ public class Witch : MonoBehaviour
     [SerializeField] private float _accelerationMaxForRange = 50f;
     private Vector2 _inputDirection;
 
-    [Header("Shoot")]
-    [SerializeField] private WitchGun _gun;
+    [Header("Main Gun")]
+    [SerializeField] private WitchGun _mainGun;
     [SerializeField] private CompositeValue _damage = new(5f); 
     [SerializeField] private CompositeValue _critChance = new(.01f);
     [SerializeField] private CompositeValue _critMultiplier = new(1.5f);
     [SerializeField] private CompositeValue _knockback = new(1f);
     [SerializeField] private CompositeValue _shootTime = new(1f);
-    [SerializeField] private CompositeValue _randomBulletShootTime = new(1f);
+    private float _elapsedShootTime = 0f;
+
+    [Header("Random Bullet")]
     [SerializeField] private int _randomBulletAmount = 0;
-    private float _elapsedShootTime;
-    private float _elapsedRandomShootTime;
+    [SerializeField] private CompositeValue _randomBulletShootTime = new(1f);
+    private float _elapsedRandomShootTime = 0f;
+
+    [Header("Orbital Gun")]
+    [SerializeField] private OrbitalGun _orbitalGun;
+    [SerializeField] private CompositeValue _orbitalShootTime = new(2f);
+    private float _elapsedOrbitalShootTime = 0f;
 
     [Header("Life Steal")]
     [SerializeField] private CompositeValue _chanceToLifeSteal = new(.01f);
@@ -83,14 +90,18 @@ public class Witch : MonoBehaviour
 
     public CompositeValue Acceleration => _acceleration;
 
-    public WitchGun Gun => _gun;
+    public WitchGun Gun => _mainGun;
     public CompositeValue Damage => _damage;
     public CompositeValue CritChance => _critChance;
     public CompositeValue CritMultiplier => _critMultiplier;
     public CompositeValue Knockback => _knockback;
     public CompositeValue ShootTime => _shootTime;  
+
     public CompositeValue RandomBulletShootTime => _randomBulletShootTime;
     public int AddRandomBullet(int amount) => _randomBulletAmount += amount;
+
+    public OrbitalGun OrbitalGun => _orbitalGun;
+    public CompositeValue OrbitalShootTime => _orbitalShootTime;
 
     public CompositeValue ChanceToLifeSteal => _chanceToLifeSteal;
     public CompositeValue LifeStealPercent => _lifeStealPercent;
@@ -120,7 +131,7 @@ public class Witch : MonoBehaviour
 
     private void OnEnable()
     {
-        _gun.OnDamageAppplied += DamageAppliedGun;
+        _mainGun.OnDamageAppplied += DamageAppliedGun;
 
         _health.OnDamaged += Damaged;
         _health.OnDeath += OnDeath;
@@ -139,21 +150,33 @@ public class Witch : MonoBehaviour
 
         float delta = Time.deltaTime;
         _elapsedShootTime += delta;
-        if (_elapsedShootTime >= _shootTime.Value)
+        if (_elapsedShootTime >= _shootTime)
         {
             _elapsedShootTime = 0f;
-            _gun.ShootRoutine(_damage.Value, _critChance.Value , _critMultiplier.Value, _knockback.Value);
+            _mainGun.StartShootRoutine(_damage, _critChance, _critMultiplier, _knockback);
             OnMainShoot?.Invoke();
         }
 
         _elapsedRandomShootTime += delta;
-        if (_elapsedRandomShootTime >= _randomBulletShootTime.Value)
+        if (_elapsedRandomShootTime >= _randomBulletShootTime)
         {
             _elapsedRandomShootTime = 0f;
             for (int i = 0; i < _randomBulletAmount; i++)
             {
-                _gun.ShootBullet(_damage.Value, _critChance.Value, _critMultiplier.Value, _knockback.Value, Random.Range(0f, 360f));
+                _mainGun.ShootBullet(_damage, _critChance, _critMultiplier, _knockback, Random.Range(0f, 360f));
             }
+        }
+
+        _elapsedOrbitalShootTime += delta;
+        if (_elapsedOrbitalShootTime > _orbitalShootTime)
+        {
+            _elapsedOrbitalShootTime = 0f;
+            _orbitalGun.StartShootRoutine(_damage * .33f,
+                                          _critChance,
+                                          _critMultiplier,
+                                          _knockback * .33f,
+                                          _mainGun.BulletSpeed * .5f,
+                                          _mainGun.BulletDuration * 2f);
         }
     }
 
@@ -174,7 +197,7 @@ public class Witch : MonoBehaviour
 
     private void OnDisable()
     {
-        _gun.OnDamageAppplied -= DamageAppliedGun;
+        _mainGun.OnDamageAppplied -= DamageAppliedGun;
 
         _health.OnDamaged -= Damaged;
         _health.OnDeath -= OnDeath;

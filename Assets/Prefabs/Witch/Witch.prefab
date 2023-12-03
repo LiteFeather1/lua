@@ -147,6 +147,37 @@ MonoBehaviour:
   _timeToCompleteShooting: 0.25
   _bounceAmount: 0
   _pierceAmount: 0
+--- !u!1 &1416317522891326035
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2935253613320626285}
+  m_Layer: 3
+  m_Name: Anti_Clock_Wise_Rot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2935253613320626285
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416317522891326035}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5568658059893159669}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5899739165023571039
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +207,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7410361237689786289}
+  - {fileID: 2935253613320626285}
   m_Father: {fileID: 2681966974670078860}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1049757123068156787
@@ -193,7 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _firePoint: {fileID: 5568658059893159669}
   _bulletPool:
-    _object: {fileID: 5908951068596790919, guid: b391f4e020d7a56478086c94bdc5dc07, type: 3}
+    _object: {fileID: 5908951068596790919, guid: 8cc588c878f1c8a4cb01d45ab8f09490, type: 3}
     _initialPoolSize: 10
   _particlePool:
     _object: {fileID: 122756984430469221, guid: 99170280f1abe6740913e59f773a155b, type: 3}
@@ -202,9 +235,44 @@ MonoBehaviour:
     _object: {fileID: 9029989089869572558, guid: cd79c920beec33a46adc58aa416c394c, type: 3}
     _initialPoolSize: 10
   _bulletShotSound: {fileID: 8300000, guid: 672fdea8e7aa8b64092be2303844210e, type: 3}
+  _clockWiseRotation: {fileID: 7410361237689786289}
+  _antiClockWiseRotation: {fileID: 2935253613320626285}
   _rotationSpeed:
-    _baseValue: 128
+    _baseValue: 180
     _value: 0
+  _orbitalAmount: 0
+  _timeToCompleteShooting: 0
+--- !u!1 &7326085589023437230
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7410361237689786289}
+  m_Layer: 3
+  m_Name: Clock_Wise_Rot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7410361237689786289
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7326085589023437230}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5568658059893159669}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7450378837478392003
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,7 +331,7 @@ MonoBehaviour:
     _value: 0
   _decelerationRange: {x: 3, y: 10}
   _accelerationMaxForRange: 200
-  _gun: {fileID: 3665713700137278523}
+  _mainGun: {fileID: 3665713700137278523}
   _damage:
     _baseValue: 5
     _value: 0
@@ -279,10 +347,14 @@ MonoBehaviour:
   _shootTime:
     _baseValue: 1
     _value: 0
+  _randomBulletAmount: 0
   _randomBulletShootTime:
     _baseValue: 2
     _value: 0
-  _randomBulletAmount: 0
+  _orbitalGun: {fileID: 1049757123068156787}
+  _orbitalShootTime:
+    _baseValue: 3
+    _value: 0
   _chanceToLifeSteal:
     _baseValue: 0.01
     _value: 0

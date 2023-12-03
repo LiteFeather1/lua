@@ -16,7 +16,9 @@ public class Projectile : MonoBehaviour, IDeactivatable
     public Action Deactivated { get; set; }
 
     public Vector2 Direction => _direction;
-    public float Speed => _speed;   
+    public float Speed => _speed;
+
+    public Rigidbody2D RB => _rb;
 
     private void Update()
     {
@@ -38,6 +40,12 @@ public class Projectile : MonoBehaviour, IDeactivatable
         _duration = duration;
     }
 
+    public void Shoot(Vector2 direction)
+    {
+        _direction = direction;
+        _rb.velocity = direction * _speed;
+    }
+
     public void Shoot(float speed, Vector2 direction)
     {
         _rb.velocity = direction * speed;
@@ -54,7 +62,8 @@ public class Projectile : MonoBehaviour, IDeactivatable
 
     public void Deactivate()
     {
-        _rb.velocity = Vector2.zero;
+        if (_rb != null)
+            _rb.velocity = Vector2.zero;
         _elapsedTime = 0f;
         Deactivated?.Invoke();
         gameObject.SetActive(false);

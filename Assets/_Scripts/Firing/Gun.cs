@@ -73,7 +73,7 @@ public class Gun : MonoBehaviour
                                 float angle,
                                 float timeToCompleteShooting,
                                 int bulletAmount,
-                                float burstAmount,
+                                int burstAmount,
                                 float separationPerBullet)
     {
         AudioManager.Instance.PlayOneShot(_bulletShotSound);
@@ -111,6 +111,11 @@ public class Gun : MonoBehaviour
         bullet.Projectile.Shoot(speed, bullet.transform.right);
     }
 
+    protected virtual void ReturnBulletToPool(Bullet bullet)
+    {
+        _bulletPool.ReturnObject(bullet);
+    }
+
     private IEnumerator Shot_CO(float damage,
                                 float critChance,
                                 float critMultiplier,
@@ -123,7 +128,7 @@ public class Gun : MonoBehaviour
                                 float angle,
                                 float timeToCompleteShooting,
                                 int bulletAmount,
-                                float burstAmount,
+                                int burstAmount,
                                 float separationPerBullet)
     {
         WaitForSeconds yieldBetweenBurst = new(timeToCompleteShooting / burstAmount);
@@ -160,11 +165,6 @@ public class Gun : MonoBehaviour
         bullet.Hitbox.OnDamageAppplied += DamageAppplied;
     }
 
-    private void ReturnBulletToPool(Bullet bullet)
-    {
-        _bulletPool.ReturnObject(bullet);
-    }
-
     private void DamageAppplied(IDamageable damageable, float damage, Vector2 pos)
     {
         var bulletExplosion = _bulletDamage.GetObject();
@@ -185,7 +185,7 @@ public class Gun : MonoBehaviour
     {
         _particlePool.ReturnObject(particle);
     }
-
+        
     private void DamageExplosionCreated(FlipBook explosion)
     {
         explosion.OnAnimationFinished += ReturnExplosionToPool;
