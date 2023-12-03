@@ -38,6 +38,7 @@ public class OrbitalGun : Gun
                      critMultiplier: critMultiplier,
                      knockback: knockback,
                      size: 2f,
+                     // TODO Limit Speed
                      speed: speed,
                      pierce: 1,
                      bounce: 0,
