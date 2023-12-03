@@ -97,14 +97,18 @@ public class Gun : MonoBehaviour
         float speed, int pierce, int bounce, float duration, float angle)
     {
         var bullet = _bulletPool.GetObject();
-        bullet.transform.SetPositionAndRotation(_firePoint.position,
-                                                     Quaternion.Euler(0f, 0f, angle));
-        bullet.transform.localScale = Vector3.one * size;
+        bullet.transform.SetPositionAndRotation(_firePoint.position, Quaternion.Euler(0f, 0f, angle));
+        bullet.transform.localScale = new(size, size, size);
         bullet.AttachDisable(_particlePool.GetObject());
         bullet.gameObject.SetActive(true);
         bullet.Hitbox.SetStats(damage, critChance, critMultiplier, knockback);
-        bullet.Projectile.Shoot(speed, bullet.transform.right,
-                                pierce, bounce, duration);
+        bullet.Projectile.SetStats(pierce, bounce, duration);
+        ShootProjectileMethod(bullet, speed);
+    }
+
+    protected virtual void ShootProjectileMethod(Bullet bullet, float speed)
+    {
+        bullet.Projectile.Shoot(speed, bullet.transform.right);
     }
 
     private IEnumerator Shot_CO(float damage,

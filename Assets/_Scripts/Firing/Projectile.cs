@@ -5,7 +5,7 @@ public class Projectile : MonoBehaviour, IDeactivatable
 {
     [SerializeField] private int _pierce;
     [SerializeField] private int _bounce;
-    [SerializeField] private float _time;
+    [SerializeField] private float _duration;
     private Vector2 _direction;
     private float _elapsedTime;
     private float _speed;
@@ -21,7 +21,7 @@ public class Projectile : MonoBehaviour, IDeactivatable
     private void Update()
     {
         _elapsedTime += Time.deltaTime;
-        if (_elapsedTime >= _time)
+        if (_elapsedTime >= _duration)
             Deactivate();
     }
 
@@ -31,18 +31,25 @@ public class Projectile : MonoBehaviour, IDeactivatable
         _direction = direction;
     }
 
+    public void SetStats(int pierce, int bounce, float duration)
+    {
+        _pierce = pierce;
+        _bounce = bounce;
+        _duration = duration;
+    }
+
     public void Shoot(float speed, Vector2 direction)
     {
         _rb.velocity = direction * speed;
         SetSpeedAndDirection(_speed, direction);
     }
 
-    public void Shoot(float speed, Vector2 direction, int pierce, int bounce, float time)
+    public void Shoot(float speed, Vector2 direction, int pierce, int bounce, float duration)
     {
         Shoot(speed, direction);
         _pierce = pierce;
         _bounce = bounce;
-        _time = time;
+        _duration = duration;
     }
 
     public void Deactivate()

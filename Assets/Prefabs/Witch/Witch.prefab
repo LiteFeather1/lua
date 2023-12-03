@@ -86,8 +86,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1315096798156018825}
+  - component: {fileID: 3665713700137278523}
   m_Layer: 3
-  m_Name: fire_point
+  m_Name: Main_Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,6 +109,102 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2681966974670078860}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3665713700137278523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123529672144973694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7874cb6ed1bb0124cbfc93f4d8ab364b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firePoint: {fileID: 1315096798156018825}
+  _bulletPool:
+    _object: {fileID: 5908951068596790919, guid: b391f4e020d7a56478086c94bdc5dc07, type: 3}
+    _initialPoolSize: 10
+  _particlePool:
+    _object: {fileID: 122756984430469221, guid: 99170280f1abe6740913e59f773a155b, type: 3}
+    _initialPoolSize: 10
+  _bulletDamage:
+    _object: {fileID: 9029989089869572558, guid: cd79c920beec33a46adc58aa416c394c, type: 3}
+    _initialPoolSize: 10
+  _bulletShotSound: {fileID: 8300000, guid: 672fdea8e7aa8b64092be2303844210e, type: 3}
+  _bulletSpeed:
+    _baseValue: 1
+    _value: 0
+  _size:
+    _baseValue: 1
+    _value: 0
+  _bulletDuration:
+    _baseValue: 1
+    _value: 0
+  _bulletAmount: 1
+  _separationPerBullet: 12.5
+  _burstAmount: 1
+  _timeToCompleteShooting: 0.25
+  _bounceAmount: 0
+  _pierceAmount: 0
+--- !u!1 &5899739165023571039
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5568658059893159669}
+  - component: {fileID: 1049757123068156787}
+  m_Layer: 3
+  m_Name: Orbital_Gun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5568658059893159669
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5899739165023571039}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2681966974670078860}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1049757123068156787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5899739165023571039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a275a103229fade4290f498cc71059ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firePoint: {fileID: 5568658059893159669}
+  _bulletPool:
+    _object: {fileID: 5908951068596790919, guid: b391f4e020d7a56478086c94bdc5dc07, type: 3}
+    _initialPoolSize: 10
+  _particlePool:
+    _object: {fileID: 122756984430469221, guid: 99170280f1abe6740913e59f773a155b, type: 3}
+    _initialPoolSize: 10
+  _bulletDamage:
+    _object: {fileID: 9029989089869572558, guid: cd79c920beec33a46adc58aa416c394c, type: 3}
+    _initialPoolSize: 10
+  _bulletShotSound: {fileID: 8300000, guid: 672fdea8e7aa8b64092be2303844210e, type: 3}
+  _rotationSpeed:
+    _baseValue: 128
+    _value: 0
 --- !u!1 &7450378837478392003
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,7 +216,6 @@ GameObject:
   - component: {fileID: 5155081586467621625}
   - component: {fileID: 1307456679637955763}
   - component: {fileID: 6948465981988686169}
-  - component: {fileID: 6431089900240576536}
   - component: {fileID: 4983606301530429066}
   - component: {fileID: 6244824650771415616}
   - component: {fileID: 2089837871041214972}
@@ -167,7 +263,7 @@ MonoBehaviour:
     _value: 0
   _decelerationRange: {x: 3, y: 10}
   _accelerationMaxForRange: 200
-  _gun: {fileID: 6431089900240576536}
+  _gun: {fileID: 3665713700137278523}
   _damage:
     _baseValue: 5
     _value: 0
@@ -250,44 +346,9 @@ MonoBehaviour:
   _defence:
     _baseValue: 10
     _value: 0
---- !u!114 &6431089900240576536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7450378837478392003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7874cb6ed1bb0124cbfc93f4d8ab364b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _firePoint: {fileID: 1315096798156018825}
-  _bulletPool:
-    _object: {fileID: 5908951068596790919, guid: b391f4e020d7a56478086c94bdc5dc07, type: 3}
-    _initialPoolSize: 10
-  _particlePool:
-    _object: {fileID: 122756984430469221, guid: 99170280f1abe6740913e59f773a155b, type: 3}
-    _initialPoolSize: 10
-  _bulletDamage:
-    _object: {fileID: 9029989089869572558, guid: cd79c920beec33a46adc58aa416c394c, type: 3}
-    _initialPoolSize: 10
-  _bulletShotSound: {fileID: 8300000, guid: 672fdea8e7aa8b64092be2303844210e, type: 3}
-  _bulletSpeed:
-    _baseValue: 1
+  _dodgeChance:
+    _baseValue: 0
     _value: 0
-  _size:
-    _baseValue: 1
-    _value: 0
-  _bulletDuration:
-    _baseValue: 1
-    _value: 0
-  _bulletAmount: 1
-  _separationPerBullet: 12.5
-  _burstAmount: 1
-  _timeToCompleteShooting: 0.25
-  _bounceAmount: 0
-  _pierceAmount: 0
 --- !u!114 &4983606301530429066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,6 +642,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1315096798156018825}
+  - {fileID: 5568658059893159669}
   - {fileID: 1778157214750073329}
   - {fileID: 1737272732128457072}
   m_Father: {fileID: 5155081586467621625}
