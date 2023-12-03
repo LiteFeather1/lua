@@ -20,6 +20,7 @@ public class CardManager : MonoBehaviour
     [SerializeField] private PowerUp[] _startingPowerUps;
     private Weighter<PowerUp> _weightedPowerUps;
     private readonly Dictionary<string, HashSet<WeightedObject<PowerUp>>> _powerUpToPowerUps = new();
+    private readonly HashSet<PowerUp> _allPowerUps;
 
     [Header("Cards")]
     [SerializeField] private int _cardToDrawPerDraw = 1;
@@ -151,6 +152,10 @@ public class CardManager : MonoBehaviour
     {
         foreach (var powerUp in powerUps)
         {
+            if (_allPowerUps.Contains(powerUp))
+                continue;
+
+            _allPowerUps.Add(powerUp);
             powerUp.Reset();
 
             var weightedObject = new WeightedObject<PowerUp>(powerUp, powerUp.Weight);
