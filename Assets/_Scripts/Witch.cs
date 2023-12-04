@@ -79,6 +79,7 @@ public class Witch : MonoBehaviour
     [Header("Components")]
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private SpriteRenderer _sr;
+    [SerializeField] private SpriteMask _spriteMask;
     [SerializeField] private Collider2D _hurtBox;
 
     public Action<int> OnCurrencyModified { get; set; }
@@ -135,7 +136,6 @@ public class Witch : MonoBehaviour
         _initialAcceleration = _acceleration.Value;
         _waitInvulnerability = new(_invulnerabilityDuration);
 
-        _sr.material = new(_sr.material);
         _rb.drag = _decelerationRange.x;
     }
 
@@ -194,6 +194,8 @@ public class Witch : MonoBehaviour
                                           _mainGun.BulletSpeed * .33f,
                                           _mainGun.BulletDuration * 2f);
         }
+
+        _spriteMask.sprite = _sr.sprite;
     }
 
     private void FixedUpdate()
