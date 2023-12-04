@@ -2,7 +2,7 @@
 
 public class HealthPlayer : Health
 {
-    [Header("Player Health")]
+    [Header("Player Health")]   
     [SerializeField] private int _shield;
     [SerializeField] private CompositeValue _defence = new(10f);
     [SerializeField] private CompositeValue _dodgeChance = new(0f);

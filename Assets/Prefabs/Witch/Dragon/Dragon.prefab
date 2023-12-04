@@ -79,8 +79,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9e4a9ea004b5c42b547ee58ea00a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gun: {fileID: 4782445710627917336}
   _witch: {fileID: 0}
+  _gun: {fileID: 4782445710627917336}
+  _flipBook: {fileID: 1962226213644798471}
+  _growthStages:
+  - {fileID: 11400000, guid: 2986b37baae4fc348a0aee8da7e070cd, type: 2}
+  - {fileID: 11400000, guid: 7b5cccc191427904eb12fc6598b19f4f, type: 2}
+  - {fileID: 11400000, guid: 2311e9ace5b95214eb8aaa32f6bfbb72, type: 2}
+  - {fileID: 11400000, guid: 763b803d27cd55e4d87efcdf45ccc01d, type: 2}
   _speed: 256
   _xOffset: -0.12
   _yMinOffset: 0.1

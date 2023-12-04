@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private EndScreenManager _endScreenManager;
     [SerializeField] private SpawnManager _spawnManager;
     [SerializeField] private CardManager _cardManager;
+    public Dragon Dragon { get; set; }
 
     [Header("Volume")]
     [SerializeField] private Volume _volume;

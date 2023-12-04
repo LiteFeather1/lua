@@ -1,13 +1,16 @@
-﻿using LTFUtils;
-using RetroAnimation;
+﻿using RetroAnimation;
 using UnityEngine;
 
 public class Dragon : MonoBehaviour
 {
-    private const float FORCE_MULTIPLIER = 0.5f;
-
-    [SerializeField] private Gun _gun;
     [SerializeField] private Witch _witch;
+    [SerializeField] private Gun _gun;
+    [SerializeField] private FlipBook _flipBook;
+    private float _forceMultiplier = 0.25f;
+
+    [Header("Growth Stages")]
+    [SerializeField] private FlipSheet[] _growthStages;
+    private int _currentGrowth = -1;
 
     [Header("Movement")]
     [SerializeField] private float _speed = 1f;
@@ -50,21 +53,29 @@ public class Dragon : MonoBehaviour
         witch.OnMainShoot += Shoot;
     }
 
-    public void Shoot()
+    public void Grow(float forceMultiplier)
     {
-        _gun.ShootRoutine(_witch.Damage.Value * FORCE_MULTIPLIER,
-                          _witch.CritChance.Value * FORCE_MULTIPLIER,
-                          Mathf.Max(_witch.CritMultiplier.Value * FORCE_MULTIPLIER, 1f),
-                          _witch.Knockback.Value * FORCE_MULTIPLIER,
-                          _witch.Gun.Size.Value * FORCE_MULTIPLIER,
-                          _witch.Gun.BulletSpeed.Value * 1.125f,
-                          (int)(_witch.Gun.PierceAmount * FORCE_MULTIPLIER),
-                          (int)(_witch.Gun.BounceAmount * FORCE_MULTIPLIER),
-                          _witch.Gun.BulletDuration.Value,
-                          0f,
-                          _witch.Gun.TimeToCompleteShooting,
-                          Mathf.CeilToInt(_witch.Gun.BulletAmount * FORCE_MULTIPLIER),
-                          Mathf.CeilToInt(_witch.Gun.BurstAmount * FORCE_MULTIPLIER),
-                          _witch.Gun.SeparationPerBullet);
+        _currentGrowth++;
+        _flipBook.Play(_growthStages[_currentGrowth], true);
+        _forceMultiplier = forceMultiplier;
     }
+
+    private void Shoot()
+    {
+        _gun.ShootRoutine(damage: _witch.Damage.Value * _forceMultiplier,
+                          critChance: _witch.CritChance.Value * _forceMultiplier,
+                          critMultiplier: Mathf.Max(_witch.CritMultiplier.Value * _forceMultiplier, 1f),
+                          knockback: _witch.Knockback.Value * _forceMultiplier,
+                          size: _witch.Gun.Size.Value * _forceMultiplier,
+                          speed: _witch.Gun.BulletSpeed.Value * 1.125f,
+                          pierce: (int)(_witch.Gun.PierceAmount * _forceMultiplier),
+                          bounce: (int)(_witch.Gun.BounceAmount * _forceMultiplier),
+                          duration: _witch.Gun.BulletDuration.Value,
+                          angle: 0f,
+                          waitBetweenBursts: _witch.Gun.TimeToCompleteShooting,
+                          bulletAmount: Mathf.CeilToInt(_witch.Gun.BulletAmount * _forceMultiplier),
+                          burstAmount: Mathf.CeilToInt(_witch.Gun.BurstAmount * _forceMultiplier),
+                          separationPerBullet: _witch.Gun.SeparationPerBullet);
+    }
+
 }
