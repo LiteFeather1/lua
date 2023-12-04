@@ -265,7 +265,6 @@ public class Witch : MonoBehaviour
         if (randomValue < _lightningChance)
         {
             OnLightningEffectApplied?.Invoke(damageable);
-
         }
     }
 

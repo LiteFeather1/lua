@@ -8,7 +8,7 @@ namespace RetroAnimation
         [SerializeField] private FlipSheet _flipSheet;
         private float _startTime;
         private int _frame;
-        private float _fps = 1;
+        [SerializeField] private float _fps = 1;
         [Tooltip("If true the animation will play on Start. Also if false the animation will stop")]
         [SerializeField] private bool _playing;
         [Tooltip("Makes the animation loop the current Flip Sheet")]

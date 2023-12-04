@@ -108,6 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sr: {fileID: 3687588919383611242}
   _flipSheet: {fileID: 11400000, guid: 7781ca25dc2ecce44adfa58cec813ba3, type: 2}
+  _fps: 1
   _playing: 1
   _looping: 1
 --- !u!212 &3687588919383611242
