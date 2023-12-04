@@ -21,8 +21,6 @@ public class Witch : MonoBehaviour
     [SerializeField] private float _accelerationMaxForRange = 50f;
     private Vector2 _inputDirection;
 
-    // TODO remove time to complete shooting. Add instead time between shoots. Only Start time again after finnish complete burst
-
     [Header("Main Gun")]
     [SerializeField] private WitchGun _mainGun;
     [SerializeField] private CompositeValue _damage = new(5f); 
@@ -75,6 +73,9 @@ public class Witch : MonoBehaviour
     [Header("Dodge")]
     [SerializeField] private ParticleSystem _dodgeParticle;
     [SerializeField] private float _shineTime = .5f;
+    [SerializeField] private Transform _shineTransform;
+    [SerializeField] private Vector2 _topPos = new(.125f, .125f);
+    [SerializeField] private Vector2 _botPos = new(-.125f, -.125f);
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D _rb;
@@ -150,6 +151,7 @@ public class Witch : MonoBehaviour
         _health.OnDamaged += Damaged;
         _health.OnDeath += OnDeath;
         _health.OnHeal += HPModified;
+        _health.OnDodge += Dodged;
 
         _damage.OnValueModified += _aura.SetDamage;
         _critChance.OnValueModified += _aura.SetCrit;
@@ -224,6 +226,7 @@ public class Witch : MonoBehaviour
         _health.OnDamaged -= Damaged;
         _health.OnDeath -= OnDeath;
         _health.OnHeal -= HPModified;
+        _health.OnDodge -= Dodged;
 
         _damage.OnValueModified -= _aura.SetDamage;
         _critChance.OnValueModified -= _aura.SetCrit;
@@ -285,14 +288,11 @@ public class Witch : MonoBehaviour
         OnHPModified?.Invoke(_health.HP / _health.MaxHP);
     }
 
-    private void Damaged(float damage, float knockbakc, bool crit, Vector2 pos)
+    private IEnumerator Invulnerability()
     {
-        AudioManager.Instance.PlayOneShot(_hurtSound, Random.Range(.4f, .6f));
-        _hurtBox.enabled = false;
-        OnDamaged?.Invoke();
-        HPModified();
-        StartCoroutine(Blink());
-        StartCoroutine(Invulnerability());
+        yield return _waitInvulnerability;
+        _hurtBox.enabled = true;
+        OnInvulnerabilityEnded?.Invoke();
     }
 
     private IEnumerator Blink()
@@ -304,11 +304,11 @@ public class Witch : MonoBehaviour
 
         for (int i = 0; i < _blinkAmount; i++)
         {
-            while (eTime < _durationBetweenBlinks) 
+            while (eTime < _durationBetweenBlinks)
             {
                 float t = eTime / _durationBetweenBlinks;
                 _sr.color = Color.Lerp(_damagedColour, clearColour, t);
-                eTime += Time.deltaTime; 
+                eTime += Time.deltaTime;
                 yield return null;
             }
 
@@ -324,11 +324,34 @@ public class Witch : MonoBehaviour
         _sr.color = Color.white;
     }
 
-    private IEnumerator Invulnerability()
+    private void Damaged(float damage, float knockbakc, bool crit, Vector2 pos)
     {
-        yield return _waitInvulnerability;
-        _hurtBox.enabled = true;
-        OnInvulnerabilityEnded?.Invoke();
+        StartCoroutine(Invulnerability());
+        AudioManager.Instance.PlayOneShot(_hurtSound, Random.Range(.4f, .6f));
+        _hurtBox.enabled = false;
+        OnDamaged?.Invoke();
+        HPModified();
+        StartCoroutine(Blink());
+    }
+
+    private IEnumerator DodgeShine()
+    {
+        float eTime = 0f;
+        while (eTime < _shineTime) 
+        {
+            eTime += Time.deltaTime;
+            _shineTransform.localPosition = Vector2.Lerp(_topPos, _botPos, eTime / _shineTime);
+            yield return null;
+        }
+
+        _shineTransform.localPosition = _topPos;
+    }
+
+    private void Dodged()
+    {
+        StartCoroutine(Invulnerability());
+        StartCoroutine(DodgeShine());
+        _dodgeParticle.Play();
     }
 
     private void OnDeath()

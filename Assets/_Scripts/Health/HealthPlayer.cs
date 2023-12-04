@@ -12,6 +12,8 @@ public class HealthPlayer : Health
     public System.Action OnShieldDamaged { get; set; }
     public System.Action<int> OnShieldGained { get; set; }
 
+    public System.Action OnDodge { get; set; }
+
     public int Shield => _shield;
     public CompositeValue Defence => _defence;
     public CompositeValue DodgeChance => _dodgeChance;
@@ -20,7 +22,7 @@ public class HealthPlayer : Health
     {
         if (Random.value < _dodgeChance)
         {
-            print(DodgeChance);
+            OnDodge?.Invoke();
             return false;
         }
 
