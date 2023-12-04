@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de0f1058f2e6a8b4a8c74ef0dc23b463, type: 3}
-  m_Name: Value_Int_10
+  m_Name: Value_Int_20
   m_EditorClassIdentifier: 
-  <Value>k__BackingField: 10
+  <Value>k__BackingField: 20
