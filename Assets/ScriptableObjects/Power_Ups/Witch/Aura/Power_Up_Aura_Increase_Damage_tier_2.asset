@@ -22,4 +22,4 @@ MonoBehaviour:
   _modifier:
     _value: 0.1
     _type: 100
-  _valueToRemove: {fileID: 11400000, guid: c14126e3271403e4a80b2a93b3ad9d35, type: 2}
+  _valueToRemove: {fileID: 11400000, guid: 87456abb2a877984c8aba73cde39cd5c, type: 2}

@@ -579,7 +579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 5
   _critChance: 0
-  _critMultiplier: 1.5
+  _critMultiplier: 1.25
   _knockBack: 0
 --- !u!114 &5092606559990903128
 MonoBehaviour:
@@ -595,7 +595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canTick: 1
   _timeType: 0
-  _time: 0.75
+  _time: 1
 --- !u!212 &9027821827532596157
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -51,5 +51,5 @@ public class Aura : MonoBehaviour
 
     public void SetDamage(float value) => _hitbox.SetDamage(value * _damagePercent);
     public void SetCrit(float value) => _hitbox.SetCritChance(value * .33f);
-    public void SetCritMultiplier(float value) => _hitbox.SetCritMultiplier(Mathf.Max(value * .5f , 1f));
+    public void SetCritMultiplier(float value) => _hitbox.SetCritMultiplier(Mathf.Max(value * .5f , 1.25f));
 }
