@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e245074210e4c5044a3b3b3cda2ce18e, type: 3}
-  m_Name: Power_Up_Dragon
+  m_Script: {fileID: 11500000, guid: 6e13732837ce18c4fa95e176494bc532, type: 3}
+  m_Name: Power_Up_Dragon_Junior
   m_EditorClassIdentifier: 
-  _name: Assistant to the Regional Witch
-  _effect: Unlock a Powerful Dragon
-  _cost: 16
+  _name: Yougester
+  _effect: ...
+  _cost: 20
   _rarity: {fileID: 11400000, guid: 0869bc92c695cdd4c97f8b266f87f121, type: 2}
   _icon: {fileID: -74246491, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
-  _tierIcon: {fileID: -1081683514, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
-  _powerUpsToUnlock: []
-  _dragonPrefab: {fileID: 4144763003338932280, guid: cff7cf485f1389942a39dbfca539168d, type: 3}
+  _tierIcon: {fileID: 1374594584, guid: 9597046be1f803a45bde8069dd619320, type: 3}
+  _powerUpsToUnlock:
+  - {fileID: 11400000, guid: 29e00b22b8baf2146b27a3def2fca6a0, type: 2}
