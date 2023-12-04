@@ -65,7 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pierce: 0
   _bounce: 0
-  _time: 0.5
+  _duration: 0
   _rb: {fileID: 4883590745908279346}
 --- !u!114 &2954366040094116795
 MonoBehaviour:

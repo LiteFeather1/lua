@@ -64,10 +64,10 @@ public class Dragon : MonoBehaviour
     {
         _gun.ShootRoutine(damage: _witch.Damage.Value * _forceMultiplier,
                           critChance: _witch.CritChance.Value * _forceMultiplier,
-                          critMultiplier: Mathf.Max(_witch.CritMultiplier.Value * _forceMultiplier, 1f),
+                          critMultiplier: Mathf.Min(_witch.CritMultiplier.Value * _forceMultiplier, 1f),
                           knockback: _witch.Knockback.Value * _forceMultiplier,
-                          size: _witch.Gun.Size.Value * _forceMultiplier,
-                          speed: _witch.Gun.BulletSpeed.Value * 1.125f,
+                          size: Mathf.Max(_witch.Gun.Size.Value * _forceMultiplier, .5f),
+                          speed: _witch.Gun.BulletSpeed.Value * 1.25f,
                           pierce: (int)(_witch.Gun.PierceAmount * _forceMultiplier),
                           bounce: (int)(_witch.Gun.BounceAmount * _forceMultiplier),
                           duration: _witch.Gun.BulletDuration.Value,
