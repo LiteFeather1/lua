@@ -41,7 +41,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Dodge_T: 0
+    - _Dodge_T: 0.541
+    - _Dodge_Width: 0.125
     m_Colors: []
   m_BuildTextureStacks: []
 --- !u!114 &7808014529934853641

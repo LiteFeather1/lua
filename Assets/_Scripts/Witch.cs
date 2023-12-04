@@ -66,11 +66,15 @@ public class Witch : MonoBehaviour
     [SerializeField] private int _lightningMinChain = 1;
 
     [Header("Blink on Damage")]
-    [SerializeField] private float _invulnerabilityDuration;
+    [SerializeField] private float _invulnerabilityDuration = .5f;
     private WaitForSeconds _waitInvulnerability;
     [SerializeField] private int _blinkAmount;
     [SerializeField] private float _durationBetweenBlinks;
     [SerializeField] private Color _damagedColour = Color.red;
+
+    [Header("Dodge")]
+    [SerializeField] private ParticleSystem _dodgeParticle;
+    [SerializeField] private float _shineTime = .5f;
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D _rb;
@@ -128,9 +132,11 @@ public class Witch : MonoBehaviour
 
     private void Awake()
     {
-        _rb.drag = _decelerationRange.x;
         _initialAcceleration = _acceleration.Value;
         _waitInvulnerability = new(_invulnerabilityDuration);
+
+        _sr.material = new(_sr.material);
+        _rb.drag = _decelerationRange.x;
     }
 
     private void OnEnable()
