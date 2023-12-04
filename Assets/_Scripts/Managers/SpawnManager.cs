@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using LTFUtils;
 using RetroAnimation;
 using UnityEngine;
@@ -55,6 +56,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private Vector2Int _lightningUpdatesRange = new(3, 5);
     [SerializeField] private Vector2 _lightningSegmentLengthRange = new(.04f, .12f);
     [SerializeField] private Vector2 _lightningSegmentOffsetRange = new(0.04f, 0.12f);
+    [SerializeField] private Color[] _lightningColours;
 
     public int EnemiesDied { get; private set; }
     public Action EnemyHurt { get; set; }
@@ -270,6 +272,8 @@ public class SpawnManager : MonoBehaviour
         {
             lightnings[i] = _lightningEffectPool.GetObject();
             lightnings[i].enabled = true;
+            lightnings[i].startColor = _lightningColours.PickRandom();
+            lightnings[i].endColor = _lightningColours.PickRandom();
             segmentLengths[i] = _lightningSegmentLengthRange.Random();
         }
 
@@ -300,7 +304,6 @@ public class SpawnManager : MonoBehaviour
 
             yield return wait;
         }
-
         // Return Lightnings
         for (int i = 0; i < lightnings.Length; i++)
         {

@@ -57,5 +57,5 @@ Material:
     - _AlphaClip: 0.1
     - _Float: 0.5
     m_Colors:
-    - _Color: {r: 1.4980394, g: 1.4404548, b: 0.85501295, a: 1}
+    - _Color: {r: 0.75, g: 0.7388614, b: 0.5625, a: 1}
   m_BuildTextureStacks: []

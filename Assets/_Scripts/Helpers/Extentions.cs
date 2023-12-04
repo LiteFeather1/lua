@@ -38,4 +38,19 @@ public static class Extentions
     {
         return UnityEngine.Random.Range(v2.x, v2.y);
     }
+
+    public static void KnuthShuffle<T>(this T[] array)
+    {
+        int n = array.Length;
+        while (n > 1)
+        {
+            int k = UnityEngine.Random.Range(0, n--);
+            (array[k], array[n]) = (array[n], array[k]);
+        }
+    }
+
+    public static T PickRandom<T>(this T[] array)
+    {
+        return array[UnityEngine.Random.Range(0, array.Length)];
+    }
 }
