@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2677561362237603663}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -126,6 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sr: {fileID: 7378013052509328541}
   _flipSheet: {fileID: 11400000, guid: 2986b37baae4fc348a0aee8da7e070cd, type: 2}
+  _fps: 1
   _playing: 1
   _looping: 1
 --- !u!212 &7378013052509328541
@@ -169,12 +170,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2044495830, guid: ccf57f976cfafa645a873217b6522385, type: 3}
+  m_Sprite: {fileID: -1913796649, guid: 55b387a01a286b8498c0e888aace8458, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

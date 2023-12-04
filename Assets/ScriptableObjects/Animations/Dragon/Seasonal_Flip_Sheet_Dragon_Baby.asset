@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c5c8395e1e85374a963c21121bd5e78, type: 3}
+  m_Name: Seasonal_Flip_Sheet_Dragon_Baby
+  m_EditorClassIdentifier: 
+  _default:
+    <Sprites>k__BackingField:
+    - {fileID: -1913796649, guid: 55b387a01a286b8498c0e888aace8458, type: 3}
+    - {fileID: 162760684, guid: 55b387a01a286b8498c0e888aace8458, type: 3}
+    <Fps>k__BackingField: 2
+  _dictionary:
+    _entries:
+    - Key: Christmas
+      Value:
+        <Sprites>k__BackingField:
+        - {fileID: -1412334131, guid: 104dc31e959d4f0489d4cee37fc3e012, type: 3}
+        - {fileID: 1134275432, guid: 104dc31e959d4f0489d4cee37fc3e012, type: 3}
+        <Fps>k__BackingField: 2
+  _toSet: {fileID: 11400000, guid: 2986b37baae4fc348a0aee8da7e070cd, type: 2}

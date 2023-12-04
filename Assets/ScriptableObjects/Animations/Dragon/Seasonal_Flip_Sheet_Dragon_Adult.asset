@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c5c8395e1e85374a963c21121bd5e78, type: 3}
-  m_Name: Seasonal_Flip_Sheet_Dragon_Main
+  m_Name: Seasonal_Flip_Sheet_Dragon_Adult
   m_EditorClassIdentifier: 
   _default:
     <Sprites>k__BackingField:
-    - {fileID: -2044495830, guid: ccf57f976cfafa645a873217b6522385, type: 3}
-    - {fileID: -1981883825, guid: ccf57f976cfafa645a873217b6522385, type: 3}
-    <Fps>k__BackingField: 1
+    - {fileID: -20158698, guid: 70ccd393e7d4bb14f960f8b023fa603e, type: 3}
+    - {fileID: -797466792, guid: 70ccd393e7d4bb14f960f8b023fa603e, type: 3}
+    <Fps>k__BackingField: 2
   _dictionary:
     _entries:
     - Key: Christmas
       Value:
         <Sprites>k__BackingField:
-        - {fileID: -2044495830, guid: ccf57f976cfafa645a873217b6522385, type: 3}
-        - {fileID: -1981883825, guid: ccf57f976cfafa645a873217b6522385, type: 3}
+        - {fileID: -1714075675, guid: 9d0e78ab1300ae8449757ad9d5f88d7b, type: 3}
+        - {fileID: -2048676752, guid: 9d0e78ab1300ae8449757ad9d5f88d7b, type: 3}
         <Fps>k__BackingField: 2
-  _toSet: {fileID: 11400000, guid: 2986b37baae4fc348a0aee8da7e070cd, type: 2}
+  _toSet: {fileID: 11400000, guid: 763b803d27cd55e4d87efcdf45ccc01d, type: 2}

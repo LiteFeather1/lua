@@ -110,43 +110,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dragon-Teen_Santa_0
+      name: Dragon-TeenSanta_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.7, y: 0.58}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac042cb38b5770d4fa91a9ea390bf3c7
-      internalID: -1288713622
+      spriteID: 620a6530140410b4dbd6048ff333d4ce
+      internalID: 119195513
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dragon-Teen_Santa_1
+      name: Dragon-TeenSanta_1
       rect:
         serializedVersion: 2
         x: 32
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.7, y: 0.58}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e9d7c40abbbc494190529141d11645d
-      internalID: 13720487
+      spriteID: c5739e92a3864634c8f5014b699ef683
+      internalID: 1324409980
       vertices: []
       indices: 
       edges: []
@@ -162,8 +162,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Dragon-Teen_Santa_0: -1288713622
-      Dragon-Teen_Santa_1: 13720487
+      Dragon-TeenSanta_0: 119195513
+      Dragon-TeenSanta_1: 1324409980
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

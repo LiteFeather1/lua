@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bcb65df7f86d0da4089f34789d7ed7c1, type: 3}
-  m_Name: Flip_Sheet_Dragon
+  m_Name: Flip_Sheet_Dragon_Baby
   m_EditorClassIdentifier: 
   _sprites:
-  - {fileID: -2044495830, guid: ccf57f976cfafa645a873217b6522385, type: 3}
-  - {fileID: -1981883825, guid: ccf57f976cfafa645a873217b6522385, type: 3}
+  - {fileID: -1913796649, guid: 55b387a01a286b8498c0e888aace8458, type: 3}
+  - {fileID: 162760684, guid: 55b387a01a286b8498c0e888aace8458, type: 3}
   _fps: 2
