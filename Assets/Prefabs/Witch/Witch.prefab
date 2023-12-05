@@ -5131,6 +5131,7 @@ MonoBehaviour:
   _orbitalAmount: 0
   _waitBetweenBursts: 0.5
   _maxBulletSpeed: 0.9
+  _maxBulletDuration: 6
   _disappearPool:
     _object: {fileID: 9029989089869572558, guid: 5ec90713aa3382443857078c18cd35ee, type: 3}
     _initialPoolSize: 10

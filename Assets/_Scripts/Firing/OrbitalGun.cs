@@ -46,7 +46,10 @@ public class OrbitalGun : Gun
     protected override void OnDestroy()
     {
         base.OnDestroy();
+
         _disappearPool.ObjectCreated -= DisappearCreated;
+        foreach (var disappear in _disappearPool.Objects)
+            disappear.OnAnimationFinished -= ReturnDisappearToPool;
     }
 
     public void StartShootRoutine(float damage, float critChance, float critMultiplier, float knockback, float speed, float duration)

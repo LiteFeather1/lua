@@ -19,27 +19,14 @@ public class Gun : MonoBehaviour
 
     protected virtual void Awake()
     {
-        _bulletPool.InitPool();
-        foreach (Bullet bullet in _bulletPool.Objects)
-        {
-            BulletCreated(bullet);
-        }
         _bulletPool.ObjectCreated += BulletCreated;
-
-        _particlePool.InitPool();
-        foreach (var particle in _particlePool.Objects)
-        {
-            ParticleCreated(particle);
-        }
+        _bulletPool.InitPool();
 
         _particlePool.ObjectCreated += ParticleCreated;
+        _particlePool.InitPool();
 
-        _bulletDamage.InitPool();
-        foreach (var explosion in _bulletDamage.Objects)
-        {
-            DamageExplosionCreated(explosion);
-        }
         _bulletDamage.ObjectCreated += DamageExplosionCreated;
+        _bulletDamage.InitPool();
     }
 
     protected virtual void OnDestroy()
@@ -119,6 +106,14 @@ public class Gun : MonoBehaviour
         _bulletPool.ReturnObject(bullet);
     }
 
+    private float GetAngle(int bulletIndex, int bulletAmount, float separationPerBullet)
+    {
+        float totalAngle = (bulletAmount - 1) * separationPerBullet * .5f;
+        float center = LTFHelpers_Math.AngleBetweenTwoPoints(transform.position, transform.position - _firePoint.right);
+        float minAngle = center - totalAngle;
+        return minAngle + (bulletIndex * separationPerBullet);
+    }
+
     private IEnumerator Shot_CO(float damage,
                                 float critChance,
                                 float critMultiplier,
@@ -155,14 +150,6 @@ public class Gun : MonoBehaviour
         }
 
         OnFinishedShooting?.Invoke(); 
-    }
-
-    private float GetAngle(int bulletIndex, int bulletAmount, float separationPerBullet)
-    {
-        float totalAngle = (bulletAmount - 1) * separationPerBullet * .5f;
-        float center = LTFHelpers_Math.AngleBetweenTwoPoints(transform.position, transform.position - _firePoint.right);
-        float minAngle = center - totalAngle;
-        return minAngle + (bulletIndex * separationPerBullet);
     }
 
     private void BulletCreated(Bullet bullet)

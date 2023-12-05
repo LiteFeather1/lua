@@ -75,49 +75,25 @@ public class SpawnManager : MonoBehaviour
         for (int i = 0; i < _weightedPoolOfEnemies.Count; i++)
         {
             var pool = _weightedPoolOfEnemies.Objects[i].Object;
-            pool.InitPool();
-            foreach (var enemy in pool.Objects)
-            {
-                EnemyCreated(enemy);
-            }
             pool.ObjectCreated += EnemyCreated;
+            pool.InitPool();
             _enemyToPool.Add(pool.Object.Data.Name, pool);
         }
 
-        _currencyPool.InitPool();
-        foreach (var currency in _currencyPool.Objects)
-        {
-            CurrencyCreated(currency);
-        }
         _currencyPool.ObjectCreated += CurrencyCreated;
+        _currencyPool.InitPool();
 
-        _enemyExplosionPool.InitPool();
-        foreach (var explosion in _enemyExplosionPool.Objects)
-        {
-            EnemyExplosionCreated(explosion);
-        }
         _enemyExplosionPool.ObjectCreated += EnemyExplosionCreated;
+        _enemyExplosionPool.InitPool();
 
-        _damageNumPool.InitPool();
-        foreach (var dmgNum in _damageNumPool.Objects)
-        {
-            DamageNumCreated(dmgNum);
-        }
         _damageNumPool.ObjectCreated += DamageNumCreated;
+        _damageNumPool.InitPool();
 
-        _fireParticlePool.InitPool();
-        foreach (var fire in _fireParticlePool.Objects)
-        {
-            FireParticleCreated(fire);
-        }
         _fireParticlePool.ObjectCreated += FireParticleCreated;
+        _fireParticlePool.InitPool();
 
-        _thornAnimationPool.InitPool();
-        foreach (var thorn in _thornAnimationPool.Objects)
-        {
-            ThornAnimationCreated(thorn);
-        }
         _thornAnimationPool.ObjectCreated += ThornAnimationCreated;
+        _thornAnimationPool.InitPool();
 
         _lightningEffectPool.InitPool(true);
     }
@@ -266,14 +242,15 @@ public class SpawnManager : MonoBehaviour
     private IEnumerator LightiningEffect(IList<Vector2> positions)
     {
         // Get Lightnings
-        LineRenderer[] lightnings = new LineRenderer[positions.Count - 1];
-        float[] segmentLengths = new float[positions.Count - 1];
+        var lightnings = new LineRenderer[positions.Count - 1];
+        var segmentLengths = new float[positions.Count - 1];
         for (int i = 0; i < lightnings.Length; i++)
         {
-            lightnings[i] = _lightningEffectPool.GetObject();
-            lightnings[i].enabled = true;
-            lightnings[i].startColor = _lightningColours.PickRandom();
-            lightnings[i].endColor = _lightningColours.PickRandom();
+            var lightning = _lightningEffectPool.GetObject();
+            lightning.enabled = true;
+            lightning.startColor = _lightningColours.PickRandom();
+            lightning.endColor = _lightningColours.PickRandom();
+            lightnings[i] = lightning;
             segmentLengths[i] = _lightningSegmentLengthRange.Random();
         }
 
@@ -286,8 +263,8 @@ public class SpawnManager : MonoBehaviour
             {
                 var from = positions[j];
                 var to = positions[j + 1];
-                float distance = Vector2.Distance(from, to);
-                int segments = 4;
+                var distance = Vector2.Distance(from, to);
+                var segments = 4;
                 if (distance > segmentLengths[j])
                     segments = Mathf.FloorToInt(distance / segmentLengths[j]) + 2;
 
