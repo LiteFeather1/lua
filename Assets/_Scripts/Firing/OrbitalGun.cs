@@ -15,6 +15,8 @@ public class OrbitalGun : Gun
     [SerializeField] private ObjectPool<FlipBook> _disappearPool;
 
     private readonly List<Bullet> _activeBullets = new();
+    private readonly List<FlipBook> _activeFlipBooks = new();
+    private readonly List<OrbitalAnimation> _orbitalAnimation = new();
 
     public CompositeValue RotationSpeed => _rotationSpeed;
     public int AddOrbitalAmount(int amount) => _orbitalAmount += amount;
@@ -87,6 +89,7 @@ public class OrbitalGun : Gun
 
         var disappear = _disappearPool.GetObject();
         disappear.transform.localPosition = bullet.transform.position;
+        disappear.transform.SetParent(bullet.transform.parent);
         disappear.Play();
         disappear.gameObject.SetActive(true);
 
@@ -102,5 +105,11 @@ public class OrbitalGun : Gun
     {
         disappear.gameObject.SetActive(false);
         _disappearPool.ReturnObject(disappear);
+    }
+
+    private struct OrbitalAnimation
+    {
+        public float Speed;
+        public Vector2 Direction;
     }
 }
