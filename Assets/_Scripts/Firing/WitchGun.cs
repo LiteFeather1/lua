@@ -26,12 +26,12 @@ public class WitchGun : Gun
     public int PierceAmount => _pierceAmount;
     public int AddPierce(int amount) => _pierceAmount += amount;
 
-    public float TimeToCompleteShooting => _timeBetweenBurstsRange.EvaluateClamped((_burstAmount - 1) / 9f);
+    public float WaitBetweenBursts => _timeBetweenBurstsRange.EvaluateClamped((_burstAmount - 1) / 9f);
     public float SeparationPerBullet => _separationPerBullet;
 
     public void StartShootRoutine(float damage, float critChance, float critMultiplier, float knockback)
     {
-        ShootRoutine(damage: damage,
+        StartShootRoutine(damage: damage,
                      critChance: critChance,
                      critMultiplier: critMultiplier,
                      knockback: knockback,
@@ -41,7 +41,7 @@ public class WitchGun : Gun
                      bounce: _bounceAmount,
                      duration: _bulletDuration.Value,
                      angle: 0f,
-                     waitBetweenBursts: TimeToCompleteShooting,
+                     waitBetweenBursts: WaitBetweenBursts,
                      bulletAmount: _bulletAmount,
                      burstAmount: _burstAmount,
                      separationPerBullet: _separationPerBullet);

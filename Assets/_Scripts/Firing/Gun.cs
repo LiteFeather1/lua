@@ -51,20 +51,20 @@ public class Gun : MonoBehaviour
         _bulletDamage.ObjectCreated -= DamageExplosionCreated;
     }
 
-    public void ShootRoutine(float damage,
-                                float critChance,
-                                float critMultiplier,
-                                float knockback,
-                                float size,
-                                float speed,
-                                int pierce,
-                                int bounce,
-                                float duration,
-                                float angle,
-                                float waitBetweenBursts,
-                                int bulletAmount,
-                                int burstAmount,
-                                float separationPerBullet)
+    public void StartShootRoutine(float damage,
+                             float critChance,
+                             float critMultiplier,
+                             float knockback,
+                             float size,
+                             float speed,
+                             int pierce,
+                             int bounce,
+                             float duration,
+                             float angle,
+                             float waitBetweenBursts,
+                             int bulletAmount,
+                             int burstAmount,
+                             float separationPerBullet)
     {
         AudioManager.Instance.PlayOneShot(_bulletShotSound);
         StartCoroutine(Shot_CO(damage: damage,

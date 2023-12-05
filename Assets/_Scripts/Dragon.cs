@@ -62,9 +62,9 @@ public class Dragon : MonoBehaviour
 
     private void Shoot()
     {
-        _gun.ShootRoutine(damage: _witch.Damage.Value * _forceMultiplier,
+        _gun.StartShootRoutine(damage: _witch.Damage.Value * _forceMultiplier,
                           critChance: _witch.CritChance.Value * _forceMultiplier,
-                          critMultiplier: Mathf.Min(_witch.CritMultiplier.Value * _forceMultiplier, 1f),
+                          critMultiplier: _witch.CritMultiplier.Value * _forceMultiplier,
                           knockback: _witch.Knockback.Value * _forceMultiplier,
                           size: Mathf.Max(_witch.Gun.Size.Value * _forceMultiplier, .5f),
                           speed: _witch.Gun.BulletSpeed.Value * 1.25f,
@@ -72,7 +72,7 @@ public class Dragon : MonoBehaviour
                           bounce: (int)(_witch.Gun.BounceAmount * _forceMultiplier),
                           duration: _witch.Gun.BulletDuration.Value,
                           angle: 0f,
-                          waitBetweenBursts: _witch.Gun.TimeToCompleteShooting,
+                          waitBetweenBursts: _witch.Gun.WaitBetweenBursts,
                           bulletAmount: Mathf.CeilToInt(_witch.Gun.BulletAmount * _forceMultiplier),
                           burstAmount: Mathf.CeilToInt(_witch.Gun.BurstAmount * _forceMultiplier),
                           separationPerBullet: _witch.Gun.SeparationPerBullet);

@@ -54,7 +54,7 @@ public class OrbitalGun : Gun
 
     public void StartShootRoutine(float damage, float critChance, float critMultiplier, float knockback, float speed, float duration)
     {
-        ShootRoutine(damage: damage,
+        StartShootRoutine(damage: damage,
                      critChance: critChance,
                      critMultiplier: critMultiplier,
                      knockback: knockback,

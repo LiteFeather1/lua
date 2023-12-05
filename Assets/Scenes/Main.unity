@@ -2193,10 +2193,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.055555556
-    width: 0.33333334
-    height: 0.3333333
+    x: -0.25
+    y: -0.18750001
+    width: 0.5
+    height: 0.37500003
   near clip plane: 0
   far clip plane: 500
   field of view: 34
@@ -9860,18 +9860,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1307456679637955763, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
-      propertyPath: _damagedColour.b
-      value: 0.34718758
-      objectReference: {fileID: 0}
-    - target: {fileID: 1307456679637955763, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
-      propertyPath: _damagedColour.g
-      value: 0.34718758
-      objectReference: {fileID: 0}
-    - target: {fileID: 1307456679637955763, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
-      propertyPath: _damagedColour.r
-      value: 0.8867924
-      objectReference: {fileID: 0}
     - target: {fileID: 5155081586467621625, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1
