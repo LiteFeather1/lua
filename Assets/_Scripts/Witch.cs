@@ -76,6 +76,7 @@ public class Witch : MonoBehaviour
     [SerializeField] private Transform _shineTransform;
     [SerializeField] private Vector2 _topPos = new(.125f, .125f);
     [SerializeField] private Vector2 _botPos = new(-.125f, -.125f);
+    private IEnumerator _dodgeCo;
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D _rb;
@@ -138,6 +139,8 @@ public class Witch : MonoBehaviour
         _waitInvulnerability = new(_invulnerabilityDuration);
 
         _rb.drag = _decelerationRange.x;
+
+        _dodgeCo = DodgeShine();
     }
 
     private void OnEnable()
@@ -350,7 +353,9 @@ public class Witch : MonoBehaviour
     private void Dodged()
     {
         StartCoroutine(Invulnerability());
-        StartCoroutine(DodgeShine());
+        StopCoroutine(_dodgeCo);
+        _dodgeCo = DodgeShine();
+        StartCoroutine(_dodgeCo);
         _dodgeParticle.Play();
     }
 
