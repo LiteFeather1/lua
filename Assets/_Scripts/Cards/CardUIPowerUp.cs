@@ -52,6 +52,9 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDr
 
     public override void OnPointerExit(PointerEventData eventData)
     {
+        if (_dragging && GameManager.Instance.Witch.Currency > _powerUp.Cost)
+            return; 
+
         base.OnPointerExit(eventData);
         _canvasGroup.alpha = _defaultAlpha;
     }
@@ -80,6 +83,7 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDr
             _dragging = false;
             transform.SetParent(_originalParent);
             _canvasGroup.blocksRaycasts = true;
+            _canvasGroup.alpha = _defaultAlpha;
             transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
             OnDropped?.Invoke(this);
             AudioManager.Instance.PlayOneShot(_ungrabClip);
