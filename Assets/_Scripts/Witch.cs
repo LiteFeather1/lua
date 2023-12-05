@@ -170,9 +170,6 @@ public class Witch : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-            _health.TakeDamage(100f, 0f, false, default);
-
         _inputDirection = GameManager.Inputs.Player.Moviment.ReadValue<Vector2>().normalized;
 
         float delta = Time.deltaTime;
@@ -347,7 +344,8 @@ public class Witch : MonoBehaviour
         _hurtBox.enabled = false;
         OnDamaged?.Invoke();
         HPModified();
-        StartCoroutine(Blink());
+        if (_health.HP > 0f)
+            StartCoroutine(Blink());
     }
 
     private IEnumerator DodgeShine()
