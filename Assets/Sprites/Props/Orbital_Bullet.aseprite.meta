@@ -139,6 +139,126 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: Orbital_Bullet_Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: -0.3}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 22
+      width: 10
+      height: 10
+    spriteID: 6d8f0ed68307521459018879e84c0b78
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 22}
+  - name: Orbital_Bullet_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: -0.3}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 40
+      width: 10
+      height: 10
+    spriteID: f9ee4c11e7e5eec4f90299cf104c582a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 40}
+  - name: Orbital_Bullet_Frame_3
+    originalName: 
+    pivot: {x: 0.5, y: -0.3}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 22
+      y: 4
+      width: 10
+      height: 10
+    spriteID: cdfc4e0d6c9154e49af216acd5253c39
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 22, y: 4}
+  - name: Orbital_Bullet_Frame_4
+    originalName: 
+    pivot: {x: 0.5, y: -0.3}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 22
+      y: 22
+      width: 10
+      height: 10
+    spriteID: 8b393374af048d14bb65811dc8beae63
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 22, y: 22}
+  - name: Orbital_Bullet_Frame_5
+    originalName: 
+    pivot: {x: 0.5, y: -0.3}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 22
+      y: 40
+      width: 10
+      height: 10
+    spriteID: c5fd3de8d79c8824f8854a2cf8742045
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 22, y: 40}
+  - name: Orbital_Bullet_Frame_6
+    originalName: 
+    pivot: {x: 0.8333334, y: -0.75}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 40
+      y: 4
+      width: 6
+      height: 4
+    spriteID: bf398db81d347ad40ab6cae877668df3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 40, y: 4}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -148,7 +268,7 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: Orbital_Bullet
+    - name: Orbital_Bullet_Frame_0
       frameIndex: 0
       cellRect:
         x: 3
@@ -156,6 +276,54 @@ ScriptedImporter:
         width: 10
         height: 10
       spriteId: 3e9af2e017370674899b1b822b19a19e
+    - name: Orbital_Bullet_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 3
+        y: 3
+        width: 10
+        height: 10
+      spriteId: 6d8f0ed68307521459018879e84c0b78
+    - name: Orbital_Bullet_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 3
+        y: 3
+        width: 10
+        height: 10
+      spriteId: f9ee4c11e7e5eec4f90299cf104c582a
+    - name: Orbital_Bullet_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 3
+        y: 3
+        width: 10
+        height: 10
+      spriteId: cdfc4e0d6c9154e49af216acd5253c39
+    - name: Orbital_Bullet_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 3
+        y: 3
+        width: 10
+        height: 10
+      spriteId: 8b393374af048d14bb65811dc8beae63
+    - name: Orbital_Bullet_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 3
+        y: 3
+        width: 10
+        height: 10
+      spriteId: c5fd3de8d79c8824f8854a2cf8742045
+    - name: Orbital_Bullet_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 3
+        y: 3
+        width: 6
+        height: 4
+      spriteId: bf398db81d347ad40ab6cae877668df3
     linkedCells: []
     parentIndex: -1
   platformSettings: []

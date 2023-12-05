@@ -17,7 +17,7 @@ public class Gun : MonoBehaviour
 
     public Action OnFinishedShooting { get; set; }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         _bulletPool.InitPool();
         foreach (Bullet bullet in _bulletPool.Objects)
@@ -42,7 +42,7 @@ public class Gun : MonoBehaviour
         _bulletDamage.ObjectCreated += DamageExplosionCreated;
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         foreach (var bullet in _bulletPool.Objects)
         {
@@ -174,7 +174,7 @@ public class Gun : MonoBehaviour
     private void DamageAppplied(IDamageable damageable, float damage, Vector2 pos)
     {
         var bulletExplosion = _bulletDamage.GetObject();
-        bulletExplosion.transform.position = pos;
+        bulletExplosion.transform.localPosition = pos;
         bulletExplosion.Play();
         bulletExplosion.gameObject.SetActive(true);
 

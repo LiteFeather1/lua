@@ -5120,7 +5120,7 @@ MonoBehaviour:
     _object: {fileID: 122756984430469221, guid: 0568d2d26cc9621489a7390778724bc3, type: 3}
     _initialPoolSize: 10
   _bulletDamage:
-    _object: {fileID: 9029989089869572558, guid: cd79c920beec33a46adc58aa416c394c, type: 3}
+    _object: {fileID: 9029989089869572558, guid: 426dcbc443a40a94eb9791d8625db71f, type: 3}
     _initialPoolSize: 10
   _bulletShotSound: {fileID: 8300000, guid: 672fdea8e7aa8b64092be2303844210e, type: 3}
   _clockWiseRotation: {fileID: 7410361237689786289}
@@ -5131,6 +5131,9 @@ MonoBehaviour:
   _orbitalAmount: 0
   _waitBetweenBursts: 0.5
   _maxBulletSpeed: 0.9
+  _disappearPool:
+    _object: {fileID: 9029989089869572558, guid: 5ec90713aa3382443857078c18cd35ee, type: 3}
+    _initialPoolSize: 10
 --- !u!1 &7326085589023437230
 GameObject:
   m_ObjectHideFlags: 0

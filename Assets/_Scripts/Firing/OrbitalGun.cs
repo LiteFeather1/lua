@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using LTFUtils;
+using RetroAnimation;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class OrbitalGun : Gun
@@ -10,11 +12,23 @@ public class OrbitalGun : Gun
     [SerializeField] private int _orbitalAmount = 0;
     [SerializeField] private float _waitBetweenBursts = .75f;
     [SerializeField] private float _maxBulletSpeed = .9f;
+    [SerializeField] private ObjectPool<FlipBook> _disappearPool;
 
     private readonly List<Bullet> _activeBullets = new();
 
     public CompositeValue RotationSpeed => _rotationSpeed;
     public int AddOrbitalAmount(int amount) => _orbitalAmount += amount;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _disappearPool.InitPool();
+        foreach (var disappear in _disappearPool.Objects)
+        {
+            DisappearCreated(disappear);
+        }
+        _disappearPool.ObjectCreated += DisappearCreated;
+    }
 
     private void Update()
     {
@@ -30,6 +44,16 @@ public class OrbitalGun : Gun
             activeBullet.transform.localPosition += new Vector3(activeProjectile.Direction.x * speedDelta,
                                                                 activeProjectile.Direction.y * speedDelta);
         }
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        foreach (var disappear in _disappearPool.Objects)
+        {
+            disappear.OnAnimationFinished -= ReturnDisappearToPool;
+        }
+        _disappearPool.ObjectCreated -= DisappearCreated;
     }
 
     public void StartShootRoutine(float damage, float critChance, float critMultiplier, float knockback, float speed, float duration)
@@ -60,6 +84,23 @@ public class OrbitalGun : Gun
     protected override void ReturnBulletToPool(Bullet bullet)
     {
         _activeBullets.Remove(bullet);
+
+        var disappear = _disappearPool.GetObject();
+        disappear.transform.localPosition = bullet.transform.position;
+        disappear.Play();
+        disappear.gameObject.SetActive(true);
+
         base.ReturnBulletToPool(bullet);
+    }
+
+    private void DisappearCreated(FlipBook disappear)
+    {
+        disappear.OnAnimationFinished += ReturnDisappearToPool;
+    }
+
+    private void ReturnDisappearToPool(FlipBook disappear)
+    {
+        disappear.gameObject.SetActive(false);
+        _disappearPool.ReturnObject(disappear);
     }
 }

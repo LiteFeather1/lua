@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcb65df7f86d0da4089f34789d7ed7c1, type: 3}
+  m_Name: Flip_Sheet_Orbital_Bullet_Disappear
+  m_EditorClassIdentifier: 
+  _sprites:
+  - {fileID: 1284572979, guid: 8e62b3d4037a1e74696c3c1995b660b5, type: 3}
+  - {fileID: -1437424265, guid: 8e62b3d4037a1e74696c3c1995b660b5, type: 3}
+  - {fileID: 2063122882, guid: 8e62b3d4037a1e74696c3c1995b660b5, type: 3}
+  - {fileID: -861663921, guid: 8e62b3d4037a1e74696c3c1995b660b5, type: 3}
+  - {fileID: -619954826, guid: 8e62b3d4037a1e74696c3c1995b660b5, type: 3}
+  - {fileID: -181837906, guid: 8e62b3d4037a1e74696c3c1995b660b5, type: 3}
+  _fps: 12
