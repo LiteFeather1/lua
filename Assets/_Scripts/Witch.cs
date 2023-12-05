@@ -193,7 +193,7 @@ public class Witch : MonoBehaviour
                                           _critChance,
                                           _critMultiplier,
                                           _knockback * .33f,
-                                          _mainGun.BulletSpeed * .33f,
+                                          _mainGun.BulletSpeed * .2f,
                                           _mainGun.BulletDuration * 2f);
         }
 

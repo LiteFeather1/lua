@@ -9,6 +9,7 @@ public class OrbitalGun : Gun
     [SerializeField] private CompositeValue _rotationSpeed;
     [SerializeField] private int _orbitalAmount = 0;
     [SerializeField] private float _waitBetweenBursts = .75f;
+    [SerializeField] private float _maxBulletSpeed = .9f;
 
     private readonly List<Bullet> _activeBullets = new();
 
@@ -38,8 +39,7 @@ public class OrbitalGun : Gun
                      critMultiplier: critMultiplier,
                      knockback: knockback,
                      size: 2f,
-                     // TODO Limit Speed
-                     speed: speed,
+                     speed: Mathf.Clamp(speed, .2f, _maxBulletSpeed),
                      pierce: 1,
                      bounce: 0,
                      duration: duration,
