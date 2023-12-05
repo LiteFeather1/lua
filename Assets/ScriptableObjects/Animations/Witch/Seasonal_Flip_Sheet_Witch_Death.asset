@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c5c8395e1e85374a963c21121bd5e78, type: 3}
+  m_Name: Seasonal_Flip_Sheet_Witch_Death
+  m_EditorClassIdentifier: 
+  _default:
+    <Sprites>k__BackingField:
+    - {fileID: 1296520604, guid: a3536b824690fe545844642ae69d1980, type: 3}
+    - {fileID: -1884924262, guid: a3536b824690fe545844642ae69d1980, type: 3}
+    - {fileID: 900359085, guid: a3536b824690fe545844642ae69d1980, type: 3}
+    - {fileID: -1578339027, guid: a3536b824690fe545844642ae69d1980, type: 3}
+    - {fileID: -444310572, guid: a3536b824690fe545844642ae69d1980, type: 3}
+    - {fileID: -1262129417, guid: a3536b824690fe545844642ae69d1980, type: 3}
+    - {fileID: -140080938, guid: a3536b824690fe545844642ae69d1980, type: 3}
+    - {fileID: -1971552868, guid: a3536b824690fe545844642ae69d1980, type: 3}
+    - {fileID: 1926038814, guid: a3536b824690fe545844642ae69d1980, type: 3}
+    <Fps>k__BackingField: 9
+  _dictionary:
+    _entries:
+    - Key: Christmas
+      Value:
+        <Sprites>k__BackingField:
+        - {fileID: -940858294, guid: bda59684930c21842bf66fef99c2bae7, type: 3}
+        - {fileID: 1375158, guid: bda59684930c21842bf66fef99c2bae7, type: 3}
+        - {fileID: -588877237, guid: bda59684930c21842bf66fef99c2bae7, type: 3}
+        - {fileID: -2021326634, guid: bda59684930c21842bf66fef99c2bae7, type: 3}
+        - {fileID: -453555478, guid: bda59684930c21842bf66fef99c2bae7, type: 3}
+        - {fileID: -1024798463, guid: bda59684930c21842bf66fef99c2bae7, type: 3}
+        - {fileID: 1489057051, guid: bda59684930c21842bf66fef99c2bae7, type: 3}
+        - {fileID: -1341853773, guid: bda59684930c21842bf66fef99c2bae7, type: 3}
+        - {fileID: -222558570, guid: bda59684930c21842bf66fef99c2bae7, type: 3}
+        <Fps>k__BackingField: 9
+  _toSet: {fileID: 11400000, guid: 092e6292a8ddf9d45b2377e9a944f8f1, type: 2}

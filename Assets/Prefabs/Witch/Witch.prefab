@@ -5218,6 +5218,7 @@ MonoBehaviour:
   _currency: 0
   _health: {fileID: 6948465981988686169}
   _hurtSound: {fileID: 8300000, guid: 0a0e01e54e2de634c834cdbef67084bb, type: 3}
+  _deathAnimation: {fileID: 11400000, guid: 092e6292a8ddf9d45b2377e9a944f8f1, type: 2}
   _maxSpeed: 20
   _acceleration:
     _baseValue: 2
@@ -5297,9 +5298,10 @@ MonoBehaviour:
   _topPos: {x: 0.125, y: 0.125}
   _botPos: {x: -0.125, y: -0.125}
   _rb: {fileID: 6244824650771415616}
-  _sr: {fileID: 1074317464920949531}
+  _flipBook: {fileID: 4983606301530429066}
   _spriteMask: {fileID: 3443339394966817616}
   _hurtBox: {fileID: 2089837871041214972}
+  _boundsCollider: {fileID: 4010357824597445104}
 --- !u!114 &6948465981988686169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5614,9 +5616,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1778157214750073329}
   - {fileID: 1315096798156018825}
   - {fileID: 5568658059893159669}
-  - {fileID: 1778157214750073329}
   - {fileID: 1737272732128457072}
   - {fileID: 2136692195437410061}
   - {fileID: 407064426724320415}

@@ -1,3 +1,4 @@
+using RetroAnimation;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class Witch : MonoBehaviour
     [Header("Health")]
     [SerializeField] private HealthPlayer _health;
     [SerializeField] private AudioClip _hurtSound;
+    [SerializeField] private FlipSheet _deathAnimation; 
 
     [Header("Moviment")]
     [SerializeField] private float _maxSpeed = 20f;
@@ -80,9 +82,10 @@ public class Witch : MonoBehaviour
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D _rb;
-    [SerializeField] private SpriteRenderer _sr;
+    [SerializeField] private FlipBook _flipBook;
     [SerializeField] private SpriteMask _spriteMask;
     [SerializeField] private Collider2D _hurtBox;
+    [SerializeField] private BoxCollider2D _boundsCollider;
 
     public Action<int> OnCurrencyModified { get; set; }
 
@@ -165,7 +168,13 @@ public class Witch : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.T))
+            _health.TakeDamage(100f, 0f, false, default);
+
         _inputDirection = GameManager.Inputs.Player.Moviment.ReadValue<Vector2>().normalized;
+
+        if (_health.HP <= 0f)
+            return;
 
         float delta = Time.deltaTime;
         _elapsedShootTime += delta * _shootDeltaMult;
@@ -200,14 +209,14 @@ public class Witch : MonoBehaviour
                                           _mainGun.BulletDuration * 2f);
         }
 
-        _spriteMask.sprite = _sr.sprite;
+        _spriteMask.sprite = _flipBook.SR.sprite;
     }
 
     private void FixedUpdate()
     {
         var velocity = _rb.velocity;
-        velocity.x += _inputDirection.x * _acceleration.Value;
-        velocity.y += _inputDirection.y * _acceleration.Value;
+        velocity.x += _inputDirection.x * _acceleration;
+        velocity.y += _inputDirection.y * _acceleration;
 
         if (Mathf.Sign(_inputDirection.x) == Mathf.Sign(_rb.velocity.x) && Mathf.Abs(_rb.velocity.x) > _maxSpeed)
             velocity.x = 0f;
@@ -300,7 +309,7 @@ public class Witch : MonoBehaviour
 
     private IEnumerator Blink()
     {
-        _sr.color = _damagedColour;
+        _flipBook.SR.color = _damagedColour;
         var clearColour = _damagedColour;
         clearColour.a = 0f;
         float eTime = 0f;
@@ -310,7 +319,7 @@ public class Witch : MonoBehaviour
             while (eTime < _durationBetweenBlinks)
             {
                 float t = eTime / _durationBetweenBlinks;
-                _sr.color = Color.Lerp(_damagedColour, clearColour, t);
+                _flipBook.SR.color = Color.Lerp(_damagedColour, clearColour, t);
                 eTime += Time.deltaTime;
                 yield return null;
             }
@@ -318,13 +327,13 @@ public class Witch : MonoBehaviour
             while (eTime > 0f)
             {
                 float t = eTime / _durationBetweenBlinks;
-                _sr.color = Color.Lerp(_damagedColour, clearColour, t);
+                _flipBook.SR.color = Color.Lerp(_damagedColour, clearColour, t);
                 eTime -= Time.deltaTime;
                 yield return null;
             }
         }
 
-        _sr.color = Color.white;
+        _flipBook.SR.color = Color.white;
     }
 
     private void Damaged(float damage, float knockbakc, bool crit, Vector2 pos)
@@ -361,7 +370,18 @@ public class Witch : MonoBehaviour
 
     private void OnDeath()
     {
-        transform.localPosition += new Vector3(-12f, 0f);
-        gameObject.SetActive(false);
+        var pos = new Vector3(-6f, 0f);
+        transform.localPosition += pos;
+        _flipBook.SR.transform.position -= pos;
+
+        _acceleration = new(_acceleration.Value * .5f);
+        EvaluateDrag();
+
+        _boundsCollider.offset = new(-.08f, -.04f);
+        _boundsCollider.size = new(.16f, .04f);
+
+        _hurtBox.enabled = false;
+        _aura.gameObject.SetActive(false);
+        _flipBook.Play(_deathAnimation);
     }
 }

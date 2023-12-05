@@ -277,6 +277,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Animation_Lua_Death_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41542aa2dfded4042ae2e4f0547dd68c
+      internalID: 1926038814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -296,6 +317,7 @@ TextureImporter:
       Animation_Lua_Death_5: -1262129417
       Animation_Lua_Death_6: -140080938
       Animation_Lua_Death_7: -1971552868
+      Animation_Lua_Death_8: 1926038814
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

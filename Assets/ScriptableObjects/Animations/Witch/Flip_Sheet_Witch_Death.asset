@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcb65df7f86d0da4089f34789d7ed7c1, type: 3}
+  m_Name: Flip_Sheet_Witch_Death
+  m_EditorClassIdentifier: 
+  _sprites:
+  - {fileID: 1296520604, guid: a3536b824690fe545844642ae69d1980, type: 3}
+  - {fileID: -1884924262, guid: a3536b824690fe545844642ae69d1980, type: 3}
+  - {fileID: 900359085, guid: a3536b824690fe545844642ae69d1980, type: 3}
+  - {fileID: -1578339027, guid: a3536b824690fe545844642ae69d1980, type: 3}
+  - {fileID: -444310572, guid: a3536b824690fe545844642ae69d1980, type: 3}
+  - {fileID: -1262129417, guid: a3536b824690fe545844642ae69d1980, type: 3}
+  - {fileID: -140080938, guid: a3536b824690fe545844642ae69d1980, type: 3}
+  - {fileID: -1971552868, guid: a3536b824690fe545844642ae69d1980, type: 3}
+  - {fileID: 1926038814, guid: a3536b824690fe545844642ae69d1980, type: 3}
+  _fps: 9

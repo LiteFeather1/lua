@@ -126,8 +126,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 64
-      y: 32
+      x: 4
+      y: 90
       width: 22
       height: 20
     spriteID: ffd5f1fd1a215124198705fd94c3c35c
@@ -138,7 +138,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 64, y: 32}
+    uvTransform: {x: 4, y: 90}
   - name: ChristmasAnimations_Frame_1
     originalName: 
     pivot: {x: 0.5, y: -0.36842105}
@@ -146,8 +146,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 41
-      y: 4
+      x: 4
+      y: 146
       width: 22
       height: 19
     spriteID: ffd7fb91037ffff419a0aaf18271e72a
@@ -158,7 +158,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 41, y: 4}
+    uvTransform: {x: 4, y: 146}
   - name: ChristmasAnimations_Frame_2
     originalName: 
     pivot: {x: 0.5, y: -0.33333334}
@@ -186,8 +186,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 71
-      y: 4
+      x: 4
+      y: 173
       width: 22
       height: 19
     spriteID: 20835d1b73c0a2e4e8cf6ac02dd91396
@@ -198,7 +198,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 71, y: 4}
+    uvTransform: {x: 4, y: 173}
   - name: ChristmasAnimations_Frame_4
     originalName: 
     pivot: {x: 0.5, y: -0.31578946}
@@ -206,8 +206,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 101
-      y: 4
+      x: 4
+      y: 200
       width: 22
       height: 19
     spriteID: 2c47a77b1ae5e9040bda355f96e694d1
@@ -218,7 +218,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 101, y: 4}
+    uvTransform: {x: 4, y: 200}
   - name: ChristmasAnimations_Frame_5
     originalName: 
     pivot: {x: 0.5, y: -0.31578946}
@@ -227,7 +227,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 61
+      y: 227
       width: 22
       height: 19
     spriteID: 0198c4d971b2bfb4a80e268884b8a777
@@ -238,7 +238,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 61}
+    uvTransform: {x: 4, y: 227}
   - name: ChristmasAnimations_Frame_6
     originalName: 
     pivot: {x: 0.51724136, y: -0.35}
@@ -266,8 +266,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 34
-      y: 61
+      x: 41
+      y: 4
       width: 22
       height: 17
     spriteID: ad1bd1d91353c494694382d147a2ae44
@@ -278,7 +278,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 34, y: 61}
+    uvTransform: {x: 41, y: 4}
   - name: ChristmasAnimations_Frame_8
     originalName: 
     pivot: {x: 0.5, y: -0.23809524}
@@ -286,8 +286,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 34
-      y: 32
+      x: 4
+      y: 61
       width: 22
       height: 21
     spriteID: e06f2e0f215f020409fc2c84fe8fbf3f
@@ -298,7 +298,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 34, y: 32}
+    uvTransform: {x: 4, y: 61}
   - name: ChristmasAnimations_Frame_9
     originalName: 
     pivot: {x: 0.5, y: -0.25}
@@ -306,8 +306,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 94
-      y: 32
+      x: 4
+      y: 118
       width: 22
       height: 20
     spriteID: 63e3344418abfbc4db5d80bea69ae8b7
@@ -318,18 +318,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 94, y: 32}
+    uvTransform: {x: 4, y: 118}
   - name: ChristmasAnimations_Frame_10
     originalName: 
-    pivot: {x: 0.36363637, y: -0.9166667}
+    pivot: {x: 0.5, y: -0.8}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 92
-      y: 88
-      width: 11
-      height: 12
+      x: 41
+      y: 75
+      width: 22
+      height: 10
     spriteID: 87d41ebffaf1dfe4089f2fcb2f8d090f
     spriteBone: []
     spriteOutline: []
@@ -338,16 +338,16 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 92, y: 88}
+    uvTransform: {x: 41, y: 75}
   - name: ChristmasAnimations_Frame_11
     originalName: 
-    pivot: {x: 0.45454547, y: -0.9166667}
+    pivot: {x: 0.36363637, y: -0.9166667}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 111
-      y: 88
+      x: 41
+      y: 193
       width: 11
       height: 12
     spriteID: dbdcf75e9543b6349a55134f3a3ed05b
@@ -358,18 +358,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 111, y: 88}
+    uvTransform: {x: 41, y: 193}
   - name: ChristmasAnimations_Frame_12
     originalName: 
-    pivot: {x: 0.54545456, y: -1}
+    pivot: {x: 0.45454547, y: -0.9166667}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 109
+      x: 41
+      y: 213
       width: 11
-      height: 11
+      height: 12
     spriteID: 676e26580a39d114db16dc9d71d9f772
     spriteBone: []
     spriteOutline: []
@@ -378,18 +378,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 109}
+    uvTransform: {x: 41, y: 213}
   - name: ChristmasAnimations_Frame_13
     originalName: 
-    pivot: {x: 0.5833334, y: -0.9166667}
+    pivot: {x: 0.54545456, y: -1}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 50
-      y: 88
-      width: 12
-      height: 12
+      x: 41
+      y: 233
+      width: 11
+      height: 11
     spriteID: 5f383776262d2a547a2df0a76564894d
     spriteBone: []
     spriteOutline: []
@@ -398,18 +398,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 50, y: 88}
+    uvTransform: {x: 41, y: 233}
   - name: ChristmasAnimations_Frame_14
     originalName: 
-    pivot: {x: 0.5, y: -1.2}
+    pivot: {x: 0.5833334, y: -0.9166667}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 70
-      y: 88
-      width: 14
-      height: 10
+      x: 41
+      y: 155
+      width: 12
+      height: 12
     spriteID: e961bfb76b142194fb338e8266987f77
     spriteBone: []
     spriteOutline: []
@@ -418,18 +418,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 70, y: 88}
+    uvTransform: {x: 41, y: 155}
   - name: ChristmasAnimations_Frame_15
     originalName: 
-    pivot: {x: 0.5, y: -1.5}
+    pivot: {x: 0.5, y: -1.2}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 42
-      y: 109
+      x: 41
+      y: 175
       width: 14
-      height: 8
+      height: 10
     spriteID: f279423f2f92f8a45b8949b94bb8fab7
     spriteBone: []
     spriteOutline: []
@@ -438,18 +438,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 42, y: 109}
+    uvTransform: {x: 41, y: 175}
   - name: ChristmasAnimations_Frame_16
     originalName: 
-    pivot: {x: 0.5, y: -1}
+    pivot: {x: 0.5, y: -1.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 64
-      y: 109
-      width: 10
-      height: 11
+      x: 90
+      y: 4
+      width: 14
+      height: 8
     spriteID: 35d1b806b6c794d45bf0b8b9e48881fb
     spriteBone: []
     spriteOutline: []
@@ -458,18 +458,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 64, y: 109}
+    uvTransform: {x: 90, y: 4}
   - name: ChristmasAnimations_Frame_17
     originalName: 
-    pivot: {x: 0.5, y: -1.1}
+    pivot: {x: 0.5, y: -1}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 82
-      y: 109
+      x: 71
+      y: 23
       width: 10
-      height: 10
+      height: 11
     spriteID: c8b2f61eed5330a4c96f6480db099606
     spriteBone: []
     spriteOutline: []
@@ -478,18 +478,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 82, y: 109}
+    uvTransform: {x: 71, y: 23}
   - name: ChristmasAnimations_Frame_18
     originalName: 
-    pivot: {x: 0.27272728, y: -1}
+    pivot: {x: 0.5, y: -1.1}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 23
-      y: 109
-      width: 11
-      height: 11
+      x: 71
+      y: 42
+      width: 10
+      height: 10
     spriteID: 0e4105a0eda83834bb3a3c1230a01370
     spriteBone: []
     spriteOutline: []
@@ -498,18 +498,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 23, y: 109}
+    uvTransform: {x: 71, y: 42}
   - name: ChristmasAnimations_Frame_19
     originalName: 
-    pivot: {x: 0.36363637, y: -1.2222222}
+    pivot: {x: 0.27272728, y: -1}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 100
-      y: 109
+      x: 71
+      y: 4
       width: 11
-      height: 9
+      height: 11
     spriteID: bd6031578bdb4db449929b0264844f43
     spriteBone: []
     spriteOutline: []
@@ -518,18 +518,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 100, y: 109}
+    uvTransform: {x: 71, y: 4}
   - name: ChristmasAnimations_Frame_20
     originalName: 
-    pivot: {x: 0.40000004, y: -0.53333336}
+    pivot: {x: 0.36363637, y: -1.2222222}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 88
-      y: 61
-      width: 15
-      height: 15
+      x: 71
+      y: 60
+      width: 11
+      height: 9
     spriteID: 8233e79ef9f353d4396e86581fc616ee
     spriteBone: []
     spriteOutline: []
@@ -538,17 +538,17 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 88, y: 61}
+    uvTransform: {x: 71, y: 60}
   - name: ChristmasAnimations_Frame_21
     originalName: 
-    pivot: {x: 0.5, y: -0.6}
+    pivot: {x: 0.40000004, y: -0.53333336}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 64
-      y: 61
-      width: 16
+      x: 41
+      y: 52
+      width: 15
       height: 15
     spriteID: 49865abbd2330874797e78aeef53132c
     spriteBone: []
@@ -558,18 +558,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 64, y: 61}
+    uvTransform: {x: 41, y: 52}
   - name: ChristmasAnimations_Frame_22
     originalName: 
-    pivot: {x: 0.4615385, y: -0.5714286}
+    pivot: {x: 0.5, y: -0.6}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 111
-      y: 61
-      width: 13
-      height: 14
+      x: 41
+      y: 29
+      width: 16
+      height: 15
     spriteID: f32e6ab90c70c7b4795e7e1cccef0176
     spriteBone: []
     spriteOutline: []
@@ -578,18 +578,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 111, y: 61}
+    uvTransform: {x: 41, y: 29}
   - name: ChristmasAnimations_Frame_23
     originalName: 
-    pivot: {x: 0.5, y: -0.6923077}
+    pivot: {x: 0.4615385, y: -0.5714286}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 88
-      width: 14
-      height: 13
+      x: 41
+      y: 93
+      width: 13
+      height: 14
     spriteID: 6107ec2aa8a709b4abce0a305f8eac8d
     spriteBone: []
     spriteOutline: []
@@ -598,18 +598,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 88}
+    uvTransform: {x: 41, y: 93}
   - name: ChristmasAnimations_Frame_24
     originalName: 
-    pivot: {x: 0.5, y: -1}
+    pivot: {x: 0.5, y: -0.6923077}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 26
-      y: 88
-      width: 16
-      height: 11
+      x: 41
+      y: 115
+      width: 14
+      height: 13
     spriteID: edef780ca2b1aea48aef04874ecad4e8
     spriteBone: []
     spriteOutline: []
@@ -618,7 +618,27 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 26, y: 88}
+    uvTransform: {x: 41, y: 115}
+  - name: ChristmasAnimations_Frame_25
+    originalName: 
+    pivot: {x: 0.5, y: -1}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 41
+      y: 136
+      width: 16
+      height: 11
+    spriteID: f0b8c400c03be8845a1116d81582f90f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 41, y: 136}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -711,15 +731,15 @@ ScriptedImporter:
     - name: ChristmasAnimations_Frame_10
       frameIndex: 10
       cellRect:
-        x: 12
-        y: 11
-        width: 11
-        height: 12
+        x: 5
+        y: 8
+        width: 22
+        height: 10
       spriteId: 87d41ebffaf1dfe4089f2fcb2f8d090f
     - name: ChristmasAnimations_Frame_11
       frameIndex: 11
       cellRect:
-        x: 11
+        x: 12
         y: 11
         width: 11
         height: 12
@@ -727,26 +747,26 @@ ScriptedImporter:
     - name: ChristmasAnimations_Frame_12
       frameIndex: 12
       cellRect:
-        x: 10
+        x: 11
         y: 11
         width: 11
-        height: 11
+        height: 12
       spriteId: 676e26580a39d114db16dc9d71d9f772
     - name: ChristmasAnimations_Frame_13
       frameIndex: 13
       cellRect:
-        x: 9
+        x: 10
         y: 11
-        width: 12
-        height: 12
+        width: 11
+        height: 11
       spriteId: 5f383776262d2a547a2df0a76564894d
     - name: ChristmasAnimations_Frame_14
       frameIndex: 14
       cellRect:
         x: 9
-        y: 12
-        width: 14
-        height: 10
+        y: 11
+        width: 12
+        height: 12
       spriteId: e961bfb76b142194fb338e8266987f77
     - name: ChristmasAnimations_Frame_15
       frameIndex: 15
@@ -754,15 +774,15 @@ ScriptedImporter:
         x: 9
         y: 12
         width: 14
-        height: 8
+        height: 10
       spriteId: f279423f2f92f8a45b8949b94bb8fab7
     - name: ChristmasAnimations_Frame_16
       frameIndex: 16
       cellRect:
-        x: 11
-        y: 11
-        width: 10
-        height: 11
+        x: 9
+        y: 12
+        width: 14
+        height: 8
       spriteId: 35d1b806b6c794d45bf0b8b9e48881fb
     - name: ChristmasAnimations_Frame_17
       frameIndex: 17
@@ -770,64 +790,72 @@ ScriptedImporter:
         x: 11
         y: 11
         width: 10
-        height: 10
+        height: 11
       spriteId: c8b2f61eed5330a4c96f6480db099606
     - name: ChristmasAnimations_Frame_18
       frameIndex: 18
+      cellRect:
+        x: 11
+        y: 11
+        width: 10
+        height: 10
+      spriteId: 0e4105a0eda83834bb3a3c1230a01370
+    - name: ChristmasAnimations_Frame_19
+      frameIndex: 19
       cellRect:
         x: 13
         y: 11
         width: 11
         height: 11
-      spriteId: 0e4105a0eda83834bb3a3c1230a01370
-    - name: ChristmasAnimations_Frame_19
-      frameIndex: 19
+      spriteId: bd6031578bdb4db449929b0264844f43
+    - name: ChristmasAnimations_Frame_20
+      frameIndex: 20
       cellRect:
         x: 12
         y: 11
         width: 11
         height: 9
-      spriteId: bd6031578bdb4db449929b0264844f43
-    - name: ChristmasAnimations_Frame_20
-      frameIndex: 20
+      spriteId: 8233e79ef9f353d4396e86581fc616ee
+    - name: ChristmasAnimations_Frame_21
+      frameIndex: 21
       cellRect:
         x: 10
         y: 8
         width: 15
         height: 15
-      spriteId: 8233e79ef9f353d4396e86581fc616ee
-    - name: ChristmasAnimations_Frame_21
-      frameIndex: 21
+      spriteId: 49865abbd2330874797e78aeef53132c
+    - name: ChristmasAnimations_Frame_22
+      frameIndex: 22
       cellRect:
         x: 8
         y: 9
         width: 16
         height: 15
-      spriteId: 49865abbd2330874797e78aeef53132c
-    - name: ChristmasAnimations_Frame_22
-      frameIndex: 22
+      spriteId: f32e6ab90c70c7b4795e7e1cccef0176
+    - name: ChristmasAnimations_Frame_23
+      frameIndex: 23
       cellRect:
         x: 10
         y: 8
         width: 13
         height: 14
-      spriteId: f32e6ab90c70c7b4795e7e1cccef0176
-    - name: ChristmasAnimations_Frame_23
-      frameIndex: 23
+      spriteId: 6107ec2aa8a709b4abce0a305f8eac8d
+    - name: ChristmasAnimations_Frame_24
+      frameIndex: 24
       cellRect:
         x: 9
         y: 9
         width: 14
         height: 13
-      spriteId: 6107ec2aa8a709b4abce0a305f8eac8d
-    - name: ChristmasAnimations_Frame_24
-      frameIndex: 24
+      spriteId: edef780ca2b1aea48aef04874ecad4e8
+    - name: ChristmasAnimations_Frame_25
+      frameIndex: 25
       cellRect:
         x: 8
         y: 11
         width: 16
         height: 11
-      spriteId: edef780ca2b1aea48aef04874ecad4e8
+      spriteId: f0b8c400c03be8845a1116d81582f90f
     linkedCells: []
     parentIndex: -1
   platformSettings: []
