@@ -136,6 +136,8 @@ public class Witch : MonoBehaviour
     public int ChangeLightningMinChain(int amount) => _lightningMinChain += amount;
     public float LightningTotalDamage() => _lightningBaseDamage + (_damage * 0.1f);
 
+    public FlipBook FlipBook => _flipBook;
+
     private void Awake()
     {
         _initialAcceleration = _acceleration.Value;
@@ -172,9 +174,6 @@ public class Witch : MonoBehaviour
             _health.TakeDamage(100f, 0f, false, default);
 
         _inputDirection = GameManager.Inputs.Player.Moviment.ReadValue<Vector2>().normalized;
-
-        if (_health.HP <= 0f)
-            return;
 
         float delta = Time.deltaTime;
         _elapsedShootTime += delta * _shootDeltaMult;
@@ -214,17 +213,7 @@ public class Witch : MonoBehaviour
 
     private void FixedUpdate()
     {
-        var velocity = _rb.velocity;
-        velocity.x += _inputDirection.x * _acceleration;
-        velocity.y += _inputDirection.y * _acceleration;
-
-        if (Mathf.Sign(_inputDirection.x) == Mathf.Sign(_rb.velocity.x) && Mathf.Abs(_rb.velocity.x) > _maxSpeed)
-            velocity.x = 0f;
-
-        if (Mathf.Sign(_inputDirection.y) == Mathf.Sign(_rb.velocity.y) && Mathf.Abs(_rb.velocity.y) > _maxSpeed)
-            velocity.y = 0f;
-
-        _rb.AddForce(velocity, ForceMode2D.Force);
+        Move(_inputDirection);
     }
 
     private void OnDisable()
@@ -243,6 +232,21 @@ public class Witch : MonoBehaviour
         _damage.OnValueModified -= _aura.SetDamage;
         _critChance.OnValueModified -= _aura.SetCrit;
         _critMultiplier.OnValueModified -= _aura.SetCritMultiplier;
+    }
+
+    public void Move(Vector2 direction)
+    {
+        var velocity = _rb.velocity;
+        velocity.x += direction.x * _acceleration;
+        velocity.y += direction.y * _acceleration;
+
+        if (Mathf.Sign(direction.x) == Mathf.Sign(_rb.velocity.x) && Mathf.Abs(_rb.velocity.x) > _maxSpeed)
+            velocity.x = 0f;
+
+        if (Mathf.Sign(direction.y) == Mathf.Sign(_rb.velocity.y) && Mathf.Abs(_rb.velocity.y) > _maxSpeed)
+            velocity.y = 0f;
+
+        _rb.AddForce(velocity, ForceMode2D.Force);
     }
 
     public void ModifyCurrency(int amount)
@@ -373,6 +377,8 @@ public class Witch : MonoBehaviour
         var pos = new Vector3(-6f, 0f);
         transform.localPosition += pos;
         _flipBook.SR.transform.position -= pos;
+
+        enabled = false;
 
         _acceleration = new(_acceleration.Value * .5f);
         EvaluateDrag();

@@ -5221,7 +5221,7 @@ MonoBehaviour:
   _deathAnimation: {fileID: 11400000, guid: 092e6292a8ddf9d45b2377e9a944f8f1, type: 2}
   _maxSpeed: 20
   _acceleration:
-    _baseValue: 2
+    _baseValue: 1.25
     _value: 0
   _decelerationRange: {x: 3, y: 10}
   _accelerationMaxForRange: 200

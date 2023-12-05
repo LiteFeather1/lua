@@ -1,3 +1,4 @@
+using RetroAnimation;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Witch _witch;
+    private bool _witchDied;
 
     [Header("Settings")]
     [SerializeField] private AudioClip _music;
@@ -28,6 +30,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Volume _volume;
     [SerializeField] private float _aberrationIntensity = 1f;
     [SerializeField] private float _aberrationDuration = .5f;
+    private ChromaticAberration _chromaticAberration;
 
     [Header("Recycle Effects")]
     [SerializeField] private CompositeValue _onRecycleDamageEnemies;
@@ -71,6 +74,7 @@ public class GameManager : MonoBehaviour
 
         _witch.OnDamaged += WitchDamaged;
         _witch.Health.OnDeath += WitchDied;
+        _witch.FlipBook.OnAnimationFinished += WitchDeathAnimationFinished;
         _witch.OnLightningEffectApplied += WitchLightning;
 
         _cardManager.OnCardHovered += SlowDown;
@@ -84,6 +88,9 @@ public class GameManager : MonoBehaviour
         _uiManager.BindToWitch(_witch);
 
         _slowPitch = SetPitch(1f);
+
+        _volume.profile.TryGet(out ChromaticAberration aberration);
+        _chromaticAberration = aberration;
     }
 
     private void Start()
@@ -103,6 +110,13 @@ public class GameManager : MonoBehaviour
 
         _spawnManager.Tick(t, tClamped);
         _uiManager.UpdateTime(_playTime);
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (_witchDied)
+            _witch.Move(Inputs.Player.Moviment.ReadValue<Vector2>().normalized);
     }
 
     private void OnDestroy()
@@ -113,6 +127,7 @@ public class GameManager : MonoBehaviour
         _witch.OnDamaged -= WitchDamaged;
         _witch.Health.OnDeath -= WitchDied;
         _witch.OnLightningEffectApplied -= WitchLightning;
+        _witch.FlipBook.OnAnimationFinished -= WitchDeathAnimationFinished;
 
         _cardManager.OnCardHovered -= SlowDown;
         _cardManager.OnCardUnHovered -= UnSlowDown;
@@ -142,8 +157,7 @@ public class GameManager : MonoBehaviour
     private void WitchDamaged()
     {
         _shake.ShakeStrong();
-        _volume.profile.TryGet(out ChromaticAberration aberration);
-        StartCoroutine(Aberration(aberration));
+        StartCoroutine(Aberration(_chromaticAberration));
         if (_witch.ThornBaseDamage > 0.01f)
             _spawnManager.DamageEveryEnemyInRange(_witch.ThornTotalDamage(),
                                                   _witch.Knockback * .25f,
@@ -155,12 +169,18 @@ public class GameManager : MonoBehaviour
     private void WitchDied()
     {
         Inputs.Player.Pause_UnPause.performed -= PauseUnpause;
-        _endScreenManager.gameObject.SetActive(true);
         _uiManager.GameUi.SetActive(false);
-        _endScreenManager.SetTexts(_uiManager.TimeText,
-                                   _spawnManager.EnemiesDied,
-                                   _cardManager.Recycler.CardsRecycled,
-                                   _witch.TotalCurrencyGained);
+    }
+
+    private void WitchDeathAnimationFinished(FlipBook flipbook)
+    {
+        _endScreenManager.SetTexts(time: _uiManager.TimeText,
+                                   enemies: _spawnManager.EnemiesDied,
+                                   cardsReciclyed: _cardManager.Recycler.CardsRecycled,
+                                   candy: _witch.TotalCurrencyGained);
+        _endScreenManager.gameObject.SetActive(true);
+        _witchDied = true;
+        _chromaticAberration.intensity.value = .125f;
     }
 
     private void WitchLightning(IDamageable firstDamageable)
@@ -245,7 +265,6 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         yield return _hitStop;
         Time.timeScale =  1f;
-
         var eTime = 0f;
         while (eTime < _aberrationDuration)
         {
