@@ -12,11 +12,10 @@ public class OrbitalGun : Gun
     [SerializeField] private int _orbitalAmount = 0;
     [SerializeField] private float _waitBetweenBursts = .75f;
     [SerializeField] private float _maxBulletSpeed = .9f;
+    [SerializeField] private float _maxBulletDuration = 6f;
     [SerializeField] private ObjectPool<FlipBook> _disappearPool;
 
     private readonly List<Bullet> _activeBullets = new();
-    private readonly List<FlipBook> _activeFlipBooks = new();
-    private readonly List<OrbitalAnimation> _orbitalAnimation = new();
 
     public CompositeValue RotationSpeed => _rotationSpeed;
     public int AddOrbitalAmount(int amount) => _orbitalAmount += amount;
@@ -24,12 +23,8 @@ public class OrbitalGun : Gun
     protected override void Awake()
     {
         base.Awake();
-        _disappearPool.InitPool();
-        foreach (var disappear in _disappearPool.Objects)
-        {
-            DisappearCreated(disappear);
-        }
         _disappearPool.ObjectCreated += DisappearCreated;
+        _disappearPool.InitPool();
     }
 
     private void Update()
@@ -51,10 +46,6 @@ public class OrbitalGun : Gun
     protected override void OnDestroy()
     {
         base.OnDestroy();
-        foreach (var disappear in _disappearPool.Objects)
-        {
-            disappear.OnAnimationFinished -= ReturnDisappearToPool;
-        }
         _disappearPool.ObjectCreated -= DisappearCreated;
     }
 
@@ -68,7 +59,7 @@ public class OrbitalGun : Gun
                      speed: Mathf.Clamp(speed, .25f, _maxBulletSpeed),
                      pierce: 1,
                      bounce: 0,
-                     duration: duration,
+                     duration: Mathf.Clamp(duration, 1.5f, _maxBulletDuration),
                      angle: 0f,
                      waitBetweenBursts: _waitBetweenBursts,
                      bulletAmount: 1,
@@ -88,8 +79,8 @@ public class OrbitalGun : Gun
         _activeBullets.Remove(bullet);
 
         var disappear = _disappearPool.GetObject();
-        disappear.transform.localPosition = bullet.transform.position;
         disappear.transform.SetParent(bullet.transform.parent);
+        disappear.transform.localPosition = bullet.transform.localPosition;
         disappear.Play();
         disappear.gameObject.SetActive(true);
 
@@ -105,11 +96,5 @@ public class OrbitalGun : Gun
     {
         disappear.gameObject.SetActive(false);
         _disappearPool.ReturnObject(disappear);
-    }
-
-    private struct OrbitalAnimation
-    {
-        public float Speed;
-        public Vector2 Direction;
     }
 }

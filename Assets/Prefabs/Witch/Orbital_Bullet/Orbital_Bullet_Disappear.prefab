@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6036934251120608719}
   - component: {fileID: 9029989089869572558}
   - component: {fileID: 1407036045124580566}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Orbital_Bullet_Disappear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
