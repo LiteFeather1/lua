@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDragHandler, IPointerEnterHandler
 {
+    [Header("Card UI Power Up")]
     [SerializeField] private float _defaultAlpha = .9f;
     [SerializeField] private CanvasGroup _canvasGroup;
+    [SerializeField] private CanvasGroup _canvasGroupBack;
     [SerializeField] private Image i_powerUp;
     [SerializeField] private Image i_powerUpTierIcon;
     [SerializeField] private TextMeshProUGUI t_cardCost;
@@ -21,12 +23,14 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDr
 
     // icky
     [HideInInspector] public Vector2 Velocity;
-    public PowerUp PowerUp => _powerUp;
 
     public Action<CardUIPowerUp> OnPickedUp { get; set; }
     public Action<CardUIPowerUp> OnReturnToPile { get; set; }
     public Action<CardUIPowerUp> OnDropped { get; set; }
     public Action<PowerUp> OnShowDescription { get; set; }
+
+    public PowerUp PowerUp => _powerUp;
+    public CanvasGroup CanvasGroupBack => _canvasGroupBack;
 
     public void Update()
     {

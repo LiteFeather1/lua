@@ -365,6 +365,7 @@ GameObject:
   - component: {fileID: 8359789488649395074}
   - component: {fileID: 3762814516020239555}
   - component: {fileID: 6663146115178996176}
+  - component: {fileID: 8192929946845094149}
   m_Layer: 5
   m_Name: i_back
   m_TagString: Untagged
@@ -429,6 +430,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &8192929946845094149
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6999936069201331018}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 1
 --- !u!1 &7745215361200788549
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,8 +799,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   i_card: {fileID: 4191582509343608560}
-  _defaultAlpha: 0.9
+  _defaultAlpha: 0.5
   _canvasGroup: {fileID: 5317414799017092345}
+  _canvasGroupBack: {fileID: 8192929946845094149}
   i_powerUp: {fileID: 6372922564060434421}
   i_powerUpTierIcon: {fileID: 5576024971539686844}
   t_cardCost: {fileID: 8136637695915783262}
@@ -802,7 +816,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4885917134754779566}
   m_Enabled: 1
-  m_Alpha: 0.9
+  m_Alpha: 0.5
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0

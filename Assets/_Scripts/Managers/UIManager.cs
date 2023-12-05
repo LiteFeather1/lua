@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class UIManager : MonoBehaviour
 {
@@ -90,9 +91,9 @@ public class UIManager : MonoBehaviour
         float eTime = 0f;
         while (eTime  < _fadeTime)
         {
+            eTime += Time.deltaTime;
             float t = _fadeCurve.Evaluate(eTime / _fadeTime);
             canvasGroup.alpha = Mathf.Lerp(initialAlpha, fadeAlpha, t);
-            eTime += Time.deltaTime;
             yield return null;
         }
     }

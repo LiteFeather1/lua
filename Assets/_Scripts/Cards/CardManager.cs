@@ -31,6 +31,7 @@ public class CardManager : MonoBehaviour
     private List<CardUIPowerUp> _cardsToDraw;
     private List<CardUIPowerUp> _drawnCards;
     [SerializeField] private RectTransform _cardArea;
+    private List<CanvasGroup> _cardGroupBack;
 
     [Header("Card Moviment")]
     [SerializeField] private float _cardSize = 30f;
@@ -70,6 +71,7 @@ public class CardManager : MonoBehaviour
     {
         _drawnCards = new();
         _cardsToDraw = new(_startingCards);
+        _cardGroupBack = new(_startingCards);
         _cards += _startingCards;
         for (int i = 0; i < _startingCards; i++)
             CreateCard();
@@ -148,6 +150,14 @@ public class CardManager : MonoBehaviour
         i_drawer.color = _drawerDisabledColour;
     }
 
+    public void SetBackCanvasGroupState(bool state)
+    {
+        for (int i = 0; i < _cardGroupBack.Count; i++)
+        {
+            _cardGroupBack[i].enabled = state;
+        }
+    }
+
     private IEnumerable<WeightedObject<PowerUp>> CreateRangeWeightedPowerUp(IEnumerable<PowerUp> powerUps)
     {
         foreach (var powerUp in powerUps)
@@ -174,6 +184,7 @@ public class CardManager : MonoBehaviour
         var card = Instantiate(_cardPrefab, _cardArea);
         card.gameObject.SetActive(false);
         _cardsToDraw.Add(card);
+        _cardGroupBack.Add(card.CanvasGroupBack);
         SubToCard(card);
     }
 
