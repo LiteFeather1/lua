@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
 
         _witch.OnDamaged += WitchDamaged;
         _witch.Health.OnDeath += WitchDied;
+        _witch.Health.OnDodge += WitchDodged;
         _witch.FlipBook.OnAnimationFinished += WitchDeathAnimationFinished;
         _witch.OnLightningEffectApplied += WitchLightning;
 
@@ -126,6 +127,7 @@ public class GameManager : MonoBehaviour
 
         _witch.OnDamaged -= WitchDamaged;
         _witch.Health.OnDeath -= WitchDied;
+        _witch.Health.OnDodge -= WitchDodged;
         _witch.OnLightningEffectApplied -= WitchLightning;
         _witch.FlipBook.OnAnimationFinished -= WitchDeathAnimationFinished;
 
@@ -159,11 +161,18 @@ public class GameManager : MonoBehaviour
         _shake.ShakeStrong();
         StartCoroutine(Aberration(_chromaticAberration));
         if (_witch.ThornBaseDamage > 0.01f)
+        {
             _spawnManager.DamageEveryEnemyInRange(_witch.ThornTotalDamage(),
                                                   _witch.Knockback * .25f,
                                                   _witch.transform.position,
                                                   _witch.ThornRange,
                                                   _spawnManager.SpawnThornAnimation);
+        }
+    }
+
+    private void WitchDodged()
+    {
+        _spawnManager.SpawnDamageNum("Dodged!", _witch.ShineColour, _witch.transform.position);
     }
 
     private void WitchDied()

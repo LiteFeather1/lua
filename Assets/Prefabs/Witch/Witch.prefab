@@ -5356,7 +5356,7 @@ MonoBehaviour:
   _damagedColour: {r: 0.8867924, g: 0.34718758, b: 0.34718758, a: 1}
   _dodgeParticle: {fileID: 8810814724732111599}
   _shineTime: 0.33
-  _shineTransform: {fileID: 407064426724320415}
+  _shineSR: {fileID: 2968246285734045891}
   _topPos: {x: 0.125, y: 0.125}
   _botPos: {x: -0.125, y: -0.125}
   _rb: {fileID: 6244824650771415616}
@@ -5382,7 +5382,7 @@ MonoBehaviour:
     _baseValue: 10
     _value: 0
   _dodgeChance:
-    _baseValue: 0.01
+    _baseValue: 1
     _value: 0
 --- !u!114 &4983606301530429066
 MonoBehaviour:

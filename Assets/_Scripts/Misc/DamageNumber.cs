@@ -20,6 +20,7 @@ public class DamageNumber : MonoBehaviour
 
         var delta = Time.deltaTime;
         _velocity.y += GRAVITY * delta * 10f;
+        _velocity.x *= .98f;
         transform.localPosition += (Vector3)(_velocity * delta);
 
         _elapsedTime += delta;
@@ -34,11 +35,12 @@ public class DamageNumber : MonoBehaviour
     public void SetVelocity(Vector2 velocity)
     {
         _velocity = velocity;
+        print(velocity.x);
     }
 
     public void SetText(string text, Color colour)
     {
-        _text.color = colour;
         _text.text = text;
+        _text.color = colour;
     }
 }

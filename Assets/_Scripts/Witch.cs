@@ -84,7 +84,7 @@ public class Witch : MonoBehaviour
     [Header("Dodge")]
     [SerializeField] private ParticleSystem _dodgeParticle;
     [SerializeField] private float _shineTime = .5f;
-    [SerializeField] private Transform _shineTransform;
+    [SerializeField] private SpriteRenderer _shineSR;
     [SerializeField] private Vector2 _topPos = new(.125f, .125f);
     [SerializeField] private Vector2 _botPos = new(-.125f, -.125f);
     private IEnumerator _dodgeCo;
@@ -146,6 +146,8 @@ public class Witch : MonoBehaviour
     public int LightningMinChain => _lightningMinChain;
     public int ChangeLightningMinChain(int amount) => _lightningMinChain += amount;
     public float LightningTotalDamage() => _lightningBaseDamage + (_damage * 0.1f);
+
+    public Color ShineColour => _shineSR.color;
 
     public FlipBook FlipBook => _flipBook;
 
@@ -407,14 +409,15 @@ public class Witch : MonoBehaviour
     private IEnumerator DodgeShine()
     {
         float eTime = 0f;
+        var transform = _shineSR.transform;
         while (eTime < _shineTime) 
         {
             eTime += Time.deltaTime;
-            _shineTransform.localPosition = Vector2.Lerp(_topPos, _botPos, eTime / _shineTime);
+            transform.localPosition = Vector2.Lerp(_topPos, _botPos, eTime / _shineTime);
             yield return null;
         }
 
-        _shineTransform.localPosition = _topPos;
+        transform.localPosition = _topPos;
     }
 
     private void Dodged()

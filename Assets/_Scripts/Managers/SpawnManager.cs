@@ -167,6 +167,16 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    public void SpawnDamageNum(string text, Color color, Vector2 pos)
+    {
+        var dmgNum = _damageNumPool.GetObject();
+        dmgNum.SetText(text, color);
+        var x = _xVelocityRange.Random() * (Random.value > .5f ? 1f : -1f);
+        dmgNum.SetVelocity(new(x, _yVelocityRange.Random()));
+        dmgNum.transform.position = pos;
+        dmgNum.gameObject.SetActive(true);
+    }
+
     public void DamageEveryEnemy(float damage)
     {
         // Coping array so we don't get out of index. Or do double damage to the same thing
@@ -294,7 +304,7 @@ public class SpawnManager : MonoBehaviour
         enemy.Init(GameManager.Instance.Witch);
         enemy.ReturnToPool += ReturnEnemyToPool;
         enemy.OnDied += EnemyDied;
-        enemy.Health.OnDamaged += SpawnDamageNum;
+        enemy.Health.OnDamaged += EnemyDamaged;
         enemy.OnFireEffectApplied += _fireParticlePool.GetObject;
     }
 
@@ -302,7 +312,7 @@ public class SpawnManager : MonoBehaviour
     {
         enemy.ReturnToPool -= ReturnEnemyToPool;
         enemy.OnDied -= EnemyDied;
-        enemy.Health.OnDamaged -= SpawnDamageNum;
+        enemy.Health.OnDamaged -= EnemyDamaged;
         enemy.OnFireEffectApplied -= _fireParticlePool.GetObject;
     }
 
@@ -376,14 +386,9 @@ public class SpawnManager : MonoBehaviour
         currency.gameObject.SetActive(true);
     }
 
-    private void SpawnDamageNum(float damage, float knockback, bool crit, Vector2 pos)
+    private void EnemyDamaged(float damage, float knockback, bool crit, Vector2 pos)
     {
-        var dmg = _damageNumPool.GetObject();
-        dmg.SetText(damage.ToString("0.00"), crit ? _critColour : _normalColour);
-
-        dmg.SetVelocity(new(_xVelocityRange.Random() * Random.value > .5f ? 1f : -1f, _yVelocityRange.Random()));
-        dmg.transform.position = pos;
-        dmg.gameObject.SetActive(true);
+        SpawnDamageNum(damage.ToString($"0.00"), crit ? _critColour : _normalColour, pos);
 
         if (knockback == 0f)
             return;
