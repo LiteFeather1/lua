@@ -9,10 +9,10 @@ public class OrbitalGun : Gun
     [SerializeField] private Transform _clockWiseRotation;
     [SerializeField] private Transform _antiClockWiseRotation;
     [SerializeField] private CompositeValue _rotationSpeed;
-    [SerializeField] private int _orbitalAmount = 0;
-    [SerializeField] private float _waitBetweenBursts = .75f;
     [SerializeField] private float _maxBulletSpeed = .9f;
     [SerializeField] private float _maxBulletDuration = 6f;
+    [SerializeField] private int _orbitalAmount = 0;
+    [SerializeField] private float _waitBetweenBursts = .75f;
     [SerializeField] private ObjectPool<FlipBook> _disappearPool;
 
     private readonly List<Bullet> _activeBullets = new();
@@ -64,10 +64,11 @@ public class OrbitalGun : Gun
                      bounce: 0,
                      duration: Mathf.Clamp(duration, 1.5f, _maxBulletDuration),
                      angle: 0f,
-                     waitBetweenBursts: _waitBetweenBursts,
-                     bulletAmount: 1,
+                     randomAngle: 0f,
+                     separationPerBullet: 0f,
                      burstAmount: _orbitalAmount,
-                     separationPerBullet: 0f);
+                     bulletAmount: 1,
+                     waitBetweenBursts: _waitBetweenBursts);
     }
 
     protected override void ShootProjectileMethod(Bullet bullet, float speed)

@@ -8,7 +8,7 @@ public class Gun : MonoBehaviour
 {
     [Header("Gun")]
     [SerializeField] private Transform _firePoint;
-    [SerializeField] protected ObjectPool<Bullet> _bulletPool;
+    [SerializeField] private ObjectPool<Bullet> _bulletPool;
     [SerializeField] private ObjectPool<ParticleStoppedCallBack> _particlePool;
     [SerializeField] private ObjectPool<FlipBook> _bulletDamage;
     [SerializeField] private AudioClip _bulletShotSound;
@@ -52,19 +52,20 @@ public class Gun : MonoBehaviour
     }
 
     public void StartShootRoutine(float damage,
-                             float critChance,
-                             float critMultiplier,
-                             float knockback,
-                             float size,
-                             float speed,
-                             int pierce,
-                             int bounce,
-                             float duration,
-                             float angle,
-                             float waitBetweenBursts,
-                             int bulletAmount,
-                             int burstAmount,
-                             float separationPerBullet)
+                                  float critChance,
+                                  float critMultiplier,
+                                  float knockback,
+                                  float size,
+                                  float speed,
+                                  int pierce,
+                                  int bounce,
+                                  float duration,
+                                  float angle,
+                                  float randomAngle,
+                                  float separationPerBullet,
+                                  int burstAmount,
+                                  int bulletAmount,
+                                  float waitBetweenBursts)
     {
         AudioManager.Instance.PlayOneShot(_bulletShotSound);
         StartCoroutine(Shot_CO(damage: damage,
@@ -77,14 +78,23 @@ public class Gun : MonoBehaviour
                                bounce: bounce,
                                duration: duration,
                                angle: angle,
-                               waitBetweenBursts: waitBetweenBursts,
-                               bulletAmount: bulletAmount,
+                               randomAngle: randomAngle,
+                               separationPerBullet: separationPerBullet,
                                burstAmount: burstAmount,
-                               separationPerBullet: separationPerBullet));
+                               bulletAmount: bulletAmount,
+                               waitBetweenBursts: waitBetweenBursts));
     }
 
-    public void ShootBullet(float damage, float critChance, float critMultiplier, float knockback , float size, 
-        float speed, int pierce, int bounce, float duration, float angle)
+    public void ShootBullet(float damage,
+                            float critChance,
+                            float critMultiplier,
+                            float knockback,
+                            float size,
+                            float speed,
+                            int pierce,
+                            int bounce,
+                            float duration,
+                            float angle)
     {
         var bullet = _bulletPool.GetObject();
         bullet.transform.SetPositionAndRotation(_firePoint.position, Quaternion.Euler(0f, 0f, angle));
@@ -124,12 +134,12 @@ public class Gun : MonoBehaviour
                                 int bounce,
                                 float duration,
                                 float angle,
-                                float waitBetweenBursts,
-                                int bulletAmount,
+                                float randomAngle,
+                                float separationPerBullet,
                                 int burstAmount,
-                                float separationPerBullet)
+                                int bulletAmount,
+                                float waitBetweenBursts)
     {
-
         WaitForSeconds yieldBetweenBurst = burstAmount > 1 ? new(waitBetweenBursts) : null;
         for (int i = 0; i < burstAmount; i++)
         {
@@ -144,7 +154,7 @@ public class Gun : MonoBehaviour
                             pierce: pierce,
                             bounce: bounce,
                             duration: duration,
-                            angle: GetAngle(j, bulletAmount, separationPerBullet) + angle);
+                            angle: GetAngle(j, bulletAmount, separationPerBullet) + angle + UnityEngine.Random.Range(-randomAngle, randomAngle));
             }
             yield return yieldBetweenBurst;
         }

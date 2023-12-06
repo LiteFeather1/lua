@@ -101,7 +101,6 @@ public class Witch : MonoBehaviour
     public Action OnDamaged { get; set; }
     public Action OnInvulnerabilityEnded { get; set; }
 
-
     public Action OnMainShoot { get; set; }
 
     public Action<IDamageable> OnLightningEffectApplied { get; set; }
@@ -191,7 +190,10 @@ public class Witch : MonoBehaviour
         {
             _elapsedShootTime = 0f;
             _shootDeltaMult = 0f;
-            _mainGun.StartShootRoutine(_damage, _critChance, _critMultiplier, _knockback);
+            _mainGun.StartShootRoutine(damage: _damage,
+                                       critChance: _critChance,
+                                       critMultiplier: _critMultiplier,
+                                       knockback: _knockback);
             OnMainShoot?.Invoke();
         }
 
@@ -203,7 +205,11 @@ public class Witch : MonoBehaviour
             _randomBulletOffset = Random.Range(-offset, offset);
             for (int i = 0; i < _randomBulletAmount; i++)
             {
-                _mainGun.ShootBullet(_damage, _critChance, _critMultiplier, _knockback, Random.Range(0f, 360f));
+                _mainGun.ShootBullet(damage: _damage,
+                                     critChance: _critChance,
+                                     critMultiplier: _critMultiplier,
+                                     knockback: _knockback,
+                                     angle: Random.Range(0f, 360f));
             }
         }
 
@@ -212,12 +218,12 @@ public class Witch : MonoBehaviour
         {
             _elapsedOrbitalShootTime = 0f;
             _orbitalDeltaMult = 0f;
-            _orbitalGun.StartShootRoutine(_damage * .5f,
-                                          _critChance,
-                                          _critMultiplier,
-                                          _knockback * .33f,
-                                          _mainGun.BulletSpeed * .2f,
-                                          _mainGun.BulletDuration * 2f);
+            _orbitalGun.StartShootRoutine(damage: _damage * .5f,
+                                          critChance: _critChance,
+                                          critMultiplier: _critMultiplier,
+                                          knockback: _knockback * .33f,
+                                          speed: _mainGun.BulletSpeed * .2f,
+                                          duration: _mainGun.BulletDuration * 2f);
         }
 
         _elapsedDaggerShootTime += delta * _daggerDeltaMult;
@@ -229,17 +235,18 @@ public class Witch : MonoBehaviour
             _daggerGun.StartShootRoutine(damage: _damage * HALF,
                                          critChance: _critChance * HALF,
                                          critMultiplier: _critMultiplier * HALF,
-                                         knockback: _knockback * HALF,
+                                         knockback: 0f,
                                          size: 1f,
                                          speed: _mainGun.BulletSpeed * 2f,
                                          pierce: 9999,
                                          bounce: 0,
                                          duration: _mainGun.BulletDuration,
                                          angle: 0f,
-                                         waitBetweenBursts: _mainGun.WaitBetweenBursts,
-                                         bulletAmount: (int)(_mainGun.BulletAmount * HALF),
+                                         randomAngle: 0f,
+                                         separationPerBullet: _mainGun.SeparationPerBullet * HALF,
                                          burstAmount: Mathf.Max((int)(_mainGun.BurstAmount * HALF), 1),
-                                         separationPerBullet: _mainGun.SeparationPerBullet * HALF);
+                                         bulletAmount: (int)(_mainGun.BulletAmount * HALF),
+                                         waitBetweenBursts: _mainGun.WaitBetweenBursts);
         }
 
         _spriteMask.sprite = _flipBook.SR.sprite;

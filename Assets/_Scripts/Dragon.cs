@@ -72,10 +72,11 @@ public class Dragon : MonoBehaviour
                           bounce: (int)(_witch.Gun.BounceAmount * _forceMultiplier),
                           duration: _witch.Gun.BulletDuration.Value,
                           angle: 0f,
-                          waitBetweenBursts: _witch.Gun.WaitBetweenBursts,
-                          bulletAmount: Mathf.CeilToInt(_witch.Gun.BulletAmount * _forceMultiplier),
+                          randomAngle: _witch.Gun.RandomAngle,
+                          separationPerBullet: _witch.Gun.SeparationPerBullet,
                           burstAmount: Mathf.CeilToInt(_witch.Gun.BurstAmount * _forceMultiplier),
-                          separationPerBullet: _witch.Gun.SeparationPerBullet);
+                          bulletAmount: Mathf.CeilToInt(_witch.Gun.BulletAmount * _forceMultiplier),
+                          waitBetweenBursts: _witch.Gun.WaitBetweenBursts);
     }
 
 }
