@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sr: {fileID: 1407036045124580566}
-  _flipSheet: {fileID: 11400000, guid: a657a400157b8d0438828231754da380, type: 2}
+  _flipSheet: {fileID: 11400000, guid: ae2b72ccc6d88944caaba2a3cf47660c, type: 2}
   _fps: 1
   _playing: 0
   _looping: 0
@@ -91,8 +91,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 100
-  m_Sprite: {fileID: 1097136370, guid: ce498df9af521d34e920776f28f95217, type: 3}
-  m_Color: {r: 0.5507298, g: 0.68248564, b: 0.9811321, a: 1}
+  m_Sprite: {fileID: -1160396923, guid: 175868193502aee4b82508f24ca8afdf, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

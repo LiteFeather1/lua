@@ -240,6 +240,54 @@ ScriptedImporter:
         width: 9
         height: 8
       spriteId: 28e17647a4ae095408805454e6971686
+    - name: Dagger_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 4
+        y: 4
+        width: 8
+        height: 8
+      spriteId: a3698c2b0edd3124499e950ac60b89bd
+    - name: Dagger_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 6
+        y: 6
+        width: 4
+        height: 4
+      spriteId: 89d845acddaebca4ebf1813c201d5fcf
+    - name: Dagger_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 5
+        y: 5
+        width: 7
+        height: 7
+      spriteId: 3493131dd49f4044bb765effcf65227d
+    - name: Dagger_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 5
+        y: 5
+        width: 7
+        height: 7
+      spriteId: afd29391a0f49d144b51ff63e4a3366d
+    - name: Dagger_Frame_8
+      frameIndex: 8
+      cellRect:
+        x: 6
+        y: 5
+        width: 9
+        height: 10
+      spriteId: 9d55d696bddb7ae4d8a0e9e90c95a99a
+    - name: Dagger_Frame_9
+      frameIndex: 9
+      cellRect:
+        x: 4
+        y: 4
+        width: 12
+        height: 12
+      spriteId: 50ca06a14cf246141a93ed7eb1a61263
     linkedCells: []
     parentIndex: -1
   platformSettings:
