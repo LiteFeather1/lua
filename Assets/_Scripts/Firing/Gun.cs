@@ -96,10 +96,10 @@ public class Gun : MonoBehaviour
                             float angle)
     {
         var bullet = _bulletPool.GetObject();
-        bullet.transform.SetPositionAndRotation(_firePoint.position, Quaternion.Euler(0f, 0f, angle));
-        bullet.transform.localScale = new(size, size, size);
-        bullet.AttachDisable(_particlePool.GetObject());
+        bullet.transform.SetLocalPositionAndRotation(_firePoint.position, Quaternion.Euler(0f, 0f, angle));
+        bullet.transform.localScale = new(size, size, 1f);
         bullet.gameObject.SetActive(true);
+        bullet.AttachDisable(_particlePool.GetObject());
         bullet.Hitbox.SetStats(damage, critChance, critMultiplier, knockback);
         bullet.Projectile.SetStats(pierce, bounce, duration);
         ShootProjectileMethod(bullet, speed);

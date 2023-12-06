@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Flip_Sheet_Dagger
   m_EditorClassIdentifier: 
   _sprites:
-  - {fileID: 1713794190, guid: 32c3489d1c1f59a4393bc9db3ebc28e1, type: 3}
-  - {fileID: 1102528419, guid: 32c3489d1c1f59a4393bc9db3ebc28e1, type: 3}
-  - {fileID: -1788868869, guid: 32c3489d1c1f59a4393bc9db3ebc28e1, type: 3}
   - {fileID: 1332865999, guid: 32c3489d1c1f59a4393bc9db3ebc28e1, type: 3}
-  _fps: 12
+  - {fileID: -1788868869, guid: 32c3489d1c1f59a4393bc9db3ebc28e1, type: 3}
+  - {fileID: 1102528419, guid: 32c3489d1c1f59a4393bc9db3ebc28e1, type: 3}
+  - {fileID: 1713794190, guid: 32c3489d1c1f59a4393bc9db3ebc28e1, type: 3}
+  _fps: 16

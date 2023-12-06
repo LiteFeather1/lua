@@ -49,6 +49,7 @@ public class Witch : MonoBehaviour
     [Header("Dagger Gun")]
     [SerializeField] private Gun _daggerGun;
     [SerializeField] private CompositeValue _daggerShootTime = new(3f);
+    [SerializeField] private int _daggerAmount;
     private float _elapsedDaggerShootTime;
     private float _daggerDeltaMult = 1f;
 
@@ -125,6 +126,7 @@ public class Witch : MonoBehaviour
     public CompositeValue OrbitalShootTime => _orbitalShootTime;
 
     public CompositeValue DaggerShootTime => _daggerShootTime;
+    public int DaggerAmount(int amount) => _daggerAmount += amount; 
 
     public CompositeValue ChanceToLifeSteal => _chanceToLifeSteal;
     public CompositeValue LifeStealPercent => _lifeStealPercent;
@@ -250,7 +252,7 @@ public class Witch : MonoBehaviour
                                          randomAngle: 0f,
                                          separationPerBullet: _mainGun.SeparationPerBullet * HALF,
                                          burstAmount: Mathf.Max((int)(_mainGun.BurstAmount * HALF), 1),
-                                         bulletAmount: (int)(_mainGun.BulletAmount * HALF),
+                                         bulletAmount: _daggerAmount,
                                          waitBetweenBursts: _mainGun.WaitBetweenBursts);
         }
 
