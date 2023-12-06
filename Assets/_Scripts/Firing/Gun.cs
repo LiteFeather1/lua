@@ -67,7 +67,6 @@ public class Gun : MonoBehaviour
                                   int bulletAmount,
                                   float waitBetweenBursts)
     {
-        AudioManager.Instance.PlayOneShot(_bulletShotSound);
         StartCoroutine(Shot_CO(damage: damage,
                                critChance: critChance,
                                critMultiplier: critMultiplier,
@@ -143,6 +142,7 @@ public class Gun : MonoBehaviour
         WaitForSeconds yieldBetweenBurst = burstAmount > 1 ? new(waitBetweenBursts) : null;
         for (int i = 0; i < burstAmount; i++)
         {
+            AudioManager.Instance.PlayOneShot(_bulletShotSound);
             for (int j = 0; j < bulletAmount; j++)
             {
                 ShootBullet(damage: damage,

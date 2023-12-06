@@ -185,6 +185,8 @@ public class Witch : MonoBehaviour
         _inputDirection = GameManager.Inputs.Player.Moviment.ReadValue<Vector2>().normalized;
 
         float delta = Time.deltaTime;
+
+        // Main Shot
         _elapsedShootTime += delta * _shootDeltaMult;
         if (_elapsedShootTime >= _shootTime)
         {
@@ -197,6 +199,7 @@ public class Witch : MonoBehaviour
             OnMainShoot?.Invoke();
         }
 
+        // Random Shot
         _elapsedRandomShootTime += delta;
         if (_elapsedRandomShootTime >= _randomBulletShootTime + _randomBulletOffset)
         {
@@ -213,6 +216,7 @@ public class Witch : MonoBehaviour
             }
         }
 
+        // Orbital Shot
         _elapsedOrbitalShootTime += delta * _orbitalDeltaMult;
         if (_elapsedOrbitalShootTime > _orbitalShootTime)
         {
@@ -226,6 +230,7 @@ public class Witch : MonoBehaviour
                                           duration: _mainGun.BulletDuration * 2f);
         }
 
+        // Dagger Shot
         _elapsedDaggerShootTime += delta * _daggerDeltaMult;
         if (_elapsedDaggerShootTime > _daggerShootTime)
         {
@@ -238,7 +243,7 @@ public class Witch : MonoBehaviour
                                          knockback: 0f,
                                          size: 1f,
                                          speed: _mainGun.BulletSpeed * 2f,
-                                         pierce: 9999,
+                                         pierce: int.MaxValue,
                                          bounce: 0,
                                          duration: _mainGun.BulletDuration,
                                          angle: 0f,
