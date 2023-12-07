@@ -3127,9 +3127,11 @@ MonoBehaviour:
   _chanceDamageExplosion:
     _baseValue: 0
     _value: 0
+    _compositeModifiers: []
   _explosionDamage:
     _baseValue: 5
     _value: 0
+    _compositeModifiers: []
   _explosionRadius: 0.16
   _currencyPool:
     _object: {fileID: 2748346242251297967, guid: 01b4627feeae6a645a416d881fbab9b8, type: 3}
@@ -3138,6 +3140,7 @@ MonoBehaviour:
   _chanceToExtraCandy:
     _baseValue: 0
     _value: 0
+    _compositeModifiers: []
   _damageNumPool:
     _object: {fileID: 2872507750913942527, guid: e57e6c95f5d22544ead44720df0f0b19, type: 3}
     _initialPoolSize: 10
@@ -7880,6 +7883,7 @@ MonoBehaviour:
   _timeToDrawCard:
     _baseValue: 7
     _value: 0
+    _compositeModifiers: []
   _startingPowerUps:
   - {fileID: 11400000, guid: 5a5292755a2d8364dbdc683b5c850021, type: 2}
   - {fileID: 11400000, guid: 88d1342179fc9724f9d950bbde297268, type: 2}
@@ -7888,6 +7892,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8830cdbf48c089f4fae2ddd8b1789f9d, type: 2}
   - {fileID: 11400000, guid: b3e24908159f725409166fae402c24f0, type: 2}
   - {fileID: 11400000, guid: b7f7b34c06fd9954b9c304ffc1931ef0, type: 2}
+  - {fileID: 11400000, guid: 227fe312cf1c4f54ba7faf8624658f81, type: 2}
   - {fileID: 11400000, guid: bc5fbc743cf527346970aefafe1800c7, type: 2}
   - {fileID: 11400000, guid: 2f3ca70996f48e1419639c5b99ee62dc, type: 2}
   - {fileID: 11400000, guid: 71fd451d859d3324bade4c0f4af106ca, type: 2}
@@ -8166,24 +8171,31 @@ MonoBehaviour:
   _onRecycleDamageEnemies:
     _baseValue: 0
     _value: 0
+    _compositeModifiers: []
   _onRecycleHeal:
     _baseValue: 0
     _value: 0
+    _compositeModifiers: []
   _onRecycleAddCurrency:
     _baseValue: 0
     _value: 0
+    _compositeModifiers: []
   _onRecycleRefund:
     _baseValue: 0
     _value: 0
+    _compositeModifiers: []
   _onCardPlayedDamageEnemies:
     _baseValue: 0
     _value: 0
+    _compositeModifiers: []
   _onCardPlayedHeal:
     _baseValue: 0
     _value: 0
+    _compositeModifiers: []
   _onCardPlayedRefund:
     _baseValue: 0
     _value: 0
+    _compositeModifiers: []
 --- !u!4 &1886159767
 Transform:
   m_ObjectHideFlags: 0

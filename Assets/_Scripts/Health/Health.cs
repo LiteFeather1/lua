@@ -79,7 +79,7 @@ public class Health : MonoBehaviour, IDamageable
     {
         _maxHealth = newMax;
         _health = newMax;
-        _defence.Clear(newDefence);
+        _defence.SetNewBase(newDefence);
     }
 
     public void Heal(float heal)

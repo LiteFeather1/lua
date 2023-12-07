@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33cccd1ee68b21d44912b1bf81c193e3, type: 3}
+  m_Name: Power_UP_Dagger_Amount
+  m_EditorClassIdentifier: 
+  _name: Throwing Daggers
+  _effect: +$ Dagger Amount
+  _cost: 16
+  _rarity: {fileID: 11400000, guid: 0869bc92c695cdd4c97f8b266f87f121, type: 2}
+  _icon: {fileID: -960532269, guid: 9597046be1f803a45bde8069dd619320, type: 3}
+  _tierIcon: {fileID: -1081683514, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
+  _powerUpsToUnlock:
+  - {fileID: 11400000, guid: 4b0a49c21a4c27041923eb76dd10e064, type: 2}
+  - {fileID: 11400000, guid: 6a7a0ea2792b9b74691c239a66dd453d, type: 2}
+  _amount: 1
+  _valueToRemove: {fileID: 0}
+  _unlockText: Lua Throws Dagger Occasionally with Half of the Power of Normal but
+    with Infinity Pierce
