@@ -19,7 +19,7 @@ public class EnemyChase : Enemy
     public override void Spawn(float t, float tClamped)
     {
         base.Spawn(t, tClamped);
-        _movement.SetSpeed(_data.SpeedRange.Evaluate(tClamped));
+        _movement.SetSpeed(_data.Speed(tClamped));
     }
 
     protected override void KnockBackComplete()

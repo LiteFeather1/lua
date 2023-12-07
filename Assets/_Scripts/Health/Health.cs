@@ -68,9 +68,18 @@ public class Health : MonoBehaviour, IDamageable
         _health = newMax;
     }
 
-    public void Reset(float newMax, flaot newDefence)
+    public void Resets(float newMax, float newDefence)
     {
-        
+        _maxHealth = newMax;
+        _health = newMax;
+        _defence.Clear(newDefence);
+    }
+
+    public void SetNewStats(float newMax, float newDefence)
+    {
+        _maxHealth = newMax;
+        _health = newMax;
+        _defence.Clear(newDefence);
     }
 
     public void Heal(float heal)

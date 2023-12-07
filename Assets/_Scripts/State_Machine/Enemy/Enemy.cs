@@ -55,8 +55,8 @@ public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
     public virtual void Spawn(float t, float tClamped) 
     {
         _flipBook.SR.sortingOrder = Random.Range(100, 500);
-        _health.ResetHealth(_data.HealthRange.Evaluate(t));
-        _hitBox.SetDamage(_data.DamageRange.Evaluate(t));
+        _health.SetNewStats(_data.Health(t), _data.Defence(Mathf.Max(0f, t - .5f)));
+        _hitBox.SetDamage(_data.Damage(t));
         gameObject.SetActive(true);
     }
 

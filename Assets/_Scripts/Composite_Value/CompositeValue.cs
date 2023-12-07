@@ -134,6 +134,12 @@ public class CompositeValue
         return didRemove;
     }
 
+    public void SetNewBase(float newBase)
+    {
+        _baseValue = newBase;
+        _value = newBase;
+    }
+
     /// <summary>
     /// This will clear all the modifiers and set the value to the base value
     /// </summary>
