@@ -16,6 +16,7 @@ public abstract class PowerUp : ScriptableObject
     public string Name => _name;
     public virtual string Effect => _effect.Replace("$", Num);
     public int Cost => _cost;
+    public Rarity Rarity => _rarity;
     public float Weight => _rarity.Weight;
     public Color RarityColour => _rarity.RarityColour;
     public Sprite Icon => _icon;   

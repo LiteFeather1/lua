@@ -1110,6 +1110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1458194002}
   - component: {fileID: 1458194003}
+  - component: {fileID: 1458194004}
   m_Layer: 0
   m_Name: Initializer
   m_TagString: Untagged
@@ -1152,13 +1153,17 @@ MonoBehaviour:
     _monthEnd: 12
     _yearPlus: 0
   _seasonalFlipSheets:
+  - {fileID: 11400000, guid: 3135c3835d3a4a040b7aae6b55457e9e, type: 2}
   - {fileID: 11400000, guid: 579673c57ec4a684aa68394c5e9d28a4, type: 2}
+  - {fileID: 11400000, guid: 6e41a6e7f0cbaac44ac0d2eae70f6a19, type: 2}
+  - {fileID: 11400000, guid: 471b32d4164b2e246bb8b120fb20f5cd, type: 2}
   - {fileID: 11400000, guid: 2669408eb0a2f2545bc44ae9692727ea, type: 2}
   - {fileID: 11400000, guid: f2c0c29519e60054280186bba1d5afc1, type: 2}
   - {fileID: 11400000, guid: 04396b1275ae53c48ad352b61aa6fc34, type: 2}
   - {fileID: 11400000, guid: bede929818122fe49af8a03bdecaecdd, type: 2}
   - {fileID: 11400000, guid: 64c7627e8c487f147aa1285ab70cf790, type: 2}
   - {fileID: 11400000, guid: 7466eeaf3f9fb7649b45f517c53e0ce3, type: 2}
+  - {fileID: 11400000, guid: 584e9e6e4874ef74ca599fc7f78b19c3, type: 2}
   _seasonalSprites:
   - {fileID: 11400000, guid: 7fd1d1eaf8226c14d8628d00689ae6bc, type: 2}
   - {fileID: 11400000, guid: 449b4a9a949aa9e4cbdbe06f773569af, type: 2}
@@ -1166,6 +1171,33 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cc941f5537bdae240a13941060ce84be, type: 2}
   - {fileID: 11400000, guid: 526972562be109c45953167e1a7d1b77, type: 2}
   - {fileID: 11400000, guid: b4cc70bfb2794d84d891725517126a93, type: 2}
+--- !u!114 &1458194004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458194001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 692994a9d6a926448bd8ba3ebe0f35a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rarityPrices:
+  - Rarity: {fileID: 11400000, guid: 639bbac6bf1db91429066dc023f24633, type: 2}
+    Prices: {x: 2, y: 6}
+  - Rarity: {fileID: 11400000, guid: a7ae77a514c29d44995457b989b36476, type: 2}
+    Prices: {x: 6, y: 12}
+  - Rarity: {fileID: 11400000, guid: 0869bc92c695cdd4c97f8b266f87f121, type: 2}
+    Prices: {x: 8, y: 18}
+  - Rarity: {fileID: 11400000, guid: 994856a3f8937bb4dba3e0990a364b53, type: 2}
+    Prices: {x: 16, y: 32}
+  _noTier: {fileID: -1081683514, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
+  _tiers:
+  - {fileID: 1374594584, guid: 9597046be1f803a45bde8069dd619320, type: 3}
+  - {fileID: 1301208098, guid: 9597046be1f803a45bde8069dd619320, type: 3}
+  - {fileID: -514428840, guid: 9597046be1f803a45bde8069dd619320, type: 3}
+  _powerUpProblems: []
 --- !u!1 &1560942888
 GameObject:
   m_ObjectHideFlags: 0
