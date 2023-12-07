@@ -4,21 +4,24 @@ using UnityEngine;
 public class Health : MonoBehaviour, IDamageable
 {
     [SerializeField] protected float _maxHealth;
+    [SerializeField] private CompositeValue _defence = new(0f);
     protected float _health;
     private readonly HashSet<int> _uniqueDamageEffects = new();
     private readonly List<IDamageEffect> _damageEffects = new();
 
-    public float MaxHP => _maxHealth;
-    public float Hp => _health;
-    public Vector2 Pos => transform.position;
 
     public delegate void OnDamage(float damage, float knockback, bool crit, Vector2 pos);
     public OnDamage OnDamaged { get; set; }
     public System.Action OnHeal { get; set; }
     public System.Action OnDeath { get; set; }
 
-    public System.Action<int> OnDamageEffectApplied { get; set; }   
+    public System.Action<int> OnDamageEffectApplied { get; set; }
     public System.Action<int> OnDamageEffectRemoved { get; set; }
+
+    public float MaxHP => _maxHealth;
+    public float Hp => _health;
+    public CompositeValue Defence => _defence;
+    public Vector2 Pos => transform.position;
 
     public void Start() => _health = _maxHealth;
 
@@ -43,7 +46,8 @@ public class Health : MonoBehaviour, IDamageable
         if (_health < 0f)
             return true;
 
-        _health -= damage;
+        _health -= damage * 100f / (100f + _defence);
+
         OnDamaged?.Invoke(damage, knockback, crit, pos);
         if (_health <= 0f)
         {
@@ -62,6 +66,11 @@ public class Health : MonoBehaviour, IDamageable
     {
         _maxHealth = newMax;
         _health = newMax;
+    }
+
+    public void Reset(float newMax, flaot newDefence)
+    {
+        
     }
 
     public void Heal(float heal)

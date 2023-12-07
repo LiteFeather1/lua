@@ -4,7 +4,6 @@ public class HealthPlayer : Health
 {
     [Header("Player Health")]   
     [SerializeField] private int _shield;
-    [SerializeField] private CompositeValue _defence = new(10f);
     [SerializeField] private CompositeValue _dodgeChance = new(0f);
 
     public delegate void MaxHPIncreased(float maxHp, float t);
@@ -15,7 +14,6 @@ public class HealthPlayer : Health
     public System.Action OnDodge { get; set; }
 
     public int Shield => _shield;
-    public CompositeValue Defence => _defence;
     public CompositeValue DodgeChance => _dodgeChance;
 
     public override bool TakeDamage(float damage, float knockback, bool crit, Vector2 pos)
@@ -33,8 +31,6 @@ public class HealthPlayer : Health
             OnShieldDamaged?.Invoke();
             return false;   
         }
-
-        damage *= 100f / (100f + _defence);
 
         return base.TakeDamage(damage, knockback, crit, pos);
     }

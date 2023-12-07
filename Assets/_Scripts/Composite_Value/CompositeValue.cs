@@ -27,7 +27,7 @@ public class CompositeValue
         }
     }
 
-    private List<CompositeValueModifier> _compositeModifiers;
+    [SerializeField, HideInInspector] private List<CompositeValueModifier> _compositeModifiers;
 
     public Action<float> OnValueModified { get; set; }
 
@@ -54,11 +54,9 @@ public class CompositeValue
             {
                 case CompositeValueModifierType.None:
                     break;
-
                 case CompositeValueModifierType.Flat:
                     finalValue += imodifier.Value;
                     break;
-
                 case CompositeValueModifierType.PercentAdditive:
                     sumPercentAdd += imodifier.Value;
                     bool isPercentAdditiveDone = i + 1 >= _compositeModifiers.Count || 
@@ -69,7 +67,6 @@ public class CompositeValue
                         sumPercentAdd = 0;
                     }
                     break;
-
                 case CompositeValueModifierType.PercentMultiplier:
                     finalValue *= 1 + imodifier.Value;
                     break;
@@ -142,9 +139,9 @@ public class CompositeValue
     /// </summary>
     public void Clear()
     {
-        _compositeModifiers = new();
+        _compositeModifiers.Clear();
         _value = _baseValue;
-        OnValueModified.Invoke(_baseValue);
+        OnValueModified?.Invoke(_baseValue);
     }
 
     /// <summary>

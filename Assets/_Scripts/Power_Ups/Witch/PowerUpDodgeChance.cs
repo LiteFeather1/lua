@@ -5,6 +5,6 @@ public class PowerUpDodgeChance : PowerUpModifier
 {
     protected override CompositeValue ValueToModify(GameManager gm)
     {
-        return gm.Witch.CritChance;
+        return gm.Witch.Health.DodgeChance;
     }
 }
