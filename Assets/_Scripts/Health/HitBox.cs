@@ -25,12 +25,12 @@ public class HitBox : MonoBehaviour
     {
         if (collision.TryGetComponent(out IDamageable damageable))
         {
-            var preDmgHp = damageable.HP;
             bool crit = Random.value < _critChance;
             Vector2 pos = collision.ClosestPoint(transform.position);
+            var preDmgHp = damageable.Hp;
             float damage = crit ? _damage * _critMultiplier : _damage;
             damageable.TakeDamage(damage, _knockBack, crit, pos);
-            OnDamageAppplied?.Invoke(damageable, preDmgHp - damageable.HP, pos);
+            OnDamageAppplied?.Invoke(damageable, preDmgHp - damageable.Hp, pos);
         }
     }
 }

@@ -9,7 +9,7 @@ public class Health : MonoBehaviour, IDamageable
     private readonly List<IDamageEffect> _damageEffects = new();
 
     public float MaxHP => _maxHealth;
-    public float HP => _health;
+    public float Hp => _health;
     public Vector2 Pos => transform.position;
 
     public delegate void OnDamage(float damage, float knockback, bool crit, Vector2 pos);
@@ -40,14 +40,13 @@ public class Health : MonoBehaviour, IDamageable
     public virtual bool TakeDamage(float damage, float knockback, bool crit, Vector2 pos)
     {
         // Is alive check
-        if (_health <= 0f)
+        if (_health < 0f)
             return true;
 
         _health -= damage;
         OnDamaged?.Invoke(damage, knockback, crit, pos);
         if (_health <= 0f)
         {
-            _health = 0f;
             OnDeath?.Invoke();
             _uniqueDamageEffects.Clear();
             _damageEffects.Clear();

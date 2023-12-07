@@ -356,7 +356,7 @@ public class Witch : MonoBehaviour
 
     private void HPModified()
     {
-        OnHPModified?.Invoke(_health.HP / _health.MaxHP);
+        OnHPModified?.Invoke(_health.Hp / _health.MaxHP);
     }
 
     private IEnumerator Invulnerability()
@@ -402,7 +402,7 @@ public class Witch : MonoBehaviour
         _hurtBox.enabled = false;
         OnDamaged?.Invoke();
         HPModified();
-        if (_health.HP > 0f)
+        if (_health.Hp > 0f)
             StartCoroutine(Blink());
     }
 

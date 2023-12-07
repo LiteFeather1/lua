@@ -197,10 +197,10 @@ public class SpawnManager : MonoBehaviour
             const float RANGE = .08f;
             float x = enemy.Position.x + Mathf.Clamp(pos.x - enemy.Position.x, -RANGE, RANGE);
             float y = enemy.Position.y + Mathf.Clamp(pos.y - enemy.Position.y, -RANGE, RANGE);
-            var enemyHealth = enemy.Health.HP;
+            var preDmg = enemy.Health.Hp;
             enemy.Health.TakeDamage(damage, knockback, false, new(x, y));
             action(enemy);
-            EnemyDamagedInRange?.Invoke(enemyHealth - enemy.Health.HP);
+            EnemyDamagedInRange?.Invoke(preDmg - enemy.Health.Hp);
         }
     }
 
@@ -220,7 +220,9 @@ public class SpawnManager : MonoBehaviour
             firstPoint,
             firstDamageable.Pos
         };
+        var preDmg = firstDamageable.Hp;
         firstDamageable.TakeDamage(damage, 0.05f, false, firstDamageable.Pos);
+        EnemyDamagedInRange?.Invoke(preDmg - firstDamageable.Hp);
 
         var prevPos = firstDamageable.Pos;
         while (Random.value < lightningChance || lightingPoints.Count - 2 < minChains)
@@ -236,7 +238,9 @@ public class SpawnManager : MonoBehaviour
                     enemyToAffect = enemy;
                     prevDistance = distance;
                     prevPos = enemy.Position;
+                    preDmg = enemy.Health.Hp;
                     enemy.Health.TakeDamage(damage, 0.05f, false, enemy.Position);
+                    EnemyDamagedInRange?.Invoke(preDmg - enemy.Health.Hp);
                 }
             }
 
