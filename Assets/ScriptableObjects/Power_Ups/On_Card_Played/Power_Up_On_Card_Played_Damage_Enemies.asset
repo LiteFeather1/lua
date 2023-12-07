@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Strinking Play
   _effect: 'Damage Every Enemy on Card Played
 
-    Increase Damage by $'
+    Increase Damage by +$'
   _cost: 10
   _rarity: {fileID: 11400000, guid: 0869bc92c695cdd4c97f8b266f87f121, type: 2}
   _icon: {fileID: 476421765, guid: 9597046be1f803a45bde8069dd619320, type: 3}

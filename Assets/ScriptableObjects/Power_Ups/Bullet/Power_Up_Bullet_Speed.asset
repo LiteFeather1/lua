@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Power_Up_Bullet_Speed
   m_EditorClassIdentifier: 
   _name: Bullet Speed
-  _effect: Increase Bullet Speed By $
+  _effect: '+$ Bullet Speed
+
+'
   _cost: 4
-  _rarity: {fileID: 11400000, guid: 639bbac6bf1db91429066dc023f24633, type: 2}
+  _rarity: {fileID: 11400000, guid: a7ae77a514c29d44995457b989b36476, type: 2}
   _icon: {fileID: 898702980, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
   _tierIcon: {fileID: -1081683514, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
   _powerUpsToUnlock: []

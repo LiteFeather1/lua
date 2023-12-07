@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Power_Up_Lightning_Min_Chain
   m_EditorClassIdentifier: 
   _name: OVERCHARGE
-  _effect: Increase Min Lightning Chain by $
+  _effect: +$ Min Lightning Chain
   _cost: 12
   _rarity: {fileID: 11400000, guid: a1df466705a8789499b19027ad855397, type: 2}
   _icon: {fileID: 558098219, guid: 9597046be1f803a45bde8069dd619320, type: 3}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Power_Up_Lightning_Damage
   m_EditorClassIdentifier: 
   _name: Spark Surge
-  _effect: Increase Lightning Damage by $
+  _effect: Lightning Damage
   _cost: 8
   _rarity: {fileID: 11400000, guid: a7ae77a514c29d44995457b989b36476, type: 2}
   _icon: {fileID: -930283316, guid: 9597046be1f803a45bde8069dd619320, type: 3}

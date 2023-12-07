@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Power_Up_Orbital_Bullet_Amount_tier_1
   m_EditorClassIdentifier: 
   _name: Orbital Bullet+
-  _effect: Increase Amount of Orbital Bullets Shot by $
+  _effect: +$ Orbital Bullet
   _cost: 20
   _rarity: {fileID: 11400000, guid: 994856a3f8937bb4dba3e0990a364b53, type: 2}
   _icon: {fileID: -592067398, guid: 9597046be1f803a45bde8069dd619320, type: 3}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Power_Up_Tick_Rate
   m_EditorClassIdentifier: 
   _name: Fiery Overclock
-  _effect: Increase Tick Rate Of Fire Damage by $
+  _effect: +$ Fire Tick Rate
   _cost: 16
   _rarity: {fileID: 11400000, guid: 0869bc92c695cdd4c97f8b266f87f121, type: 2}
   _icon: {fileID: -1289208423, guid: 9597046be1f803a45bde8069dd619320, type: 3}

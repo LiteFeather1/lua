@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Power_Up_Fire_Rate
   m_EditorClassIdentifier: 
   _name: Fire Rate
-  _effect: Increase Fire Rate by $
+  _effect: +$ Staff Fire Rate
   _cost: 4
   _rarity: {fileID: 11400000, guid: 639bbac6bf1db91429066dc023f24633, type: 2}
   _icon: {fileID: -551560049, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}

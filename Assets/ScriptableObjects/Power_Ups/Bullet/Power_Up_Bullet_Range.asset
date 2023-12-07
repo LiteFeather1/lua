@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Power_Up_Bullet_Range
   m_EditorClassIdentifier: 
   _name: Bullet Range
-  _effect: Increase Bullet Range by $
+  _effect: +$ Bullet Range
   _cost: 4
   _rarity: {fileID: 11400000, guid: 639bbac6bf1db91429066dc023f24633, type: 2}
   _icon: {fileID: -1718001422, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
   _tierIcon: {fileID: -1081683514, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
   _powerUpsToUnlock: []
   _modifier:
-    _value: 0.1
+    _value: -0.1
     _type: 200
   _valueToRemove: {fileID: 0}

@@ -36,14 +36,17 @@ public abstract class PowerUpModifier : PowerUp
 
     private string FlatModifier()
     {
-        if (_modifier.Value < 1f)
+        if (Mathf.Abs(_modifier) < 1f)
             return PercentModifer();
 
-        return _modifier.Value.ToString("+0; -#");
+        return _modifier.Value.ToString();
     }
 
     private string PercentModifer()
     {
-        return _modifier.Value.ToString("+0%; -#%");
+        if (_modifier >= 0f)
+            return _modifier.Value.ToString("0.0%");
+        else
+            return (-_modifier.Value).ToString("0.0%");
     }
 }

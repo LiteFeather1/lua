@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Power_Up_Damage
   m_EditorClassIdentifier: 
   _name: Damage Up
-  _effect: Increase Damage by $
+  _effect: +$ Damage
   _cost: 3
   _rarity: {fileID: 11400000, guid: 639bbac6bf1db91429066dc023f24633, type: 2}
   _icon: {fileID: -1043860048, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}

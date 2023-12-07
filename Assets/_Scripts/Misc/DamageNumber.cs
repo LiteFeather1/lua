@@ -35,7 +35,6 @@ public class DamageNumber : MonoBehaviour
     public void SetVelocity(Vector2 velocity)
     {
         _velocity = velocity;
-        print(velocity.x);
     }
 
     public void SetText(string text, Color colour)

@@ -73,6 +73,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 100
+  _defence:
+    _baseValue: 0
+    _value: 0
+    _compositeModifiers: []
 --- !u!114 &3566666758495182051
 MonoBehaviour:
   m_ObjectHideFlags: 0

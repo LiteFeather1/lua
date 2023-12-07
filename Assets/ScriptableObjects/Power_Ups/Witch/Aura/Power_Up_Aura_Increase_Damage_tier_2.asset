@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Power_Up_Aura_Increase_Damage_tier_2
   m_EditorClassIdentifier: 
   _name: Aura Damage+
-  _effect: Increase Aura Damage by $
+  _effect: +$ Aura Damage
   _cost: 12
   _rarity: {fileID: 11400000, guid: 0869bc92c695cdd4c97f8b266f87f121, type: 2}
   _icon: {fileID: 416155203, guid: 9597046be1f803a45bde8069dd619320, type: 3}

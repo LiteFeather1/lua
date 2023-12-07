@@ -21,5 +21,5 @@ MonoBehaviour:
   _powerUpsToUnlock: []
   _modifier:
     _value: -0.1
-    _type: 100
+    _type: 300
   _valueToRemove: {fileID: 11400000, guid: ea62fd313cda8be4392d51c7c6c732ff, type: 2}

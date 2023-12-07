@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Power_Up_Bullet_Amount
   m_EditorClassIdentifier: 
   _name: Bullet Amount
-  _effect: Increase Amount of Bullets Shot by $
+  _effect: +$ Bullet Amount
   _cost: 20
   _rarity: {fileID: 11400000, guid: 994856a3f8937bb4dba3e0990a364b53, type: 2}
   _icon: {fileID: 503048727, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}

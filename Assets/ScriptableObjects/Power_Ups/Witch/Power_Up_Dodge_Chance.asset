@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Power_Up_Dodge_Chance
   m_EditorClassIdentifier: 
   _name: Dodge
-  _effect: Increase Chance to Dodge Enemies Attacks by $
+  _effect: '+$ Chance to Dodge Enemies Attacks '
   _cost: 10
   _rarity: {fileID: 11400000, guid: a7ae77a514c29d44995457b989b36476, type: 2}
   _icon: {fileID: 1121717392, guid: 9597046be1f803a45bde8069dd619320, type: 3}

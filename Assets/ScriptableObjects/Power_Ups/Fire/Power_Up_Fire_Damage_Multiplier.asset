@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Power_Up_Fire_Damage_Multiplier
   m_EditorClassIdentifier: 
   _name: Fiery Strength
-  _effect: Increase Fire Damage by $
+  _effect: +$ Fire Damage
   _cost: 12
   _rarity: {fileID: 11400000, guid: a7ae77a514c29d44995457b989b36476, type: 2}
   _icon: {fileID: 1856757417, guid: 9597046be1f803a45bde8069dd619320, type: 3}
