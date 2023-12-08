@@ -11,6 +11,6 @@ public class EndCardUi : MonoBehaviour
     {
         i_frame.color = power.RarityColour;
         i_icon.sprite = power.Icon;
-        i_icon.sprite = power.TierIcon;
+        i_tierIcon.sprite = power.TierIcon;
     }
 }
