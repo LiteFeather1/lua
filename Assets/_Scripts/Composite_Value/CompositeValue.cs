@@ -27,7 +27,9 @@ public class CompositeValue
         }
     }
 
-    [SerializeField, HideInInspector] private List<CompositeValueModifier> _compositeModifiers;
+#pragma warning disable IDE0044 // Add readonly modifier
+    private List<CompositeValueModifier> _compositeModifiers;
+#pragma warning restore IDE0044 // Add readonly modifier
 
     public Action<float> OnValueModified { get; set; }
 

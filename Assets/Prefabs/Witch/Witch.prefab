@@ -135,12 +135,15 @@ MonoBehaviour:
   _size:
     _baseValue: 1
     _value: 0
+    _compositeModifiers: []
   _bulletSpeed:
     _baseValue: 1
     _value: 0
+    _compositeModifiers: []
   _bulletDuration:
     _baseValue: 1
     _value: 0
+    _compositeModifiers: []
   _pierceAmount: 0
   _bounceAmount: 0
   _randomAngle: 0
@@ -5184,6 +5187,7 @@ MonoBehaviour:
   _rotationSpeed:
     _baseValue: 180
     _value: 0
+    _compositeModifiers: []
   _maxBulletSpeed: 0.9
   _maxBulletDuration: 6
   _orbitalAmount: 0
@@ -5279,76 +5283,97 @@ MonoBehaviour:
   _acceleration:
     _baseValue: 1.25
     _value: 0
+    _compositeModifiers: []
   _decelerationRange: {x: 2.5, y: 10}
   _accelerationMaxForRange: 200
   _mainGun: {fileID: 3665713700137278523}
   _damage:
     _baseValue: 5
     _value: 0
+    _compositeModifiers: []
   _critChance:
     _baseValue: 0.01
     _value: 0
+    _compositeModifiers: []
   _critMultiplier:
     _baseValue: 1.5
     _value: 0
+    _compositeModifiers: []
   _knockback:
     _baseValue: 1
     _value: 0
+    _compositeModifiers: []
   _shootTime:
     _baseValue: 1
     _value: 0
+    _compositeModifiers: []
   _randomBulletAmount: 0
   _randomBulletShootTime:
     _baseValue: 2
     _value: 0
+    _compositeModifiers: []
   _randomBulletOffSetPercent: 0.5
   _orbitalGun: {fileID: 1049757123068156787}
   _orbitalShootTime:
     _baseValue: 5
     _value: 0
+    _compositeModifiers: []
   _daggerGun: {fileID: 8155003020849114788}
   _daggerShootTime:
     _baseValue: 4
     _value: 0
+    _compositeModifiers: []
   _daggerAmount: 0
   _chanceToLifeSteal:
     _baseValue: 0.01
     _value: 0
+    _compositeModifiers: []
   _lifeStealPercent:
     _baseValue: 0.1
     _value: 0
+    _compositeModifiers: []
   _effectCreatorFire:
     <Chance>k__BackingField:
       _baseValue: 0
       _value: 0
+      _compositeModifiers: []
     <Duration>k__BackingField:
       _baseValue: 5
       _value: 0
+      _compositeModifiers: []
     <DamageMultiplier>k__BackingField:
       _baseValue: 0.1
       _value: 0
+      _compositeModifiers: []
     <TickRate>k__BackingField:
       _baseValue: 1
       _value: 0
+      _compositeModifiers: []
   _aura: {fileID: 1775757007608571629}
   _thornRange:
     _baseValue: 0.48
     _value: 0.48
+    _compositeModifiers: []
   _thorBaseDamage:
     _baseValue: 0
     _value: 0
+    _compositeModifiers: []
   _thornDefenceDamageMultiplier:
     _baseValue: 0.1
     _value: 0
+    _compositeModifiers: []
   _lightningChance:
     _baseValue: 0
     _value: 0
+    _compositeModifiers: []
   _lightningBaseDamage:
     _baseValue: 5
     _value: 0
+    _compositeModifiers: []
   _lightningRange:
     _baseValue: 0.64
     _value: 0
+    _compositeModifiers: []
   _lightningMinChain: 1
   _invulnerabilityDuration: 0.5
   _blinkAmount: 4
@@ -5377,13 +5402,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 32
-  _shield: 0
   _defence:
     _baseValue: 10
     _value: 0
+    _compositeModifiers: []
+  _shield: 0
   _dodgeChance:
-    _baseValue: 1
+    _baseValue: 0
     _value: 0
+    _compositeModifiers: []
 --- !u!114 &4983606301530429066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5524,6 +5551,7 @@ MonoBehaviour:
   _damagePercent:
     _baseValue: 0.1
     _value: 0
+    _compositeModifiers: []
   _auraSprites: {fileID: 11400000, guid: 7db32a9f2e0832f4ea6fda7a1c34762a, type: 2}
   _tickRateTimer: {fileID: 5092606559990903128}
   _hitbox: {fileID: 5263069347915584189}

@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CompositeValue _onCardPlayedHeal;
     [SerializeField] private CompositeValue _onCardPlayedRefund;
 
-    private static readonly WaitForSecondsRealtime _hitStop = new(.1f);
+    private static readonly WaitForSecondsRealtime _hitStop = new(.05f);
     private IEnumerator _slowPitch;
 
     public static GameManager Instance { get; private set; }
