@@ -21,18 +21,13 @@ public class EndScreenManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     [SerializeField] private RectTransform rt_carousel;
     private readonly List<EndCardUi> _cards = new();
 
-    //[Header("Drag")]
+    [Header("Drag")]
+    [SerializeField] private float _dragReduceSpeed = 100f;
+    [SerializeField] private float _maxMouseDelta;
+    private float _dragVelocity;
     private bool _dragging;
     private float _lastMouseX;
-
-    private void Start()
-    {
-        var powerUps = LTFUtils.LTFHelpers_Misc.GetScriptableObjects<PowerUp>();
-        foreach (var powerUp in powerUps)
-        {
-            AddCard(powerUp);
-        }
-    }
+    private float _mouseDelta;
 
     private void Update()
     {
@@ -41,16 +36,26 @@ public class EndScreenManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         float mul = _cards.Count < maxCards ? 1f : _cards.Count;
         var maxX = (rt_carousel.sizeDelta.x * .5f) + (34f * mul);
         maxX += _cards.Count > maxCards ? minX * 2f + 17f : 0f;
-        Vector3 translation;
-        if (!_dragging)
-            translation = _carouselSpeed * _root.localScale.x * Time.deltaTime * Vector3.left;
+        float x;
+        if (_mouseDelta == 0f && !_dragging)
+            x = _carouselSpeed * _root.localScale.x * Time.deltaTime;
         else
         {
             var mousePosX = Input.mousePosition.x;
-            var delta = (mousePosX - _lastMouseX);
-            translation = new(delta, 0f);
+            if (_dragging)
+                _mouseDelta = mousePosX - _lastMouseX;
+            else
+            {
+                _mouseDelta = Mathf.SmoothDamp(_mouseDelta, 0f, ref _dragVelocity, Time.deltaTime * _dragReduceSpeed);
+                if (_mouseDelta < 2f && _mouseDelta > -2f)
+                    _mouseDelta = 0f;
+            }
+
+            x = _mouseDelta;
             _lastMouseX = mousePosX;
         }
+
+        var translation = new Vector3(x, 0f);
         for (int i = 0; i < _cards.Count; i++)
         {
             var card = _cards[i];
@@ -76,7 +81,12 @@ public class EndScreenManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        // Limit Speed
         _dragging = false;
+        if (_mouseDelta > _maxMouseDelta)
+            _mouseDelta = _maxMouseDelta;
+        else if (_mouseDelta < -_maxMouseDelta)
+            _mouseDelta = -_maxMouseDelta;
     }
 
     public void SetTexts(string time, int enemies, int cardsReciclyed, int candy)
