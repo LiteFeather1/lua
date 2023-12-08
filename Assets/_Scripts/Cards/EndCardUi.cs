@@ -3,9 +3,9 @@ using UnityEngine.UI;
 
 public class EndCardUi : MonoBehaviour
 {
-    [SerializeField] protected Image i_frame;
-    [SerializeField] protected Image i_icon;
-    [SerializeField] protected Image i_tierIcon;
+    [SerializeField] private Image i_frame;
+    [SerializeField] private Image i_icon;
+    [SerializeField] private Image i_tierIcon;
 
     public void SetPower(PowerUp power)
     {

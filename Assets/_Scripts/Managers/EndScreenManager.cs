@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
-public class EndScreenManager : MonoBehaviour
+public class EndScreenManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] private Transform _root;
 
@@ -15,10 +16,23 @@ public class EndScreenManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI t_candyEarned;
 
     [Header("Carousel")]
-    [SerializeField] private float _speed = 24f;
+    [SerializeField] private float _carouselSpeed = 28f;
     [SerializeField] private EndCardUi _cardPrefab;
     [SerializeField] private RectTransform rt_carousel;
     private readonly List<EndCardUi> _cards = new();
+
+    //[Header("Drag")]
+    private bool _dragging;
+    private float _lastMouseX;
+
+    private void Start()
+    {
+        var powerUps = LTFUtils.LTFHelpers_Misc.GetScriptableObjects<PowerUp>();
+        foreach (var powerUp in powerUps)
+        {
+            AddCard(powerUp);
+        }
+    }
 
     private void Update()
     {
@@ -27,17 +41,42 @@ public class EndScreenManager : MonoBehaviour
         float mul = _cards.Count < maxCards ? 1f : _cards.Count;
         var maxX = (rt_carousel.sizeDelta.x * .5f) + (34f * mul);
         maxX += _cards.Count > maxCards ? minX * 2f + 17f : 0f;
-        float delta = Time.deltaTime;
+        Vector3 translation;
+        if (!_dragging)
+            translation = _carouselSpeed * _root.localScale.x * Time.deltaTime * Vector3.left;
+        else
+        {
+            var mousePosX = Input.mousePosition.x;
+            var delta = (mousePosX - _lastMouseX);
+            translation = new(delta, 0f);
+            _lastMouseX = mousePosX;
+        }
         for (int i = 0; i < _cards.Count; i++)
         {
             var card = _cards[i];
-            var speed = _speed * _root.localScale.x;
-            card.transform.Translate(delta * speed * Vector2.left);
+            card.transform.Translate(translation);
             if (card.transform.localPosition.x < minX)
             {
-                card.transform.localPosition = new Vector2(maxX, 0f);
+                var outOff = card.transform.localPosition.x - minX;
+                card.transform.localPosition = new (maxX + outOff, 0f);
+            }
+            else if (card.transform.localPosition.x > maxX)
+            {
+                var outOff = maxX - card.transform.localPosition.x;
+                card.transform.localPosition = new(minX - outOff, 0f);
             }
         }
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        _lastMouseX = Input.mousePosition.x;
+        _dragging = true;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        _dragging = false;
     }
 
     public void SetTexts(string time, int enemies, int cardsReciclyed, int candy)

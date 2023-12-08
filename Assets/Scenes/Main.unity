@@ -9778,7 +9778,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2133348060
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9861,9 +9861,10 @@ MonoBehaviour:
   t_cardsPlayed: {fileID: 1142769714}
   t_cardsRecycled: {fileID: 930912598}
   t_candyEarned: {fileID: 2115622120}
-  _speed: 28
+  _carouselSpeed: 28
   _cardPrefab: {fileID: 913131614038957402, guid: 9628e79ac13e1724b8489c2d441b66ab, type: 3}
   rt_carousel: {fileID: 1280082899}
+  _dragSpeed: 1
 --- !u!1001 &256337799807947313
 PrefabInstance:
   m_ObjectHideFlags: 0
