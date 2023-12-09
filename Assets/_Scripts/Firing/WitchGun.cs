@@ -8,8 +8,6 @@ public class WitchGun : Gun
     [SerializeField] private CompositeValue _bulletDuration = new(1f);
     [SerializeField] private int _pierceAmount;
     [SerializeField] private int _bounceAmount;
-    [SerializeField] private float _randomAngle = 0f;
-    [SerializeField] private float _separationPerBullet = 12.5f;
     [SerializeField] private int _burstAmount = 1;
     [SerializeField] private int _bulletAmount = 1;
     [SerializeField] private Vector2 _timeBetweenBurstsRange = new(.5f, .1f);
@@ -27,8 +25,6 @@ public class WitchGun : Gun
     public int BulletAmount => _bulletAmount;
     public int AddBulletAmount(int amount) => _bulletAmount += amount;
 
-    public float RandomAngle => _randomAngle;
-    public float SeparationPerBullet => _separationPerBullet;
     public float WaitBetweenBursts => _timeBetweenBurstsRange.EvaluateClamped((_burstAmount - 1) / 9f);
 
     public void StartShootRoutine(float damage, float critChance, float critMultiplier, float knockback)
@@ -43,24 +39,22 @@ public class WitchGun : Gun
                           bounce: _bounceAmount,
                           duration: _bulletDuration.Value,
                           angle: 0f,
-                          randomAngle: _randomAngle,
-                          separationPerBullet: _separationPerBullet,
                           burstAmount: _burstAmount,
                           bulletAmount: _bulletAmount,
                           waitBetweenBursts: WaitBetweenBursts);
     }
 
-    public void ShootBullet(float damage, float critChance, float critMultiplier, float knockback, float angle)
+    public void ShootBullet(float damage, float critChance, float critMultiplier, float knockback, float speed, float angle)
     {
         ShootBullet(damage: damage,
                     critChance: critChance,
                     critMultiplier: critMultiplier,
                     knockback: knockback,
-                    size: _size.Value,
-                    speed: _bulletSpeed.Value,
+                    size: _size,
+                    speed: speed,
                     pierce: _pierceAmount,
                     bounce: _bounceAmount,
-                    duration: _bulletDuration.Value,
+                    duration: _bulletDuration,
                     angle: angle);
     }
 }

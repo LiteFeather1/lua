@@ -64,8 +64,6 @@ public class OrbitalGun : Gun
                      bounce: 0,
                      duration: Mathf.Clamp(duration, 1.5f, _maxBulletDuration),
                      angle: 0f,
-                     randomAngle: 0f,
-                     separationPerBullet: 0f,
                      burstAmount: _orbitalAmount,
                      bulletAmount: 1,
                      waitBetweenBursts: _waitBetweenBursts);

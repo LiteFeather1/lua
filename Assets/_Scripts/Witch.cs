@@ -36,7 +36,8 @@ public class Witch : MonoBehaviour
     [Header("Random Bullet")]
     [SerializeField] private int _randomBulletAmount = 0;
     [SerializeField] private CompositeValue _randomBulletShootTime = new(2f);
-    [SerializeField] private float _randomBulletOffSetPercent = .5f;
+    [SerializeField] private float _randomBulletTimeOffSetPercent = .5f;
+    [SerializeField] private Vector2 _randomBulletSpeedPercent = new(.5f, 1.5f);
     private float _randomBulletOffset = 0f;
     private float _elapsedRandomShootTime = 0f;
 
@@ -44,7 +45,7 @@ public class Witch : MonoBehaviour
     [SerializeField] private Gun _moonGun;
     [SerializeField] private CompositeValue _moonShootTime = new(3f);
     [SerializeField] private int _moonAmount;
-    [SerializeField] private Vector2 _moonSpeedRange = new(1f, 4f);
+    [SerializeField] private float _moonBulletSpeed = 2.5f;
     private float _moonElapsedTime = 0f;
     private float _moonDeltaMult = 1f;
 
@@ -221,7 +222,7 @@ public class Witch : MonoBehaviour
         if (_elapsedRandomShootTime > _randomBulletShootTime + _randomBulletOffset)
         {
             _elapsedRandomShootTime = 0f;
-            var offset = _randomBulletShootTime * _randomBulletOffSetPercent;
+            var offset = _randomBulletShootTime * _randomBulletTimeOffSetPercent;
             _randomBulletOffset = Random.Range(-offset, offset);
             for (int i = 0; i < _randomBulletAmount; i++)
             {
@@ -229,6 +230,7 @@ public class Witch : MonoBehaviour
                                      critChance: _critChance,
                                      critMultiplier: _critMultiplier,
                                      knockback: _knockback,
+                                     speed: _mainGun.BulletSpeed * _randomBulletSpeedPercent.Random(),
                                      angle: Random.Range(0f, 360f));
             }
         }
@@ -245,12 +247,10 @@ public class Witch : MonoBehaviour
                                        knockback: _knockback,
                                        angle: 0f,
                                        size: 1f,
-                                       speed: _moonSpeedRange.Random(),
+                                       speed: _moonBulletSpeed,
                                        pierce: 1,
                                        bounce: 1,
                                        duration: 3f,
-                                       randomAngle: 22.5f,
-                                       separationPerBullet: 0f,
                                        burstAmount: 1,
                                        bulletAmount: _moonAmount,
                                        waitBetweenBursts: 0f);
@@ -287,8 +287,6 @@ public class Witch : MonoBehaviour
                                          bounce: 0,
                                          duration: _mainGun.BulletDuration,
                                          angle: 0f,
-                                         randomAngle: 0f,
-                                         separationPerBullet: _mainGun.SeparationPerBullet * HALF,
                                          burstAmount: Mathf.Max((int)(_mainGun.BurstAmount * HALF), 1),
                                          bulletAmount: _daggerAmount,
                                          waitBetweenBursts: _mainGun.WaitBetweenBursts);

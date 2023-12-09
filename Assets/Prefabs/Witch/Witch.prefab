@@ -132,6 +132,9 @@ MonoBehaviour:
     _object: {fileID: 9029989089869572558, guid: cd79c920beec33a46adc58aa416c394c, type: 3}
     _initialPoolSize: 10
   _bulletShotSound: {fileID: 8300000, guid: 672fdea8e7aa8b64092be2303844210e, type: 3}
+  _separationPerBullet: 12.5
+  _randomAngleOffsetRange: {x: 0, y: 0}
+  _randomSpeedOffsetRange: {x: 0, y: 0}
   _size:
     _baseValue: 1
     _value: 0
@@ -143,8 +146,6 @@ MonoBehaviour:
     _value: 0
   _pierceAmount: 0
   _bounceAmount: 0
-  _randomAngle: 0
-  _separationPerBullet: 12.5
   _burstAmount: 1
   _bulletAmount: 1
   _timeBetweenBurstsRange: {x: 0.4, y: 0.1}
@@ -5122,6 +5123,9 @@ MonoBehaviour:
     _object: {fileID: 9029989089869572558, guid: 17211992fecfb714b92e780722ba7df3, type: 3}
     _initialPoolSize: 10
   _bulletShotSound: {fileID: 8300000, guid: 672fdea8e7aa8b64092be2303844210e, type: 3}
+  _separationPerBullet: 0
+  _randomAngleOffsetRange: {x: -22.5, y: 22.5}
+  _randomSpeedOffsetRange: {x: -1, y: 1.5}
 --- !u!1 &4407905212738553079
 GameObject:
   m_ObjectHideFlags: 0
@@ -5177,6 +5181,9 @@ MonoBehaviour:
     _object: {fileID: 9029989089869572558, guid: 0b6a72a7fe8c1354a8b20e5e7e23c5ef, type: 3}
     _initialPoolSize: 10
   _bulletShotSound: {fileID: 8300000, guid: 672fdea8e7aa8b64092be2303844210e, type: 3}
+  _separationPerBullet: 6.25
+  _randomAngleOffsetRange: {x: 0, y: 0}
+  _randomSpeedOffsetRange: {x: 0, y: 0}
 --- !u!1 &5899739165023571039
 GameObject:
   m_ObjectHideFlags: 0
@@ -5234,6 +5241,9 @@ MonoBehaviour:
     _object: {fileID: 9029989089869572558, guid: 426dcbc443a40a94eb9791d8625db71f, type: 3}
     _initialPoolSize: 10
   _bulletShotSound: {fileID: 8300000, guid: 672fdea8e7aa8b64092be2303844210e, type: 3}
+  _separationPerBullet: 0
+  _randomAngleOffsetRange: {x: 0, y: 0}
+  _randomSpeedOffsetRange: {x: 0, y: 0}
   _clockWiseRotation: {fileID: 7410361237689786289}
   _antiClockWiseRotation: {fileID: 2935253613320626285}
   _rotationSpeed:
@@ -5356,13 +5366,14 @@ MonoBehaviour:
   _randomBulletShootTime:
     _baseValue: 2
     _value: 0
-  _randomBulletOffSetPercent: 0.5
+  _randomBulletTimeOffSetPercent: 0.5
+  _randomBulletSpeedPercent: {x: 0.5, y: 1.5}
   _moonGun: {fileID: 6042493778212787290}
   _moonShootTime:
     _baseValue: 3
     _value: 3
   _moonAmount: 5
-  _moonSpeedRange: {x: 1.75, y: 4}
+  _moonBulletSpeed: 2.5
   _orbitalGun: {fileID: 1049757123068156787}
   _orbitalShootTime:
     _baseValue: 5

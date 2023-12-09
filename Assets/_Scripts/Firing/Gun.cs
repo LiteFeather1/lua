@@ -13,6 +13,11 @@ public class Gun : MonoBehaviour
     [SerializeField] private ObjectPool<FlipBook> _bulletDamage;
     [SerializeField] private AudioClip _bulletShotSound;
 
+    [Header("Stats")]
+    [SerializeField] private float _separationPerBullet;
+    [SerializeField] private Vector2 _randomAngleOffsetRange = new(0f, 0f);
+    [SerializeField] private Vector2 _randomSpeedOffsetRange = new(0f, 0f);
+
     public Action<IDamageable, float> OnDamageAppplied { get; set; }
 
     public Action OnFinishedShooting { get; set; }
@@ -62,8 +67,6 @@ public class Gun : MonoBehaviour
                                   int bounce,
                                   float duration,
                                   float angle,
-                                  float randomAngle,
-                                  float separationPerBullet,
                                   int burstAmount,
                                   int bulletAmount,
                                   float waitBetweenBursts)
@@ -78,8 +81,6 @@ public class Gun : MonoBehaviour
                                bounce: bounce,
                                duration: duration,
                                angle: angle,
-                               randomAngle: randomAngle,
-                               separationPerBullet: separationPerBullet,
                                burstAmount: burstAmount,
                                bulletAmount: bulletAmount,
                                waitBetweenBursts: waitBetweenBursts));
@@ -116,12 +117,12 @@ public class Gun : MonoBehaviour
         _bulletPool.ReturnObject(bullet);
     }
 
-    private float GetAngle(int bulletIndex, int bulletAmount, float separationPerBullet)
+    private float GetAngle(int bulletIndex, int bulletAmount)
     {
-        float totalAngle = (bulletAmount - 1) * separationPerBullet * .5f;
+        float totalAngle = (bulletAmount - 1) * _separationPerBullet * .5f;
         float center = LTFHelpers_Math.AngleBetweenTwoPoints(transform.position, transform.position - _firePoint.right);
         float minAngle = center - totalAngle;
-        return minAngle + (bulletIndex * separationPerBullet);
+        return minAngle + (bulletIndex * _separationPerBullet);
     }
 
     private IEnumerator Shot_CO(float damage,
@@ -134,8 +135,6 @@ public class Gun : MonoBehaviour
                                 int bounce,
                                 float duration,
                                 float angle,
-                                float randomAngle,
-                                float separationPerBullet,
                                 int burstAmount,
                                 int bulletAmount,
                                 float waitBetweenBursts)
@@ -151,11 +150,11 @@ public class Gun : MonoBehaviour
                             critMultiplier: critMultiplier,
                             knockback: knockback,
                             size: size,
-                            speed: speed,
+                            speed: speed + _randomSpeedOffsetRange.Random(),
                             pierce: pierce,
                             bounce: bounce,
                             duration: duration,
-                            angle: GetAngle(j, bulletAmount, separationPerBullet) + angle + UnityEngine.Random.Range(-randomAngle, randomAngle));
+                            angle: GetAngle(j, bulletAmount) + angle + _randomAngleOffsetRange.Random());
             }
             yield return yieldBetweenBurst;
         }

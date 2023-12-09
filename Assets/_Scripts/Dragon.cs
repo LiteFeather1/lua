@@ -63,20 +63,18 @@ public class Dragon : MonoBehaviour
     private void Shoot()
     {
         _gun.StartShootRoutine(damage: _witch.Damage.Value * _forceMultiplier,
-                          critChance: _witch.CritChance.Value * _forceMultiplier,
-                          critMultiplier: _witch.CritMultiplier.Value * _forceMultiplier,
-                          knockback: _witch.Knockback.Value * _forceMultiplier,
-                          size: Mathf.Max(_witch.Gun.Size.Value * _forceMultiplier, .5f),
-                          speed: _witch.Gun.BulletSpeed.Value * 1.25f,
-                          pierce: (int)(_witch.Gun.PierceAmount * _forceMultiplier),
-                          bounce: (int)(_witch.Gun.BounceAmount * _forceMultiplier),
-                          duration: _witch.Gun.BulletDuration.Value,
-                          angle: 0f,
-                          randomAngle: _witch.Gun.RandomAngle,
-                          separationPerBullet: _witch.Gun.SeparationPerBullet,
-                          burstAmount: Mathf.CeilToInt(_witch.Gun.BurstAmount * _forceMultiplier),
-                          bulletAmount: Mathf.CeilToInt(_witch.Gun.BulletAmount * _forceMultiplier),
-                          waitBetweenBursts: _witch.Gun.WaitBetweenBursts);
+                               critChance: _witch.CritChance.Value * _forceMultiplier,
+                               critMultiplier: _witch.CritMultiplier.Value * _forceMultiplier,
+                               knockback: _witch.Knockback.Value * _forceMultiplier,
+                               size: Mathf.Max(_witch.Gun.Size.Value * _forceMultiplier, .5f),
+                               speed: _witch.Gun.BulletSpeed.Value * 1.25f,
+                               pierce: (int)(_witch.Gun.PierceAmount * _forceMultiplier),
+                               bounce: (int)(_witch.Gun.BounceAmount * _forceMultiplier),
+                               duration: _witch.Gun.BulletDuration.Value,
+                               angle: 0f,
+                               burstAmount: Mathf.CeilToInt(_witch.Gun.BurstAmount * _forceMultiplier),
+                               bulletAmount: Mathf.CeilToInt(_witch.Gun.BulletAmount * _forceMultiplier),
+                               waitBetweenBursts: _witch.Gun.WaitBetweenBursts);
     }
 
 }
