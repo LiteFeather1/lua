@@ -102,7 +102,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1123529672144973694}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.11999996, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -132,6 +132,7 @@ MonoBehaviour:
     _object: {fileID: 9029989089869572558, guid: cd79c920beec33a46adc58aa416c394c, type: 3}
     _initialPoolSize: 10
   _bulletShotSound: {fileID: 8300000, guid: 672fdea8e7aa8b64092be2303844210e, type: 3}
+  _faceRotationAlpha: 1
   _separationPerBullet: 12.5
   _randomAngleOffsetRange: {x: 0, y: 0}
   _randomSpeedOffsetRange: {x: 0, y: 0}
@@ -5123,6 +5124,7 @@ MonoBehaviour:
     _object: {fileID: 9029989089869572558, guid: 17211992fecfb714b92e780722ba7df3, type: 3}
     _initialPoolSize: 10
   _bulletShotSound: {fileID: 8300000, guid: 672fdea8e7aa8b64092be2303844210e, type: 3}
+  _faceRotationAlpha: 0
   _separationPerBullet: 0
   _randomAngleOffsetRange: {x: -22.5, y: 22.5}
   _randomSpeedOffsetRange: {x: -0.5, y: 0.75}
@@ -5181,6 +5183,7 @@ MonoBehaviour:
     _object: {fileID: 9029989089869572558, guid: 0b6a72a7fe8c1354a8b20e5e7e23c5ef, type: 3}
     _initialPoolSize: 10
   _bulletShotSound: {fileID: 8300000, guid: 672fdea8e7aa8b64092be2303844210e, type: 3}
+  _faceRotationAlpha: 1
   _separationPerBullet: 6.25
   _randomAngleOffsetRange: {x: 0, y: 0}
   _randomSpeedOffsetRange: {x: 0, y: 0}
@@ -5241,6 +5244,7 @@ MonoBehaviour:
     _object: {fileID: 9029989089869572558, guid: 426dcbc443a40a94eb9791d8625db71f, type: 3}
     _initialPoolSize: 10
   _bulletShotSound: {fileID: 8300000, guid: 672fdea8e7aa8b64092be2303844210e, type: 3}
+  _faceRotationAlpha: 1
   _separationPerBullet: 0
   _randomAngleOffsetRange: {x: 0, y: 0}
   _randomSpeedOffsetRange: {x: 0, y: 0}

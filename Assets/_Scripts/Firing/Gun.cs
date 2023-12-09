@@ -14,8 +14,8 @@ public class Gun : MonoBehaviour
     [SerializeField] private AudioClip _bulletShotSound;
 
     [Header("Stats")]
+    [SerializeField, Range(0f, 1f)] private float _faceRotationAlpha = 1f;
     [SerializeField] private float _separationPerBullet;
-    // TODO Add Face rotation alpha/t
     [SerializeField] private Vector2 _randomAngleOffsetRange = new(0f, 0f);
     [SerializeField] private Vector2 _randomSpeedOffsetRange = new(0f, 0f);
 
@@ -58,7 +58,7 @@ public class Gun : MonoBehaviour
     }
 
     // replace waitBetweenBursts to a yield instead of 
-    public IEnumerator ShotRoutine(float damage,
+    public IEnumerator ShootRoutine(float damage,
                                    float critChance,
                                    float critMultiplier,
                                    float knockback,
@@ -109,19 +109,19 @@ public class Gun : MonoBehaviour
                                   int bulletAmount,
                                   float waitBetweenBursts)
     {
-        StartCoroutine(ShotRoutine(damage: damage,
-                               critChance: critChance,
-                               critMultiplier: critMultiplier,
-                               knockback: knockback,
-                               size: size,
-                               speed: speed,
-                               pierce: pierce,
-                               bounce: bounce,
-                               duration: duration,
-                               angle: angle,
-                               burstAmount: burstAmount,
-                               bulletAmount: bulletAmount,
-                               waitBetweenBursts: waitBetweenBursts));
+        StartCoroutine(ShootRoutine(damage: damage,
+                                    critChance: critChance,
+                                    critMultiplier: critMultiplier,
+                                    knockback: knockback,
+                                    size: size,
+                                    speed: speed,
+                                    pierce: pierce,
+                                    bounce: bounce,
+                                    duration: duration,
+                                    angle: angle,
+                                    burstAmount: burstAmount,
+                                    bulletAmount: bulletAmount,
+                                    waitBetweenBursts: waitBetweenBursts));
     }
 
     public void ShootBullet(float damage,
@@ -136,25 +136,29 @@ public class Gun : MonoBehaviour
                             float angle)
     {
         var bullet = _bulletPool.GetObject();
-        bullet.transform.SetLocalPositionAndRotation(_firePoint.position, Quaternion.Euler(0f, 0f, angle));
+        bullet.transform.SetLocalPositionAndRotation(_firePoint.position, Quaternion.Euler(0f, 0f, angle * _faceRotationAlpha));
         bullet.transform.localScale = new(size, size, 1f);
         bullet.gameObject.SetActive(true);
         bullet.AttachDisable(_particlePool.GetObject());
         bullet.Hitbox.SetStats(damage, critChance, critMultiplier, knockback);
         bullet.Projectile.SetStats(pierce, bounce, duration);
-        ShootProjectileMethod(bullet, speed + _randomSpeedOffsetRange.Random());
+        ShootProjectileMethod(bullet,
+                              speed + _randomSpeedOffsetRange.Random(),
+                              _firePoint.right.RotateVector(angle - _firePoint.eulerAngles.z));
     }
 
     public float GetAngle(int bulletIndex, int bulletAmount)
     {
         float totalAngle = (bulletAmount - 1) * _separationPerBullet * .5f;
-        float minAngle = _firePoint.localEulerAngles.z - totalAngle;
+        float minAngle = _firePoint.eulerAngles.z - totalAngle;
         return minAngle + (bulletIndex * _separationPerBullet) + _randomAngleOffsetRange.Random();
     }
 
-    protected virtual void ShootProjectileMethod(Bullet bullet, float speed)
+    public void PlayShotSound() => AudioManager.Instance.PlayOneShot(_bulletShotSound);
+
+    protected virtual void ShootProjectileMethod(Bullet bullet, float speed, Vector2 direction)
     {
-        bullet.Projectile.Shoot(speed, bullet.transform.right);
+        bullet.Projectile.Shoot(speed, direction);
     }
 
     protected virtual void ReturnBulletToPool(Bullet bullet)
@@ -171,7 +175,7 @@ public class Gun : MonoBehaviour
     private void DamageAppplied(IDamageable damageable, float damage, Vector2 pos)
     {
         var bulletExplosion = _bulletDamage.GetObject();
-        bulletExplosion.transform.localPosition = pos;
+        bulletExplosion.transform.position = pos;
         bulletExplosion.Play();
         bulletExplosion.gameObject.SetActive(true);
 

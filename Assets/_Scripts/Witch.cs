@@ -241,6 +241,8 @@ public class Witch : MonoBehaviour
         if (_moonElapsedTime > _moonShootTime)
         {
             _moonElapsedTime = 0f;
+            if (_moonAmount == 0)
+                return; 
             _moonDeltaMult = 0f;
             StartCoroutine(MoonGunShootRoutine());
         }
@@ -375,7 +377,7 @@ public class Witch : MonoBehaviour
         int bursts = Mathf.RoundToInt(Mathf.Sqrt(_moonAmount));
         int shootsPerBurst = Math.DivRem(_moonAmount, bursts, out int remainder);
 
-        yield return _moonGun.ShotRoutine(damage: _damage,
+        yield return _moonGun.ShootRoutine(damage: _damage,
                                           critChance: _critChance,
                                           critMultiplier: _critMultiplier,
                                           knockback: _knockback,

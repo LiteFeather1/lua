@@ -53,6 +53,14 @@ namespace LTFUtils
             return new(x, y);
         }
 
+        public static Vector2 RotateVector(this Vector3 v, float angle)
+        {
+            float radian = angle * Mathf.Deg2Rad;
+            float x = v.x * Mathf.Cos(radian) - v.y * Mathf.Sin(radian);
+            float y = v.x * Mathf.Sin(radian) + v.y * Mathf.Cos(radian);
+            return new(x, y);
+        }
+
         public static bool CompareQuartertions(Quaternion quatA, Quaternion quatB, float range)
         {
             return Quaternion.Angle(quatA, quatB) < range;

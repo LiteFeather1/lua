@@ -69,7 +69,7 @@ public class OrbitalGun : Gun
                      waitBetweenBursts: _waitBetweenBursts);
     }
 
-    protected override void ShootProjectileMethod(Bullet bullet, float speed)
+    protected override void ShootProjectileMethod(Bullet bullet, float speed, Vector2 direction)
     {
         bullet.Projectile.SetSpeedAndDirection(speed, Random.insideUnitCircle.normalized * .5f);
         bullet.transform.SetParent(Random.value > 0.5f ? _antiClockWiseRotation : _clockWiseRotation);
