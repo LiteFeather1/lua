@@ -51,6 +51,7 @@ public class Gun : MonoBehaviour
         _bulletDamage.ObjectCreated -= DamageExplosionCreated;
     }
 
+    // TODO add Speed variation
     public void StartShootRoutine(float damage,
                                   float critChance,
                                   float critMultiplier,

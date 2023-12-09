@@ -5078,7 +5078,7 @@ GameObject:
   - component: {fileID: 6087269709868984684}
   - component: {fileID: 6042493778212787290}
   m_Layer: 3
-  m_Name: Shooting_Moon_Gun
+  m_Name: Moon_Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5357,6 +5357,12 @@ MonoBehaviour:
     _baseValue: 2
     _value: 0
   _randomBulletOffSetPercent: 0.5
+  _moonGun: {fileID: 6042493778212787290}
+  _moonShootTime:
+    _baseValue: 3
+    _value: 3
+  _moonAmount: 5
+  _moonSpeedRange: {x: 1.75, y: 4}
   _orbitalGun: {fileID: 1049757123068156787}
   _orbitalShootTime:
     _baseValue: 5

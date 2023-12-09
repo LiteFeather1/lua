@@ -3127,11 +3127,9 @@ MonoBehaviour:
   _chanceDamageExplosion:
     _baseValue: 0
     _value: 0
-    _compositeModifiers: []
   _explosionDamage:
     _baseValue: 5
     _value: 0
-    _compositeModifiers: []
   _explosionRadius: 0.16
   _currencyPool:
     _object: {fileID: 2748346242251297967, guid: 01b4627feeae6a645a416d881fbab9b8, type: 3}
@@ -3140,7 +3138,6 @@ MonoBehaviour:
   _chanceToExtraCandy:
     _baseValue: 0
     _value: 0
-    _compositeModifiers: []
   _damageNumPool:
     _object: {fileID: 2872507750913942527, guid: e57e6c95f5d22544ead44720df0f0b19, type: 3}
     _initialPoolSize: 10
@@ -7883,7 +7880,6 @@ MonoBehaviour:
   _timeToDrawCard:
     _baseValue: 7
     _value: 0
-    _compositeModifiers: []
   _startingPowerUps:
   - {fileID: 11400000, guid: 5a5292755a2d8364dbdc683b5c850021, type: 2}
   - {fileID: 11400000, guid: 88d1342179fc9724f9d950bbde297268, type: 2}
@@ -8171,31 +8167,24 @@ MonoBehaviour:
   _onRecycleDamageEnemies:
     _baseValue: 0
     _value: 0
-    _compositeModifiers: []
   _onRecycleHeal:
     _baseValue: 0
     _value: 0
-    _compositeModifiers: []
   _onRecycleAddCurrency:
     _baseValue: 0
     _value: 0
-    _compositeModifiers: []
   _onRecycleRefund:
     _baseValue: 0
     _value: 0
-    _compositeModifiers: []
   _onCardPlayedDamageEnemies:
     _baseValue: 0
     _value: 0
-    _compositeModifiers: []
   _onCardPlayedHeal:
     _baseValue: 0
     _value: 0
-    _compositeModifiers: []
   _onCardPlayedRefund:
     _baseValue: 0
     _value: 0
-    _compositeModifiers: []
 --- !u!4 &1886159767
 Transform:
   m_ObjectHideFlags: 0
@@ -9874,6 +9863,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1307456679637955763, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
+      propertyPath: _moonSpeedRange.x
+      value: 1.75
+      objectReference: {fileID: 0}
     - target: {fileID: 5155081586467621625, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1

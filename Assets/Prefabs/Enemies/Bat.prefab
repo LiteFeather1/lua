@@ -75,7 +75,6 @@ MonoBehaviour:
   _defence:
     _baseValue: 0
     _value: 0
-    _compositeModifiers: []
 --- !u!114 &-4825785271480909483
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -40,6 +40,14 @@ public class Witch : MonoBehaviour
     private float _randomBulletOffset = 0f;
     private float _elapsedRandomShootTime = 0f;
 
+    [Header("Shooting Moon Gun")]
+    [SerializeField] private Gun _moonGun;
+    [SerializeField] private CompositeValue _moonShootTime = new(3f);
+    [SerializeField] private int _moonAmount;
+    [SerializeField] private Vector2 _moonSpeedRange = new(1f, 4f);
+    private float _moonElapsedTime = 0f;
+    private float _moonDeltaMult = 1f;
+
     [Header("Orbital Gun")]
     [SerializeField] private OrbitalGun _orbitalGun;
     [SerializeField] private CompositeValue _orbitalShootTime = new(2f);
@@ -122,6 +130,8 @@ public class Witch : MonoBehaviour
     public CompositeValue RandomBulletShootTime => _randomBulletShootTime;
     public int AddRandomBullet(int amount) => _randomBulletAmount += amount;
 
+    public int AddShootingMoonBullet(int amount) => _moonAmount += amount;
+
     public OrbitalGun OrbitalGun => _orbitalGun;
     public CompositeValue OrbitalShootTime => _orbitalShootTime;
 
@@ -166,6 +176,9 @@ public class Witch : MonoBehaviour
         _mainGun.OnDamageAppplied += DamageAppliedGun;
         _mainGun.OnFinishedShooting += MainGunFinishedShooting;
 
+        _moonGun.OnDamageAppplied += DamageAppliedGun;
+        _moonGun.OnFinishedShooting += MoonGunFinishedShooting;
+
         _orbitalGun.OnDamageAppplied += DamageAppliedGun;
         _orbitalGun.OnFinishedShooting += OrbitalFinishedShooting;
 
@@ -192,7 +205,7 @@ public class Witch : MonoBehaviour
 
         // Main Shot
         _elapsedShootTime += delta * _shootDeltaMult;
-        if (_elapsedShootTime >= _shootTime)
+        if (_elapsedShootTime > _shootTime)
         {
             _elapsedShootTime = 0f;
             _shootDeltaMult = 0f;
@@ -205,7 +218,7 @@ public class Witch : MonoBehaviour
 
         // Random Shot
         _elapsedRandomShootTime += delta;
-        if (_elapsedRandomShootTime >= _randomBulletShootTime + _randomBulletOffset)
+        if (_elapsedRandomShootTime > _randomBulletShootTime + _randomBulletOffset)
         {
             _elapsedRandomShootTime = 0f;
             var offset = _randomBulletShootTime * _randomBulletOffSetPercent;
@@ -218,6 +231,29 @@ public class Witch : MonoBehaviour
                                      knockback: _knockback,
                                      angle: Random.Range(0f, 360f));
             }
+        }
+
+        // Moon Shot
+        _moonElapsedTime += delta * _moonDeltaMult;
+        if (_moonElapsedTime > _moonShootTime)
+        {
+            _moonElapsedTime = 0f;
+            _moonDeltaMult = 0f;
+            _moonGun.StartShootRoutine(damage: _damage,
+                                       critChance: _critChance,
+                                       critMultiplier: _critMultiplier,
+                                       knockback: _knockback,
+                                       angle: 0f,
+                                       size: 1f,
+                                       speed: _moonSpeedRange.Random(),
+                                       pierce: 1,
+                                       bounce: 1,
+                                       duration: 3f,
+                                       randomAngle: 22.5f,
+                                       separationPerBullet: 0f,
+                                       burstAmount: 1,
+                                       bulletAmount: _moonAmount,
+                                       waitBetweenBursts: 0f);
         }
 
         // Orbital Shot
@@ -270,6 +306,9 @@ public class Witch : MonoBehaviour
     {
         _mainGun.OnDamageAppplied -= DamageAppliedGun;
         _mainGun.OnFinishedShooting -= MainGunFinishedShooting;
+
+        _moonGun.OnDamageAppplied -= DamageAppliedGun;
+        _moonGun.OnFinishedShooting -= MoonGunFinishedShooting;
 
         _orbitalGun.OnDamageAppplied -= DamageAppliedGun;
         _orbitalGun.OnFinishedShooting -= OrbitalFinishedShooting;
@@ -349,6 +388,8 @@ public class Witch : MonoBehaviour
     }
 
     private void MainGunFinishedShooting() => _shootDeltaMult = 1f;
+
+    private void MoonGunFinishedShooting() => _moonDeltaMult = 1f;
 
     private void OrbitalFinishedShooting() => _orbitalDeltaMult = 1f;
 
