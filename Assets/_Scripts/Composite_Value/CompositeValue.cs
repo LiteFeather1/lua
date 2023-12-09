@@ -33,8 +33,6 @@ public class CompositeValue
 
     public Action<float> OnValueModified { get; set; }
 
-    public int ModifierCount => _compositeModifiers.Count;
-
     public CompositeValue()
     {
         _compositeModifiers = new();
@@ -43,6 +41,8 @@ public class CompositeValue
     public CompositeValue(float baseValue) : this()
     {
         _baseValue = baseValue;
+        _value = baseValue;
+        _isDirty = false;
     }
 
     private float CalculateFinalValue()
