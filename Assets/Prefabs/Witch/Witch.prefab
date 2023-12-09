@@ -5125,7 +5125,7 @@ MonoBehaviour:
   _bulletShotSound: {fileID: 8300000, guid: 672fdea8e7aa8b64092be2303844210e, type: 3}
   _separationPerBullet: 0
   _randomAngleOffsetRange: {x: -22.5, y: 22.5}
-  _randomSpeedOffsetRange: {x: -1, y: 1.5}
+  _randomSpeedOffsetRange: {x: -0.5, y: 0.75}
 --- !u!1 &4407905212738553079
 GameObject:
   m_ObjectHideFlags: 0
@@ -5372,8 +5372,9 @@ MonoBehaviour:
   _moonShootTime:
     _baseValue: 3
     _value: 3
-  _moonAmount: 5
-  _moonBulletSpeed: 2.5
+  _timeBetweenMoonBursts: 0.5
+  _moonAmount: 0
+  _moonBulletSpeed: 2
   _orbitalGun: {fileID: 1049757123068156787}
   _orbitalShootTime:
     _baseValue: 5

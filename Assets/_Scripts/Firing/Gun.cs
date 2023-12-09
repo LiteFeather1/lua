@@ -15,6 +15,7 @@ public class Gun : MonoBehaviour
 
     [Header("Stats")]
     [SerializeField] private float _separationPerBullet;
+    // TODO Add Face rotation alpha/t
     [SerializeField] private Vector2 _randomAngleOffsetRange = new(0f, 0f);
     [SerializeField] private Vector2 _randomSpeedOffsetRange = new(0f, 0f);
 
@@ -56,7 +57,44 @@ public class Gun : MonoBehaviour
         _bulletDamage.ObjectCreated -= DamageExplosionCreated;
     }
 
-    // TODO add Speed variation
+    // replace waitBetweenBursts to a yield instead of 
+    public IEnumerator ShotRoutine(float damage,
+                                   float critChance,
+                                   float critMultiplier,
+                                   float knockback,
+                                   float size,
+                                   float speed,
+                                   int pierce,
+                                   int bounce,
+                                   float duration,
+                                   float angle,
+                                   int burstAmount,
+                                   int bulletAmount,
+                                   float waitBetweenBursts)
+    {
+        WaitForSeconds yieldBetweenBurst = burstAmount > 1 ? new(waitBetweenBursts) : null;
+        for (int i = 0; i < burstAmount; i++)
+        {
+            AudioManager.Instance.PlayOneShot(_bulletShotSound);
+            for (int j = 0; j < bulletAmount; j++)
+            {
+                ShootBullet(damage: damage,
+                            critChance: critChance,
+                            critMultiplier: critMultiplier,
+                            knockback: knockback,
+                            size: size,
+                            speed: speed,
+                            pierce: pierce,
+                            bounce: bounce,
+                            duration: duration,
+                            angle: GetAngle(j, bulletAmount) + angle);
+            }
+            yield return yieldBetweenBurst;
+        }
+
+        OnFinishedShooting?.Invoke();
+    }
+
     public void StartShootRoutine(float damage,
                                   float critChance,
                                   float critMultiplier,
@@ -71,7 +109,7 @@ public class Gun : MonoBehaviour
                                   int bulletAmount,
                                   float waitBetweenBursts)
     {
-        StartCoroutine(Shot_CO(damage: damage,
+        StartCoroutine(ShotRoutine(damage: damage,
                                critChance: critChance,
                                critMultiplier: critMultiplier,
                                knockback: knockback,
@@ -104,7 +142,14 @@ public class Gun : MonoBehaviour
         bullet.AttachDisable(_particlePool.GetObject());
         bullet.Hitbox.SetStats(damage, critChance, critMultiplier, knockback);
         bullet.Projectile.SetStats(pierce, bounce, duration);
-        ShootProjectileMethod(bullet, speed);
+        ShootProjectileMethod(bullet, speed + _randomSpeedOffsetRange.Random());
+    }
+
+    public float GetAngle(int bulletIndex, int bulletAmount)
+    {
+        float totalAngle = (bulletAmount - 1) * _separationPerBullet * .5f;
+        float minAngle = _firePoint.localEulerAngles.z - totalAngle;
+        return minAngle + (bulletIndex * _separationPerBullet) + _randomAngleOffsetRange.Random();
     }
 
     protected virtual void ShootProjectileMethod(Bullet bullet, float speed)
@@ -115,51 +160,6 @@ public class Gun : MonoBehaviour
     protected virtual void ReturnBulletToPool(Bullet bullet)
     {
         _bulletPool.ReturnObject(bullet);
-    }
-
-    private float GetAngle(int bulletIndex, int bulletAmount)
-    {
-        float totalAngle = (bulletAmount - 1) * _separationPerBullet * .5f;
-        float center = LTFHelpers_Math.AngleBetweenTwoPoints(transform.position, transform.position - _firePoint.right);
-        float minAngle = center - totalAngle;
-        return minAngle + (bulletIndex * _separationPerBullet);
-    }
-
-    private IEnumerator Shot_CO(float damage,
-                                float critChance,
-                                float critMultiplier,
-                                float knockback,
-                                float size,
-                                float speed,
-                                int pierce,
-                                int bounce,
-                                float duration,
-                                float angle,
-                                int burstAmount,
-                                int bulletAmount,
-                                float waitBetweenBursts)
-    {
-        WaitForSeconds yieldBetweenBurst = burstAmount > 1 ? new(waitBetweenBursts) : null;
-        for (int i = 0; i < burstAmount; i++)
-        {
-            AudioManager.Instance.PlayOneShot(_bulletShotSound);
-            for (int j = 0; j < bulletAmount; j++)
-            {
-                ShootBullet(damage: damage,
-                            critChance: critChance,
-                            critMultiplier: critMultiplier,
-                            knockback: knockback,
-                            size: size,
-                            speed: speed + _randomSpeedOffsetRange.Random(),
-                            pierce: pierce,
-                            bounce: bounce,
-                            duration: duration,
-                            angle: GetAngle(j, bulletAmount) + angle + _randomAngleOffsetRange.Random());
-            }
-            yield return yieldBetweenBurst;
-        }
-
-        OnFinishedShooting?.Invoke(); 
     }
 
     private void BulletCreated(Bullet bullet)
