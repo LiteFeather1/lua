@@ -17,6 +17,8 @@ public class OrbitalGun : Gun
 
     private readonly List<Bullet> _activeBullets = new();
 
+    private WaitForSeconds _yieldBetweenBursts;
+
     public CompositeValue RotationSpeed => _rotationSpeed;
     public int AddOrbitalAmount(int amount) => _orbitalAmount += amount;
 
@@ -25,6 +27,11 @@ public class OrbitalGun : Gun
         base.Awake();
         _disappearPool.ObjectCreated += DisappearCreated;
         _disappearPool.InitPool();
+    }
+
+    private void Start()
+    {
+        _yieldBetweenBursts = new(_waitBetweenBursts);
     }
 
     private void Update()
@@ -55,18 +62,18 @@ public class OrbitalGun : Gun
     public void StartShootRoutine(float damage, float critChance, float critMultiplier, float knockback, float speed, float duration)
     {
         StartShootRoutine(damage: damage,
-                     critChance: critChance,
-                     critMultiplier: critMultiplier,
-                     knockback: knockback,
-                     size: 1f,
-                     speed: Mathf.Clamp(speed, .25f, _maxBulletSpeed),
-                     pierce: 1,
-                     bounce: 0,
-                     duration: Mathf.Clamp(duration, 1.5f, _maxBulletDuration),
-                     angle: 0f,
-                     burstAmount: _orbitalAmount,
-                     bulletAmount: 1,
-                     waitBetweenBursts: _waitBetweenBursts);
+                          critChance: critChance,
+                          critMultiplier: critMultiplier,
+                          knockback: knockback,
+                          size: 1f,
+                          speed: Mathf.Clamp(speed, .25f, _maxBulletSpeed),
+                          pierce: 1,
+                          bounce: 0,
+                          duration: Mathf.Clamp(duration, 1.5f, _maxBulletDuration),
+                          angle: 0f,
+                          burstAmount: _orbitalAmount,
+                          bulletAmount: 1,
+                          yieldBetweenBurst: _yieldBetweenBursts);
     }
 
     protected override void ShootProjectileMethod(Bullet bullet, float speed, Vector2 direction)

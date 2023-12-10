@@ -57,7 +57,6 @@ public class Gun : MonoBehaviour
         _bulletDamage.ObjectCreated -= DamageExplosionCreated;
     }
 
-    // replace waitBetweenBursts to a yield instead of 
     public IEnumerator ShootRoutine(float damage,
                                     float critChance,
                                     float critMultiplier,
@@ -70,9 +69,8 @@ public class Gun : MonoBehaviour
                                     float angle,
                                     int burstAmount,
                                     int bulletAmount,
-                                    float waitBetweenBursts)
+                                    WaitForSeconds yieldBetweenBurst)
     {
-        WaitForSeconds yieldBetweenBurst = burstAmount > 1 ? new(waitBetweenBursts) : null;
         for (int i = 0; i < burstAmount; i++)
         {
             ShootBulletBurst(damage, critChance, critMultiplier, knockback, size, speed, pierce, bounce, duration, angle, bulletAmount);
@@ -94,7 +92,7 @@ public class Gun : MonoBehaviour
                                   float angle,
                                   int burstAmount,
                                   int bulletAmount,
-                                  float waitBetweenBursts)
+                                  WaitForSeconds yieldBetweenBurst)
     {
         StartCoroutine(ShootRoutine(damage: damage,
                                     critChance: critChance,
@@ -108,7 +106,7 @@ public class Gun : MonoBehaviour
                                     angle: angle,
                                     burstAmount: burstAmount,
                                     bulletAmount: bulletAmount,
-                                    waitBetweenBursts: waitBetweenBursts));
+                                    yieldBetweenBurst: yieldBetweenBurst));
     }
 
     public void ShootBullet(float damage,
@@ -123,7 +121,7 @@ public class Gun : MonoBehaviour
                             float angle)
     {
         var bullet = _bulletPool.GetObject();
-        bullet.transform.SetLocalPositionAndRotation(_firePoint.position, Quaternion.Euler(0f, 0f, angle * _faceRotationAlpha));
+        bullet.transform.SetPositionAndRotation(_firePoint.position, Quaternion.Euler(0f, 0f, angle * _faceRotationAlpha));
         bullet.transform.localScale = new(size, size, 1f);
         bullet.gameObject.SetActive(true);
         bullet.AttachDisable(_particlePool.GetObject());

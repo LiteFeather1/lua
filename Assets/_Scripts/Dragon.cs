@@ -74,7 +74,7 @@ public class Dragon : MonoBehaviour
                                angle: 0f,
                                burstAmount: Mathf.CeilToInt(_witch.Gun.BurstAmount * _forceMultiplier),
                                bulletAmount: Mathf.CeilToInt(_witch.Gun.BulletAmount * _forceMultiplier),
-                               waitBetweenBursts: _witch.Gun.WaitBetweenBursts);
+                               yieldBetweenBurst: _witch.Gun.YieldBetweenBurts);
     }
 
 }

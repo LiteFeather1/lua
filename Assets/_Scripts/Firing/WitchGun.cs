@@ -12,6 +12,8 @@ public class WitchGun : Gun
     [SerializeField] private int _bulletAmount = 1;
     [SerializeField] private Vector2 _timeBetweenBurstsRange = new(.5f, .1f);
 
+    private WaitForSeconds _yieldBetweenBursts;
+
     public CompositeValue Size => _size;
     public CompositeValue BulletSpeed => _bulletSpeed;
     public CompositeValue BulletDuration => _bulletDuration;
@@ -23,9 +25,18 @@ public class WitchGun : Gun
     public int AddBounce(int amount) => _bounceAmount += amount;
     public int AddBurst(int amount) => _burstAmount += amount;
     public int BulletAmount => _bulletAmount;
-    public int AddBulletAmount(int amount) => _bulletAmount += amount;
+
+    public int AddBulletAmount(int amount)
+    {
+        _bulletAmount += amount;
+        _yieldBetweenBursts = new(WaitBetweenBursts);
+        return _bulletAmount;
+    }
 
     public float WaitBetweenBursts => _timeBetweenBurstsRange.EvaluateClamped((_burstAmount - 1) / 9f);
+    public WaitForSeconds YieldBetweenBurts => _yieldBetweenBursts;
+
+    private void Start() => _yieldBetweenBursts = new(WaitBetweenBursts);
 
     public void StartShootRoutine(float damage, float critChance, float critMultiplier, float knockback)
     {
@@ -41,7 +52,7 @@ public class WitchGun : Gun
                           angle: 0f,
                           burstAmount: _burstAmount,
                           bulletAmount: _bulletAmount,
-                          waitBetweenBursts: WaitBetweenBursts);
+                          yieldBetweenBurst: _yieldBetweenBursts);
     }
 
     public void ShootBullet(float damage, float critChance, float critMultiplier, float knockback, float speed, float angle)

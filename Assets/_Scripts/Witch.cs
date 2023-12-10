@@ -49,6 +49,7 @@ public class Witch : MonoBehaviour
     [SerializeField] private float _moonBulletSpeed = 2.5f;
     private float _moonElapsedTime = 0f;
     private float _moonDeltaMult = 1f;
+    private WaitForSeconds _yieldBetweenMoonBursts;
 
     [Header("Orbital Gun")]
     [SerializeField] private OrbitalGun _orbitalGun;
@@ -196,7 +197,12 @@ public class Witch : MonoBehaviour
         _critMultiplier.OnValueModified += _aura.SetCritMultiplier;
     }
 
-    private void Start() => ModifyCurrency(4);
+    private void Start()
+    {
+        ModifyCurrency(4);
+
+        _yieldBetweenMoonBursts = new(_timeBetweenMoonBursts);
+    }
 
     private void Update()
     {
@@ -279,7 +285,7 @@ public class Witch : MonoBehaviour
                                          angle: 0f,
                                          burstAmount: Mathf.Max((int)(_mainGun.BurstAmount * .5f), 1),
                                          bulletAmount: _daggerAmount,
-                                         waitBetweenBursts: _mainGun.WaitBetweenBursts);
+                                         yieldBetweenBurst: _mainGun.YieldBetweenBurts);
         }
 
         _spriteMask.sprite = _flipBook.SR.sprite;
@@ -391,7 +397,7 @@ public class Witch : MonoBehaviour
                                            burstAmount: bursts,
                                            bulletAmount: shotsPerBurst,
                                            // TODO make this a custom yield retunr?
-                                           waitBetweenBursts: _timeBetweenMoonBursts);
+                                           yieldBetweenBurst: _yieldBetweenMoonBursts);
 
         _moonGun.ShootBulletBurst(damage: _damage,
                                   critChance: _critChance,
