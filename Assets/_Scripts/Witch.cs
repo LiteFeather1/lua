@@ -37,9 +37,11 @@ public class Witch : MonoBehaviour
     [SerializeField] private int _randomBulletAmount = 0;
     [SerializeField] private CompositeValue _randomBulletShootTime = new(2f);
     [SerializeField] private float _randomBulletTimeOffSetPercent = .5f;
-    [SerializeField] private Vector2 _randomBulletSpeedPercent = new(.5f, 1.5f);
-    private float _randomBulletOffset = 0f;
+    [SerializeField] private Vector2 _randomBulletStatMult = new(.5f, 1.5f);
+    [SerializeField] private CustomRandomWaitForSeconds _yieldBetweenRandomBursts = new(new(.125f, .5f));
+    private float _randomBulletTimeOffset = 0f;
     private float _elapsedRandomShootTime = 0f;
+    private float _randomDeltaMult = 1f;
 
     [Header("Shooting Moon Gun")]
     [SerializeField] private Gun _moonGun;
@@ -165,7 +167,7 @@ public class Witch : MonoBehaviour
 
     private void Awake()
     {
-        _initialAcceleration = _acceleration.Value;
+        _initialAcceleration = _acceleration;
         _waitInvulnerability = new(_invulnerabilityDuration);
 
         _rb.drag = _decelerationRange.x;
@@ -218,22 +220,17 @@ public class Witch : MonoBehaviour
         }
 
         // Random Shot
-        _elapsedRandomShootTime += delta;
-        if (_elapsedRandomShootTime > _randomBulletShootTime + _randomBulletOffset)
+        _elapsedRandomShootTime += delta * _randomDeltaMult;
+        if (_elapsedRandomShootTime > _randomBulletShootTime + _randomBulletTimeOffset)
         {
             _elapsedRandomShootTime = 0f;
+            if (_randomBulletAmount == 0)
+                return;
+
+            _randomDeltaMult = 0f;
             var offset = _randomBulletShootTime * _randomBulletTimeOffSetPercent;
-            _randomBulletOffset = Random.Range(-offset, offset);
-            // TODO Make enve more random. 
-            for (int i = 0; i < _randomBulletAmount; i++)
-            {
-                _mainGun.ShootBullet(damage: _damage,
-                                     critChance: _critChance,
-                                     critMultiplier: _critMultiplier,
-                                     knockback: _knockback,
-                                     speed: _mainGun.BulletSpeed * _randomBulletSpeedPercent.Random(),
-                                     angle: Random.Range(0f, 360f));
-            }
+            _randomBulletTimeOffset = Random.Range(-offset, offset);
+            StartCoroutine(RandomBulletShootRoutine());
         }
 
         // Moon Shot
@@ -243,6 +240,7 @@ public class Witch : MonoBehaviour
             _moonElapsedTime = 0f;
             if (_moonAmount == 0)
                 return; 
+
             _moonDeltaMult = 0f;
             StartCoroutine(MoonGunShootRoutine());
         }
@@ -372,6 +370,48 @@ public class Witch : MonoBehaviour
 
     private void MainGunFinishedShooting() => _shootDeltaMult = 1f;
 
+    private IEnumerator RandomBulletShootRoutine()
+    {
+        var bursts = _randomBulletAmount / Random.Range(1, _randomBulletAmount);
+        var perBurst = _randomBulletAmount / bursts;
+        var remainder = _randomBulletAmount % bursts;
+
+        for (int i = 0; i < bursts; i++)
+        {
+            _mainGun.PlayShotSound();
+            for (int j = 0; j < perBurst; j++)
+            {
+                ShootRandomBullet();
+            }
+
+           yield return _yieldBetweenRandomBursts;
+        }
+
+        _mainGun.PlayShotSound();
+        for (int i = 0; i < remainder; i++)
+        {
+            ShootRandomBullet();
+        }
+
+        yield return _yieldBetweenMoonBursts;
+
+        _randomDeltaMult = 1f;
+
+        void ShootRandomBullet()
+        {
+            _mainGun.ShootBullet(damage: _damage * _randomBulletStatMult.Random(),
+                                 critChance: _critChance * _randomBulletStatMult.Random(),
+                                 critMultiplier: _critMultiplier * _randomBulletStatMult.Random(),
+                                 knockback: _knockback * _randomBulletStatMult.Random(),
+                                 size: _mainGun.Size * _randomBulletStatMult.Random(),
+                                 speed: _mainGun.BulletSpeed * _randomBulletStatMult.Random(),
+                                 pierce: Mathf.RoundToInt(_mainGun.PierceAmount * _randomBulletStatMult.Random()),
+                                 bounce: Mathf.RoundToInt(_mainGun.BounceAmount * _randomBulletStatMult.Random()),
+                                 duration: _mainGun.BulletDuration * _randomBulletStatMult.Random(),
+                                 angle: Random.Range(0f, 360f));
+        }
+    }
+
     private IEnumerator MoonGunShootRoutine()
     {
         int bursts = Mathf.RoundToInt(Mathf.Sqrt(_moonAmount));
@@ -390,9 +430,11 @@ public class Witch : MonoBehaviour
                                            angle: 0f,
                                            burstAmount: bursts,
                                            bulletAmount: shotsPerBurst,
-                                           // TODO make this a custom yield retunr?
                                            yieldBetweenBurst: _yieldBetweenMoonBursts);
 
+        yield return _yieldBetweenMoonBursts;
+
+        _moonGun.PlayShotSound();
         _moonGun.ShootBulletBurst(damage: _damage,
                                   critChance: _critChance,
                                   critMultiplier: _critMultiplier,

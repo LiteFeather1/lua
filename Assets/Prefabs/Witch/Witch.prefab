@@ -5256,7 +5256,8 @@ MonoBehaviour:
   _maxBulletSpeed: 0.9
   _maxBulletDuration: 6
   _orbitalAmount: 0
-  _waitBetweenBursts: 0.5
+  _yieldBetweenBursts:
+    _waitTime: 0.75
   _disappearPool:
     _object: {fileID: 9029989089869572558, guid: 5ec90713aa3382443857078c18cd35ee, type: 3}
     _initialPoolSize: 10
@@ -5371,12 +5372,15 @@ MonoBehaviour:
     _baseValue: 2
     _value: 0
   _randomBulletTimeOffSetPercent: 0.5
-  _randomBulletSpeedPercent: {x: 0.5, y: 1.5}
+  _randomBulletStatMult: {x: 0.75, y: 1.25}
+  _yieldBetweenRandomBursts:
+    _randomWaitTime: {x: 0.25, y: 0.5}
   _moonGun: {fileID: 6042493778212787290}
   _moonShootTime:
     _baseValue: 3
     _value: 3
-  _timeBetweenMoonBursts: 0.5
+  _yieldBetweenMoonBursts:
+    _waitTime: 0
   _moonAmount: 0
   _moonBulletSpeed: 2
   _orbitalGun: {fileID: 1049757123068156787}
