@@ -34,6 +34,7 @@ public class Witch : MonoBehaviour
     private float _shootDeltaMult = 1f;
 
     [Header("Random Bullet")]
+    [SerializeField] private Gun _randomGun;
     [SerializeField] private int _randomBulletAmount = 0;
     [SerializeField] private CompositeValue _randomBulletShootTime = new(2f);
     [SerializeField] private float _randomBulletTimeOffSetPercent = .5f;
@@ -180,6 +181,8 @@ public class Witch : MonoBehaviour
         _mainGun.OnDamageAppplied += DamageAppliedGun;
         _mainGun.OnFinishedShooting += MainGunFinishedShooting;
 
+        _randomGun.OnDamageAppplied += DamageAppliedGun;
+
         _moonGun.OnDamageAppplied += DamageAppliedGun;
 
         _orbitalGun.OnDamageAppplied += DamageAppliedGun;
@@ -293,6 +296,8 @@ public class Witch : MonoBehaviour
         _mainGun.OnDamageAppplied -= DamageAppliedGun;
         _mainGun.OnFinishedShooting -= MainGunFinishedShooting;
 
+        _randomGun.OnDamageAppplied -= DamageAppliedGun;
+
         _moonGun.OnDamageAppplied -= DamageAppliedGun;
 
         _orbitalGun.OnDamageAppplied -= DamageAppliedGun;
@@ -399,16 +404,16 @@ public class Witch : MonoBehaviour
 
         void ShootRandomBullet()
         {
-            _mainGun.ShootBullet(damage: _damage * _randomBulletStatMult.Random(),
-                                 critChance: _critChance * _randomBulletStatMult.Random(),
-                                 critMultiplier: _critMultiplier * _randomBulletStatMult.Random(),
-                                 knockback: _knockback * _randomBulletStatMult.Random(),
-                                 size: _mainGun.Size * _randomBulletStatMult.Random(),
-                                 speed: _mainGun.BulletSpeed * _randomBulletStatMult.Random(),
-                                 pierce: Mathf.RoundToInt(_mainGun.PierceAmount * _randomBulletStatMult.Random()),
-                                 bounce: Mathf.RoundToInt(_mainGun.BounceAmount * _randomBulletStatMult.Random()),
-                                 duration: _mainGun.BulletDuration * _randomBulletStatMult.Random(),
-                                 angle: Random.Range(0f, 360f));
+            _randomGun.ShootBullet(damage: _damage * _randomBulletStatMult.Random(),
+                                   critChance: _critChance * _randomBulletStatMult.Random(),
+                                   critMultiplier: _critMultiplier * _randomBulletStatMult.Random(),
+                                   knockback: _knockback * _randomBulletStatMult.Random(),
+                                   size: _mainGun.Size * _randomBulletStatMult.Random(),
+                                   speed: _mainGun.BulletSpeed * _randomBulletStatMult.Random(),
+                                   pierce: Mathf.RoundToInt(_mainGun.PierceAmount * _randomBulletStatMult.Random()),
+                                   bounce: Mathf.RoundToInt(_mainGun.BounceAmount * _randomBulletStatMult.Random()),
+                                   duration: _mainGun.BulletDuration * _randomBulletStatMult.Random(),
+                                   angle: 0f);
         }
     }
 

@@ -121,6 +121,7 @@ public class Gun : MonoBehaviour
                             float angle)
     {
         var bullet = _bulletPool.GetObject();
+        angle += _randomAngleOffsetRange.Random();
         bullet.transform.SetPositionAndRotation(_firePoint.position, Quaternion.Euler(0f, 0f, angle * _faceRotationAlpha));
         bullet.transform.localScale = new(size, size, 1f);
         bullet.gameObject.SetActive(true);
@@ -164,10 +165,13 @@ public class Gun : MonoBehaviour
     {
         float totalAngle = (bulletAmount - 1) * _separationPerBullet * .5f;
         float minAngle = _firePoint.eulerAngles.z - totalAngle;
-        return minAngle + (bulletIndex * _separationPerBullet) + _randomAngleOffsetRange.Random();
+        return minAngle + (bulletIndex * _separationPerBullet);
     }
 
-    public void PlayShotSound() => AudioManager.Instance.PlayOneShot(_bulletShotSound);
+    public void PlayShotSound()
+    {
+        AudioManager.Instance.PlayOneShot(_bulletShotSound);
+    }
 
     protected virtual void ShootProjectileMethod(Bullet bullet, float speed, Vector2 direction)
     {

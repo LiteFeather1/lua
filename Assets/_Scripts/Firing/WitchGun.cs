@@ -54,18 +54,4 @@ public class WitchGun : Gun
                           bulletAmount: _bulletAmount,
                           yieldBetweenBurst: _yieldBetweenBursts);
     }
-
-    public void ShootBullet(float damage, float critChance, float critMultiplier, float knockback, float speed, float angle)
-    {
-        ShootBullet(damage: damage,
-                    critChance: critChance,
-                    critMultiplier: critMultiplier,
-                    knockback: knockback,
-                    size: _size,
-                    speed: speed,
-                    pierce: _pierceAmount,
-                    bounce: _bounceAmount,
-                    duration: _bulletDuration,
-                    angle: angle);
-    }
 }
