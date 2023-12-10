@@ -12,12 +12,11 @@ public class OrbitalGun : Gun
     [SerializeField] private float _maxBulletSpeed = .9f;
     [SerializeField] private float _maxBulletDuration = 6f;
     [SerializeField] private int _orbitalAmount = 0;
-    [SerializeField] private float _waitBetweenBursts = .75f;
+    [SerializeField] private CustomWaitForSeconds _yieldBetweenBursts = new(.75f);
     [SerializeField] private ObjectPool<FlipBook> _disappearPool;
 
     private readonly List<Bullet> _activeBullets = new();
 
-    private WaitForSeconds _yieldBetweenBursts;
 
     public CompositeValue RotationSpeed => _rotationSpeed;
     public int AddOrbitalAmount(int amount) => _orbitalAmount += amount;
@@ -27,11 +26,6 @@ public class OrbitalGun : Gun
         base.Awake();
         _disappearPool.ObjectCreated += DisappearCreated;
         _disappearPool.InitPool();
-    }
-
-    private void Start()
-    {
-        _yieldBetweenBursts = new(_waitBetweenBursts);
     }
 
     private void Update()

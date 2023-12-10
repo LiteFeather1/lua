@@ -12,7 +12,7 @@ public class WitchGun : Gun
     [SerializeField] private int _bulletAmount = 1;
     [SerializeField] private Vector2 _timeBetweenBurstsRange = new(.5f, .1f);
 
-    private WaitForSeconds _yieldBetweenBursts;
+    private CustomWaitForSeconds _yieldBetweenBursts;
 
     public CompositeValue Size => _size;
     public CompositeValue BulletSpeed => _bulletSpeed;
@@ -29,12 +29,12 @@ public class WitchGun : Gun
     public int AddBulletAmount(int amount)
     {
         _bulletAmount += amount;
-        _yieldBetweenBursts = new(WaitBetweenBursts);
+        _yieldBetweenBursts.SetWaitTime(WaitBetweenBursts);
         return _bulletAmount;
     }
 
-    public float WaitBetweenBursts => _timeBetweenBurstsRange.EvaluateClamped((_burstAmount - 1) / 9f);
-    public WaitForSeconds YieldBetweenBurts => _yieldBetweenBursts;
+    public CustomWaitForSeconds YieldBetweenBurts => _yieldBetweenBursts;
+    private float WaitBetweenBursts => _timeBetweenBurstsRange.EvaluateClamped((_burstAmount - 1) / 9f);
 
     private void Start() => _yieldBetweenBursts = new(WaitBetweenBursts);
 

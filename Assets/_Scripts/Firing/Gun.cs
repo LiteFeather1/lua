@@ -69,7 +69,7 @@ public class Gun : MonoBehaviour
                                     float angle,
                                     int burstAmount,
                                     int bulletAmount,
-                                    WaitForSeconds yieldBetweenBurst)
+                                    IEnumerator yieldBetweenBurst)
     {
         for (int i = 0; i < burstAmount; i++)
         {
@@ -92,7 +92,7 @@ public class Gun : MonoBehaviour
                                   float angle,
                                   int burstAmount,
                                   int bulletAmount,
-                                  WaitForSeconds yieldBetweenBurst)
+                                  IEnumerator yieldBetweenBurst)
     {
         StartCoroutine(ShootRoutine(damage: damage,
                                     critChance: critChance,

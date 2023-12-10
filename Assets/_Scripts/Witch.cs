@@ -44,12 +44,11 @@ public class Witch : MonoBehaviour
     [Header("Shooting Moon Gun")]
     [SerializeField] private Gun _moonGun;
     [SerializeField] private CompositeValue _moonShootTime = new(3f);
-    [SerializeField] private float _timeBetweenMoonBursts = .33f;
+    [SerializeField] private CustomWaitForSeconds _yieldBetweenMoonBursts = new(.33f);
     [SerializeField] private int _moonAmount;
     [SerializeField] private float _moonBulletSpeed = 2.5f;
     private float _moonElapsedTime = 0f;
     private float _moonDeltaMult = 1f;
-    private WaitForSeconds _yieldBetweenMoonBursts;
 
     [Header("Orbital Gun")]
     [SerializeField] private OrbitalGun _orbitalGun;
@@ -197,12 +196,7 @@ public class Witch : MonoBehaviour
         _critMultiplier.OnValueModified += _aura.SetCritMultiplier;
     }
 
-    private void Start()
-    {
-        ModifyCurrency(4);
-
-        _yieldBetweenMoonBursts = new(_timeBetweenMoonBursts);
-    }
+    private void Start() => ModifyCurrency(4);
 
     private void Update()
     {
