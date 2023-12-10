@@ -59,36 +59,23 @@ public class Gun : MonoBehaviour
 
     // replace waitBetweenBursts to a yield instead of 
     public IEnumerator ShootRoutine(float damage,
-                                   float critChance,
-                                   float critMultiplier,
-                                   float knockback,
-                                   float size,
-                                   float speed,
-                                   int pierce,
-                                   int bounce,
-                                   float duration,
-                                   float angle,
-                                   int burstAmount,
-                                   int bulletAmount,
-                                   float waitBetweenBursts)
+                                    float critChance,
+                                    float critMultiplier,
+                                    float knockback,
+                                    float size,
+                                    float speed,
+                                    int pierce,
+                                    int bounce,
+                                    float duration,
+                                    float angle,
+                                    int burstAmount,
+                                    int bulletAmount,
+                                    float waitBetweenBursts)
     {
         WaitForSeconds yieldBetweenBurst = burstAmount > 1 ? new(waitBetweenBursts) : null;
         for (int i = 0; i < burstAmount; i++)
         {
-            AudioManager.Instance.PlayOneShot(_bulletShotSound);
-            for (int j = 0; j < bulletAmount; j++)
-            {
-                ShootBullet(damage: damage,
-                            critChance: critChance,
-                            critMultiplier: critMultiplier,
-                            knockback: knockback,
-                            size: size,
-                            speed: speed,
-                            pierce: pierce,
-                            bounce: bounce,
-                            duration: duration,
-                            angle: GetAngle(j, bulletAmount) + angle);
-            }
+            ShootBulletBurst(damage, critChance, critMultiplier, knockback, size, speed, pierce, bounce, duration, angle, bulletAmount);
             yield return yieldBetweenBurst;
         }
 
@@ -145,6 +132,34 @@ public class Gun : MonoBehaviour
         ShootProjectileMethod(bullet,
                               speed + _randomSpeedOffsetRange.Random(),
                               _firePoint.right.RotateVector(angle - _firePoint.eulerAngles.z));
+    }
+
+    public void ShootBulletBurst(float damage,
+                                 float critChance,
+                                 float critMultiplier,
+                                 float knockback,
+                                 float size,
+                                 float speed,
+                                 int pierce,
+                                 int bounce,
+                                 float duration,
+                                 float angle,
+                                 int bulletAmount)
+    {
+        AudioManager.Instance.PlayOneShot(_bulletShotSound);
+        for (int j = 0; j < bulletAmount; j++)
+        {
+            ShootBullet(damage: damage,
+                        critChance: critChance,
+                        critMultiplier: critMultiplier,
+                        knockback: knockback,
+                        size: size,
+                        speed: speed,
+                        pierce: pierce,
+                        bounce: bounce,
+                        duration: duration,
+                        angle: GetAngle(j, bulletAmount) + angle);
+        }
     }
 
     public float GetAngle(int bulletIndex, int bulletAmount)

@@ -375,36 +375,35 @@ public class Witch : MonoBehaviour
     private IEnumerator MoonGunShootRoutine()
     {
         int bursts = Mathf.RoundToInt(Mathf.Sqrt(_moonAmount));
-        int shootsPerBurst = Math.DivRem(_moonAmount, bursts, out int remainder);
+        var shotsPerBurst = _moonAmount / bursts;
+        var remainder = _moonAmount % bursts;
 
         yield return _moonGun.ShootRoutine(damage: _damage,
-                                          critChance: _critChance,
-                                          critMultiplier: _critMultiplier,
-                                          knockback: _knockback,
-                                          size: 1f,
-                                          speed: _moonBulletSpeed,
-                                          pierce: 1,
-                                          bounce: 1,
-                                          duration: 3f,
-                                          angle: 0f,
-                                          burstAmount: bursts,
-                                          bulletAmount: shootsPerBurst,
-                                          // TODO make this a custom yield retunr?
-                                          waitBetweenBursts: _timeBetweenMoonBursts);
+                                           critChance: _critChance,
+                                           critMultiplier: _critMultiplier,
+                                           knockback: _knockback,
+                                           size: 1f,
+                                           speed: _moonBulletSpeed,
+                                           pierce: 1,
+                                           bounce: 1,
+                                           duration: 3f,
+                                           angle: 0f,
+                                           burstAmount: bursts,
+                                           bulletAmount: shotsPerBurst,
+                                           // TODO make this a custom yield retunr?
+                                           waitBetweenBursts: _timeBetweenMoonBursts);
 
-        for (int i = 0; i < remainder; i++)
-        {
-            _moonGun.ShootBullet(damage: _damage,
-                                 critChance: _critChance,
-                                 critMultiplier: _critMultiplier,
-                                 knockback: _knockback,
-                                 size: 1f,
-                                 speed: _moonBulletSpeed,
-                                 pierce: 1,
-                                 bounce: 1,
-                                 duration: 3f,
-                                 angle: _moonGun.GetAngle(i, remainder));
-        }
+        _moonGun.ShootBulletBurst(damage: _damage,
+                                  critChance: _critChance,
+                                  critMultiplier: _critMultiplier,
+                                  knockback: _knockback,
+                                  size: 1f,
+                                  speed: _moonBulletSpeed,
+                                  pierce: 1,
+                                  bounce: 1,
+                                  duration: 3f,
+                                  angle: 0f,
+                                  remainder);
 
         _moonDeltaMult = 1f;
     }
