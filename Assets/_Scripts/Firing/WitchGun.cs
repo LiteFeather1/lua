@@ -38,6 +38,7 @@ public class WitchGun : Gun
 
     private void Start() => _yieldBetweenBursts = new(WaitBetweenBursts);
 
+    // TODO Remove This start routine??
     public void StartShootRoutine(float damage, float critChance, float critMultiplier, float knockback)
     {
         StartShootRoutine(damage: damage,

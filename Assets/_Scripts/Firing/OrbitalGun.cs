@@ -17,7 +17,6 @@ public class OrbitalGun : Gun
 
     private readonly List<Bullet> _activeBullets = new();
 
-
     public CompositeValue RotationSpeed => _rotationSpeed;
     public int AddOrbitalAmount(int amount) => _orbitalAmount += amount;
 

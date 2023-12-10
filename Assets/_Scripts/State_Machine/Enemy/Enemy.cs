@@ -16,7 +16,7 @@ public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
     [SerializeField] private Health _health;
     [SerializeField] private HitBox _hitBox;
 
-    private ParticleStoppedCallBack _fireParticle;
+    private Parentable _fireParticle;
 
     public EnemyData Data => _data;
 
@@ -26,7 +26,7 @@ public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
     public System.Action<Enemy> ReturnToPool { get; set; }
     public System.Action<Enemy> OnDied { get; set; }
 
-    public System.Func<ParticleStoppedCallBack> OnFireEffectApplied { get; set; }
+    public System.Func<Parentable> OnFireEffectApplied { get; set; }
 
     protected void OnEnable()
     {

@@ -5,7 +5,7 @@ public class Bullet : MonoBehaviour, IPoolable<Bullet>
 {
     [SerializeField] private Projectile _projectile;
     [SerializeField] private HitBox _hitBox;
-    private ParticleStoppedCallBack _disableCallBack;
+    private Parentable _disableCallBack;
 
     public Projectile Projectile => _projectile;
     public HitBox Hitbox => _hitBox;
@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour, IPoolable<Bullet>
         _projectile.Deactivated -= ProjectileDeactivated;
     }
 
-    public void AttachDisable(ParticleStoppedCallBack disable)
+    public void AttachDisable(Parentable disable)
     {
         disable.Parent(transform);
         _disableCallBack = disable;

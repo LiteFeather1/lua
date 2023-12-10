@@ -1,9 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-public abstract class Parentable<T> : MonoBehaviour, IParentable<T>
+public abstract class Parentable : MonoBehaviour, IParentable<Parentable>
 {
-    public Action<T> OnReturn { get; set; }
+    public Action<Parentable> OnReturn { get; set; }
 
     public virtual void Parent(Transform parent)
     {

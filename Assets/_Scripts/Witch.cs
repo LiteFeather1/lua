@@ -420,6 +420,7 @@ public class Witch : MonoBehaviour
     private IEnumerator MoonGunShootRoutine()
     {
         int bursts = Mathf.RoundToInt(Mathf.Sqrt(_moonAmount));
+        print(bursts);
         var shotsPerBurst = _moonAmount / bursts;
         var remainder = _moonAmount % bursts;
 

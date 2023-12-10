@@ -5177,7 +5177,7 @@ MonoBehaviour:
     _object: {fileID: 5908951068596790919, guid: e6d6f63dd20f02c45ab0316833917f9f, type: 3}
     _initialPoolSize: 10
   _particlePool:
-    _object: {fileID: 122756984430469221, guid: 18b0334f02fa187449ac2b13f1ff97b2, type: 3}
+    _object: {fileID: 1901478178808369996, guid: 18b0334f02fa187449ac2b13f1ff97b2, type: 3}
     _initialPoolSize: 10
   _bulletDamage:
     _object: {fileID: 9029989089869572558, guid: 17211992fecfb714b92e780722ba7df3, type: 3}
@@ -5440,7 +5440,7 @@ MonoBehaviour:
     _baseValue: 3
     _value: 3
   _yieldBetweenMoonBursts:
-    _waitTime: 0
+    _waitTime: 0.33
   _moonAmount: 0
   _moonBulletSpeed: 2
   _orbitalGun: {fileID: 1049757123068156787}

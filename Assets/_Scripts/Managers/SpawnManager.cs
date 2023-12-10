@@ -45,7 +45,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private Color _normalColour, _critColour;
 
     [Header("Fire Particle")]
-    [SerializeField] private ObjectPool<ParticleStoppedCallBack> _fireParticlePool;
+    [SerializeField] private ObjectPool<Parentable> _fireParticlePool;
 
     [Header("Thorn Damage")]
     [SerializeField] private ObjectPool<FlipBook> _thornAnimationPool;
@@ -414,13 +414,13 @@ public class SpawnManager : MonoBehaviour
         _damageNumPool.ReturnObject(num);
     }
 
-    private void FireParticleCreated(ParticleStoppedCallBack fireParticle)
+    private void FireParticleCreated(Parentable fireParticle)
     {
         fireParticle.gameObject.SetActive(true);
         fireParticle.OnReturn += ReturnFireParticle;
     }
 
-    private void ReturnFireParticle(ParticleStoppedCallBack fireParticle)
+    private void ReturnFireParticle(Parentable fireParticle)
     {
         _fireParticlePool.ReturnObject(fireParticle);
     }

@@ -9,7 +9,7 @@ public class Gun : MonoBehaviour
     [Header("Gun")]
     [SerializeField] private Transform _firePoint;
     [SerializeField] private ObjectPool<Bullet> _bulletPool;
-    [SerializeField] private ObjectPool<ParticleStoppedCallBack> _particlePool;
+    [SerializeField] private ObjectPool<Parentable> _particlePool;
     [SerializeField] private ObjectPool<FlipBook> _bulletDamage;
     [SerializeField] private AudioClip _bulletShotSound;
 
@@ -199,13 +199,13 @@ public class Gun : MonoBehaviour
         OnDamageAppplied?.Invoke(damageable, damage);
     }
 
-    private void ParticleCreated(ParticleStoppedCallBack particle)
+    private void ParticleCreated(Parentable particle)
     {
         particle.gameObject.SetActive(true);
         particle.OnReturn += ReturnParticleToPool;
     }
 
-    private void ReturnParticleToPool(ParticleStoppedCallBack particle)
+    private void ReturnParticleToPool(Parentable particle)
     {
         _particlePool.ReturnObject(particle);
     }

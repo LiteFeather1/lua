@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ParticleStoppedCallBack : Parentable<ParticleStoppedCallBack>
+public class ParticleStoppedCallBack : Parentable
 {
     [SerializeField] protected ParticleSystem _ps;
 
