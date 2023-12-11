@@ -21,8 +21,6 @@ public class Gun : MonoBehaviour
 
     public Action<IDamageable, float> OnDamageAppplied { get; set; }
 
-    public Action OnFinishedShooting { get; set; }
-
     protected virtual void Awake()
     {
         _bulletPool.ObjectCreated += BulletCreated;
@@ -76,37 +74,6 @@ public class Gun : MonoBehaviour
             ShootBulletBurst(damage, critChance, critMultiplier, knockback, size, speed, pierce, bounce, duration, angle, bulletAmount);
             yield return yieldBetweenBurst;
         }
-
-        OnFinishedShooting?.Invoke();
-    }
-
-    public void StartShootRoutine(float damage,
-                                  float critChance,
-                                  float critMultiplier,
-                                  float knockback,
-                                  float size,
-                                  float speed,
-                                  int pierce,
-                                  int bounce,
-                                  float duration,
-                                  float angle,
-                                  int burstAmount,
-                                  int bulletAmount,
-                                  IEnumerator yieldBetweenBurst)
-    {
-        StartCoroutine(ShootRoutine(damage: damage,
-                                    critChance: critChance,
-                                    critMultiplier: critMultiplier,
-                                    knockback: knockback,
-                                    size: size,
-                                    speed: speed,
-                                    pierce: pierce,
-                                    bounce: bounce,
-                                    duration: duration,
-                                    angle: angle,
-                                    burstAmount: burstAmount,
-                                    bulletAmount: bulletAmount,
-                                    yieldBetweenBurst: yieldBetweenBurst));
     }
 
     public void ShootBullet(float damage,

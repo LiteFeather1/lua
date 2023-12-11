@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class WitchGun : Gun
 {
@@ -38,21 +39,20 @@ public class WitchGun : Gun
 
     private void Start() => _yieldBetweenBursts = new(WaitBetweenBursts);
 
-    // TODO Remove This start routine??
-    public void StartShootRoutine(float damage, float critChance, float critMultiplier, float knockback)
+    public IEnumerator ShootRoutine(float damage, float critChance, float critMultiplier, float knockback)
     {
-        StartShootRoutine(damage: damage,
-                          critChance: critChance,
-                          critMultiplier: critMultiplier,
-                          knockback: knockback,
-                          size: _size.Value,
-                          speed: _bulletSpeed.Value,
-                          pierce: _pierceAmount,
-                          bounce: _bounceAmount,
-                          duration: _bulletDuration.Value,
-                          angle: 0f,
-                          burstAmount: _burstAmount,
-                          bulletAmount: _bulletAmount,
-                          yieldBetweenBurst: _yieldBetweenBursts);
+        return ShootRoutine(damage: damage,
+                            critChance: critChance,
+                            critMultiplier: critMultiplier,
+                            knockback: knockback,
+                            size: _size.Value,
+                            speed: _bulletSpeed.Value,
+                            pierce: _pierceAmount,
+                            bounce: _bounceAmount,
+                            duration: _bulletDuration.Value,
+                            angle: 0f,
+                            burstAmount: _burstAmount,
+                            bulletAmount: _bulletAmount,
+                            yieldBetweenBurst: _yieldBetweenBursts);
     }
 }

@@ -123,13 +123,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _firePoint: {fileID: 5022618770991657041}
   _bulletPool:
-    _object: {fileID: 5908951068596790919, guid: b391f4e020d7a56478086c94bdc5dc07, type: 3}
+    _object: {fileID: 5908951068596790919, guid: 9928507bb81db254592cf071b6e1a0db, type: 3}
     _initialPoolSize: 10
   _particlePool:
-    _object: {fileID: 122756984430469221, guid: 99170280f1abe6740913e59f773a155b, type: 3}
+    _object: {fileID: 122756984430469221, guid: 27bcbda149bd6dc4daa24948c7f679c6, type: 3}
     _initialPoolSize: 10
   _bulletDamage:
-    _object: {fileID: 9029989089869572558, guid: cd79c920beec33a46adc58aa416c394c, type: 3}
+    _object: {fileID: 9029989089869572558, guid: 2bcdec51abba14c4aa5f03fc8cdc5e7e, type: 3}
     _initialPoolSize: 10
   _bulletShotSound: {fileID: 8300000, guid: 672fdea8e7aa8b64092be2303844210e, type: 3}
   _faceRotationAlpha: 0.5

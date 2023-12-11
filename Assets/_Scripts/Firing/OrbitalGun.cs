@@ -1,5 +1,6 @@
 ﻿using LTFUtils;
 using RetroAnimation;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -52,21 +53,21 @@ public class OrbitalGun : Gun
             disappear.OnAnimationFinished -= ReturnDisappearToPool;
     }
 
-    public void StartShootRoutine(float damage, float critChance, float critMultiplier, float knockback, float speed, float duration)
+    public IEnumerator ShootRoutine(float damage, float critChance, float critMultiplier, float knockback, float speed, float duration)
     {
-        StartShootRoutine(damage: damage,
-                          critChance: critChance,
-                          critMultiplier: critMultiplier,
-                          knockback: knockback,
-                          size: 1f,
-                          speed: Mathf.Clamp(speed, .25f, _maxBulletSpeed),
-                          pierce: 1,
-                          bounce: 0,
-                          duration: Mathf.Clamp(duration, 1.5f, _maxBulletDuration),
-                          angle: 0f,
-                          burstAmount: _orbitalAmount,
-                          bulletAmount: 1,
-                          yieldBetweenBurst: _yieldBetweenBursts);
+        return ShootRoutine(damage: damage,
+                            critChance: critChance,
+                            critMultiplier: critMultiplier,
+                            knockback: knockback,
+                            size: 1f,
+                            speed: Mathf.Clamp(speed, .25f, _maxBulletSpeed),
+                            pierce: 1,
+                            bounce: 0,
+                            duration: Mathf.Clamp(duration, 1.5f, _maxBulletDuration),
+                            angle: 0f,
+                            burstAmount: _orbitalAmount,
+                            bulletAmount: 1,
+                            yieldBetweenBurst: _yieldBetweenBursts);
     }
 
     protected override void ShootProjectileMethod(Bullet bullet, float speed, Vector2 direction)
