@@ -7,4 +7,6 @@
     }
 
     public int Length => Value.Length;
+
+    public T PickRandom() => Value[UnityEngine.Random.Range(0, Value.Length)];
 }

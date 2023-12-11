@@ -31,7 +31,7 @@ public class Witch : MonoBehaviour
     [SerializeField] private CompositeValue _knockback = new(1f);
     [SerializeField] private CompositeValue _shootTime = new(1f);
     private float _elapsedShootTime = 0f;
-    private float _shootDeltaMult = 1f;
+    private readonly RefFloat r_shootDeltaMult = new(1f);
 
     [Header("Random Bullet")]
     [SerializeField] private Gun _randomGun;
@@ -42,7 +42,7 @@ public class Witch : MonoBehaviour
     [SerializeField] private CustomRandomWaitForSeconds _yieldBetweenRandomBursts = new(new(.125f, .5f));
     private float _randomBulletTimeOffset = 0f;
     private float _elapsedRandomShootTime = 0f;
-    private float _randomDeltaMult = 1f;
+    private readonly RefFloat r_randomDeltaMult = new(1f);
 
     [Header("Shooting Moon Gun")]
     [SerializeField] private Gun _moonGun;
@@ -51,20 +51,20 @@ public class Witch : MonoBehaviour
     [SerializeField] private int _moonAmount;
     [SerializeField] private float _moonBulletSpeed = 2.5f;
     private float _moonElapsedTime = 0f;
-    private float _moonDeltaMult = 1f;
+    private readonly RefFloat r_moonDeltaMult = new(1f);
 
     [Header("Orbital Gun")]
     [SerializeField] private OrbitalGun _orbitalGun;
     [SerializeField] private CompositeValue _orbitalShootTime = new(2f);
     private float _elapsedOrbitalShootTime = 0f;
-    private float _orbitalDeltaMult = 1f;
+    private readonly RefFloat r_orbitalDeltaMult = new(1f);
 
     [Header("Dagger Gun")]
     [SerializeField] private Gun _daggerGun;
     [SerializeField] private CompositeValue _daggerShootTime = new(3f);
     [SerializeField] private int _daggerAmount;
     private float _elapsedDaggerShootTime;
-    private float _daggerDeltaMult = 1f;
+    private readonly RefFloat r_daggerDeltaMult = new(1f);
 
     [Header("Life Steal")]
     [SerializeField] private CompositeValue _chanceToLifeSteal = new(.01f);
@@ -179,17 +179,14 @@ public class Witch : MonoBehaviour
     private void OnEnable()
     {
         _mainGun.OnDamageAppplied += DamageAppliedGun;
-        _mainGun.OnFinishedShooting += MainGunFinishedShooting;
 
         _randomGun.OnDamageAppplied += DamageAppliedGun;
 
         _moonGun.OnDamageAppplied += DamageAppliedGun;
 
         _orbitalGun.OnDamageAppplied += DamageAppliedGun;
-        _orbitalGun.OnFinishedShooting += OrbitalFinishedShooting;
 
         _daggerGun.OnDamageAppplied += DamageAppliedGun;
-        _daggerGun.OnFinishedShooting += DaggerFinishedShooting;
 
         _health.OnDamaged += Damaged;
         _health.OnDeath += OnDeath;
@@ -210,77 +207,80 @@ public class Witch : MonoBehaviour
         float delta = Time.deltaTime;
 
         // Main Shot
-        _elapsedShootTime += delta * _shootDeltaMult;
+        _elapsedShootTime += delta * r_shootDeltaMult;
         if (_elapsedShootTime > _shootTime)
         {
             _elapsedShootTime = 0f;
-            _shootDeltaMult = 0f;
-            _mainGun.StartShootRoutine(damage: _damage,
-                                       critChance: _critChance,
-                                       critMultiplier: _critMultiplier,
-                                       knockback: _knockback);
+            r_shootDeltaMult.Value = 0f;
+            StartCoroutine(ShootRoutine(_mainGun.ShootRoutine(damage: _damage,
+                                                              critChance: _critChance,
+                                                              critMultiplier: _critMultiplier,
+                                                              knockback: _knockback),
+                                        r_shootDeltaMult));
             OnMainShoot?.Invoke();
         }
 
         // Random Shot
-        _elapsedRandomShootTime += delta * _randomDeltaMult;
+        _elapsedRandomShootTime += delta * r_randomDeltaMult;
         if (_elapsedRandomShootTime > _randomBulletShootTime + _randomBulletTimeOffset)
         {
             _elapsedRandomShootTime = 0f;
             if (_randomBulletAmount == 0)
                 return;
 
-            _randomDeltaMult = 0f;
+            r_randomDeltaMult.Value = 0f;
             var offset = _randomBulletShootTime * _randomBulletTimeOffSetPercent;
             _randomBulletTimeOffset = Random.Range(-offset, offset);
-            StartCoroutine(RandomBulletShootRoutine());
+            StartCoroutine(ShootRoutine(RandomBulletShootRoutine(), r_randomDeltaMult));
         }
 
         // Moon Shot
-        _moonElapsedTime += delta * _moonDeltaMult;
+        _moonElapsedTime += delta * r_moonDeltaMult.Value;
         if (_moonElapsedTime > _moonShootTime)
         {
             _moonElapsedTime = 0f;
             if (_moonAmount == 0)
                 return; 
 
-            _moonDeltaMult = 0f;
-            StartCoroutine(MoonGunShootRoutine());
+            r_moonDeltaMult.Value = 0f;
+            StartCoroutine(ShootRoutine(MoonGunShootRoutine(), r_moonDeltaMult));
         }
 
         // Orbital Shot
-        _elapsedOrbitalShootTime += delta * _orbitalDeltaMult;
+        _elapsedOrbitalShootTime += delta * r_orbitalDeltaMult;
         if (_elapsedOrbitalShootTime > _orbitalShootTime)
         {
             _elapsedOrbitalShootTime = 0f;
-            _orbitalDeltaMult = 0f;
-            _orbitalGun.StartShootRoutine(damage: _damage * .5f,
-                                          critChance: _critChance,
-                                          critMultiplier: _critMultiplier,
-                                          knockback: _knockback * .33f,
-                                          speed: _mainGun.BulletSpeed * .2f,
-                                          duration: _mainGun.BulletDuration * 2f);
+            r_orbitalDeltaMult.Value = 0f;
+            StartCoroutine(ShootRoutine(_orbitalGun.ShootRoutine(damage: _damage * .5f,
+                                                                 critChance: _critChance,
+                                                                 critMultiplier: _critMultiplier,
+                                                                 knockback: _knockback * .33f,
+                                                                 speed: _mainGun.BulletSpeed * .2f,
+                                                                 duration: _mainGun.BulletDuration * 2f),
+                                          r_orbitalDeltaMult));
         }
 
         // Dagger Shot
-        _elapsedDaggerShootTime += delta * _daggerDeltaMult;
+        _elapsedDaggerShootTime += delta * r_daggerDeltaMult;
         if (_elapsedDaggerShootTime > _daggerShootTime)
         {
             _elapsedDaggerShootTime = 0f;
-            _daggerDeltaMult = 0f;
-            _daggerGun.StartShootRoutine(damage: _damage * .5f,
-                                         critChance: _critChance * .5f,
-                                         critMultiplier: _critMultiplier * .5f,
-                                         knockback: 0f,
-                                         size: 1f,
-                                         speed: _mainGun.BulletSpeed * 2f,
-                                         pierce: int.MaxValue,
-                                         bounce: 0,
-                                         duration: _mainGun.BulletDuration,
-                                         angle: 0f,
-                                         burstAmount: Mathf.Max((int)(_mainGun.BurstAmount * .5f), 1),
-                                         bulletAmount: _daggerAmount,
-                                         yieldBetweenBurst: _mainGun.YieldBetweenBurts);
+            r_daggerDeltaMult.Value = 0f;
+            StartCoroutine(ShootRoutine(_daggerGun.ShootRoutine(damage: _damage * .5f,
+                                                                critChance: _critChance * .5f,
+                                                                critMultiplier: _critMultiplier * .5f,
+                                                                knockback: 0f,
+                                                                size: 1f,
+                                                                speed: _mainGun.BulletSpeed * 2f,
+                                                                pierce: int.MaxValue,
+                                                                bounce: 0,
+                                                                duration: _mainGun.BulletDuration,
+                                                                angle: 0f,
+                                                                burstAmount: Mathf.Max((int)(_mainGun.BurstAmount * .5f), 1),
+                                                                bulletAmount: _daggerAmount,
+                                                                yieldBetweenBurst: _mainGun.YieldBetweenBurts),
+                                         r_daggerDeltaMult));
         }
 
         _spriteMask.sprite = _flipBook.SR.sprite;
@@ -294,17 +294,14 @@ public class Witch : MonoBehaviour
     private void OnDisable()
     {
         _mainGun.OnDamageAppplied -= DamageAppliedGun;
-        _mainGun.OnFinishedShooting -= MainGunFinishedShooting;
 
         _randomGun.OnDamageAppplied -= DamageAppliedGun;
 
         _moonGun.OnDamageAppplied -= DamageAppliedGun;
 
         _orbitalGun.OnDamageAppplied -= DamageAppliedGun;
-        _orbitalGun.OnFinishedShooting -= OrbitalFinishedShooting;
 
         _daggerGun.OnDamageAppplied -= DamageAppliedGun;
-        _daggerGun.OnFinishedShooting -= DaggerFinishedShooting;
 
         _health.OnDamaged -= Damaged;
         _health.OnDeath -= OnDeath;
@@ -373,7 +370,11 @@ public class Witch : MonoBehaviour
         }
     }
 
-    private void MainGunFinishedShooting() => _shootDeltaMult = 1f;
+    private IEnumerator ShootRoutine(IEnumerator routine, RefFloat deltaMult)
+    {
+        yield return routine;
+        deltaMult.Value = 1f;
+    }
 
     private IEnumerator RandomBulletShootRoutine()
     {
@@ -385,22 +386,16 @@ public class Witch : MonoBehaviour
         {
             _mainGun.PlayShotSound();
             for (int j = 0; j < perBurst; j++)
-            {
                 ShootRandomBullet();
-            }
 
            yield return _yieldBetweenRandomBursts;
         }
 
         _mainGun.PlayShotSound();
         for (int i = 0; i < remainder; i++)
-        {
             ShootRandomBullet();
-        }
 
         yield return _yieldBetweenMoonBursts;
-
-        _randomDeltaMult = 1f;
 
         void ShootRandomBullet()
         {
@@ -420,7 +415,6 @@ public class Witch : MonoBehaviour
     private IEnumerator MoonGunShootRoutine()
     {
         int bursts = Mathf.RoundToInt(Mathf.Sqrt(_moonAmount));
-        print(bursts);
         var shotsPerBurst = _moonAmount / bursts;
         var remainder = _moonAmount % bursts;
 
@@ -438,8 +432,6 @@ public class Witch : MonoBehaviour
                                            bulletAmount: shotsPerBurst,
                                            yieldBetweenBurst: _yieldBetweenMoonBursts);
 
-        yield return _yieldBetweenMoonBursts;
-
         _moonGun.PlayShotSound();
         _moonGun.ShootBulletBurst(damage: _damage,
                                   critChance: _critChance,
@@ -453,12 +445,8 @@ public class Witch : MonoBehaviour
                                   angle: 0f,
                                   remainder);
 
-        _moonDeltaMult = 1f;
+        yield return _yieldBetweenMoonBursts;
     }
-
-    private void OrbitalFinishedShooting() => _orbitalDeltaMult = 1f;
-
-    private void DaggerFinishedShooting() => _daggerDeltaMult = 1f;
 
     private void HPModified()
     {
@@ -552,5 +540,17 @@ public class Witch : MonoBehaviour
         _hurtBox.enabled = false;
         _aura.gameObject.SetActive(false);
         _flipBook.Play(_deathAnimation);
+    }
+
+    [Serializable]
+    private class RefFloat
+    {
+        public float Value;
+
+        public RefFloat() { }
+
+        public RefFloat(float value) => Value = value;
+
+        public static implicit operator float(RefFloat v) => v.Value;
     }
 }

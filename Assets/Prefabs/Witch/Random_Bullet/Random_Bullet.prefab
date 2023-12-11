@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4883590745908279346}
   - component: {fileID: 2878004947866967436}
   m_Layer: 6
-  m_Name: Base_Bullet
+  m_Name: Random_Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,6 +155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 967349547906534911}
   - component: {fileID: 6866408448967107079}
+  - component: {fileID: 8451910783678685608}
   m_Layer: 31
   m_Name: Sprite
   m_TagString: Untagged
@@ -219,7 +220,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: b05db7f50cfe1e148a64eb33366d34bf, type: 3}
-  m_Color: {r: 0.11764706, g: 0.39607844, b: 1, a: 1}
+  m_Color: {r: 0.9176471, g: 0.909804, b: 0.882353, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -229,3 +230,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8451910783678685608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9045564422104287573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9f002eb957f4904492f1852f201cfb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sr: {fileID: 6866408448967107079}
+  _colourArray: {fileID: 11400000, guid: b43dcf31deafca64f8ee885301a4b2a9, type: 2}
+  _timeToChange: {fileID: 11400000, guid: d8d33d8e070a4f0408967bca3ecb5dfa, type: 2}
