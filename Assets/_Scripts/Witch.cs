@@ -31,7 +31,7 @@ public class Witch : MonoBehaviour
     [SerializeField] private CompositeValue _knockback = new(1f);
     [SerializeField] private CompositeValue _shootTime = new(1f);
     private float _elapsedShootTime = 0f;
-    private readonly RefFloat r_shootDeltaMult = new(1f);
+    private readonly RefValue<float> r_shootDeltaMult = new(1f);
 
     [Header("Random Bullet")]
     [SerializeField] private Gun _randomGun;
@@ -42,7 +42,7 @@ public class Witch : MonoBehaviour
     [SerializeField] private CustomRandomWaitForSeconds _yieldBetweenRandomBursts = new(new(.125f, .5f));
     private float _randomBulletTimeOffset = 0f;
     private float _elapsedRandomShootTime = 0f;
-    private readonly RefFloat r_randomDeltaMult = new(1f);
+    private readonly RefValue<float> r_randomDeltaMult = new(1f);
 
     [Header("Shooting Moon Gun")]
     [SerializeField] private Gun _moonGun;
@@ -51,20 +51,20 @@ public class Witch : MonoBehaviour
     [SerializeField] private int _moonAmount;
     [SerializeField] private float _moonBulletSpeed = 2.5f;
     private float _moonElapsedTime = 0f;
-    private readonly RefFloat r_moonDeltaMult = new(1f);
+    private readonly RefValue<float> r_moonDeltaMult = new(1f);
 
     [Header("Orbital Gun")]
     [SerializeField] private OrbitalGun _orbitalGun;
     [SerializeField] private CompositeValue _orbitalShootTime = new(2f);
     private float _elapsedOrbitalShootTime = 0f;
-    private readonly RefFloat r_orbitalDeltaMult = new(1f);
+    private readonly RefValue<float> r_orbitalDeltaMult = new(1f);
 
     [Header("Dagger Gun")]
     [SerializeField] private Gun _daggerGun;
     [SerializeField] private CompositeValue _daggerShootTime = new(3f);
     [SerializeField] private int _daggerAmount;
     private float _elapsedDaggerShootTime;
-    private readonly RefFloat r_daggerDeltaMult = new(1f);
+    private readonly RefValue<float> r_daggerDeltaMult = new(1f);
 
     [Header("Life Steal")]
     [SerializeField] private CompositeValue _chanceToLifeSteal = new(.01f);
@@ -370,7 +370,7 @@ public class Witch : MonoBehaviour
         }
     }
 
-    private IEnumerator ShootRoutine(IEnumerator routine, RefFloat deltaMult)
+    private IEnumerator ShootRoutine(IEnumerator routine, RefValue<float> deltaMult)
     {
         yield return routine;
         deltaMult.Value = 1f;
@@ -540,17 +540,5 @@ public class Witch : MonoBehaviour
         _hurtBox.enabled = false;
         _aura.gameObject.SetActive(false);
         _flipBook.Play(_deathAnimation);
-    }
-
-    [Serializable]
-    private class RefFloat
-    {
-        public float Value;
-
-        public RefFloat() { }
-
-        public RefFloat(float value) => Value = value;
-
-        public static implicit operator float(RefFloat v) => v.Value;
     }
 }
