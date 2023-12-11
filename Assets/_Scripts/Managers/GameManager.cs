@@ -43,6 +43,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CompositeValue _onCardPlayedHeal;
     [SerializeField] private CompositeValue _onCardPlayedRefund;
 
+    [Header("Disablers")]
+    [SerializeField] private MonoBehaviour[] _toDisableOnPause;
+
     private static readonly WaitForSecondsRealtime _hitStop = new(.05f);
     private IEnumerator _slowPitch;
 
@@ -145,7 +148,22 @@ public class GameManager : MonoBehaviour
     public void PauseUnpause()
     {
         bool paused = Time.timeScale > 0f;
-        Time.timeScale = paused ? 0f : 1f;
+        if (paused)
+        {
+            Time.timeScale = 0f;
+            for (int i = 0; i < _toDisableOnPause.Length; i++)
+            {
+                _toDisableOnPause[i].enabled = !paused;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < _toDisableOnPause.Length; i++)
+            {
+                _toDisableOnPause[i].enabled = !paused;
+            }
+            Time.timeScale = 1f;
+        }
         _uiManager.SetPauseScreen(paused);
     }
 

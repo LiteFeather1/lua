@@ -72,7 +72,7 @@ public class CardManager : MonoBehaviour
         _drawnCards = new();
         _cardsToDraw = new(_startingCards);
         _cardGroupBack = new(_startingCards);
-        _cards += _startingCards;
+        _cards = _startingCards;
         for (int i = 0; i < _startingCards; i++)
             CreateCard();
 

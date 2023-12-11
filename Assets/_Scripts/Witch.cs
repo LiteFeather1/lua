@@ -235,7 +235,7 @@ public class Witch : MonoBehaviour
         }
 
         // Moon Shot
-        _moonElapsedTime += delta * r_moonDeltaMult.Value;
+        _moonElapsedTime += delta * r_moonDeltaMult;
         if (_moonElapsedTime > _moonShootTime)
         {
             _moonElapsedTime = 0f;
