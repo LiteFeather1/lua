@@ -16,13 +16,17 @@ MonoBehaviour:
     <Sprites>k__BackingField:
     - {fileID: -2007137726, guid: d9100685f5b61fe46b5384d395372da2, type: 3}
     - {fileID: -730578303, guid: d9100685f5b61fe46b5384d395372da2, type: 3}
-    <Fps>k__BackingField: 2
+    - {fileID: -2102494289, guid: d9100685f5b61fe46b5384d395372da2, type: 3}
+    - {fileID: -431619159, guid: d9100685f5b61fe46b5384d395372da2, type: 3}
+    <Fps>k__BackingField: 4
   _dictionary:
     _entries:
     - Key: Christmas
       Value:
         <Sprites>k__BackingField:
-        - {fileID: -1288713622, guid: b09c41a99e9f1f3449975468997a4214, type: 3}
-        - {fileID: 13720487, guid: b09c41a99e9f1f3449975468997a4214, type: 3}
-        <Fps>k__BackingField: 2
+        - {fileID: 119195513, guid: b09c41a99e9f1f3449975468997a4214, type: 3}
+        - {fileID: 1324409980, guid: b09c41a99e9f1f3449975468997a4214, type: 3}
+        - {fileID: 1837734637, guid: b09c41a99e9f1f3449975468997a4214, type: 3}
+        - {fileID: -779252049, guid: b09c41a99e9f1f3449975468997a4214, type: 3}
+        <Fps>k__BackingField: 4
   _toSet: {fileID: 11400000, guid: 2311e9ace5b95214eb8aaa32f6bfbb72, type: 2}

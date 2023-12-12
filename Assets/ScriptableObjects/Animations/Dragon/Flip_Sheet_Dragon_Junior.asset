@@ -15,4 +15,6 @@ MonoBehaviour:
   _sprites:
   - {fileID: 49198173, guid: e0bded7e517a4f5448c39faa15098495, type: 3}
   - {fileID: 1959161921, guid: e0bded7e517a4f5448c39faa15098495, type: 3}
-  _fps: 2
+  - {fileID: 564295299, guid: e0bded7e517a4f5448c39faa15098495, type: 3}
+  - {fileID: -850121009, guid: e0bded7e517a4f5448c39faa15098495, type: 3}
+  _fps: 4

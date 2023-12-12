@@ -16,7 +16,9 @@ MonoBehaviour:
     <Sprites>k__BackingField:
     - {fileID: -20158698, guid: 70ccd393e7d4bb14f960f8b023fa603e, type: 3}
     - {fileID: -797466792, guid: 70ccd393e7d4bb14f960f8b023fa603e, type: 3}
-    <Fps>k__BackingField: 2
+    - {fileID: 829780450, guid: 70ccd393e7d4bb14f960f8b023fa603e, type: 3}
+    - {fileID: 1715861413, guid: 70ccd393e7d4bb14f960f8b023fa603e, type: 3}
+    <Fps>k__BackingField: 4
   _dictionary:
     _entries:
     - Key: Christmas
@@ -24,5 +26,7 @@ MonoBehaviour:
         <Sprites>k__BackingField:
         - {fileID: -1714075675, guid: 9d0e78ab1300ae8449757ad9d5f88d7b, type: 3}
         - {fileID: -2048676752, guid: 9d0e78ab1300ae8449757ad9d5f88d7b, type: 3}
-        <Fps>k__BackingField: 2
+        - {fileID: 573257277, guid: 9d0e78ab1300ae8449757ad9d5f88d7b, type: 3}
+        - {fileID: -1275507035, guid: 9d0e78ab1300ae8449757ad9d5f88d7b, type: 3}
+        <Fps>k__BackingField: 4
   _toSet: {fileID: 11400000, guid: 763b803d27cd55e4d87efcdf45ccc01d, type: 2}
