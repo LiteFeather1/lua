@@ -17,5 +17,5 @@ MonoBehaviour:
   _cost: 32
   _rarity: {fileID: 11400000, guid: 994856a3f8937bb4dba3e0990a364b53, type: 2}
   _icon: {fileID: 1487087246, guid: 9597046be1f803a45bde8069dd619320, type: 3}
-  _tierIcon: {fileID: -514428840, guid: 9597046be1f803a45bde8069dd619320, type: 3}
+  _tierIcon: {fileID: -1081683514, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
   _powerUpsToUnlock: []

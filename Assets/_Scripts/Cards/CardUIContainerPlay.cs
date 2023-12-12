@@ -9,6 +9,10 @@ public class CardUIContainerPlay : CardUIDropContainer
 
     protected override void UseCard(CardUIPowerUp card)
     {
+#if UNITY_EDITOR
+        _gm.Witch.ModifyCurrency(card.PowerUp.Cost);
+        if (!card.PowerUp.Rarity.name.Contains("Debug"))
+#endif
         if (_gm.Witch.Currency < card.PowerUp.Cost)
         {
             AudioManager.Instance.PlayOneShot(_denied);
