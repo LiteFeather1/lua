@@ -1149,15 +1149,19 @@ MonoBehaviour:
   - <SeasonName>k__BackingField: Halloween
     _dayStart: 24
     _monthStart: 10
-    _dayEnd: 31
-    _monthEnd: 10
+    _dayEnd: 1
+    _monthEnd: 11
     _yearPlus: 0
+    _day: 31
+    _month: 10
   - <SeasonName>k__BackingField: Christmas
-    _dayStart: 12
+    _dayStart: 23
     _monthStart: 12
     _dayEnd: 31
     _monthEnd: 12
     _yearPlus: 0
+    _day: 24
+    _month: 12
   _seasonalFlipSheets:
   - {fileID: 11400000, guid: 3135c3835d3a4a040b7aae6b55457e9e, type: 2}
   - {fileID: 11400000, guid: 579673c57ec4a684aa68394c5e9d28a4, type: 2}
@@ -1176,6 +1180,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c7462e329464d014591acb9c43ee259a, type: 2}
   - {fileID: 11400000, guid: cc941f5537bdae240a13941060ce84be, type: 2}
   - {fileID: 11400000, guid: 526972562be109c45953167e1a7d1b77, type: 2}
+  _seasonalDaySprite:
   - {fileID: 11400000, guid: b4cc70bfb2794d84d891725517126a93, type: 2}
 --- !u!114 &1458194004
 MonoBehaviour:

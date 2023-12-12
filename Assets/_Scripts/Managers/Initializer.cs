@@ -9,6 +9,7 @@ public class Initializer : MonoBehaviour
     [SerializeField] private Season[] _seasons;
     [SerializeField] private SeasonalFlipSheet[] _seasonalFlipSheets;
     [SerializeField] private SeasonalSprite[] _seasonalSprites;
+    [SerializeField] private SeasonalSprite[] _seasonalDaySprite;
 
     private void Awake()
     {
@@ -17,29 +18,42 @@ public class Initializer : MonoBehaviour
 
         _initialized = true;
 
-        var season = GetSeason(DateTime.Now);
+        var season = GetSeason(DateTime.Now, out bool isInPeakDay);
         if (!season.Equals(SeasonNames.NOT_IN_ANY_SEASON))
         {
             SetSeasonals(_seasonalFlipSheets, season);
             SetSeasonals(_seasonalSprites, season);
+
+            if (isInPeakDay)
+                SetSeasonals(_seasonalDaySprite, season);
+#if UNITY_EDITOR
+            else
+                SetSeasonalDefault(_seasonalDaySprite);
+#endif
         }
 #if UNITY_EDITOR
         else
         {
             SetSeasonalDefault(_seasonalFlipSheets);
             SetSeasonalDefault(_seasonalSprites);
+            SetSeasonalDefault(_seasonalDaySprite);
         }
         print(season);
+        print($"Is Peak Day = {isInPeakDay}");
 #endif
     }
 
-    private string GetSeason(DateTime date)
+    private string GetSeason(DateTime date, out bool isInPeakDay)
     {
         for (int i = 0; i < _seasons.Length; i++)
         {
-            if (_seasons[i].IsDateInBetween(date))
+            if (_seasons[i].IsDateInBetween(date, out bool isPeak))
+            {
+                isInPeakDay = isPeak;
                 return _seasons[i].SeasonName;
+            }
         }
+        isInPeakDay = false;
         return SeasonNames.NOT_IN_ANY_SEASON;
     }
 
@@ -79,17 +93,24 @@ public class Initializer : MonoBehaviour
     private struct Season
     {
         [field: SerializeField] public string SeasonName { get; private set; }
+
+        [Header("Season")]
         [SerializeField] private int _dayStart;
         [SerializeField] private int _monthStart;
         [SerializeField] private int _dayEnd;
         [SerializeField] private int _monthEnd;
         [SerializeField] private int _yearPlus;
 
-        public readonly bool IsDateInBetween(DateTime date)
+        [Header("Peak Day")]
+        [SerializeField] private int _day;
+        [SerializeField] private int _month;
+
+        public readonly bool IsDateInBetween(DateTime date, out bool isPeakDay)
         {
             var startDate = new DateTime(date.Year, _monthStart, _dayStart);
             var endDate = new DateTime(date.Year + _yearPlus, _monthEnd, _dayEnd);
-            return  date >= startDate && date <= endDate;
+            isPeakDay = _day == date.Day && _month == date.Month;
+            return date >= startDate && date <= endDate;
         }
     }
 }
