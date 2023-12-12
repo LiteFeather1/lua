@@ -16,7 +16,6 @@ public class CardManager : MonoBehaviour
     private float _elapsedTimeToDrawCard;
 
     [Header("Power Ups")]
-    [ContextMenuItem("Find All Powerups", nameof(FindPowerUps))]
     [SerializeField] private PowerUp[] _startingPowerUps;
     private Weighter<PowerUp> _weightedPowerUps;
     private readonly Dictionary<string, HashSet<WeightedObject<PowerUp>>> _powerUpToPowerUps = new();
@@ -311,7 +310,7 @@ public class CardManager : MonoBehaviour
     private void FindPowerUps()
     {
         UnityEditor.Undo.RegisterCompleteObjectUndo(this, "Find Power Ups");
-        var allPowers = LTFHelpers_Misc.GetScriptableObjects<PowerUp>();
+        var allPowers = LTFHelpers_EditorOnly.GetScriptableObjects<PowerUp>();
         _startingPowerUps = (from powerUp in allPowers
                              where
                                 !(from otherPowerUp in allPowers

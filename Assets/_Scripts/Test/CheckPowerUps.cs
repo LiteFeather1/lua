@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-#if UNITY_EDITOR
 public class CheckPowerUps : MonoBehaviour
 {
+#if UNITY_EDITOR
     [SerializeField] private RarityPrice[] _rarityPrices;
     [SerializeField] private Sprite _noTier;
     [SerializeField] private Sprite[] _tiers;
@@ -25,7 +25,7 @@ public class CheckPowerUps : MonoBehaviour
             tierToPlus.Add(_tiers[i], new('+', i + 1));
         }
 
-        var allPowerUps = LTFUtils.LTFHelpers_Misc.GetScriptableObjects<PowerUp>();
+        var allPowerUps = LTFUtils.LTFHelpers_EditorOnly.GetScriptableObjects<PowerUp>();
         var powerUpProblem = new List<PowerUpProblem>();
         foreach (var powerUp in allPowerUps)
         {
@@ -102,5 +102,5 @@ public class CheckPowerUps : MonoBehaviour
             Problems = problems;
         }
     }
-}
 #endif
+}

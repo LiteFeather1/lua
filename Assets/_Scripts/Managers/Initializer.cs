@@ -26,9 +26,11 @@ public class Initializer : MonoBehaviour
 
             if (isInPeakDay)
                 SetSeasonals(_seasonalDaySprite, season);
-#if UNITY_EDITOR
+#if UNITY_EDITOR 
             else
                 SetSeasonalDefault(_seasonalDaySprite);
+
+            print($"Is Peak Day = {isInPeakDay}");
 #endif
         }
 #if UNITY_EDITOR
@@ -39,7 +41,6 @@ public class Initializer : MonoBehaviour
             SetSeasonalDefault(_seasonalDaySprite);
         }
         print(season);
-        print($"Is Peak Day = {isInPeakDay}");
 #endif
     }
 
@@ -63,6 +64,7 @@ public class Initializer : MonoBehaviour
             seasonals[i].Set(season);
     }
 
+#if UNITY_EDITOR
     private void SetSeasonalDefault(ISeasonal[] seasonals)
     {
         for (int i = 0; i < seasonals.Length; i++)
@@ -72,10 +74,9 @@ public class Initializer : MonoBehaviour
     private T[] GetSeasonal<T>() where T : ScriptableObject
     {
         UnityEditor.Undo.RegisterCompleteObjectUndo(this, "Seasonals");
-        return LTFHelpers_Misc.GetScriptableObjects<T>();
+        return LTFHelpers_EditorOnly.GetScriptableObjects<T>();
     }
 
-#if UNITY_EDITOR
     [ContextMenu("Get Seasonal Flip Sheets")]
     private void GetSeasonalFlipSheet()
     {

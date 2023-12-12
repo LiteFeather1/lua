@@ -1,9 +1,10 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
+#if UNITY_EDITOR
 namespace LTFUtils
 {
-    public static class LTFHelpers_Misc
+    public static class LTFHelpers_EditorOnly
     {
         public static T[] GetScriptableObjects<T>() where T : ScriptableObject
         {
@@ -19,3 +20,4 @@ namespace LTFUtils
         }
     }
 }
+#endif

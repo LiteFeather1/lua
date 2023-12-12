@@ -1,7 +1,7 @@
+#if UNITY_EDITOR
 using UnityEditor.SceneManagement;
 using UnityEditor;
 
-#if UNITY_EDITOR
 internal static class SceneMenuItems
 {
     [MenuItem("Scene Go/Splash Screen")]
