@@ -8,6 +8,7 @@ public abstract class PowerUpFlat : PowerUp
 
     protected override string Num => _amount.ToString();
 
+    // ToDo : Maybe this could be better with a interface??
     protected abstract Func<int, int> ModifyValue(GameManager gm);
 
     protected override void ApplyEffect(GameManager gm)
