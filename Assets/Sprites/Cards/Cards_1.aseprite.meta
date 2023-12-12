@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638377196072823082
+  platformSettingsDirtyTick: 638379736917827543
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,7 +121,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Cards_1
     originalName: 
-    pivot: {x: 0.34455958, y: -0.020547943}
+    pivot: {x: 0.34455958, y: -0.013605443}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -129,8 +129,8 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 386
-      height: 146
-    spriteID: 9a7ab0ad06beb0a4fa970503e434a65c
+      height: 147
+    spriteID: 0d34728cf465a8c48a1b049ed24a684c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -152,10 +152,10 @@ ScriptedImporter:
       frameIndex: 0
       cellRect:
         x: 2
-        y: 3
+        y: 2
         width: 386
-        height: 146
-      spriteId: 9a7ab0ad06beb0a4fa970503e434a65c
+        height: 147
+      spriteId: 0d34728cf465a8c48a1b049ed24a684c
     linkedCells: []
     parentIndex: -1
   platformSettings:
