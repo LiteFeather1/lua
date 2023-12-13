@@ -5,10 +5,7 @@ public class EnemyChase : Enemy
     [Header("States")]
     [SerializeField] private MovementChase _movement;
 
-    private void Start()
-    {
-        Set(_movement);
-    }
+    private void Start() => Set(_movement);
 
     public override void Init(Witch witch)
     {

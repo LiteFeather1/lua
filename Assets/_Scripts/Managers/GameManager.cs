@@ -50,7 +50,6 @@ public class GameManager : MonoBehaviour
     private IEnumerator _slowPitch;
 
     public static GameManager Instance { get; private set; }
-    public static InputMapping Inputs { get; private set; }
 
     public Witch Witch => _witch;
     public Camera Camera => _camera;
@@ -69,11 +68,9 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        Inputs = new();
-        Inputs.Enable();
 
-        Inputs.Player.Pause_UnPause.performed += PauseUnpause;
-        Inputs.Player.Mute_UnMute.performed += MuteUnMute;
+        InputManager.Inputs.Player.Pause_UnPause.performed += PauseUnpause;
+        InputManager.Inputs.Player.Mute_UnMute.performed += MuteUnMute;
 
         _witch.OnDamaged += WitchDamaged;
         _witch.Health.OnDeath += WitchDied;
@@ -120,13 +117,13 @@ public class GameManager : MonoBehaviour
     private void FixedUpdate()
     {
         if (_witchDied)
-            _witch.Move(Inputs.Player.Moviment.ReadValue<Vector2>().normalized);
+            _witch.Move(InputManager.Inputs.Player.Moviment.ReadValue<Vector2>().normalized);
     }
 
     private void OnDestroy()
     {
-        Inputs.Player.Pause_UnPause.performed -= PauseUnpause;
-        Inputs.Player.Mute_UnMute.performed -= MuteUnMute;
+        InputManager.Inputs.Player.Pause_UnPause.performed -= PauseUnpause;
+        InputManager.Inputs.Player.Mute_UnMute.performed -= MuteUnMute;
 
         _witch.OnDamaged -= WitchDamaged;
         _witch.Health.OnDeath -= WitchDied;
@@ -191,7 +188,7 @@ public class GameManager : MonoBehaviour
 
     private void WitchDied()
     {
-        Inputs.Player.Pause_UnPause.performed -= PauseUnpause;
+        InputManager.Inputs.Player.Pause_UnPause.performed -= PauseUnpause;
         _uiManager.GameUi.SetActive(false);
     }
 
