@@ -202,10 +202,10 @@ public class Witch : MonoBehaviour
 
     private void Update()
     {
-        var inputPlayer = GameManager.Inputs.Player;
-        if (!inputPlayer.Left_Click.IsPressed())
+        var inputPlayer = GameManager.Inputs.Player;    
+        if (inputPlayer.Moviment.IsPressed())
             _inputDirection = inputPlayer.Moviment.ReadValue<Vector2>().normalized;
-        else
+        else if (inputPlayer.Left_Click.IsPressed())
         {
             var direction = GameManager.Instance.Camera.ScreenToWorldPoint(Input.mousePosition) - transform.localPosition;
             if (Math.Abs(direction.x) < .01f)
@@ -217,6 +217,8 @@ public class Witch : MonoBehaviour
             _inputDirection = direction;
             _inputDirection.Normalize();
         }
+        else
+            _inputDirection = Vector2.zero;
 
         float delta = Time.deltaTime;
 
