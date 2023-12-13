@@ -111,7 +111,6 @@ public class GameManager : MonoBehaviour
 
         _spawnManager.Tick(t, tClamped);
         _uiManager.UpdateTime(_playTime);
-
     }
 
     private void FixedUpdate()
