@@ -152,17 +152,13 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 0f;
             for (int i = 0; i < _toDisableOnPause.Length; i++)
-            {
                 _toDisableOnPause[i].enabled = !paused;
-            }
         }
         else
         {
-            for (int i = 0; i < _toDisableOnPause.Length; i++)
-            {
-                _toDisableOnPause[i].enabled = !paused;
-            }
             Time.timeScale = 1f;
+            for (int i = 0; i < _toDisableOnPause.Length; i++)
+                _toDisableOnPause[i].enabled = !paused;
         }
         _uiManager.SetPauseScreen(paused);
     }

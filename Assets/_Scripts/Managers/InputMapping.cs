@@ -199,6 +199,17 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""c164e5c2-5a7b-4ccc-aa49-fd0dff99924e"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause_UnPause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""3471032d-451f-4e21-a017-48a7ef7f28a2"",
                     ""path"": ""<Keyboard>/m"",
                     ""interactions"": """",
