@@ -6,10 +6,9 @@ public abstract class CardUIDropContainer : CardUi, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (eventData.pointerDrag.TryGetComponent(out CardUIPowerUp card))
-        {
+        if (eventData.button == PointerEventData.InputButton.Left 
+            && eventData.pointerDrag.TryGetComponent(out CardUIPowerUp card))
             DropCard(card);
-        }
     }
 
     public void DropCard(CardUIPowerUp card)
