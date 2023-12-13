@@ -3314,7 +3314,7 @@ MonoBehaviour:
   _maxEnemiesPerBurstRange: {x: 3, y: 18}
   _minEnemiesPerBurstRange: {x: 2, y: 14}
   _enemiesPerBurstOffset: {x: 1, y: 7}
-  _maxSpawnTimeRange: {x: 12.5, y: 2}
+  _maxSpawnTimeRange: {x: 10, y: 2}
   _minSpawnTimeRange: {x: 7.5, y: 1}
   _spawnTimeOffset: {x: 2.5, y: 0.5}
   _spawnArea: {fileID: 850318396}
@@ -3565,9 +3565,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FPS: 0.02
+  m_text: 'FPS: 2.45
 
-    43943.92 ms'
+    408.95 ms'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
   m_sharedMaterial: {fileID: 7764967047682581053, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}

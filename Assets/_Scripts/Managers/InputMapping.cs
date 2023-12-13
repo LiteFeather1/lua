@@ -53,6 +53,15 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Left_Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""421ff7e5-d8ab-4f21-8503-c50122c68934"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -198,6 +207,17 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
                     ""action"": ""Mute_UnMute"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""57034d10-aa79-44a4-9d2a-0f15cb660d22"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left_Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -209,6 +229,7 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
         m_Player_Moviment = m_Player.FindAction("Moviment", throwIfNotFound: true);
         m_Player_Pause_UnPause = m_Player.FindAction("Pause_UnPause", throwIfNotFound: true);
         m_Player_Mute_UnMute = m_Player.FindAction("Mute_UnMute", throwIfNotFound: true);
+        m_Player_Left_Click = m_Player.FindAction("Left_Click", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -273,6 +294,7 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Moviment;
     private readonly InputAction m_Player_Pause_UnPause;
     private readonly InputAction m_Player_Mute_UnMute;
+    private readonly InputAction m_Player_Left_Click;
     public struct PlayerActions
     {
         private @InputMapping m_Wrapper;
@@ -280,6 +302,7 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
         public InputAction @Moviment => m_Wrapper.m_Player_Moviment;
         public InputAction @Pause_UnPause => m_Wrapper.m_Player_Pause_UnPause;
         public InputAction @Mute_UnMute => m_Wrapper.m_Player_Mute_UnMute;
+        public InputAction @Left_Click => m_Wrapper.m_Player_Left_Click;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -298,6 +321,9 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
             @Mute_UnMute.started += instance.OnMute_UnMute;
             @Mute_UnMute.performed += instance.OnMute_UnMute;
             @Mute_UnMute.canceled += instance.OnMute_UnMute;
+            @Left_Click.started += instance.OnLeft_Click;
+            @Left_Click.performed += instance.OnLeft_Click;
+            @Left_Click.canceled += instance.OnLeft_Click;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -311,6 +337,9 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
             @Mute_UnMute.started -= instance.OnMute_UnMute;
             @Mute_UnMute.performed -= instance.OnMute_UnMute;
             @Mute_UnMute.canceled -= instance.OnMute_UnMute;
+            @Left_Click.started -= instance.OnLeft_Click;
+            @Left_Click.performed -= instance.OnLeft_Click;
+            @Left_Click.canceled -= instance.OnLeft_Click;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -333,5 +362,6 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
         void OnMoviment(InputAction.CallbackContext context);
         void OnPause_UnPause(InputAction.CallbackContext context);
         void OnMute_UnMute(InputAction.CallbackContext context);
+        void OnLeft_Click(InputAction.CallbackContext context);
     }
 }
