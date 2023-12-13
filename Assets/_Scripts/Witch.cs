@@ -203,7 +203,7 @@ public class Witch : MonoBehaviour
     private void Update()
     {
         var inputPlayer = GameManager.Inputs.Player;    
-        if (inputPlayer.Moviment.IsPressed())
+        if (inputPlayer.Moviment.IsPressed())   
             _inputDirection = inputPlayer.Moviment.ReadValue<Vector2>().normalized;
         else if (inputPlayer.Left_Click.IsPressed())
         {

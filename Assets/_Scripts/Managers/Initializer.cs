@@ -1,5 +1,6 @@
 ﻿using LTFUtils;
 using System;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class Initializer : MonoBehaviour
@@ -11,10 +12,20 @@ public class Initializer : MonoBehaviour
     [SerializeField] private SeasonalSprite[] _seasonalSprites;
     [SerializeField] private SeasonalSprite[] _seasonalDaySprite;
 
+    //Import the following.
+    [DllImport("user32.dll", EntryPoint = "SetWindowText")]
+    public static extern bool SetWindowText(IntPtr hwnd, string lpString);
+    [DllImport("user32.dll", EntryPoint = "FindWindow")]
+    public static extern IntPtr FindWindow(string className, string windowName);
+
     private void Awake()
     {
         if (_initialized)
             return;
+
+        //Get the window handle.
+        var windowPtr = FindWindow(null, "Lua");
+        SetWindowText(windowPtr, "Lua " + windowPtr);
 
         _initialized = true;
 

@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class DontShowIfWeb : MonoBehaviour
 {
+#if UNITY_WEBGL
     private void Awake()
     {
-        if (Application.platform == RuntimePlatform.WebGLPlayer)
-            gameObject.SetActive(false);
+         gameObject.SetActive(false);
     }
+#endif
 }
