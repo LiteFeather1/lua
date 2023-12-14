@@ -17,15 +17,18 @@ public class SplashScreenManager : MonoBehaviour
     [SerializeField] private string[] _messages;
     [SerializeField] private ValueStringArray _seasonalMessages;
     private static readonly Dictionary<string, RefValue<byte>> sr_lastMessages = new();
-    private static IntPtr? s_windowPtr;
 
     public static string RandomMessage { get; private set; }
+
+#if !UNITY_WEBGL && !UNITY_EDITOR
+    private static IntPtr? s_windowPtr;
+#endif
 
     private void Awake()
     {
         t_version.text = Application.version;
 
-        if (Random.value > (_seasonalMessages.Length == 0 ? 0f : .5f))
+        if (Random.value >= (_seasonalMessages.Length == 0 ? 0f : .5f))
             PickRandom(_messages);
         else
             PickRandom(_seasonalMessages);
@@ -38,7 +41,7 @@ public class SplashScreenManager : MonoBehaviour
                 sr_lastMessages.Remove(key);
         }
 
-#if !UNITY_WEBGL || true
+#if !UNITY_WEBGL && !UNITY_EDITOR
         //Import the following.
         [DllImport("user32.dll", EntryPoint = "FindWindow")]
         static extern IntPtr FindWindow(string className, string windowName);

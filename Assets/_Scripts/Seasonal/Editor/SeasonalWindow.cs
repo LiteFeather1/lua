@@ -1,3 +1,6 @@
+#if UNITY_EDITOR
+using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -35,5 +38,32 @@ public class SeasonalWindow : Editor
                 seasonal.Add(_textField);
             }
         }
+
+        if (target is SeasonalStringArray t)
+        {
+            if (GUILayout.Button("Load Messages"))
+            {
+                var dict = new Dictionary<string, string[]>();
+
+                var christmas = GetMessage($"_{SeasonNames.CHRISTMAS}");
+                if (christmas != null)
+                    dict.Add(SeasonNames.CHRISTMAS, christmas);
+
+                var halloween = GetMessage($"_{SeasonNames.HALLOWEEN}");
+                if (halloween != null)
+                    dict.Add(SeasonNames.HALLOWEEN, halloween);
+
+                t.LoadMessages(dict);
+            }
+
+            static string[] GetMessage(string loc)
+            {
+                return (Resources.Load($"Messages{loc}") as TextAsset)?.text
+                        .Split('\n')
+                        .Where(s => !string.IsNullOrWhiteSpace(s))
+                        .ToArray();
+            }
+        }
     }
 }
+#endif

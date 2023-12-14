@@ -12,9 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21c7c8c23af633b4d92a0bbdba58698d, type: 3}
   m_Name: Seasonal_String_Array_Message
   m_EditorClassIdentifier: 
-  _default: []
+  _default:
+  - Seasonal Message?
   _dictionary:
     _entries:
     - Key: Christmas
-      Value: []
-  _toSet: {fileID: 0}
+      Value:
+      - "Happy Christmas!\r"
+      - "Feliz Navidad!\r"
+      - "Happy New Year!\r"
+      - "Happy Hanukkah!\r"
+      - "Happy Xmas!\r"
+      - "So this is Christmas\r"
+      - "Jingle Bells\r"
+      - "Happy Xmas (Was Is Over)\r"
+      - "Santa Baby\r"
+      - "Have Yourself a Merry Little Christmas\r"
+      - "Petit papa No\xEBl\r"
+      - "Let it Snow! Let Snow!\r"
+      - "Frosty The Snowman\r"
+      - "Silver Bells\r"
+      - "Happy Hollidays\r"
+      - "It\u2019s the Most Wonderful Time of the Year\r"
+      - "Run Rudolph Run\r"
+      - "Blue Christmas\r"
+      - "Winter Wonderland\r"
+      - "Chritmas In Heaven\r"
+      - Merry Christmas!
+  _toSet: {fileID: 11400000, guid: 18a73812ccd893e48b6a2e822b696f0a, type: 2}

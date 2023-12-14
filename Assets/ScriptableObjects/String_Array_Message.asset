@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddb5e9846fba97445bf97d0d1c5152bc, type: 3}
   m_Name: String_Array_Message
   m_EditorClassIdentifier: 
-  <Value>k__BackingField: []
+  <Value>k__BackingField:
+  - Seasonal Message?

@@ -3,11 +3,11 @@ using UnityEngine;
 public abstract class Seasonal<T, G> : ScriptableObject, ISeasonal where G : ISeasonalSetable<T>
 {
 #if UNITY_EDITOR
-    [SerializeField] private T _default;
+    [SerializeField] protected T _default;
     public void SetDefault() => _toSet.SetSeasonal(_default);
 #endif
 
-    [SerializeField] private SerializedDictionary<string, T> _dictionary = new()
+    [SerializeField] protected SerializedDictionary<string, T> _dictionary = new()
     {
         { "Christmas", default },
     };
