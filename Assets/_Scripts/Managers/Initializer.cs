@@ -1,16 +1,25 @@
 ﻿using LTFUtils;
 using System;
-using System.Runtime.InteropServices;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Initializer : MonoBehaviour
 {
     private static bool _initialized = false;
 
+    [Header("Season")]
     [SerializeField] private Season[] _seasons;
+
+    [Header("Seasonal Flip Sheets")]
     [SerializeField] private SeasonalFlipSheet[] _seasonalFlipSheets;
+
+    [Header("Seasonal Sprite")]
     [SerializeField] private SeasonalSprite[] _seasonalSprites;
     [SerializeField] private SeasonalSprite[] _seasonalDaySprite;
+
+    [Header("Seasonal String Array")]
+    [SerializeField] private SeasonalStringArray[] _seasonalStringArray;
 
     private void Awake()
     {
@@ -23,7 +32,10 @@ public class Initializer : MonoBehaviour
         if (!season.Equals(SeasonNames.NOT_IN_ANY_SEASON))
         {
             SetSeasonals(_seasonalFlipSheets, season);
+
             SetSeasonals(_seasonalSprites, season);
+
+            SetSeasonals(_seasonalStringArray, season);
 
             if (isInPeakDay)
                 SetSeasonals(_seasonalDaySprite, season);
@@ -38,8 +50,11 @@ public class Initializer : MonoBehaviour
         else
         {
             SetSeasonalDefault(_seasonalFlipSheets);
+
             SetSeasonalDefault(_seasonalSprites);
             SetSeasonalDefault(_seasonalDaySprite);
+
+            SetSeasonalDefault(_seasonalStringArray);
         }
         print(season);
 #endif
@@ -79,16 +94,26 @@ public class Initializer : MonoBehaviour
     }
 
     [ContextMenu("Get Seasonal Flip Sheets")]
-    private void GetSeasonalFlipSheet()
-    {
-        _seasonalFlipSheets = GetSeasonal<SeasonalFlipSheet>();
-    }
+    private void GetSeasonalFlipSheet() => _seasonalFlipSheets = GetSeasonal<SeasonalFlipSheet>();
 
-    [ContextMenu("Get Seasonal Flip Sprite")]
+    [ContextMenu("Get Seasonal Sprite")]
     private void GetSeasonalSprite()
     {
-        _seasonalSprites = GetSeasonal<SeasonalSprite>();
+        var allSprites = GetSeasonal<SeasonalSprite>();
+        var daySprites = new List<SeasonalSprite>();
+        for(int i = 0; i < allSprites.Length; i++)
+        {
+            if (allSprites[i].name[0] != 'D')
+                continue;
+
+            daySprites.Add(allSprites[i]);
+        }
+        _seasonalSprites = allSprites.ToArray();
+        _seasonalDaySprite = daySprites.ToArray();
     }
+
+    [ContextMenu("Get Seasonal String Array")]
+    private void GetSeasonalStringArray() => _seasonalStringArray = GetSeasonal<SeasonalStringArray>();
 #endif
 
     [Serializable]

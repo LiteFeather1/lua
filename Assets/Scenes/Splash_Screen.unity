@@ -1255,6 +1255,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 526972562be109c45953167e1a7d1b77, type: 2}
   _seasonalDaySprite:
   - {fileID: 11400000, guid: b4cc70bfb2794d84d891725517126a93, type: 2}
+  _seasonalStringArray:
+  - {fileID: 11400000, guid: 46eb8cea998e71a4d8ad82e40f856ce4, type: 2}
 --- !u!114 &1458194004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1551,7 +1553,10 @@ MonoBehaviour:
   - "Radius : 1,737.4 km\r"
   - "Age:  4.53 billions years\r"
   - "1/8th Earth\u2019s gravity\r"
-  - Now with Lightings!
+  - "Now with Lightings!\r"
+  - "C# Edition\r"
+  - "Minecraft is cool\r"
+  - Terraria is cool
   _seasonalMessages: {fileID: 11400000, guid: 18a73812ccd893e48b6a2e822b696f0a, type: 2}
 --- !u!114 &1684585870
 MonoBehaviour:

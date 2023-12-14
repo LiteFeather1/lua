@@ -28,7 +28,7 @@ public class SplashScreenManager : MonoBehaviour
     {
         t_version.text = Application.version;
 
-        if (Random.value >= (_seasonalMessages.Length == 0 ? 0f : .5f))
+        if (Random.value >= (_seasonalMessages.Length == 1 ? 0f : .5f))
             PickRandom(_messages);
         else
             PickRandom(_seasonalMessages);
