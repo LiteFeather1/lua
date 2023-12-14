@@ -1,5 +1,6 @@
-using System.Runtime.InteropServices;
 using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -12,18 +13,26 @@ public class SplashScreenManager : MonoBehaviour
 
     [Header("Message")]
     [SerializeField] private TextMeshProUGUI t_message;
-    [SerializeField] private string[] _messages;
-
-
+    [SerializeField] private List<string> _messages;
+    private static readonly Dictionary<string, RefValue<byte>> sr_lastMessages = new();
 
     private static IntPtr? s_windowPtr;
-    private static string s_windowName = "Lua";
-    private static string s_randomMessage = "";
+
+    public static string S_RandomMessage { get; private set; }
 
     private void Awake()
     {
         t_version.text = Application.version;
-        s_randomMessage = _messages.PickRandom();
+        do
+            S_RandomMessage = _messages.PickRandom();
+        while (sr_lastMessages.ContainsKey(S_RandomMessage));
+
+        sr_lastMessages.Add(S_RandomMessage, new(0));
+        foreach (var key in sr_lastMessages.Keys.ToArray())
+        {
+            if (sr_lastMessages[key].Value++ == 4)
+                sr_lastMessages.Remove(key);
+        }
 
 #if !UNITY_WEBGL || true
         //Import the following.
@@ -34,9 +43,8 @@ public class SplashScreenManager : MonoBehaviour
 
         //Get the window handle.
         if (s_windowPtr == null)
-             s_windowPtr = FindWindow(null, s_windowName);
-        s_windowName = $"Lua - {s_randomMessage}";
-        SetWindowText(s_windowPtr.Value, s_windowName);
+             s_windowPtr = FindWindow(null, Application.productName);
+        SetWindowText(s_windowPtr.Value, $"Lua - {S_RandomMessage}");
 #endif
     }
 
@@ -57,10 +65,10 @@ public class SplashScreenManager : MonoBehaviour
     {
         var messages = (Resources.Load("Messages") as TextAsset).text
             .Split("\n")
-            .Where(x => !string.IsNullOrWhiteSpace(x))
-            .ToArray();
+            .Where(x => !string.IsNullOrWhiteSpace(x));
 
-        _messages = messages;
+        _messages = new(messages);
+        EditorUtility.SetDirty(this);
     }
 #endif
 }

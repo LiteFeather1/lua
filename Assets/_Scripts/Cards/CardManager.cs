@@ -320,6 +320,7 @@ public class CardManager : MonoBehaviour
                                 .Any()
                              select powerUp)
                              .ToArray();
+        UnityEditor.EditorUtility.SetDirty(this);
     }
 #endif
 }
