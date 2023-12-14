@@ -1350,7 +1350,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -1390,7 +1390,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2bc33a2ebb06ad4d87e401737ae6f29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _versionText: {fileID: 1827636516}
+  t_version: {fileID: 1827636516}
+  t_message: {fileID: 0}
+  _messages:
+  - "New and Improved\r"
+  - "This is a message\r"
+  - "This is another message\r"
+  - "FOR FREE\r"
+  - "Zero gravity?\r"
+  - "Regional Witch\r"
+  - "Bountiful harvest\r"
+  - Also known as Moon
 --- !u!114 &1684585870
 MonoBehaviour:
   m_ObjectHideFlags: 0
