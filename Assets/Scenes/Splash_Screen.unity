@@ -1558,6 +1558,7 @@ MonoBehaviour:
   - "Minecraft is cool\r"
   - Terraria is cool
   _seasonalMessages: {fileID: 11400000, guid: 18a73812ccd893e48b6a2e822b696f0a, type: 2}
+  _rainbowColors: {fileID: 11400000, guid: b43dcf31deafca64f8ee885301a4b2a9, type: 2}
 --- !u!114 &1684585870
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,4 @@
-﻿
-New and Improved
+﻿New and Improved
 
 This is a message
 
@@ -29,15 +28,15 @@ Natural satellite
 
 /ˈlu.ɐ/
 
-1 Ending
+1 Unique Ending
 
 384, 400km away
 
 27 day cycles
 
-Radius : 1,737.4 km
+Radius  1,737.4 km
 
-Age:  4.53 billions years
+Age: 4.53 billions years
 
 1/8th Earth’s gravity
 
@@ -45,3 +44,12 @@ Now with Lightings!
 C# Edition
 Minecraft is cool
 Terraria is cool
+6 updates and a movie
+SERENITY NOW
+Giddy up
+Bacon Pancakes
+Playable with one hand
+Modded
+*epic text*
+ERROR: Random Seed Failed
+VS. The World
