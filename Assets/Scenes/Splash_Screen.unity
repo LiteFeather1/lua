@@ -1555,8 +1555,8 @@ MonoBehaviour:
   - "1/8th Earth\u2019s gravity\r"
   - "Now with lightings!\r"
   - "C# Edition\r"
-  - "Minecraft is cool\r"
-  - "Terraria is cool\r"
+  - "Also try Minecraft\r"
+  - "Also try Terraria\r"
   - "6 updates and a movie\r"
   - "SERENITY NOW\r"
   - "Giddy up\r"
@@ -1565,7 +1565,18 @@ MonoBehaviour:
   - "Modded\r"
   - "*epic text*\r"
   - "ERROR: Random Seed Failed\r"
-  - VS. The World
+  - "VS. The World\r"
+  - "Lua\xB2\r"
+  - "Welcome!\r"
+  - "Roll for Lua\r"
+  - "Not the bees\r"
+  - "Singleplayer\r"
+  - "Coming soon\r"
+  - "When it's finished\r"
+  - "Keep Calm and Play Lua\r"
+  - "Great mage rebellion\r"
+  - "42\r"
+  - 01001100 \n 01010101 \n 01000001
   _seasonalMessages: {fileID: 11400000, guid: 46eb8cea998e71a4d8ad82e40f856ce4, type: 2}
   _rainbowColors: {fileID: 11400000, guid: b43dcf31deafca64f8ee885301a4b2a9, type: 2}
 --- !u!114 &1684585870

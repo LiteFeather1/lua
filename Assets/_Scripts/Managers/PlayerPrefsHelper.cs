@@ -2,6 +2,14 @@
 
 public static class PlayerPrefsHelper
 {
+    private const string SESSIONS = "Sessions";
+    private const string PLAYS = "Plays";
+    private const string ALL_PLAY_TIME = "All Play Time";
+    private const string ENEMIES_KILLED = "Enemies Killed";
+    private const string CARDS_PLAYED = "Cards Played";
+    private const string CARDS_RECYCLED = "Cards Recycled";
+    private const string CANDY_EARNED = "Candy Earned";
+
     //private const string MASTER = "Master";
     private const string MUSIC = "Music";
     private const string SFX = "SFX";
@@ -13,5 +21,47 @@ public static class PlayerPrefsHelper
     public static void SaveMusicVolume(float v) => PlayerPrefs.SetFloat(MUSIC, v); 
 
     public static float GetSFXVolume() => PlayerPrefs.GetFloat(SFX, .5f);
-    public static void SaveSFXVolume(float v) => PlayerPrefs.SetFloat(SFX, v); 
+    public static void SaveSFXVolume(float v) => PlayerPrefs.SetFloat(SFX, v);
+
+    public static int GetSession() => PlayerPrefs.GetInt(SESSIONS, 1);
+    public static void AddSession()
+    {
+        PlayerPrefs.SetInt(SESSIONS, PlayerPrefs.GetInt(SESSIONS, 1) + 1);
+    }
+
+    public static int GetPlays() => PlayerPrefs.GetInt(PLAYS, 1);
+    public static void AddPlay()
+    {
+        PlayerPrefs.SetInt(PLAYS, PlayerPrefs.GetInt(PLAYS, 1) + 1);
+    }
+
+    public static float GetAllTimePlayed() => PlayerPrefs.GetFloat(ALL_PLAY_TIME, 0f);
+    public static float AddAllPlayTime(float timeToAdd)
+    {
+        return PlayerPrefs.GetFloat(ALL_PLAY_TIME, PlayerPrefs.GetFloat(ALL_PLAY_TIME, 0f) + timeToAdd);
+    }
+
+    public static int GetEnemiesKilled() => PlayerPrefs.GetInt(ENEMIES_KILLED, 0);
+    public static void AddEnemiesKilled(int amount)
+    {
+        PlayerPrefs.SetInt(ENEMIES_KILLED, PlayerPrefs.GetInt(ENEMIES_KILLED, 0) + amount);
+    }
+
+    public static int GetCardsPlayed() => PlayerPrefs.GetInt(CARDS_PLAYED, 0);
+    public static void AddCardsPlayed(int amount)
+    {
+        PlayerPrefs.SetInt(CARDS_PLAYED, PlayerPrefs.GetInt(CARDS_PLAYED, 0) + amount);
+    }
+
+    public static int GetCardsRecycled() => PlayerPrefs.GetInt(CARDS_RECYCLED, 0);
+    public static void AddCardsRecycled(int amount)
+    {
+        PlayerPrefs.SetInt(CARDS_RECYCLED, PlayerPrefs.GetInt(CARDS_RECYCLED, 0) + amount);
+    }
+
+    public static int GetCandyEarned() => PlayerPrefs.GetInt(CANDY_EARNED, 0);
+    public static void AddCandyEarned(int amount)
+    {
+        PlayerPrefs.SetInt(CANDY_EARNED, PlayerPrefs.GetInt(CANDY_EARNED, 0) + amount);
+    }
 }

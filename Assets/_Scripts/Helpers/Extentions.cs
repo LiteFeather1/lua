@@ -58,4 +58,9 @@ public static class Extentions
     {
         return list[UnityEngine.Random.Range(0, list.Count)];
     }
+
+    public static char PickRandom(this string s)
+    {
+        return s[UnityEngine.Random.Range(0, s.Length)];
+    }
 }

@@ -28,6 +28,8 @@ public class Initializer : MonoBehaviour
 
         _initialized = true;
 
+        PlayerPrefsHelper.AddSession();
+
         var season = GetSeason(DateTime.Now, out bool isInPeakDay);
         if (!season.Equals(SeasonNames.NOT_IN_ANY_SEASON))
         {

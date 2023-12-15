@@ -16,6 +16,7 @@ public class SplashScreenManager : MonoBehaviour
 {
     const string COLOURIZED = "COLOURIZED";
     const string RAINBOW = "RAINBOW";
+    const string CHARACTERS = "$%#@!*abcdefghijklmnopqrstuvwxyz1234567890?;:ABCDEFGHIJKLMNOPQRSTUVWXYZ^& ";
 
     [SerializeField] private TextMeshProUGUI t_version;
 
@@ -106,9 +107,9 @@ public class SplashScreenManager : MonoBehaviour
         sr_messages.Add(Application.version);
         sr_messages.Add(Application.companyName);
         sr_messages.Add(Application.productName);
-        sr_messages.Add($"Genuine{Application.genuine}");
-        sr_messages.Add(Application.platform.ToString());
-        // sessions
+        sr_messages.Add(Application.genuine ? "It's Genuine" : "Modding? Alone?");
+
+        sr_messages.Add($"Session {PlayerPrefsHelper.GetSession()}");
 
         s_specialMessages = new Func<string>[]
         {
@@ -126,7 +127,7 @@ public class SplashScreenManager : MonoBehaviour
             () =>
             {
                 var r = Random.Range(0, _rainbowColors.Length);
-                return ColourizedString(RAINBOW, (i) => ColorUtility.ToHtmlStringRGB(_rainbowColors.Value[(i + r) % _rainbowColors.Length]));
+                return ColourizedString(RAINBOW, (i) => RandomRainbowColourMod(i, r));
             },
             // Rainbow random
             () => ColourizedString(RAINBOW, _ => ColorUtility.ToHtmlStringRGB(_rainbowColors.PickRandom())),
@@ -144,26 +145,39 @@ public class SplashScreenManager : MonoBehaviour
             () =>
             {
                 var r = Random.Range(0, _rainbowColors.Length);
-                return ColourizedString(COLOURIZED, (i) => ColorUtility.ToHtmlStringRGB(_rainbowColors[(i + r) % _rainbowColors.Length]));
+                return ColourizedString(COLOURIZED, (i) => RandomRainbowColourMod(i, r));
             },
             // Colourized random HSV
             () => ColourizedString(COLOURIZED, _ => ColorUtility.ToHtmlStringRGB(Random.ColorHSV())),
             // Colourized random HEX
-            () => ColourizedString(COLOURIZED, _ => string.Format("{0:x6}", Random.Range(0, 0x1000000))),
+            () => ColourizedString(COLOURIZED, _ => RandomHexColour()),
 
             // Random char
+            () => RandomCharString(),
+            () => ColourizedString(RandomCharString(), _ => RandomHexColour()),
+            () => ColourizedString(RandomCharString(), _ => ColorUtility.ToHtmlStringRGB(_rainbowColors.PickRandom())),
+
+            // Scramble
+
+            // Random HexColour
+
+            // plays
+
             // Play time
             // All time played
-            // plays
+
             // Enemies Killed
-            // Candy Eearned
             // Cards Played
             // Cards ryclicled
+            // Candy Eearned
         };
 
-        // possilities
-        // blah poissblity
-        sr_messages.Add($"1 in {sr_messages.Count + _seasonalMessages.ToSet.Length + s_specialMessages.Length + 1}");
+        var possibilities = sr_messages.Count + _seasonalMessages.Default.Length + 2;
+        foreach (var value in _seasonalMessages.Dictionary.Values)
+            possibilities += value.Length;
+
+        sr_messages.Add($"{possibilities} Possibilities ");
+        sr_messages.Add($"1 in {possibilities}");
 
         static string ColourizedString(string s, Func<int, string> colour)
         {
@@ -180,6 +194,22 @@ public class SplashScreenManager : MonoBehaviour
             }
             return sr_stringBuilder.ToString();
         }
+
+        string RandomRainbowColourMod(int i, int r)
+        {
+            return ColorUtility.ToHtmlStringRGB(_rainbowColors[(i + r) % _rainbowColors.Length]);
+        }
+
+        static string RandomHexColour() => string.Format("{0:x6}", Random.Range(0, 0x1000000));
+
+        static string RandomCharString()
+        {
+            var chars = new char[Random.Range(12, 27)];
+            for (int i = 0; i < chars.Length; i++)
+                chars[i] = CHARACTERS.PickRandom();
+            return new(chars);
+        }
+
     }
 #if UNITY_EDITOR
     private int a = 0;
