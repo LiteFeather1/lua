@@ -4,7 +4,7 @@ public static class PlayerPrefsHelper
 {
     private const string SESSIONS = "Sessions";
     private const string PLAYS = "Plays";
-    private const string ALL_PLAY_TIME = "All Play Time";
+    private const string PLAY_TIME = "All Play Time";
     private const string ENEMIES_KILLED = "Enemies Killed";
     private const string CARDS_PLAYED = "Cards Played";
     private const string CARDS_RECYCLED = "Cards Recycled";
@@ -35,10 +35,10 @@ public static class PlayerPrefsHelper
         PlayerPrefs.SetInt(PLAYS, PlayerPrefs.GetInt(PLAYS, 1) + 1);
     }
 
-    public static float GetAllTimePlayed() => PlayerPrefs.GetFloat(ALL_PLAY_TIME, 0f);
-    public static float AddAllPlayTime(float timeToAdd)
+    public static float GetPlayTime() => PlayerPrefs.GetFloat(PLAY_TIME, 0f);
+    public static float AddPlayTime(float timeToAdd)
     {
-        return PlayerPrefs.GetFloat(ALL_PLAY_TIME, PlayerPrefs.GetFloat(ALL_PLAY_TIME, 0f) + timeToAdd);
+        return PlayerPrefs.GetFloat(PLAY_TIME, PlayerPrefs.GetFloat(PLAY_TIME, 0f) + timeToAdd);
     }
 
     public static int GetEnemiesKilled() => PlayerPrefs.GetInt(ENEMIES_KILLED, 0);

@@ -29,6 +29,8 @@ public class EndScreenManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     private float _lastMouseX;
     private float _mouseDelta;
 
+    public int CardsPlayed => _cards.Count;
+
     private void Update()
     {
         var minX = -(rt_carousel.sizeDelta.x + 34f) * .5f;

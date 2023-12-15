@@ -45,3 +45,4 @@ Great mage rebellion
 01001100\n01010101\n01000001
 Cats!
 A to Z
+It's a Kind of Magic

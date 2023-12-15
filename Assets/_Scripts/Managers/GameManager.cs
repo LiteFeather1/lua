@@ -197,6 +197,14 @@ public class GameManager : MonoBehaviour
                                    enemies: _spawnManager.EnemiesDied,
                                    cardsReciclyed: _cardManager.Recycler.CardsRecycled,
                                    candy: _witch.TotalCurrencyGained);
+
+        PlayerPrefsHelper.AddPlay();
+        PlayerPrefsHelper.AddPlayTime(_playTime);
+        PlayerPrefsHelper.AddEnemiesKilled(_spawnManager.EnemiesDied);
+        PlayerPrefsHelper.AddCardsPlayed(_endScreenManager.CardsPlayed);
+        PlayerPrefsHelper.AddCardsRecycled(_cardManager.Recycler.CardsRecycled);
+        PlayerPrefsHelper.AddCandyEarned(_witch.TotalCurrencyGained);
+
         _endScreenManager.gameObject.SetActive(true);
         _witchDied = true;
         _chromaticAberration.intensity.value = .125f;
