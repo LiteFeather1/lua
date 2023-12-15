@@ -13,6 +13,9 @@ public abstract class Seasonal<T, G> : ScriptableObject, ISeasonal where G : ISe
     };
     [SerializeField] protected G _toSet;
 
+    public T Default => _default;
+    public System.Collections.Generic.IDictionary<string, T> Dictionary => _dictionary;
+    public G ToSet => _toSet;
 
     public virtual void Set(string season)
     {

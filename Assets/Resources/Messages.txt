@@ -1,49 +1,28 @@
 ﻿New and Improved
-
 This is a message
-
 This is another message
-
 Free
-
 For all ages
-
 Zero gravity?
-
 Regional Witch
-
 Bountiful harvest
-
 Also known as Moon
-
 Run Lua! Run!
-
 Yippee Ki-Yay
-
 *insert text*
-
 The Moon
-
 Natural satellite
-
 /ˈlu.ɐ/
-
 1 Unique Ending
-
-384, 400km away
-
+384,400km away
 27 day cycles
-
-Radius  1,737.4 km
-
+Radius 1,737.4 km
 Age: 4.53 billions years
-
 1/8th Earth’s gravity
-
-Now with Lightings!
+Now with lightings!
 C# Edition
-Minecraft is cool
-Terraria is cool
+Also try Minecraft
+Also try Terraria
 6 updates and a movie
 SERENITY NOW
 Giddy up
@@ -53,3 +32,9 @@ Modded
 *epic text*
 ERROR: Random Seed Failed
 VS. The World
+Lua²
+Welcome!
+Roll for Lua
+Not the bees
+Singleplayer
+Coming soon

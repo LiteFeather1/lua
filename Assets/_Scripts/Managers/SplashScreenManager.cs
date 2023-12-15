@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
@@ -21,13 +22,14 @@ public class SplashScreenManager : MonoBehaviour
     [Header("Message")]
     [SerializeField] private TextMeshProUGUI t_message;
     [SerializeField] private string[] _messages;
-    [SerializeField] private ValueStringArray _seasonalMessages;
+    [SerializeField] private SeasonalStringArray _seasonalMessages;
     [SerializeField] private ValueColourArray _rainbowColors;
+    private static readonly List<string> sr_messages = new();
     private static readonly Dictionary<string, RefValue<byte>> sr_lastMessages = new();
     private static Func<string>[] s_specialMessages;
     private static readonly System.Text.StringBuilder sr_stringBuilder = new();
 
-    public static string RandomMessage { get; private set; }
+    public static string RandomMessage { get; private set; } = "Last Message";
 
 #if !UNITY_WEBGL && !UNITY_EDITOR
     private bool _hasHTMLTags = false;
@@ -38,147 +40,25 @@ public class SplashScreenManager : MonoBehaviour
     {
         t_version.text = Application.version;
 
-        s_specialMessages ??= new Func<string>[]
-        {
-            // Seed
-            () =>
-            {
-                var tick = (int)DateTime.Now.Ticks;
-                Random.InitState(tick);
-                return $"Seed: {tick}";
-            },
-            // Rainbow order
-            () =>
-            {
-#if !UNITY_WEBGL && !UNITY_EDITOR
-                _hasHTMLTags = true;
-#endif
-                sr_stringBuilder.Clear();
-                for (int i = 0; i < RAINBOW.Length; i++)
-                {
-                    sr_stringBuilder
-                    .Append($"<color=#{ColorUtility.ToHtmlStringRGB(_rainbowColors.Value[i])}>")
-                    .Append(RAINBOW[i])
-                    .Append("</color>");
-                }
-                return sr_stringBuilder.ToString();
-            },
-            // Rainbow order
-            () =>
-            {
-#if !UNITY_WEBGL && !UNITY_EDITOR
-                _hasHTMLTags = true;
-#endif
-                sr_stringBuilder.Clear();
-                for (int i = 0; i < RAINBOW.Length; i++)
-                {
-                    sr_stringBuilder
-                    .Append($"<color=#{ColorUtility.ToHtmlStringRGB(_rainbowColors.PickRandom())}>")
-                    .Append(RAINBOW[i])
-                    .Append("</color>");
-                }
-                return sr_stringBuilder.ToString();
-            },
-            // Rainbow random unique
-            () =>
-            {
-#if !UNITY_WEBGL && !UNITY_EDITOR
-                _hasHTMLTags = true;
-#endif
-                var colours = Enumerable.Range(0, 7).ToArray();
-                colours.KnuthShuffle();
-                sr_stringBuilder.Clear();
-                for (int i = 0; i < RAINBOW.Length; i++)
-                {
-                    sr_stringBuilder
-                    .Append($"<color=#{ColorUtility.ToHtmlStringRGB(_rainbowColors[colours[i]])}>")
-                    .Append(RAINBOW[i])
-                    .Append("</color>");
-                }
-                return sr_stringBuilder.ToString();
-            },
-            // Colourized random rainbow
-            () =>
-            {
-#if !UNITY_WEBGL && !UNITY_EDITOR
-                _hasHTMLTags = true;
-#endif
-                sr_stringBuilder.Clear();
-                for (int i = 0; i < COLOURIZED.Length; i++)
-                {
-                    sr_stringBuilder
-                    .Append($"<color=#{ColorUtility.ToHtmlStringRGB(_rainbowColors.PickRandom())}>")
-                    .Append(COLOURIZED[i])
-                    .Append("</color>");
-                }
-                return sr_stringBuilder.ToString();
-            },
-            // Colourized order rainbow
-            () =>
-            {
-#if !UNITY_WEBGL && !UNITY_EDITOR
-                _hasHTMLTags = true;
-#endif
-                sr_stringBuilder.Clear();
-                var r = Random.Range(0, _rainbowColors.Length);
-                for (int i = 0; i < COLOURIZED.Length; i++)
-                {
-                    sr_stringBuilder
-                    .Append($"<color=#{ColorUtility.ToHtmlStringRGB(_rainbowColors[(i + r) % _rainbowColors.Length])}>")
-                    .Append(COLOURIZED[i])
-                    .Append("</color>");
-                }
-                return sr_stringBuilder.ToString();
-            },
-            // Colourized random HSV
-            () =>
-            {
-#if !UNITY_WEBGL && !UNITY_EDITOR
-                _hasHTMLTags = true;
-#endif
-                sr_stringBuilder.Clear();
-                for (int i = 0; i < COLOURIZED.Length; i++)
-                {
-                    sr_stringBuilder
-                    .Append($"<color=#{ColorUtility.ToHtmlStringRGB(Random.ColorHSV())}>")
-                    .Append(COLOURIZED[i])
-                    .Append("</color>");
-                }
-                return sr_stringBuilder.ToString();
-            },
-            // Colourized random HEX
-            () =>
-            {
-#if !UNITY_WEBGL && !UNITY_EDITOR
-                _hasHTMLTags = true;
-#endif
-                sr_stringBuilder.Clear();
-                for (int i = 0; i < COLOURIZED.Length; i++)
-                {
-                    sr_stringBuilder
-                    .Append($"<color={string.Format("#{0:X6}", Random.Range(0, 0x1000000))}>")
-                    .Append(COLOURIZED[i])
-                    .Append("</color>");
-                }
-                return sr_stringBuilder.ToString();
-            },
-            // Random char
-        };
+        Initialization();
 
         float randomValue = Random.value;
-        if (randomValue <= 0.01f)
-            RandomMessage = s_specialMessages.PickRandom().Invoke();
-        else if (randomValue > (_seasonalMessages.Length == 1 ? 0f : .5f))
-            PickRandom(_messages);
+        if (randomValue < 0.01f)
+            RandomMessage = s_specialMessages.PickRandom()();
+        else if (randomValue >= (_seasonalMessages.ToSet.Length == 1 ? 0.01f : .5f))
+            do
+                RandomMessage = sr_messages.PickRandom();
+            while (sr_lastMessages.ContainsKey(RandomMessage));
         else
-            PickRandom(_seasonalMessages);
+            do
+                RandomMessage = _seasonalMessages.ToSet.PickRandom();
+            while (sr_lastMessages.ContainsKey(RandomMessage));
 
         sr_lastMessages.Add(RandomMessage, new(0));
         foreach (var key in sr_lastMessages.Keys.ToArray())
             if (sr_lastMessages[key].Value++ == 4)
                 sr_lastMessages.Remove(key);
 
-        RandomMessage = s_specialMessages[3].Invoke();
         t_message.text = RandomMessage;
 
 #if !UNITY_WEBGL && !UNITY_EDITOR
@@ -196,21 +76,6 @@ public class SplashScreenManager : MonoBehaviour
 
         SetWindowText(s_windowPtr.Value, $"Lua - {RandomMessage}");
 #endif
-
-        static void PickRandom(string[] messages)
-        {
-            do
-                RandomMessage = messages.PickRandom();
-            while (sr_lastMessages.ContainsKey(RandomMessage));
-        }
-    }
-
-    private int a = 0;
-    [ContextMenu("Test")]
-    private void Test()
-    {
-        RandomMessage = s_specialMessages[a++ % s_specialMessages.Length].Invoke();
-        t_message.text = RandomMessage;
     }
 
     public void ButtonPlay() => SceneManager.LoadScene(1);
@@ -224,14 +89,151 @@ public class SplashScreenManager : MonoBehaviour
 #endif
     }
 
+    private void Initialization()
+    {
+        if (sr_messages.Count != 0)
+            return;
+
+        sr_messages.AddRange(_messages);
+
+        sr_messages.Add(DateTime.Now.Hour switch
+        {
+            int hour when hour >= 4 && hour < 12 => "Good Morning!",
+            int hour when hour >= 12 && hour < 19 => "Good Afternoon!",
+            _ => "Good Evening!",
+        });
+
+        sr_messages.Add(Application.version);
+        sr_messages.Add(Application.companyName);
+        sr_messages.Add(Application.productName);
+        sr_messages.Add($"Genuine{Application.genuine}");
+        sr_messages.Add(Application.platform.ToString());
+        // Play time
+        // All time played
+        // sessions
+        // plays
+        // Enemies Killed
+        // Candy Eearned
+        // Cards Played
+        // Cards ryclicled
+
+        s_specialMessages = new Func<string>[]
+        {
+            // Seed
+            () =>
+            {
+                var tick = (int)DateTime.Now.Ticks;
+                Random.InitState(tick);
+                return $"Seed: {tick}";
+            },
+
+            // Rainbow order
+            () => ColourizedString(RAINBOW, (i) => ColorUtility.ToHtmlStringRGB(_rainbowColors.Value[i])),
+            // Rainbow order random
+            () =>
+            {
+                var r = Random.Range(0, _rainbowColors.Length);
+                return ColourizedString(RAINBOW, (i) => ColorUtility.ToHtmlStringRGB(_rainbowColors.Value[(i + r) % _rainbowColors.Length]));
+            },
+            // Rainbow random
+            () => ColourizedString(RAINBOW, _ => ColorUtility.ToHtmlStringRGB(_rainbowColors.PickRandom())),
+            // Rainbow random unique
+            () =>
+            {
+                var colours = Enumerable.Range(0, 7).ToArray();
+                colours.KnuthShuffle();
+                return ColourizedString(RAINBOW, (i) => ColorUtility.ToHtmlStringRGB(_rainbowColors[colours[i]]));
+            },
+
+            // Colourized random rainbow
+            () => ColourizedString(COLOURIZED, _ => ColorUtility.ToHtmlStringRGB(_rainbowColors.PickRandom())),
+            // Colourized order rainbow
+            () =>
+            {
+                var r = Random.Range(0, _rainbowColors.Length);
+                return ColourizedString(COLOURIZED, (i) => ColorUtility.ToHtmlStringRGB(_rainbowColors[(i + r) % _rainbowColors.Length]));
+            },
+            // Colourized random HSV
+            () => ColourizedString(COLOURIZED, _ => ColorUtility.ToHtmlStringRGB(Random.ColorHSV())),
+            // Colourized random HEX
+            () => ColourizedString(COLOURIZED, _ => string.Format("{0:x6}", Random.Range(0, 0x1000000))),
+
+            // Random char
+        };
+
+        // possilities
+        // blah poissblity
+        sr_messages.Add($"1 in {sr_messages.Count + _seasonalMessages.ToSet.Length + s_specialMessages.Length + 1}");
+
+        static string ColourizedString(string s, Func<int, string> colour)
+        {
+#if !UNITY_WEBGL && !UNITY_EDITOR
+                _hasHTMLTags = true;
+#endif
+            sr_stringBuilder.Clear();
+            for (int i = 0; i < s.Length; ++i)
+            {
+                sr_stringBuilder
+                    .Append($"<color=#").Append(colour(i)).Append('>')
+                    .Append(s[i])
+                    .Append("</color>");
+            }
+            return sr_stringBuilder.ToString();
+        }
+    }
 #if UNITY_EDITOR
+    private int a = 0;
+    [ContextMenu("Test")]
+    private void Test()
+    {
+        RandomMessage = s_specialMessages[a++ % s_specialMessages.Length].Invoke();
+        t_message.text = RandomMessage;
+    }
+
+    [ContextMenu("Go thru all")]
+    private void GoThruAll()
+    {
+        for (int i = 0; i < sr_messages.Count; i++)
+            t_message.text = RandomMessage = sr_messages[i];
+
+        for (int i = 0; i < s_specialMessages.Length; i++)
+            t_message.text = RandomMessage = s_specialMessages[i]();
+
+        for (int i = 0; i < _seasonalMessages.ToSet.Length; i++)
+            t_message.text = RandomMessage = _seasonalMessages.ToSet[i];
+    }
+
+    [ContextMenu("Go thru all Slowly")]
+    private void GoThruAllSlowly() => StartCoroutine(GoThruAll_CO());
+    private IEnumerator GoThruAll_CO()
+    {
+        YieldInstruction y = new WaitForSeconds(.5f);
+        for (int i = 0; i < sr_messages.Count; i++)
+        {
+            t_message.text = RandomMessage = sr_messages[i];
+            yield return y;
+        }
+
+        for (int i = 0; i < s_specialMessages.Length; i++)
+        {
+            t_message.text = RandomMessage = s_specialMessages[i]();
+            yield return y;
+        }
+
+        for (int i = 0; i < _seasonalMessages.ToSet.Length; i++)
+        {
+            t_message.text = RandomMessage = _seasonalMessages.ToSet[i];
+            yield return y;
+        }
+    }
+
     [ContextMenu("Get Messages")]
     private void GetMessages()
     {
         _messages = (Resources.Load("Messages") as TextAsset).text
-            .Split("\n")
-            .Where(x => !string.IsNullOrWhiteSpace(x))
-            .ToArray();
+                    .Split("\n")
+                    .Where(x => !string.IsNullOrWhiteSpace(x))
+                    .ToArray();
 
         EditorUtility.SetDirty(this);
     }

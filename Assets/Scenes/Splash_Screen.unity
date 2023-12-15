@@ -1233,7 +1233,7 @@ MonoBehaviour:
     _dayEnd: 31
     _monthEnd: 12
     _yearPlus: 0
-    _day: 24
+    _day: 25
     _month: 12
   _seasonalFlipSheets:
   - {fileID: 11400000, guid: 3135c3835d3a4a040b7aae6b55457e9e, type: 2}
@@ -1547,16 +1547,25 @@ MonoBehaviour:
   - "The Moon\r"
   - "Natural satellite\r"
   - "/\u02C8lu.\u0250/\r"
-  - "1 Ending\r"
-  - "384, 400km away\r"
+  - "1 Unique Ending\r"
+  - "384,400km away\r"
   - "27 day cycles\r"
-  - "Radius : 1,737.4 km\r"
-  - "Age:  4.53 billions years\r"
+  - "Radius 1,737.4 km\r"
+  - "Age: 4.53 billions years\r"
   - "1/8th Earth\u2019s gravity\r"
-  - "Now with Lightings!\r"
+  - "Now with lightings!\r"
   - "C# Edition\r"
   - "Minecraft is cool\r"
-  - Terraria is cool
+  - "Terraria is cool\r"
+  - "6 updates and a movie\r"
+  - "SERENITY NOW\r"
+  - "Giddy up\r"
+  - "Bacon Pancakes\r"
+  - "Playable with one hand\r"
+  - "Modded\r"
+  - "*epic text*\r"
+  - "ERROR: Random Seed Failed\r"
+  - VS. The World
   _seasonalMessages: {fileID: 11400000, guid: 18a73812ccd893e48b6a2e822b696f0a, type: 2}
   _rainbowColors: {fileID: 11400000, guid: b43dcf31deafca64f8ee885301a4b2a9, type: 2}
 --- !u!114 &1684585870
