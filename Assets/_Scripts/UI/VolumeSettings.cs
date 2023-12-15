@@ -4,10 +4,6 @@ using UnityEngine.UI;
 
 public class VolumeSettings : MonoBehaviour
 {
-    //private const string MASTER = "Master";
-    private const string MUSIC = "Music";
-    private const string SFX = "SFX";
-
     [SerializeField] private AudioMixer _masterMixer;
     [SerializeField] private Slider _musicSlider;
     [SerializeField] private Slider _sfxSlider;
@@ -20,8 +16,8 @@ public class VolumeSettings : MonoBehaviour
 
     private void Start()
     {
-        float musicVolume = PlayerPrefs.GetFloat(MUSIC, .5f);
-        float sfxVolume = PlayerPrefs.GetFloat(SFX, .5f);
+        float musicVolume = PlayerPrefsHelper.GetMusicVolume();
+        float sfxVolume = PlayerPrefsHelper.GetSFXVolume();
         _musicSlider.value = musicVolume;
         _sfxSlider.value = sfxVolume;
 
@@ -31,18 +27,18 @@ public class VolumeSettings : MonoBehaviour
 
     private void OnDisable()
     {
-        PlayerPrefs.SetFloat(MUSIC, _musicSlider.value);
-        PlayerPrefs.SetFloat(SFX, _sfxSlider.value);
+        PlayerPrefsHelper.SaveMusicVolume(_musicSlider.value);
+        PlayerPrefsHelper.SaveSFXVolume(_sfxSlider.value);
     }
 
     private void SetMusicVolume(float volume)
     {
-        SetVolume(volume, MUSIC);
+        SetVolume(volume, PlayerPrefsHelper.Music);
     }
 
     private void SetSFXsVolume(float volume)
     {
-        SetVolume(volume, SFX);
+        SetVolume(volume, PlayerPrefsHelper.Sfx);
     }
 
     private void SetVolume(float volume, string channel)

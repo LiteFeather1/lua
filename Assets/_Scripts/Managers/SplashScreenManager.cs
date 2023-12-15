@@ -108,14 +108,7 @@ public class SplashScreenManager : MonoBehaviour
         sr_messages.Add(Application.productName);
         sr_messages.Add($"Genuine{Application.genuine}");
         sr_messages.Add(Application.platform.ToString());
-        // Play time
-        // All time played
         // sessions
-        // plays
-        // Enemies Killed
-        // Candy Eearned
-        // Cards Played
-        // Cards ryclicled
 
         s_specialMessages = new Func<string>[]
         {
@@ -159,6 +152,13 @@ public class SplashScreenManager : MonoBehaviour
             () => ColourizedString(COLOURIZED, _ => string.Format("{0:x6}", Random.Range(0, 0x1000000))),
 
             // Random char
+            // Play time
+            // All time played
+            // plays
+            // Enemies Killed
+            // Candy Eearned
+            // Cards Played
+            // Cards ryclicled
         };
 
         // possilities
