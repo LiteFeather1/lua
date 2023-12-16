@@ -53,6 +53,7 @@ public class SplashScreenManager : MonoBehaviour
         var randomValue = Random.value;
         const float MIN = .05f;
         if (randomValue <= MIN)
+            // TODO Use switch instead of Func<string>
             RandomMessage = s_specialMessages.PickRandom()();
         else if (randomValue > (_seasonalMessages.ToSet.Length <= 1 ? MIN : .5f - MIN))
             do
@@ -139,7 +140,7 @@ public class SplashScreenManager : MonoBehaviour
                 return $"Seed: {tick}";
             },
 
-            // Rainbow order
+             // Rainbow order
             () => ColourizedStringChars(RAINBOW, (i) => ColorUtility.ToHtmlStringRGB(_rainbowColors.Value[i])),
             // Rainbow order random
             () =>
@@ -236,9 +237,42 @@ public class SplashScreenManager : MonoBehaviour
             () => $"Cards Recycled: {PlayerPrefsHelper.GetCardsRecycled()}",
             // Candy Eearned
             () => $"Candy Earned: {PlayerPrefsHelper.GetCandyEarned()}",
+
+            // Lua Binary colored
+            () => 
+            {
+                t_message.fontSizeMin = t_message.fontSizeMax;
+                return sr_stringBuilder.Clear()
+                                       .Append("<color=#").Append("ED8511").Append('>').Append("01001100").AppendLine()
+                                       .Append("<color=#").Append("E8E6E1").Append('>').Append("01010101").AppendLine()
+                                       .Append("<color=#").Append("ED8511").Append('>').Append("01000001").AppendLine()
+                                       .Append("</color>")
+                                       .ToString(); 
+            },
+            // Lua binary meaning
+            () =>
+            {
+                t_message.fontSizeMin = t_message.fontSizeMax;
+                return sr_stringBuilder.Clear()
+                                       .Append("L = ").Append("01001100").AppendLine()
+                                       .Append("U = ").Append("01010101").AppendLine()
+                                       .Append("A = ").Append("01000001").AppendLine()
+                                       .ToString();
+            },
+            // Lua binary meaning colored
+            () =>
+            {
+                t_message.fontSizeMin = t_message.fontSizeMax;
+                return sr_stringBuilder.Clear()
+                                       .Append("<color=#").Append("ED8511").Append('>').Append("L = ").Append("01001100").AppendLine()
+                                       .Append("<color=#").Append("E8E6E1").Append('>').Append("U = ").Append("01010101").AppendLine()
+                                       .Append("<color=#").Append("ED8511").Append('>').Append("A = ").Append("01000001").AppendLine()
+                                       .Append("</color>")
+                                       .ToString();
+            },
         };
 
-        var possibilities = sr_messages.Count + _seasonalMessages.Default.Length + 2;
+        var possibilities = sr_messages.Count + _seasonalMessages.Default.Length + s_specialMessages.Length + 2;
         foreach (var value in _seasonalMessages.Dictionary.Values)
             possibilities += value.Length;
 
@@ -246,6 +280,7 @@ public class SplashScreenManager : MonoBehaviour
         sr_messages.Add($"1 in {possibilities}");
 
         #region Local Function
+
         string ColourizedStringChars(string s, Func<int, string> colour)
         {
 #if !UNITY_WEBGL && !UNITY_EDITOR
@@ -290,8 +325,8 @@ public class SplashScreenManager : MonoBehaviour
         }
         #endregion
     }
-#if UNITY_EDITOR
 
+#if UNITY_EDITOR
     [ContextMenu("Go thru all Slowly")]
     private void GoThruAllSlowly() => StartCoroutine(GoThruAll_CO());
     private IEnumerator GoThruAll_CO()
@@ -319,10 +354,16 @@ public class SplashScreenManager : MonoBehaviour
     [ContextMenu("Get Messages")]
     private void GetMessages()
     {
-        _messages = (Resources.Load("Messages") as TextAsset).text
-                    .Split("\n")
-                    .Where(x => !string.IsNullOrWhiteSpace(x))
-                    .ToArray();
+        var fileMessages = (Resources.Load("Messages") as TextAsset).text
+                           .Split("\n")
+                           .Where(x => !string.IsNullOrWhiteSpace(x))
+                           .ToArray();
+
+        var otherMessages = new List<string>();
+
+        _messages = new string[fileMessages.Length + otherMessages.Count];
+        fileMessages.CopyTo(_messages, 0);
+        otherMessages.CopyTo(_messages, fileMessages.Length);
 
         EditorUtility.SetDirty(this);
     }

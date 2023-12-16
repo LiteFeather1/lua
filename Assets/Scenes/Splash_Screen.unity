@@ -1676,6 +1676,7 @@ MonoBehaviour:
   - "Coming soon\r"
   - "When it's finished\r"
   - "Keep Calm and Play Lua\r"
+  - "Keep Calm and Respawn\r"
   - "Great mage rebellion\r"
   - "42\r"
   - "01001100 01010101 01000001\r"
@@ -1686,6 +1687,11 @@ MonoBehaviour:
   - "Loading...\r"
   - "Lua Is You\r"
   - "Age of dragons\r"
+  - "Balanced\r"
+  - "Unbalanced\r"
+  - "Play your cards right\r"
+  - "May the force be with you\r"
+  - "Hakuna Matata\r"
   _seasonalMessages: {fileID: 11400000, guid: 46eb8cea998e71a4d8ad82e40f856ce4, type: 2}
   _rainbowColors: {fileID: 11400000, guid: b43dcf31deafca64f8ee885301a4b2a9, type: 2}
   _messageRoot: {fileID: 1398179130}
@@ -1831,8 +1837,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4292994792
+  m_fontColor: {r: 0.909804, g: 0.90196085, b: 0.882353, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
