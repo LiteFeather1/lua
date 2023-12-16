@@ -18,22 +18,16 @@ public static class PlayerPrefsHelper
     public static string Sfx => SFX;
 
     public static float GetMusicVolume() => PlayerPrefs.GetFloat(MUSIC, .5f);
-    public static void SaveMusicVolume(float v) => PlayerPrefs.SetFloat(MUSIC, v); 
+    public static void SetMusicVolume(float v) => PlayerPrefs.SetFloat(MUSIC, v); 
 
     public static float GetSFXVolume() => PlayerPrefs.GetFloat(SFX, .5f);
-    public static void SaveSFXVolume(float v) => PlayerPrefs.SetFloat(SFX, v);
+    public static void SetSFXVolume(float v) => PlayerPrefs.SetFloat(SFX, v);
 
     public static int GetSession() => PlayerPrefs.GetInt(SESSIONS, 1);
-    public static void AddSession()
-    {
-        PlayerPrefs.SetInt(SESSIONS, PlayerPrefs.GetInt(SESSIONS, 1) + 1);
-    }
+    public static void AddSession() => PlayerPrefs.SetInt(SESSIONS, PlayerPrefs.GetInt(SESSIONS, 1) + 1);
 
     public static int GetPlays() => PlayerPrefs.GetInt(PLAYS, 1);
-    public static void AddPlay()
-    {
-        PlayerPrefs.SetInt(PLAYS, PlayerPrefs.GetInt(PLAYS, 1) + 1);
-    }
+    public static void AddPlay() => PlayerPrefs.SetInt(PLAYS, PlayerPrefs.GetInt(PLAYS, 1) + 1);
 
     public static float GetPlayTime() => PlayerPrefs.GetFloat(PLAY_TIME, 0f);
     public static float AddPlayTime(float timeToAdd)
@@ -64,4 +58,6 @@ public static class PlayerPrefsHelper
     {
         PlayerPrefs.SetInt(CANDY_EARNED, PlayerPrefs.GetInt(CANDY_EARNED, 0) + amount);
     }
+
+    public static void Save() => PlayerPrefs.Save();
 }

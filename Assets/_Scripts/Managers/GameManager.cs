@@ -204,6 +204,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefsHelper.AddCardsPlayed(_endScreenManager.CardsPlayed);
         PlayerPrefsHelper.AddCardsRecycled(_cardManager.Recycler.CardsRecycled);
         PlayerPrefsHelper.AddCandyEarned(_witch.TotalCurrencyGained);
+        PlayerPrefsHelper.Save();
 
         _endScreenManager.gameObject.SetActive(true);
         _witchDied = true;

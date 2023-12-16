@@ -158,7 +158,12 @@ public class SplashScreenManager : MonoBehaviour
             () => ColourizedString(RandomCharString(), _ => ColorUtility.ToHtmlStringRGB(_rainbowColors.PickRandom())),
 
             // Scramble
-
+            () =>
+            {
+                var charArray = RandomMessage.ToCharArray();
+                charArray.KnuthShuffle();
+                return new string(charArray);
+            },
             // Random HexColour
 
             // plays

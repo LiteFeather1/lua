@@ -27,8 +27,8 @@ public class VolumeSettings : MonoBehaviour
 
     private void OnDisable()
     {
-        PlayerPrefsHelper.SaveMusicVolume(_musicSlider.value);
-        PlayerPrefsHelper.SaveSFXVolume(_sfxSlider.value);
+        PlayerPrefsHelper.SetMusicVolume(_musicSlider.value);
+        PlayerPrefsHelper.SetSFXVolume(_sfxSlider.value);
     }
 
     private void SetMusicVolume(float volume)

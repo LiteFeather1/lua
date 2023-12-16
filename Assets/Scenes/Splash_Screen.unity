@@ -1576,7 +1576,7 @@ MonoBehaviour:
   - "Keep Calm and Play Lua\r"
   - "Great mage rebellion\r"
   - "42\r"
-  - 01001100 \n 01010101 \n 01000001
+  - 01001100\n01010101\n01000001
   _seasonalMessages: {fileID: 11400000, guid: 46eb8cea998e71a4d8ad82e40f856ce4, type: 2}
   _rainbowColors: {fileID: 11400000, guid: b43dcf31deafca64f8ee885301a4b2a9, type: 2}
 --- !u!114 &1684585870
