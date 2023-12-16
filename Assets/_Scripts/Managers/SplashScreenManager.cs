@@ -109,7 +109,7 @@ public class SplashScreenManager : MonoBehaviour
         sr_messages.Add(Application.productName);
         sr_messages.Add(Application.genuine ? "It's Genuine" : "Modding? Alone?");
 
-        sr_messages.Add($"Session {PlayerPrefsHelper.GetSession()}");
+        sr_messages.Add($"Session {PlayerPrefsHelper.GetSessions()}");
 
         s_specialMessages = new Func<string>[]
         {
@@ -200,16 +200,26 @@ public class SplashScreenManager : MonoBehaviour
                                        .Append('#').Append(hexColour)
                                        .Append("</color>")
                                        .ToString();
-            }
+            },
 
-            // Play time
-            // All time played
+            // StartUp time
+            () => ConvertToHourMinuteSeconds("Since Start up: ", (float)Time.realtimeSinceStartupAsDouble),
 
-            // plays
+            // Sessions
+            () => $"Sessions: {PlayerPrefsHelper.GetSessions()}",
+
+            // Player Time
+            () => ConvertToHourMinuteSeconds("Play time: ", PlayerPrefsHelper.GetPlayTime()),
+            // Runs Played
+            () => $"Runs: {PlayerPrefsHelper.GetRuns()}",
             // Enemies Killed
+            () => $"Enemies Killed: {PlayerPrefsHelper.GetEnemiesKilled()}",
             // Cards Played
-            // Cards ryclicled
+            () => $"Cards Played: {PlayerPrefsHelper.GetCardsPlayed()}",
+            // Cards Recycled
+            () => $"Cards Recycled: {PlayerPrefsHelper.GetCardsRecycled()}",
             // Candy Eearned
+            () => $"Candy Earned: {PlayerPrefsHelper.GetCandyEarned()}",
         };
 
         var possibilities = sr_messages.Count + _seasonalMessages.Default.Length + 2;
@@ -247,6 +257,19 @@ public class SplashScreenManager : MonoBehaviour
             for (int i = 0; i < chars.Length; i++)
                 chars[i] = CHARACTERS.PickRandom();
             return new(chars);
+        }
+
+        static string ConvertToHourMinuteSeconds(string s, float time)
+        {
+            var hours = Mathf.FloorToInt(time / 3600f);
+            var minutes = Mathf.FloorToInt(time / 60f % 60f);
+            var seconds = Mathf.FloorToInt(time % 60f);
+            sr_stringBuilder.Clear().Append(s);
+            if (hours >= 1)
+                sr_stringBuilder.Append(hours).Append(':');
+            sr_stringBuilder.Append(minutes.ToString("00")).Append(':')
+                            .Append(seconds.ToString("00"));
+            return sr_stringBuilder.ToString();
         }
 
     }

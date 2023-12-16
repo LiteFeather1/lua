@@ -6,6 +6,8 @@ public abstract class PowerUpModifier : PowerUp
     [SerializeField] private CompositeValueModifier _modifier;
     [SerializeField] private ValueFloat _valueToRemove;
 
+    public CompositeValueModifier Modifier => _modifier;
+
     protected override string Num
     {
         get

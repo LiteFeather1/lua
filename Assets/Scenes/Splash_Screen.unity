@@ -1283,7 +1283,10 @@ MonoBehaviour:
   - {fileID: 1374594584, guid: 9597046be1f803a45bde8069dd619320, type: 3}
   - {fileID: 1301208098, guid: 9597046be1f803a45bde8069dd619320, type: 3}
   - {fileID: -514428840, guid: 9597046be1f803a45bde8069dd619320, type: 3}
-  _powerUpProblems: []
+  _powerUpProblems:
+  - PowerUP: {fileID: 11400000, guid: 6d26f4b67ca022d46975e5b1e1aed0ee, type: 2}
+    Problems:
+    - Power up modifier shouldn't be percent multiplier
 --- !u!1 &1530324912
 GameObject:
   m_ObjectHideFlags: 0

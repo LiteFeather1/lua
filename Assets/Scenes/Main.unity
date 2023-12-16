@@ -3565,9 +3565,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FPS: 0.06
+  m_text: 'FPS: 0.32
 
-    15661.74 ms'
+    3156.46 ms'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
   m_sharedMaterial: {fileID: 7764967047682581053, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
@@ -8419,8 +8419,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c3344c93157a06440b5b658fd5c8bcf8, type: 2}
   - {fileID: 11400000, guid: b8c4f061a05d65c45885223445aa71a0, type: 2}
   - {fileID: 11400000, guid: 8c6a259d34569ab469341af94b2f3ae7, type: 2}
-  - {fileID: 11400000, guid: c2be24ad760fcab41a1e51d241d9bea6, type: 2}
-  - {fileID: 11400000, guid: 4eaeeddb849d9df4e803aad003d665be, type: 2}
   - {fileID: 11400000, guid: 79e8f219685a2304186a979adad12a7b, type: 2}
   - {fileID: 11400000, guid: 112385f36fba6f340b089504bf36fa3b, type: 2}
   - {fileID: 11400000, guid: a2b3feeb3b1335a4199c87a7d82e69fd, type: 2}
@@ -8449,7 +8447,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d6d478c996489324986423532c7f7cb1, type: 2}
   - {fileID: 11400000, guid: 63b10fc08c3862147ae2eaaabf303606, type: 2}
   - {fileID: 11400000, guid: 910844b429242784c8691b7187647d88, type: 2}
-  - {fileID: 11400000, guid: 362121bbd495f9b4583084584767ca92, type: 2}
   - {fileID: 11400000, guid: 111af9b328bbd6f4886dd84e21987694, type: 2}
   - {fileID: 11400000, guid: f276ff5abb397e240919e02d0e3ad9a8, type: 2}
   - {fileID: 11400000, guid: 5f870b6423fd5234ca6de4b5e724fcf8, type: 2}

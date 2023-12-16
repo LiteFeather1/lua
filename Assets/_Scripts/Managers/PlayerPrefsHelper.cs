@@ -30,9 +30,9 @@ public static class PlayerPrefsHelper
     public static void AddRun() => PlayerPrefs.SetInt(RUNS, PlayerPrefs.GetInt(RUNS, 0) + 1);
 
     public static float GetPlayTime() => PlayerPrefs.GetFloat(PLAY_TIME, 0f);
-    public static float AddPlayTime(float timeToAdd)
+    public static void AddPlayTime(float timeToAdd)
     {
-        return PlayerPrefs.GetFloat(PLAY_TIME, PlayerPrefs.GetFloat(PLAY_TIME, 0f) + timeToAdd);
+        PlayerPrefs.SetFloat(PLAY_TIME, PlayerPrefs.GetFloat(PLAY_TIME, 0f) + timeToAdd);
     }
 
     public static int GetEnemiesKilled() => PlayerPrefs.GetInt(ENEMIES_KILLED, 0);

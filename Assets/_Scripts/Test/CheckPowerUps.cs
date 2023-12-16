@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.Linq;
 
 public class CheckPowerUps : MonoBehaviour
 {
@@ -67,6 +68,22 @@ public class CheckPowerUps : MonoBehaviour
             }
             else if (!powerUp.Name.Contains(tierToPlus[powerUp.TierIcon]))
                 problems.Add("Power up has not enough pluses");
+
+            if (powerUp.PowerUpsToUnlock.Contains(powerUp))
+                problems.Add("Power ups containst it self");
+
+            if (powerUp is PowerUpModifier powerUpModifier)
+            {
+                switch (powerUpModifier.Modifier)
+                {
+                    case { Value: > 0f, Type: CompositeValueModifierType.PercentMultiplier }:
+                        problems.Add("Power up modifier shouldn't be percent multiplier");
+                        break;
+                    case { Value: < 0f, Type: CompositeValueModifierType.PercentAdditive }:
+                        problems.Add("Power up modifier shouldn't be percent additive");
+                        break;
+                }
+            }
 
             if (problems.Count > 0)
                 powerUpProblem.Add(new(powerUp, problems.ToArray()));
