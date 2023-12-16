@@ -2,8 +2,8 @@ using UnityEngine;
 
 public abstract class Seasonal<T, G> : ScriptableObject, ISeasonal where G : ISeasonalSetable<T>
 {
-#if UNITY_EDITOR
     [SerializeField] protected T _default;
+#if UNITY_EDITOR
     public void SetDefault() => _toSet.SetSeasonal(_default);
 #endif
 

@@ -3311,9 +3311,9 @@ MonoBehaviour:
         _object: {fileID: 1124217388555753815, guid: 49ea02d64db183745b62ee7513381e9d, type: 3}
         _initialPoolSize: 10
       _weight: 0.5
-  _maxEnemiesPerBurstRange: {x: 3, y: 18}
-  _minEnemiesPerBurstRange: {x: 2, y: 14}
-  _enemiesPerBurstOffset: {x: 1, y: 7}
+  _maxEnemiesPerBurstRange: {x: 5, y: 18}
+  _minEnemiesPerBurstRange: {x: 3, y: 14}
+  _enemiesPerBurstOffset: {x: 2, y: 8}
   _maxSpawnTimeRange: {x: 10, y: 2}
   _minSpawnTimeRange: {x: 7.5, y: 1}
   _spawnTimeOffset: {x: 2.5, y: 0.5}
@@ -3565,9 +3565,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FPS: 0.96
+  m_text: 'FPS: 0.67
 
-    1038.24 ms'
+    1502.72 ms'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
   m_sharedMaterial: {fileID: 7764967047682581053, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}

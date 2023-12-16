@@ -954,9 +954,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1228,7 +1228,7 @@ MonoBehaviour:
     _day: 31
     _month: 10
   - <SeasonName>k__BackingField: Christmas
-    _dayStart: 23
+    _dayStart: 10
     _monthStart: 12
     _dayEnd: 31
     _monthEnd: 12
@@ -1579,6 +1579,7 @@ MonoBehaviour:
   - 01001100\n01010101\n01000001
   _seasonalMessages: {fileID: 11400000, guid: 46eb8cea998e71a4d8ad82e40f856ce4, type: 2}
   _rainbowColors: {fileID: 11400000, guid: b43dcf31deafca64f8ee885301a4b2a9, type: 2}
+  a: 0
 --- !u!114 &1684585870
 MonoBehaviour:
   m_ObjectHideFlags: 0

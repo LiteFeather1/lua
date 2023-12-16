@@ -122,55 +122,90 @@ public class SplashScreenManager : MonoBehaviour
             },
 
             // Rainbow order
-            () => ColourizedString(RAINBOW, (i) => ColorUtility.ToHtmlStringRGB(_rainbowColors.Value[i])),
+            () => ColourizedStringChars(RAINBOW, (i) => ColorUtility.ToHtmlStringRGB(_rainbowColors.Value[i])),
             // Rainbow order random
             () =>
             {
                 var r = Random.Range(0, _rainbowColors.Length);
-                return ColourizedString(RAINBOW, (i) => RandomRainbowColourMod(i, r));
+                return ColourizedStringChars(RAINBOW, (i) => RandomRainbowColourMod(i, r));
             },
             // Rainbow random
-            () => ColourizedString(RAINBOW, _ => ColorUtility.ToHtmlStringRGB(_rainbowColors.PickRandom())),
+            () => ColourizedStringChars(RAINBOW, _ => ColorUtility.ToHtmlStringRGB(_rainbowColors.PickRandom())),
             // Rainbow random unique
             () =>
             {
                 var colours = Enumerable.Range(0, 7).ToArray();
                 colours.KnuthShuffle();
-                return ColourizedString(RAINBOW, (i) => ColorUtility.ToHtmlStringRGB(_rainbowColors[colours[i]]));
+                return ColourizedStringChars(RAINBOW, (i) => ColorUtility.ToHtmlStringRGB(_rainbowColors[colours[i]]));
             },
 
             // Colourized random rainbow
-            () => ColourizedString(COLOURIZED, _ => ColorUtility.ToHtmlStringRGB(_rainbowColors.PickRandom())),
+            () => ColourizedStringChars(COLOURIZED, _ => ColorUtility.ToHtmlStringRGB(_rainbowColors.PickRandom())),
             // Colourized order rainbow
             () =>
             {
                 var r = Random.Range(0, _rainbowColors.Length);
-                return ColourizedString(COLOURIZED, (i) => RandomRainbowColourMod(i, r));
+                return ColourizedStringChars(COLOURIZED, (i) => RandomRainbowColourMod(i, r));
             },
             // Colourized random HSV
-            () => ColourizedString(COLOURIZED, _ => ColorUtility.ToHtmlStringRGB(Random.ColorHSV())),
+            () => ColourizedStringChars(COLOURIZED, _ => ColorUtility.ToHtmlStringRGB(Random.ColorHSV())),
             // Colourized random HEX
-            () => ColourizedString(COLOURIZED, _ => RandomHexColour()),
+            () => ColourizedStringChars(COLOURIZED, _ => RandomHexColour()),
 
             // Random char
             () => RandomCharString(),
-            () => ColourizedString(RandomCharString(), _ => RandomHexColour()),
-            () => ColourizedString(RandomCharString(), _ => ColorUtility.ToHtmlStringRGB(_rainbowColors.PickRandom())),
+            () => ColourizedStringChars(RandomCharString(), _ => RandomHexColour()),
+            () => ColourizedStringChars(RandomCharString(), _ => ColorUtility.ToHtmlStringRGB(_rainbowColors.PickRandom())),
 
             // Scramble
             () =>
             {
                 var charArray = RandomMessage.ToCharArray();
                 charArray.KnuthShuffle();
-                return new string(charArray);
+                print("Scramble");
+                return new(charArray);
             },
-            // Random HexColour
+            // Scramble split
+            () =>
+            {
+                var splits = RandomMessage.Split(' ');
+                sr_stringBuilder.Clear();
+                print("Scramble 2 ");
+                for (int i = 0; i < splits.Length; i++)
+                {
+                   var charArray = splits[i].ToCharArray();
+                   charArray.KnuthShuffle();
+                   sr_stringBuilder.Append(charArray).Append(' ');
+                }
 
-            // plays
+                return sr_stringBuilder.ToString();
+            },
+
+            // Random Hexcolour
+            () =>
+            {
+                var hexColour = RandomHexColour();
+                return sr_stringBuilder.Clear()
+                                       .Append("<color=#").Append(hexColour).Append('>')
+                                       .Append('#').Append(hexColour)
+                                       .Append("</color>")
+                                       .ToString();
+            },
+            // Rainbow Hexcolour
+            () =>
+            {
+                var hexColour = ColorUtility.ToHtmlStringRGB(_rainbowColors.PickRandom());
+                return sr_stringBuilder.Clear()
+                                       .Append("<color=#").Append(hexColour).Append('>')
+                                       .Append('#').Append(hexColour)
+                                       .Append("</color>")
+                                       .ToString();
+            }
 
             // Play time
             // All time played
 
+            // plays
             // Enemies Killed
             // Cards Played
             // Cards ryclicled
@@ -184,7 +219,7 @@ public class SplashScreenManager : MonoBehaviour
         sr_messages.Add($"{possibilities} Possibilities ");
         sr_messages.Add($"1 in {possibilities}");
 
-        static string ColourizedString(string s, Func<int, string> colour)
+        static string ColourizedStringChars(string s, Func<int, string> colour)
         {
 #if !UNITY_WEBGL && !UNITY_EDITOR
                 _hasHTMLTags = true;
@@ -192,10 +227,9 @@ public class SplashScreenManager : MonoBehaviour
             sr_stringBuilder.Clear();
             for (int i = 0; i < s.Length; ++i)
             {
-                sr_stringBuilder
-                    .Append($"<color=#").Append(colour(i)).Append('>')
-                    .Append(s[i])
-                    .Append("</color>");
+                sr_stringBuilder.Append($"<color=#").Append(colour(i)).Append('>')
+                                .Append(s[i])
+                                .Append("</color>");
             }
             return sr_stringBuilder.ToString();
         }
@@ -217,11 +251,11 @@ public class SplashScreenManager : MonoBehaviour
 
     }
 #if UNITY_EDITOR
-    private int a = 0;
+    public int a = 0;
     [ContextMenu("Test")]
     private void Test()
     {
-        RandomMessage = s_specialMessages[a++ % s_specialMessages.Length].Invoke();
+        RandomMessage = s_specialMessages[a % s_specialMessages.Length].Invoke();
         t_message.text = RandomMessage;
     }
 

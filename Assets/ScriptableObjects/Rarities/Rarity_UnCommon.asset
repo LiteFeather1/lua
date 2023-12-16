@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e873ff79999ae4d99e9680930cc04e, type: 3}
   m_Name: Rarity_UnCommon
   m_EditorClassIdentifier: 
-  <Weight>k__BackingField: 0.2
+  <Weight>k__BackingField: 0.18
   <RarityColour>k__BackingField: {r: 0.18396229, g: 1, b: 0.3173242, a: 1}
