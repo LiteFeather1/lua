@@ -3,7 +3,7 @@
 public static class PlayerPrefsHelper
 {
     private const string SESSIONS = "Sessions";
-    private const string PLAYS = "Plays";
+    private const string RUNS = "Runs";
     private const string PLAY_TIME = "All Play Time";
     private const string ENEMIES_KILLED = "Enemies Killed";
     private const string CARDS_PLAYED = "Cards Played";
@@ -23,11 +23,11 @@ public static class PlayerPrefsHelper
     public static float GetSFXVolume() => PlayerPrefs.GetFloat(SFX, .5f);
     public static void SetSFXVolume(float v) => PlayerPrefs.SetFloat(SFX, v);
 
-    public static int GetSession() => PlayerPrefs.GetInt(SESSIONS, 1);
-    public static void AddSession() => PlayerPrefs.SetInt(SESSIONS, PlayerPrefs.GetInt(SESSIONS, 1) + 1);
+    public static int GetSessions() => PlayerPrefs.GetInt(SESSIONS, 1);
+    public static void AddSession() => PlayerPrefs.SetInt(SESSIONS, PlayerPrefs.GetInt(SESSIONS, 0) + 1);
 
-    public static int GetPlays() => PlayerPrefs.GetInt(PLAYS, 1);
-    public static void AddPlay() => PlayerPrefs.SetInt(PLAYS, PlayerPrefs.GetInt(PLAYS, 1) + 1);
+    public static int GetRuns() => PlayerPrefs.GetInt(RUNS, 0);
+    public static void AddRun() => PlayerPrefs.SetInt(RUNS, PlayerPrefs.GetInt(RUNS, 0) + 1);
 
     public static float GetPlayTime() => PlayerPrefs.GetFloat(PLAY_TIME, 0f);
     public static float AddPlayTime(float timeToAdd)

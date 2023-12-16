@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private Witch _witch;
     private bool _witchDied;
+    private bool _saved;
 
     [Header("Settings")]
     [SerializeField] private AudioClip _music;
@@ -92,6 +93,8 @@ public class GameManager : MonoBehaviour
 
         _volume.profile.TryGet(out ChromaticAberration aberration);
         _chromaticAberration = aberration;
+
+        Application.quitting += SavePlayerPrefs;
     }
 
     private void Start()
@@ -139,6 +142,8 @@ public class GameManager : MonoBehaviour
         _spawnManager.EnemyDamagedInRange -= EnemyDamagedInRange;
 
         _uiManager.UnBindToWitch(_witch);
+
+        Application.quitting -= SavePlayerPrefs;
     }
 
     public void PauseUnpause()
@@ -161,6 +166,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadSplashScreen()
     {
+        SavePlayerPrefs();
         SceneManager.LoadScene(0);
         AudioManager.Instance.MusicSource.Stop();
         Time.timeScale = 1f;
@@ -198,17 +204,26 @@ public class GameManager : MonoBehaviour
                                    cardsReciclyed: _cardManager.Recycler.CardsRecycled,
                                    candy: _witch.TotalCurrencyGained);
 
-        PlayerPrefsHelper.AddPlay();
+        SavePlayerPrefs();
+
+        _endScreenManager.gameObject.SetActive(true);
+        _witchDied = true;
+        _chromaticAberration.intensity.value = .125f;
+    }
+
+    private void SavePlayerPrefs()
+    {
+        if (_saved)
+            return;
+
+        _saved = true;
+        PlayerPrefsHelper.AddRun();
         PlayerPrefsHelper.AddPlayTime(_playTime);
         PlayerPrefsHelper.AddEnemiesKilled(_spawnManager.EnemiesDied);
         PlayerPrefsHelper.AddCardsPlayed(_endScreenManager.CardsPlayed);
         PlayerPrefsHelper.AddCardsRecycled(_cardManager.Recycler.CardsRecycled);
         PlayerPrefsHelper.AddCandyEarned(_witch.TotalCurrencyGained);
         PlayerPrefsHelper.Save();
-
-        _endScreenManager.gameObject.SetActive(true);
-        _witchDied = true;
-        _chromaticAberration.intensity.value = .125f;
     }
 
     private void WitchLightning(IDamageable firstDamageable)
