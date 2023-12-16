@@ -312,7 +312,7 @@ public class CardManager : MonoBehaviour
         UnityEditor.Undo.RegisterCompleteObjectUndo(this, "Find Power Ups");
         var allPowers = LTFHelpers_EditorOnly.GetScriptableObjects<PowerUp>();
         _startingPowerUps = (from powerUp in allPowers
-                             where
+                             where !powerUp.name.StartsWith('X') &&
                                 !(from otherPowerUp in allPowers
                                   from unlockPowerUp in otherPowerUp.PowerUpsToUnlock
                                   where unlockPowerUp == powerUp
