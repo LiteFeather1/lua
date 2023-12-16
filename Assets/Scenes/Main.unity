@@ -3565,9 +3565,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FPS: 0.32
+  m_text: 'FPS: 0.28
 
-    3156.46 ms'
+    3580.81 ms'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
   m_sharedMaterial: {fileID: 7764967047682581053, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
@@ -8434,7 +8434,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ff49a91687baea44e8482d671540c4f1, type: 2}
   - {fileID: 11400000, guid: 0823dca55e61b064692f73963b97d6c6, type: 2}
   - {fileID: 11400000, guid: 1537ecb59e9bd8643be32902225cbdbc, type: 2}
-  - {fileID: 11400000, guid: 0a818ee11d7896b44a09b118d7fbd499, type: 2}
   - {fileID: 11400000, guid: 98a476555a75c7b41aed429cd9c33dc1, type: 2}
   - {fileID: 11400000, guid: 2686035772f78784aa7e311e98717759, type: 2}
   - {fileID: 11400000, guid: 6b62ebebf0c92f842b32b5c0ebdafb94, type: 2}
@@ -8691,10 +8690,10 @@ MonoBehaviour:
     _baseValue: 0
     _value: 0
   _onRecycleAddCurrency:
-    _baseValue: 0
+    _baseValue: 1
     _value: 0
   _onRecycleRefund:
-    _baseValue: 0
+    _baseValue: 0.1
     _value: 0
   _onCardPlayedDamageEnemies:
     _baseValue: 0
@@ -8703,7 +8702,7 @@ MonoBehaviour:
     _baseValue: 0
     _value: 0
   _onCardPlayedRefund:
-    _baseValue: 0
+    _baseValue: 0.01
     _value: 0
   _toDisableOnPause:
   - {fileID: 757530386}

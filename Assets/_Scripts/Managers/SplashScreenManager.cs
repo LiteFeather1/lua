@@ -25,10 +25,17 @@ public class SplashScreenManager : MonoBehaviour
     [SerializeField] private string[] _messages;
     [SerializeField] private SeasonalStringArray _seasonalMessages;
     [SerializeField] private ValueColourArray _rainbowColors;
-    private static readonly List<string> sr_messages = new();
     private static readonly Dictionary<string, RefValue<byte>> sr_lastMessages = new();
+    private static readonly List<string> sr_messages = new();
     private static Func<string>[] s_specialMessages;
     private static readonly System.Text.StringBuilder sr_stringBuilder = new();
+
+    [Header("Message Animation")]
+    [SerializeField] private Transform _messageRoot;
+    [SerializeField] private float _scaleSpeed;
+    [SerializeField] private float _scaleMagnitude;
+    [SerializeField] private float _rotSpeed;
+    [SerializeField] private float _rotMagnitude;
 
     public static string RandomMessage { get; private set; } = "Last Message";
 
@@ -43,10 +50,11 @@ public class SplashScreenManager : MonoBehaviour
 
         Initialization();
 
-        float randomValue = Random.value;
-        if (randomValue < 0.01f)
+        var randomValue = Random.value;
+        const float MIN = .05f;
+        if (randomValue <= MIN)
             RandomMessage = s_specialMessages.PickRandom()();
-        else if (randomValue >= (_seasonalMessages.ToSet.Length == 1 ? 0.01f : .5f))
+        else if (randomValue > (_seasonalMessages.ToSet.Length <= 1 ? MIN : .5f - MIN))
             do
                 RandomMessage = sr_messages.PickRandom();
             while (sr_lastMessages.ContainsKey(RandomMessage));
@@ -77,6 +85,16 @@ public class SplashScreenManager : MonoBehaviour
 
         SetWindowText(s_windowPtr.Value, $"Lua - {RandomMessage}");
 #endif
+    }
+
+    private void Update()
+    {
+        var time = Time.time;
+        var sinScale = 1f + (Mathf.Sin(time * _scaleSpeed) * _scaleMagnitude);
+        _messageRoot.localScale = new(sinScale, sinScale, sinScale);
+
+        var sinRot = Mathf.Sin(time * _rotSpeed) * _rotMagnitude;
+        _messageRoot.localRotation = Quaternion.Euler(0f, 0f, sinRot);
     }
 
     public void ButtonPlay() => SceneManager.LoadScene(1);
@@ -162,7 +180,6 @@ public class SplashScreenManager : MonoBehaviour
             {
                 var charArray = RandomMessage.ToCharArray();
                 charArray.KnuthShuffle();
-                print("Scramble");
                 return new(charArray);
             },
             // Scramble split
@@ -170,7 +187,6 @@ public class SplashScreenManager : MonoBehaviour
             {
                 var splits = RandomMessage.Split(' ');
                 sr_stringBuilder.Clear();
-                print("Scramble 2 ");
                 for (int i = 0; i < splits.Length; i++)
                 {
                    var charArray = splits[i].ToCharArray();
@@ -229,10 +245,11 @@ public class SplashScreenManager : MonoBehaviour
         sr_messages.Add($"{possibilities} Possibilities ");
         sr_messages.Add($"1 in {possibilities}");
 
-        static string ColourizedStringChars(string s, Func<int, string> colour)
+        #region Local Function
+        string ColourizedStringChars(string s, Func<int, string> colour)
         {
 #if !UNITY_WEBGL && !UNITY_EDITOR
-                _hasHTMLTags = true;
+            _hasHTMLTags = true;
 #endif
             sr_stringBuilder.Clear();
             for (int i = 0; i < s.Length; ++i)
@@ -271,29 +288,9 @@ public class SplashScreenManager : MonoBehaviour
                             .Append(seconds.ToString("00"));
             return sr_stringBuilder.ToString();
         }
-
+        #endregion
     }
 #if UNITY_EDITOR
-    public int a = 0;
-    [ContextMenu("Test")]
-    private void Test()
-    {
-        RandomMessage = s_specialMessages[a % s_specialMessages.Length].Invoke();
-        t_message.text = RandomMessage;
-    }
-
-    [ContextMenu("Go thru all")]
-    private void GoThruAll()
-    {
-        for (int i = 0; i < sr_messages.Count; i++)
-            t_message.text = RandomMessage = sr_messages[i];
-
-        for (int i = 0; i < s_specialMessages.Length; i++)
-            t_message.text = RandomMessage = s_specialMessages[i]();
-
-        for (int i = 0; i < _seasonalMessages.ToSet.Length; i++)
-            t_message.text = RandomMessage = _seasonalMessages.ToSet[i];
-    }
 
     [ContextMenu("Go thru all Slowly")]
     private void GoThruAllSlowly() => StartCoroutine(GoThruAll_CO());

@@ -40,9 +40,10 @@ Singleplayer
 Coming soon
 When it's finished
 Keep Calm and Play Lua
+Keep Calm and Respawn
 Great mage rebellion
 42
-01001100\n01010101\n01000001
+01001100 01010101 01000001
 Cats!
 A to Z
 It's a Kind of Magic
@@ -50,3 +51,8 @@ Jellybean monsters
 Loading...
 Lua Is You
 Age of dragons
+Balanced
+Unbalanced
+Play your cards right
+May the force be with you
+Hakuna Matata
