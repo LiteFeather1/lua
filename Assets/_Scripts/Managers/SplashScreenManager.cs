@@ -7,9 +7,9 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
+using System.Text.RegularExpressions;
 #if !UNITY_WEBGL && !UNITY_EDITOR
 using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
 #endif
 
 public class SplashScreenManager : MonoBehaviour
@@ -40,7 +40,6 @@ public class SplashScreenManager : MonoBehaviour
     public static string RandomMessage { get; private set; } = "Last Message";
 
 #if !UNITY_WEBGL && !UNITY_EDITOR
-    private bool _hasHTMLTags = false;
     private static IntPtr? s_windowPtr;
 #endif
 
@@ -81,7 +80,7 @@ public class SplashScreenManager : MonoBehaviour
         if (s_windowPtr == null)
              s_windowPtr = FindWindow(null, Application.productName);
 
-        if (_hasHTMLTags)
+        if (Regex.IsMatch(RandomMessage, "<.*?>"))
             RandomMessage = Regex.Replace(RandomMessage, "<.*?>", string.Empty);
 
         SetWindowText(s_windowPtr.Value, $"Lua - {RandomMessage}");
@@ -179,6 +178,8 @@ public class SplashScreenManager : MonoBehaviour
             // Scramble
             () =>
             {
+                TryRemoveHTMLTags();
+
                 var charArray = RandomMessage.ToCharArray();
                 charArray.KnuthShuffle();
                 return new(charArray);
@@ -186,6 +187,8 @@ public class SplashScreenManager : MonoBehaviour
             // Scramble split
             () =>
             {
+                TryRemoveHTMLTags();
+
                 var splits = RandomMessage.Split(' ');
                 sr_stringBuilder.Clear();
                 for (int i = 0; i < splits.Length; i++)
@@ -278,14 +281,12 @@ public class SplashScreenManager : MonoBehaviour
 
         sr_messages.Add($"{possibilities} Possibilities ");
         sr_messages.Add($"1 in {possibilities}");
+        print(possibilities);
 
         #region Local Function
 
         string ColourizedStringChars(string s, Func<int, string> colour)
         {
-#if !UNITY_WEBGL && !UNITY_EDITOR
-            _hasHTMLTags = true;
-#endif
             sr_stringBuilder.Clear();
             for (int i = 0; i < s.Length; ++i)
             {
@@ -311,18 +312,29 @@ public class SplashScreenManager : MonoBehaviour
             return new(chars);
         }
 
+        static void TryRemoveHTMLTags()
+        {
+            if (Regex.IsMatch(RandomMessage, "<.*?>"))
+                RandomMessage = Regex.Replace(RandomMessage, "<.*?>", string.Empty);
+        }
+
+
         static string ConvertToHourMinuteSeconds(string s, float time)
         {
             var hours = Mathf.FloorToInt(time / 3600f);
             var minutes = Mathf.FloorToInt(time / 60f % 60f);
             var seconds = Mathf.FloorToInt(time % 60f);
+
             sr_stringBuilder.Clear().Append(s);
+
             if (hours >= 1)
                 sr_stringBuilder.Append(hours).Append(':');
-            sr_stringBuilder.Append(minutes.ToString("00")).Append(':')
-                            .Append(seconds.ToString("00"));
-            return sr_stringBuilder.ToString();
+
+            return sr_stringBuilder.Append(minutes.ToString("00")).Append(':')
+                                   .Append(seconds.ToString("00"))
+                                   .ToString();
         }
+
         #endregion
     }
 
