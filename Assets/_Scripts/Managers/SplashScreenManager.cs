@@ -6,17 +6,17 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Random = UnityEngine.Random;
 using System.Text.RegularExpressions;
+using Random = UnityEngine.Random;
 #if !UNITY_WEBGL && !UNITY_EDITOR
 using System.Runtime.InteropServices;
 #endif
 
 public class SplashScreenManager : MonoBehaviour
 {
-    const string COLOURIZED = "COLOURIZED";
-    const string RAINBOW = "RAINBOW";
-    const string CHARACTERS = "$%#@!*abcdefghijklmnopqrstuvwxyz1234567890?;:ABCDEFGHIJKLMNOPQRSTUVWXYZ^& ";
+    private const string COLOURIZED = "COLOURIZED";
+    private const string RAINBOW = "RAINBOW";
+    private const string CHARACTERS = "$%#@!*abcdefghijklmnopqrstuvwxyz1234567890?;:ABCDEFGHIJKLMNOPQRSTUVWXYZ^& ";
 
     [SerializeField] private TextMeshProUGUI t_version;
 
@@ -47,90 +47,27 @@ public class SplashScreenManager : MonoBehaviour
     {
         t_version.text = Application.version;
 
-        Initialization();
-
-        var randomValue = Random.value;
-        const float MIN = .05f;
-        if (randomValue <= MIN)
-            // TODO Use switch instead of Func<string>
-            RandomMessage = s_specialMessages.PickRandom()();
-        else if (randomValue > (_seasonalMessages.ToSet.Length <= 1 ? MIN : .5f - MIN))
-            do
-                RandomMessage = sr_messages.PickRandom();
-            while (sr_lastMessages.ContainsKey(RandomMessage));
-        else
-            do
-                RandomMessage = _seasonalMessages.ToSet.PickRandom();
-            while (sr_lastMessages.ContainsKey(RandomMessage));
-
-        sr_lastMessages.Add(RandomMessage, new(0));
-        foreach (var key in sr_lastMessages.Keys.ToArray())
-            if (sr_lastMessages[key].Value++ == 4)
-                sr_lastMessages.Remove(key);
-
-        t_message.text = RandomMessage;
-
-#if !UNITY_WEBGL && !UNITY_EDITOR
-        [DllImport("user32.dll", EntryPoint = "FindWindow")]
-        static extern IntPtr FindWindow(string className, string windowName);
-        [DllImport("user32.dll", EntryPoint = "SetWindowText")]
-        static extern bool SetWindowText(IntPtr hwnd, string lpString);
-
-        //Get the window handle.
-        if (s_windowPtr == null)
-             s_windowPtr = FindWindow(null, Application.productName);
-
-        if (Regex.IsMatch(RandomMessage, "<.*?>"))
-            RandomMessage = Regex.Replace(RandomMessage, "<.*?>", string.Empty);
-
-        SetWindowText(s_windowPtr.Value, $"Lua - {RandomMessage}");
-#endif
-    }
-
-    private void Update()
-    {
-        var time = Time.time;
-        var sinScale = 1f + (Mathf.Sin(time * _scaleSpeed) * _scaleMagnitude);
-        _messageRoot.localScale = new(sinScale, sinScale, sinScale);
-
-        var sinRot = Mathf.Sin(time * _rotSpeed) * _rotMagnitude;
-        _messageRoot.localRotation = Quaternion.Euler(0f, 0f, sinRot);
-    }
-
-    public void ButtonPlay() => SceneManager.LoadScene(1);
-
-    public void ButtonQuit()
-    {
-#if UNITY_EDITOR
-        EditorApplication.ExitPlaymode();
-#else
-        Application.Quit();
-#endif
-    }
-
-    private void Initialization()
-    {
-        if (sr_messages.Count != 0)
-            return;
-
-        sr_messages.AddRange(_messages);
-
-        sr_messages.Add(DateTime.Now.Hour switch
+        // Initialization
+        if (sr_messages.Count == 0)
         {
-            int hour when hour >= 4 && hour < 12 => "Good Morning!",
-            int hour when hour >= 12 && hour < 19 => "Good Afternoon!",
-            _ => "Good Evening!",
-        });
+            sr_messages.AddRange(_messages);
 
-        sr_messages.Add(Application.version);
-        sr_messages.Add(Application.companyName);
-        sr_messages.Add(Application.productName);
-        sr_messages.Add(Application.genuine ? "It's Genuine" : "Modding? Alone?");
+            sr_messages.Add(DateTime.Now.Hour switch
+            {
+                int hour when hour >= 4 && hour < 12 => "Good Morning!",
+                int hour when hour >= 12 && hour < 19 => "Good Afternoon!",
+                _ => "Good Evening!",
+            });
 
-        sr_messages.Add($"Session {PlayerPrefsHelper.GetSessions()}");
+            sr_messages.Add(Application.version);
+            sr_messages.Add(Application.companyName);
+            sr_messages.Add(Application.productName);
+            sr_messages.Add(Application.genuine ? "It's Genuine" : "Modding? Alone?");
 
-        s_specialMessages = new Func<string>[]
-        {
+            sr_messages.Add($"Session {PlayerPrefsHelper.GetSessions()}");
+
+            s_specialMessages = new Func<string>[]
+            {
             // Seed
             () =>
             {
@@ -242,7 +179,7 @@ public class SplashScreenManager : MonoBehaviour
             () => $"Candy Earned: {PlayerPrefsHelper.GetCandyEarned()}",
 
             // Lua Binary colored
-            () => 
+            () =>
             {
                 t_message.fontSizeMin = t_message.fontSizeMax;
                 return sr_stringBuilder.Clear()
@@ -250,7 +187,7 @@ public class SplashScreenManager : MonoBehaviour
                                        .Append("<color=#").Append("E8E6E1").Append('>').Append("01010101").AppendLine()
                                        .Append("<color=#").Append("ED8511").Append('>').Append("01000001").AppendLine()
                                        .Append("</color>")
-                                       .ToString(); 
+                                       .ToString();
             },
             // Lua binary meaning
             () =>
@@ -273,15 +210,50 @@ public class SplashScreenManager : MonoBehaviour
                                        .Append("</color>")
                                        .ToString();
             },
-        };
+            };
 
-        var possibilities = sr_messages.Count + _seasonalMessages.Default.Length + s_specialMessages.Length + 2;
-        foreach (var value in _seasonalMessages.Dictionary.Values)
-            possibilities += value.Length;
+            var possibilities = sr_messages.Count + _seasonalMessages.Default.Length + s_specialMessages.Length + 2;
+            foreach (var value in _seasonalMessages.Dictionary.Values)
+                possibilities += value.Length;
 
-        sr_messages.Add($"{possibilities} Possibilities ");
-        sr_messages.Add($"1 in {possibilities}");
-        print(possibilities);
+            sr_messages.Add($"{possibilities} Possibilities ");
+            sr_messages.Add($"1 in {possibilities}");
+        }
+
+        var randomValue = Random.value;
+        const float MIN = .05f;
+        if (randomValue <= MIN)
+            RandomMessage = s_specialMessages.PickRandom()();
+        else if (randomValue > (_seasonalMessages.ToSet.Length <= 1 ? MIN : .5f - MIN))
+            do
+                RandomMessage = sr_messages.PickRandom();
+            while (sr_lastMessages.ContainsKey(RandomMessage));
+        else
+            do
+                RandomMessage = _seasonalMessages.ToSet.PickRandom();
+            while (sr_lastMessages.ContainsKey(RandomMessage));
+
+        sr_lastMessages.Add(RandomMessage, new(0));
+        foreach (var key in sr_lastMessages.Keys.ToArray())
+            if (sr_lastMessages[key].Value++ == 4)
+                sr_lastMessages.Remove(key);
+
+        t_message.text = RandomMessage;
+
+#if !UNITY_WEBGL && !UNITY_EDITOR
+        [DllImport("user32.dll", EntryPoint = "FindWindow")]
+        static extern IntPtr FindWindow(string className, string windowName);
+        [DllImport("user32.dll", EntryPoint = "SetWindowText")]
+        static extern bool SetWindowText(IntPtr hwnd, string lpString);
+
+        //Get the window handle.
+        if (s_windowPtr == null)
+             s_windowPtr = FindWindow(null, Application.productName);
+
+        TryRemoveHTMLTags();
+
+        SetWindowText(s_windowPtr.Value, $"Lua - {RandomMessage}");
+#endif
 
         #region Local Function
 
@@ -334,8 +306,28 @@ public class SplashScreenManager : MonoBehaviour
                                    .Append(seconds.ToString("00"))
                                    .ToString();
         }
+    #endregion
+    }
 
-        #endregion
+private void Update()
+    {
+        var time = Time.time;
+        var sinScale = 1f + (Mathf.Sin(time * _scaleSpeed) * _scaleMagnitude);
+        _messageRoot.localScale = new(sinScale, sinScale, sinScale);
+
+        var sinRot = Mathf.Sin(time * _rotSpeed) * _rotMagnitude;
+        _messageRoot.localRotation = Quaternion.Euler(0f, 0f, sinRot);
+    }
+
+    public void ButtonPlay() => SceneManager.LoadScene(1);
+
+    public void ButtonQuit()
+    {
+#if UNITY_EDITOR
+        EditorApplication.ExitPlaymode();
+#else
+        Application.Quit();
+#endif
     }
 
 #if UNITY_EDITOR
@@ -372,6 +364,20 @@ public class SplashScreenManager : MonoBehaviour
                            .ToArray();
 
         var otherMessages = new List<string>();
+
+        var scriptGUID = AssetDatabase.FindAssets($"t:script", new string[] { "Assets/_Scripts" });
+        otherMessages.Add($"{scriptGUID.Length} Scripts");
+
+        var lines = 0;
+        var characters = 0;
+        for (int i = 0;i < scriptGUID.Length; i++)
+        {
+            var path = AssetDatabase.GUIDToAssetPath(scriptGUID[i]);
+            lines += System.IO.File.ReadAllLines(path).Length;
+            characters += System.IO.File.ReadAllText(path).Length;
+        }
+        otherMessages.Add($"{lines} Lines");
+        otherMessages.Add($"{characters} Characters");
 
         _messages = new string[fileMessages.Length + otherMessages.Count];
         fileMessages.CopyTo(_messages, 0);
