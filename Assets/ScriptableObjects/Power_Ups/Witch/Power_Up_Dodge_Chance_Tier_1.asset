@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Dodge+
   _effect: +$ Chance to Dodge Enemies Attacks
-  _cost: 16
+  _cost: 14
   _rarity: {fileID: 11400000, guid: 0869bc92c695cdd4c97f8b266f87f121, type: 2}
   _icon: {fileID: 1121717392, guid: 9597046be1f803a45bde8069dd619320, type: 3}
   _tierIcon: {fileID: 1374594584, guid: 9597046be1f803a45bde8069dd619320, type: 3}

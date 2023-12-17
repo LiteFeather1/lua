@@ -7,10 +7,10 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Text.RegularExpressions;
-using Random = UnityEngine.Random;
 #if !UNITY_WEBGL && !UNITY_EDITOR
 using System.Runtime.InteropServices;
 #endif
+using Random = UnityEngine.Random;
 
 public class SplashScreenManager : MonoBehaviour
 {

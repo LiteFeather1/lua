@@ -148,28 +148,47 @@ public class GameManager : MonoBehaviour
 
     public void PauseUnpause()
     {
-        bool paused = Time.timeScale > 0f;
-        if (paused)
+        bool wasPaused = Time.timeScale > 0f;
+        if (wasPaused)
         {
             Time.timeScale = 0f;
+
             for (int i = 0; i < _toDisableOnPause.Length; i++)
-                _toDisableOnPause[i].enabled = !paused;
+                _toDisableOnPause[i].enabled = !wasPaused;
         }
         else
         {
             Time.timeScale = 1f;
+
             for (int i = 0; i < _toDisableOnPause.Length; i++)
-                _toDisableOnPause[i].enabled = !paused;
+                _toDisableOnPause[i].enabled = !wasPaused;
         }
-        _uiManager.SetPauseScreen(paused);
+
+        _uiManager.SetPauseScreen(wasPaused);
     }
 
+    // Button 
     public void LoadSplashScreen()
     {
         SavePlayerPrefs();
         SceneManager.LoadScene(0);
         AudioManager.Instance.MusicSource.Stop();
         Time.timeScale = 1f;
+    }
+
+    // Button 
+    public void ButtonToggleTips()
+    {
+        if (Time.timeScale > 0f)
+        {
+            Time.timeScale = 0f;
+            _uiManager.SetTipsActive();
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            _uiManager.DeactiveTips();
+        }
     }
 
     private void WitchDamaged()

@@ -2,7 +2,6 @@
 using TMPro;
 using UnityEngine.UI;
 using System.Collections;
-using System.Collections.Generic;
 
 public class UIManager : MonoBehaviour
 {
@@ -11,6 +10,7 @@ public class UIManager : MonoBehaviour
     [Header("Screens")]
     [SerializeField] private GameObject _pauseScreen;
     [SerializeField] private GameObject _gameUi;
+    [SerializeField] private GameObject _tipScreen;
 
     [Header("Fade")]
     [SerializeField] private float _fadeAlpha = .33f;
@@ -33,7 +33,6 @@ public class UIManager : MonoBehaviour
 
     public string TimeText => t_timeText.text;
 
-    public GameObject PauseScreen => _pauseScreen;
     public GameObject GameUi => _gameUi;
 
     public void BindToWitch(Witch witch)
@@ -64,8 +63,18 @@ public class UIManager : MonoBehaviour
 
     public void SetPauseScreen(bool value)
     {
-        _pauseScreen.SetActive(value);
+        if (!_tipScreen.activeSelf)
+            _pauseScreen.SetActive(value);
+        else
+            _tipScreen.SetActive(value);
     }
+
+    public void SetTipsActive()
+    {
+        _tipScreen.SetActive(true);
+    }
+
+    public void DeactiveTips() => _tipScreen.SetActive(false);
 
     public void UpdateTime(float time)
     {
