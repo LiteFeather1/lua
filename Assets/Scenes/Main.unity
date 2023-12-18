@@ -3414,6 +3414,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas-UI_Cursor
       objectReference: {fileID: 0}
+    - target: {fileID: 6817018509802563082, guid: 17a4ca7f6c7dc20418790fdfd2301d87, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817018509802563082, guid: 17a4ca7f6c7dc20418790fdfd2301d87, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817018509802563082, guid: 17a4ca7f6c7dc20418790fdfd2301d87, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.4400022
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817018509802563082, guid: 17a4ca7f6c7dc20418790fdfd2301d87, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.9600011
+      objectReference: {fileID: 0}
     - target: {fileID: 8212105196493787424, guid: 17a4ca7f6c7dc20418790fdfd2301d87, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -4720,9 +4736,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FPS: 0.55
+  m_text: 'FPS: 1
 
-    1807.03 ms'
+    996.8 ms'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
   m_sharedMaterial: {fileID: 7764967047682581053, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
