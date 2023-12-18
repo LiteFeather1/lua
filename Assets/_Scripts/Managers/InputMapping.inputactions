@@ -33,9 +33,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Left_Click",
+                    "name": "Right_Click",
                     "type": "Button",
                     "id": "421ff7e5-d8ab-4f21-8503-c50122c68934",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Left_Click",
+                    "type": "Button",
+                    "id": "bfc79275-faa4-488a-817e-2ef56035c433",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -213,7 +222,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Left_Click",
+                    "action": "Right_Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -225,6 +234,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Fullscreen_Toggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dc298711-fdec-4ed7-9e99-b7831b24a9ee",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left_Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

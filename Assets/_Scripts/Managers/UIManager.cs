@@ -69,10 +69,7 @@ public class UIManager : MonoBehaviour
             _tipScreen.SetActive(value);
     }
 
-    public void SetTipsActive()
-    {
-        _tipScreen.SetActive(true);
-    }
+    public void SetTipsActive() => _tipScreen.SetActive(true);
 
     public void DeactiveTips() => _tipScreen.SetActive(false);
 

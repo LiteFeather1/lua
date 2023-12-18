@@ -167,7 +167,7 @@ public class Witch : MonoBehaviour
     public FlipBook FlipBook => _flipBook;
 
     private void Awake()
-    {
+    {           
         _initialAcceleration = _acceleration;
         _waitInvulnerability = new(_invulnerabilityDuration);
 
@@ -205,7 +205,7 @@ public class Witch : MonoBehaviour
         var inputPlayer = InputManager.Inputs.Player;    
         if (inputPlayer.Moviment.IsPressed())   
             _inputDirection = inputPlayer.Moviment.ReadValue<Vector2>().normalized;
-        else if (inputPlayer.Left_Click.IsPressed())
+        else if (inputPlayer.Right_Click.IsPressed())
         {
             var direction = GameManager.Instance.Camera.ScreenToWorldPoint(Input.mousePosition) - transform.localPosition;
             if (Math.Abs(direction.x) < .01f)

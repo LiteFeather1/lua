@@ -55,9 +55,18 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Left_Click"",
+                    ""name"": ""Right_Click"",
                     ""type"": ""Button"",
                     ""id"": ""421ff7e5-d8ab-4f21-8503-c50122c68934"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Left_Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""bfc79275-faa4-488a-817e-2ef56035c433"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -235,7 +244,7 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Left_Click"",
+                    ""action"": ""Right_Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -249,6 +258,17 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
                     ""action"": ""Fullscreen_Toggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc298711-fdec-4ed7-9e99-b7831b24a9ee"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left_Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -260,6 +280,7 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
         m_Player_Moviment = m_Player.FindAction("Moviment", throwIfNotFound: true);
         m_Player_Pause_UnPause = m_Player.FindAction("Pause_UnPause", throwIfNotFound: true);
         m_Player_Mute_UnMute = m_Player.FindAction("Mute_UnMute", throwIfNotFound: true);
+        m_Player_Right_Click = m_Player.FindAction("Right_Click", throwIfNotFound: true);
         m_Player_Left_Click = m_Player.FindAction("Left_Click", throwIfNotFound: true);
         m_Player_Fullscreen_Toggle = m_Player.FindAction("Fullscreen_Toggle", throwIfNotFound: true);
     }
@@ -326,6 +347,7 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Moviment;
     private readonly InputAction m_Player_Pause_UnPause;
     private readonly InputAction m_Player_Mute_UnMute;
+    private readonly InputAction m_Player_Right_Click;
     private readonly InputAction m_Player_Left_Click;
     private readonly InputAction m_Player_Fullscreen_Toggle;
     public struct PlayerActions
@@ -335,6 +357,7 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
         public InputAction @Moviment => m_Wrapper.m_Player_Moviment;
         public InputAction @Pause_UnPause => m_Wrapper.m_Player_Pause_UnPause;
         public InputAction @Mute_UnMute => m_Wrapper.m_Player_Mute_UnMute;
+        public InputAction @Right_Click => m_Wrapper.m_Player_Right_Click;
         public InputAction @Left_Click => m_Wrapper.m_Player_Left_Click;
         public InputAction @Fullscreen_Toggle => m_Wrapper.m_Player_Fullscreen_Toggle;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -355,6 +378,9 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
             @Mute_UnMute.started += instance.OnMute_UnMute;
             @Mute_UnMute.performed += instance.OnMute_UnMute;
             @Mute_UnMute.canceled += instance.OnMute_UnMute;
+            @Right_Click.started += instance.OnRight_Click;
+            @Right_Click.performed += instance.OnRight_Click;
+            @Right_Click.canceled += instance.OnRight_Click;
             @Left_Click.started += instance.OnLeft_Click;
             @Left_Click.performed += instance.OnLeft_Click;
             @Left_Click.canceled += instance.OnLeft_Click;
@@ -374,6 +400,9 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
             @Mute_UnMute.started -= instance.OnMute_UnMute;
             @Mute_UnMute.performed -= instance.OnMute_UnMute;
             @Mute_UnMute.canceled -= instance.OnMute_UnMute;
+            @Right_Click.started -= instance.OnRight_Click;
+            @Right_Click.performed -= instance.OnRight_Click;
+            @Right_Click.canceled -= instance.OnRight_Click;
             @Left_Click.started -= instance.OnLeft_Click;
             @Left_Click.performed -= instance.OnLeft_Click;
             @Left_Click.canceled -= instance.OnLeft_Click;
@@ -402,6 +431,7 @@ public partial class @InputMapping: IInputActionCollection2, IDisposable
         void OnMoviment(InputAction.CallbackContext context);
         void OnPause_UnPause(InputAction.CallbackContext context);
         void OnMute_UnMute(InputAction.CallbackContext context);
+        void OnRight_Click(InputAction.CallbackContext context);
         void OnLeft_Click(InputAction.CallbackContext context);
         void OnFullscreen_Toggle(InputAction.CallbackContext context);
     }
