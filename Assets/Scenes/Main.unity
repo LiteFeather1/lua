@@ -3414,22 +3414,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas-UI_Cursor
       objectReference: {fileID: 0}
-    - target: {fileID: 6817018509802563082, guid: 17a4ca7f6c7dc20418790fdfd2301d87, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 6817018509802563082, guid: 17a4ca7f6c7dc20418790fdfd2301d87, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.92
-      objectReference: {fileID: 0}
-    - target: {fileID: 6817018509802563082, guid: 17a4ca7f6c7dc20418790fdfd2301d87, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1.4400022
-      objectReference: {fileID: 0}
-    - target: {fileID: 6817018509802563082, guid: 17a4ca7f6c7dc20418790fdfd2301d87, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.9600011
-      objectReference: {fileID: 0}
     - target: {fileID: 8212105196493787424, guid: 17a4ca7f6c7dc20418790fdfd2301d87, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -4351,8 +4335,8 @@ MonoBehaviour:
   _maxEnemiesPerBurstRange: {x: 3, y: 16}
   _minEnemiesPerBurstRange: {x: 2, y: 13}
   _enemiesPerBurstOffset: {x: 1, y: 8}
-  _maxSpawnTimeRange: {x: 10, y: 2}
-  _minSpawnTimeRange: {x: 7.5, y: 1}
+  _maxSpawnTimeRange: {x: 12.5, y: 2}
+  _minSpawnTimeRange: {x: 10, y: 1}
   _spawnTimeOffset: {x: 2.5, y: 0.5}
   _spawnArea: {fileID: 850318396}
   _enemyDiedSound: {fileID: 8300000, guid: de3392003c254c0489f645c21427a941, type: 3}
@@ -4736,9 +4720,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FPS: 1
+  m_text: 'FPS: 0.13
 
-    996.8 ms'
+    7654.8 ms'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
   m_sharedMaterial: {fileID: 7764967047682581053, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
@@ -7356,6 +7340,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1375221767}
+  - component: {fileID: 1375221770}
   - component: {fileID: 1375221768}
   - component: {fileID: 1375221769}
   m_Layer: 0
@@ -7449,6 +7434,20 @@ MonoBehaviour:
   _camera: {fileID: 519420031}
   _subject: {fileID: 256337799807947317}
   _sr: {fileID: 1375221768}
+--- !u!114 &1375221770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375221766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 557f39050e2ec284289ba6f729587a9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sr: {fileID: 1375221768}
+  _valueSprite: {fileID: 11400000, guid: 731c7575fa0a5454888b5077cda41428, type: 2}
 --- !u!1 &1387576570
 GameObject:
   m_ObjectHideFlags: 0
@@ -10211,7 +10210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _root: {fileID: 1699692668}
   _timeToDrawCard:
-    _baseValue: 8
+    _baseValue: 9
     _value: 0
   _startingPowerUps:
   - {fileID: 11400000, guid: 5a5292755a2d8364dbdc683b5c850021, type: 2}

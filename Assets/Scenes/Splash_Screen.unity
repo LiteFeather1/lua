@@ -1289,6 +1289,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c7462e329464d014591acb9c43ee259a, type: 2}
   - {fileID: 11400000, guid: cc941f5537bdae240a13941060ce84be, type: 2}
   - {fileID: 11400000, guid: 526972562be109c45953167e1a7d1b77, type: 2}
+  - {fileID: 11400000, guid: c0e4d8c266012c247ad3581848efc964, type: 2}
   _seasonalDaySprite:
   - {fileID: 11400000, guid: b4cc70bfb2794d84d891725517126a93, type: 2}
   _seasonalStringArray:

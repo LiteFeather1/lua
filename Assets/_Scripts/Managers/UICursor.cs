@@ -20,7 +20,7 @@ public class UICursor : MonoBehaviour
 
     private void OnApplicationFocus(bool focus)
     {
-        Cursor.visible = true;
+        Cursor.visible = false;
     }
 
     private void OnDestroy()

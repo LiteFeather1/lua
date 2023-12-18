@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2930d9186ee12c4db044a2c421a875d, type: 3}
+  m_Name: Seasonal_Sprite_Front_Houses
+  m_EditorClassIdentifier: 
+  _default: {fileID: 21300000, guid: 2a82f228828405c4b8f782a010221ace, type: 3}
+  _dictionary:
+    _entries:
+    - Key: Christmas
+      Value: {fileID: 21300000, guid: b1e07aab3a5d5234aa70578e8be01067, type: 3}
+  _toSet: {fileID: 11400000, guid: 731c7575fa0a5454888b5077cda41428, type: 2}

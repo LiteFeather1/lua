@@ -103,16 +103,17 @@ public class Initializer : MonoBehaviour
     private void GetSeasonalSprite()
     {
         var allSprites = GetSeasonal<SeasonalSprite>();
-        var daySprites = new List<SeasonalSprite>();
-        for(int i = 0; i < allSprites.Length; i++)
+        int d = 1;
+        for(int i = 0; i < allSprites.Length - d; i++)
         {
             if (allSprites[i].name[0] != 'D')
                 continue;
 
-            daySprites.Add(allSprites[i]);
+            (allSprites[i], allSprites[^d]) = (allSprites[^d++], allSprites[i]);
         }
-        _seasonalSprites = allSprites.ToArray();
-        _seasonalDaySprite = daySprites.ToArray();
+        var offSet = allSprites.Length - d + 1;
+        _seasonalSprites = allSprites[0..offSet];
+        _seasonalDaySprite = allSprites[offSet..];
     }
 
     [ContextMenu("Get Seasonal String Array")]
