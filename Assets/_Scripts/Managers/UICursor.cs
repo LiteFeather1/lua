@@ -9,7 +9,6 @@ public class UICursor : MonoBehaviour
 
     private void Awake()
     {
-        Cursor.visible = false;
         InputManager.Inputs.Player.Left_Click.performed += OnClickPerformed;
         InputManager.Inputs.Player.Left_Click.canceled += OnClickCanceled;
     }
@@ -32,9 +31,6 @@ public class UICursor : MonoBehaviour
 
     private void OnClickPerformed(InputAction.CallbackContext ctx)
     {
-#if UNITY_WEBGL
-        Cursor.visible = false;
-#endif
         _cursorImage.sprite = _pressedCursor;
     }
 
@@ -47,6 +43,7 @@ public class UICursor : MonoBehaviour
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSplashScreen)]
     private static void OnBeforeSplashScreen()
     {
+        Cursor.visible = false;
         Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
     }
 #endif
