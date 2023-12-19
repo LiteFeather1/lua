@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7dd4b964935aec43ad7d8dc6ff08931, type: 3}
-  m_Name: Value_Float_0.5
+  m_Script: {fileID: 11500000, guid: de0f1058f2e6a8b4a8c74ef0dc23b463, type: 3}
+  m_Name: Value_Int_256
   m_EditorClassIdentifier: 
-  <Value>k__BackingField: 0.5
+  <Value>k__BackingField: 256

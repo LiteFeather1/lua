@@ -20,7 +20,6 @@ public class UIManager : MonoBehaviour
     [Header("Witch HP")]
     [SerializeField] private Image i_hpFill;
     [SerializeField] private Image i_hpFrame;
-    [SerializeField] private float _maxHPSize = 272f;
 
     [Header("Witch Shield")]
     [SerializeField] private Image i_shield;
@@ -116,8 +115,6 @@ public class UIManager : MonoBehaviour
 
     private void MaxHpIncreased(float maxHP, float t)
     {
-        if (maxHP > _maxHPSize)
-            maxHP = _maxHPSize;
         i_hpFill.rectTransform.sizeDelta = new(maxHP, i_hpFill.rectTransform.sizeDelta.y);
         var hpFrameWidth = maxHP + i_hpFrame.sprite.texture.width;
         i_hpFrame.rectTransform.sizeDelta = new(hpFrameWidth, i_hpFrame.rectTransform.sizeDelta.y);

@@ -9055,7 +9055,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   i_hpFill: {fileID: 300096512}
   i_hpFrame: {fileID: 1885250482}
-  _maxHPSize: 280
   i_shield: {fileID: 1387576572}
   i_witchPortrait: {fileID: 1742950384}
   _defaultSprite: {fileID: 21300000, guid: c7750bc9fddb46b408fbc846c9fd357b, type: 3}
@@ -10236,6 +10235,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 47813c8b2395f664d9d9b86c51960aa0, type: 2}
   - {fileID: 11400000, guid: d6d478c996489324986423532c7f7cb1, type: 2}
   - {fileID: 11400000, guid: 63b10fc08c3862147ae2eaaabf303606, type: 2}
+  - {fileID: 11400000, guid: 43d448644776d1b4a9dd1e4e3a258aec, type: 2}
   - {fileID: 11400000, guid: 910844b429242784c8691b7187647d88, type: 2}
   - {fileID: 11400000, guid: 111af9b328bbd6f4886dd84e21987694, type: 2}
   - {fileID: 11400000, guid: f276ff5abb397e240919e02d0e3ad9a8, type: 2}
@@ -12500,10 +12500,6 @@ PrefabInstance:
     - target: {fileID: 7450378837478392003, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
       propertyPath: m_Name
       value: Witch
-      objectReference: {fileID: 0}
-    - target: {fileID: 9027821827532596157, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
