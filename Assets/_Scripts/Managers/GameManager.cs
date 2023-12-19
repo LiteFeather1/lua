@@ -257,7 +257,7 @@ public class GameManager : MonoBehaviour
 
     private void EnemyDamagedInRange(float damage)
     {
-        _witch.TryLifeSteal(Random.value, damage);
+        _witch.TryLifeSteal(Random.value, damage, false);
     }
 
     private void PauseUnpause(InputAction.CallbackContext ctx) => PauseUnpause();

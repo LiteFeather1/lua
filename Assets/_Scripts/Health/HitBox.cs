@@ -6,7 +6,7 @@ public class HitBox : MonoBehaviour
     [SerializeField] private float _critChance;
     [SerializeField] private float _critMultiplier = 1.5f;
     [SerializeField] private float _knockBack = 1f;
-    public System.Action<IDamageable, float, Vector2> OnDamageAppplied { get; set; }
+    public System.Action<IDamageable, float, bool, Vector2> OnDamageAppplied { get; set; }
 
     public void SetDamage(float damage) => _damage = damage;
     public void SetCritChance(float chance) => _critChance = chance;
@@ -30,7 +30,7 @@ public class HitBox : MonoBehaviour
             var preDmgHp = damageable.Hp;
             float damage = crit ? _damage * _critMultiplier : _damage;
             damageable.TakeDamage(damage, _knockBack, crit, pos);
-            OnDamageAppplied?.Invoke(damageable, preDmgHp - damageable.Hp, pos);
+            OnDamageAppplied?.Invoke(damageable, preDmgHp - damageable.Hp, crit, pos);
         }
     }
 }

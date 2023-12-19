@@ -19,7 +19,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private Vector2 _randomAngleOffsetRange = new(0f, 0f);
     [SerializeField] private Vector2 _randomSpeedOffsetRange = new(0f, 0f);
 
-    public Action<IDamageable, float> OnDamageAppplied { get; set; }
+    public Action<IDamageable, float, bool> OnDamageAppplied { get; set; }
 
     protected virtual void Awake()
     {
@@ -156,14 +156,14 @@ public class Gun : MonoBehaviour
         bullet.Hitbox.OnDamageAppplied += DamageAppplied;
     }
 
-    private void DamageAppplied(IDamageable damageable, float damage, Vector2 pos)
+    private void DamageAppplied(IDamageable damageable, float damage, bool crit, Vector2 pos)
     {
         var bulletExplosion = _bulletDamage.GetObject();
         bulletExplosion.transform.position = pos;
         bulletExplosion.Play();
         bulletExplosion.gameObject.SetActive(true);
 
-        OnDamageAppplied?.Invoke(damageable, damage);
+        OnDamageAppplied?.Invoke(damageable, damage, crit);
     }
 
     private void ParticleCreated(Parentable particle)

@@ -360,19 +360,22 @@ public class Witch : MonoBehaviour
         _rb.drag = _decelerationRange.Evaluate(t);
     }
 
-    public void TryLifeSteal(float randomValue, float damage)
+    public void TryLifeSteal(float randomValue, float damage, bool crit)
     {
+        if (crit)
+            randomValue *= .5f;
+
         if (randomValue < _chanceToLifeSteal)
         {
             _health.Heal(damage * _lifeStealPercent);
         }
     }
 
-    private void DamageAppliedGun(IDamageable damageable, float damage)
+    private void DamageAppliedGun(IDamageable damageable, float damage, bool crit)
     {
         float randomValue = Random.value;
 
-        TryLifeSteal(randomValue, damage);
+        TryLifeSteal(randomValue, damage, crit);
 
         if (randomValue < _effectCreatorFire.Chance
             && damageable.CanAddDamageEffect((int)IDamageEffect.DamageEffectID.FIRE_ID))
