@@ -41,15 +41,15 @@ public class Aura : MonoBehaviour
     public bool IncreaseAura(int by)
     {
         _currentAuraIndex += by;
-        if (_currentAuraIndex > _auraSprites.Length - 1)
-            _currentAuraIndex = _auraSprites.Length;
+        if (_currentAuraIndex >= _auraSprites.Length)
+            _currentAuraIndex = _auraSprites.Length - 1;
 
         SetAura(_auraSprites[_currentAuraIndex]);
 
         return _currentAuraIndex == _auraSprites.Length;
     }
 
-    public void SetDamage(float value) => _hitbox.SetDamage(value * _damagePercent);
-    public void SetCrit(float value) => _hitbox.SetCritChance(value * .33f);
+    public void SetDamage(float value) => _hitbox.SetDamage(Mathf.Max(value * _damagePercent, 1f));
+    public void SetCrit(float value) => _hitbox.SetCritChance(value * .5f);
     public void SetCritMultiplier(float value) => _hitbox.SetCritMultiplier(Mathf.Max(value * .5f , 1.25f));
 }

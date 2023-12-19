@@ -167,7 +167,7 @@ public class Witch : MonoBehaviour
     public FlipBook FlipBook => _flipBook;
 
     private void Awake()
-    {           
+    {
         _initialAcceleration = _acceleration;
         _waitInvulnerability = new(_invulnerabilityDuration);
 

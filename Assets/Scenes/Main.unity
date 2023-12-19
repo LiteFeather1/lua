@@ -4671,7 +4671,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 757530383}
-  - component: {fileID: 757530386}
   - component: {fileID: 757530385}
   - component: {fileID: 757530384}
   m_Layer: 5
@@ -4720,9 +4719,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FPS: 0.13
+  m_text: 'FPS: 0.43
 
-    7654.8 ms'
+    2308.68 ms'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
   m_sharedMaterial: {fileID: 7764967047682581053, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
@@ -4799,23 +4798,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757530382}
   m_CullTransparentMesh: 1
---- !u!114 &757530386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 757530382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ed0ab787b84e2b4a8f3e7f4aebd9ad6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _text: {fileID: 757530384}
-  _updateInterval: 0.5
-  _red: {r: 0.5, g: 0.16666669, b: 0.16666669, a: 1}
-  _yellow: {r: 0.7, g: 0.65624994, b: 0.22421871, a: 1}
-  _green: {r: 0, g: 0.6, b: 0.196875, a: 1}
 --- !u!1 &763479831
 GameObject:
   m_ObjectHideFlags: 0
@@ -10210,7 +10192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _root: {fileID: 1699692668}
   _timeToDrawCard:
-    _baseValue: 9
+    _baseValue: 8
     _value: 0
   _startingPowerUps:
   - {fileID: 11400000, guid: 5a5292755a2d8364dbdc683b5c850021, type: 2}
@@ -10514,7 +10496,7 @@ MonoBehaviour:
     _baseValue: 0.01
     _value: 0
   _toDisableOnPause:
-  - {fileID: 757530386}
+  - {fileID: 0}
   - {fileID: 2108644924}
 --- !u!4 &1886159767
 Transform:
@@ -12518,6 +12500,10 @@ PrefabInstance:
     - target: {fileID: 7450378837478392003, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
       propertyPath: m_Name
       value: Witch
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027821827532596157, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
