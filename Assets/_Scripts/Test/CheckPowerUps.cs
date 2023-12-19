@@ -66,7 +66,7 @@ public class CheckPowerUps : MonoBehaviour
                 if (powerUp.Name.Contains('+'))
                     problems.Add("Power has + when it shouldn't");
             }
-            else if (!powerUp.Name.Contains(tierToPlus[powerUp.TierIcon]))
+            else if (!powerUp.Name.EndsWith(tierToPlus[powerUp.TierIcon]))
                 problems.Add("Power up has not enough pluses");
 
             if (powerUp.PowerUpsToUnlock.Contains(powerUp))
