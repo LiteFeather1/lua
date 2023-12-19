@@ -1679,7 +1679,6 @@ MonoBehaviour:
   - "Keep Calm and Respawn\r"
   - "Great mage rebellion\r"
   - "42\r"
-  - "01001100 01010101 01000001\r"
   - "Cats!\r"
   - "It's a Kind of Magic\r"
   - "Jellybean monsters\r"
@@ -1691,9 +1690,14 @@ MonoBehaviour:
   - "Play your cards right\r"
   - "May the force be with you\r"
   - "Hakuna Matata\r"
-  - 175 Scripts
-  - 7893 Lines
-  - 256905 Characters
+  - "Lua, the Orange\r"
+  - "Witch Game\r"
+  - "There and Back again\r"
+  - "Joyful Orange\r"
+  - 177 Scripts
+  - 7935 Lines
+  - 257911 Characters
+  - 54 Cards
   _seasonalMessages: {fileID: 11400000, guid: 46eb8cea998e71a4d8ad82e40f856ce4, type: 2}
   _rainbowColors: {fileID: 11400000, guid: b43dcf31deafca64f8ee885301a4b2a9, type: 2}
   _messageRoot: {fileID: 1398179130}

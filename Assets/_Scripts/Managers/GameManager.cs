@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CompositeValue _onCardPlayedHeal;
     [SerializeField] private CompositeValue _onCardPlayedRefund;
 
-    [Header("Disablers")]
+    [Header("Others")]
     [SerializeField] private MonoBehaviour[] _toDisableOnPause;
 
     private static readonly WaitForSecondsRealtime _hitStop = new(.05f);

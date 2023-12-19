@@ -4,7 +4,7 @@ using UnityEditor;
 
 internal static class SceneMenuItems
 {
-    [MenuItem("Scene Go/Splash Screen")]
+    [MenuItem("Scene Go/Splash Screen", priority = 1)]
     private static void LoadSplash()
     {
         EditorSceneManager.SaveOpenScenes();
