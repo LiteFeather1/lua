@@ -46,7 +46,8 @@ public class Health : MonoBehaviour, IDamageable
         if (_health < 0f)
             return true;
 
-        _health -= damage * 100f / (100f + _defence);
+        damage *= 100f / (100f + _defence.Value);
+        _health -= damage;
 
         OnDamaged?.Invoke(damage, knockback, crit, pos);
         if (_health <= 0f)

@@ -4672,6 +4672,7 @@ GameObject:
   m_Component:
   - component: {fileID: 757530383}
   - component: {fileID: 757530385}
+  - component: {fileID: 757530386}
   - component: {fileID: 757530384}
   m_Layer: 5
   m_Name: FPS_Counter
@@ -4719,9 +4720,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FPS: 0.43
+  m_text: 'FPS: 3.32
 
-    2308.68 ms'
+    301.56 ms'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
   m_sharedMaterial: {fileID: 7764967047682581053, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
@@ -4730,8 +4731,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281019264
-  m_fontColor: {r: 0.5, g: 0.16666669, b: 0.16666669, a: 1}
+    rgba: 4283782655
+  m_fontColor: {r: 1, g: 0.33490568, b: 0.33490568, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4798,6 +4799,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757530382}
   m_CullTransparentMesh: 1
+--- !u!114 &757530386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757530382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ed0ab787b84e2b4a8f3e7f4aebd9ad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 757530384}
+  _updateInterval: 0.5
+  _red: {r: 1, g: 0.33490568, b: 0.33490568, a: 1}
+  _yellow: {r: 0.8962264, g: 0.8413964, b: 0.29169634, a: 1}
+  _green: {r: 0, g: 1, b: 0.32633018, a: 1}
 --- !u!1 &763479831
 GameObject:
   m_ObjectHideFlags: 0
@@ -4991,7 +5009,7 @@ Transform:
   m_GameObject: {fileID: 850318394}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.25, y: 0.15, z: 0}
+  m_LocalPosition: {x: 2, y: 0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5040,7 +5058,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.4}
+  m_Size: {x: 0.5, y: 1.2}
   m_EdgeRadius: 0
 --- !u!1 &853561077
 GameObject:
@@ -8204,7 +8222,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
-  m_wordSpacing: -8
+  m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
@@ -9812,9 +9830,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FPS: 0.11
+  m_text: 'FPS: 1.3
 
-    8795.26 ms'
+    769.61 ms'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
   m_sharedMaterial: {fileID: 7764967047682581053, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
@@ -10462,7 +10480,7 @@ MonoBehaviour:
   _witch: {fileID: 256337799807947314}
   _music: {fileID: 8300000, guid: c688c79e6650ae143baad8b44023675a, type: 3}
   _slowDownScale: 0.25
-  _playTime: 0
+  _playTime: 225
   _timeForMaxDifficult: 900
   _camera: {fileID: 519420031}
   _shake: {fileID: 519420034}
@@ -10495,7 +10513,7 @@ MonoBehaviour:
     _baseValue: 0.01
     _value: 0
   _toDisableOnPause:
-  - {fileID: 0}
+  - {fileID: 757530386}
   - {fileID: 2108644924}
 --- !u!4 &1886159767
 Transform:

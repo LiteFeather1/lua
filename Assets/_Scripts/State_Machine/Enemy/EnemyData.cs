@@ -17,6 +17,16 @@ public class EnemyData : ScriptableObject
 
     public float Speed(float t) => _speedRange.Evaluate(t);
     public float Health(float t) => _healthRange.Evaluate(t);
-    public float Defence(float t) => _defenceRange.Evaluate(t);
+    public float Defence(float t)
+    {
+        t -= .33f;
+        if (t < 0f)
+            return 0f;
+
+        if (t > 1f)
+            t = 1f;
+        return _defenceRange.Evaluate(t);
+    }
+
     public float Damage(float t) => _damageRange.Evaluate(t);
 }

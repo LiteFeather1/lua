@@ -21,12 +21,6 @@ public class FPSCounter : MonoBehaviour
     private float _elaspedIntervalTime;
     private int _intervalFrameCount;
 
-#if UNITY_EDITOR
-    private void Awake()
-    {
-        hideFlags = HideFlags.DontSave;
-    }
-#endif
     private void Update()
     {
         _intervalFrameCount++;
