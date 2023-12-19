@@ -154,7 +154,7 @@ public class SpawnManager : MonoBehaviour
             var minBurstAmount = _minEnemiesPerBurstRange.Evaluate(t);
             var maxBurstAmount = _maxEnemiesPerBurstRange.Evaluate(t);
             var offSetBurstT = _enemiesPerBurstOffset.Evaluate(t);
-            var spawnAmount = Random.Range(minBurstAmount, maxBurstAmount) + Random.Range(0, offSetBurstT);
+            var spawnAmount = Random.Range(minBurstAmount, maxBurstAmount + 1) + Random.Range(0, offSetBurstT + 1);
             for (int i = 0; i < spawnAmount; i++)
             {
                 var enemy = _weightedPoolOfEnemies.GetWeightedObject().Object.GetObject();

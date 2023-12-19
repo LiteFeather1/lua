@@ -42,7 +42,6 @@ Keep Calm and Play Lua
 Keep Calm and Respawn
 Great mage rebellion
 42
-01001100 01010101 01000001
 Cats!
 It's a Kind of Magic
 Jellybean monsters

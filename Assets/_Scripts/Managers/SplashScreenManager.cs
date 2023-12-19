@@ -379,6 +379,17 @@ private void Update()
         otherMessages.Add($"{lines} Lines");
         otherMessages.Add($"{characters} Characters");
 
+        HashSet<string> unique = new();
+        foreach (var card in LTFUtils.LTFHelpers_EditorOnly.GetScriptableObjects<PowerUp>())
+        {
+            if (card.name[0] == 'X')
+                continue;
+
+            if (!unique.Contains(card.PowerUpType))
+                unique.Add(card.PowerUpType);
+        }
+        otherMessages.Add($"{unique.Count} unique Cards");
+
         _messages = new string[fileMessages.Length + otherMessages.Count];
         fileMessages.CopyTo(_messages, 0);
         otherMessages.CopyTo(_messages, fileMessages.Length);
