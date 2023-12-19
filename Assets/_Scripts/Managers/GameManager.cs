@@ -8,7 +8,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Witch")]
     [SerializeField] private Witch _witch;
+    [SerializeField] private AudioClip ac_thornDamage;
     private bool _witchDied;
     private bool _saved;
 
@@ -197,6 +199,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(Aberration(_chromaticAberration));
         if (_witch.ThornBaseDamage > 0.01f)
         {
+            AudioManager.Instance.PlayOneShot(ac_thornDamage);
             _spawnManager.DamageEveryEnemyInRange(_witch.ThornTotalDamage(),
                                                   _witch.Knockback * .25f,
                                                   _witch.transform.position,

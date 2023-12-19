@@ -55,15 +55,15 @@ public class OrbitalGun : Gun
 
     public IEnumerator ShootRoutine(float damage, float critChance, float critMultiplier, float knockback, float speed, float duration)
     {
-        return ShootRoutine(damage: damage,
+        return ShootRoutine(damage: damage * .5f,
                             critChance: critChance,
                             critMultiplier: critMultiplier,
-                            knockback: knockback,
+                            knockback: knockback * .33f,
                             size: 1f,
-                            speed: Mathf.Clamp(speed, .25f, _maxBulletSpeed),
+                            speed: Mathf.Clamp(speed * .2f, .25f, _maxBulletSpeed),
                             pierce: 1,
                             bounce: 0,
-                            duration: Mathf.Clamp(duration, 1.5f, _maxBulletDuration),
+                            duration: Mathf.Clamp(duration * 2f, 1.5f, _maxBulletDuration),
                             angle: 0f,
                             burstAmount: _orbitalAmount,
                             bulletAmount: 1,

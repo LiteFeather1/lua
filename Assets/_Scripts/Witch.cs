@@ -72,6 +72,7 @@ public class Witch : MonoBehaviour
 
     [Header("Burn Effect")]
     [SerializeField] private EffectCreatorFire _effectCreatorFire;
+    [SerializeField] private AudioClip ac_burnEffectApplied;
 
     [Header("Aura")]
     [SerializeField] private Aura _aura;
@@ -82,6 +83,7 @@ public class Witch : MonoBehaviour
     [SerializeField] private CompositeValue _thornDefenceDamageMultiplier = new(.5f);
 
     [Header("Lightning")]
+    [SerializeField] private AudioClip ac_lightningApplied;
     [SerializeField] private CompositeValue _lightningChance = new(0f);
     [SerializeField] private CompositeValue _lightningBaseDamage = new(5f);
     [SerializeField] private CompositeValue _lightningRange = new(.64f);
@@ -95,6 +97,7 @@ public class Witch : MonoBehaviour
     [SerializeField] private Color _damagedColour = Color.red;
 
     [Header("Dodge")]
+    [SerializeField] private AudioClip ac_dodged;
     [SerializeField] private ParticleSystem _dodgeParticle;
     [SerializeField] private float _shineTime = .5f;
     [SerializeField] private SpriteRenderer _shineSR;
@@ -241,13 +244,13 @@ public class Witch : MonoBehaviour
         if (_elapsedRandomShootTime > _randomBulletShootTime + _randomBulletTimeOffset)
         {
             _elapsedRandomShootTime = 0f;
-            if (_randomBulletAmount == 0)
-                return;
-
-            r_randomDeltaMult.Value = 0f;
-            var offset = _randomBulletShootTime * _randomBulletTimeOffSetPercent;
-            _randomBulletTimeOffset = Random.Range(-offset, offset);
-            StartCoroutine(ShootRoutine(RandomBulletShootRoutine(), r_randomDeltaMult));
+            if (_randomBulletAmount > 0)
+            {
+                r_randomDeltaMult.Value = 0f;
+                var offset = _randomBulletShootTime * _randomBulletTimeOffSetPercent;
+                _randomBulletTimeOffset = Random.Range(-offset, offset);
+                StartCoroutine(ShootRoutine(RandomBulletShootRoutine(), r_randomDeltaMult));
+            }
         }
 
         // Moon Shot
@@ -255,11 +258,11 @@ public class Witch : MonoBehaviour
         if (_moonElapsedTime > _moonShootTime)
         {
             _moonElapsedTime = 0f;
-            if (_moonAmount == 0)
-                return; 
-
-            r_moonDeltaMult.Value = 0f;
-            StartCoroutine(ShootRoutine(MoonGunShootRoutine(), r_moonDeltaMult));
+            if (_moonAmount > 0)
+            {
+                r_moonDeltaMult.Value = 0f;
+                StartCoroutine(ShootRoutine(MoonGunShootRoutine(), r_moonDeltaMult));
+            }
         }
 
         // Orbital Shot
@@ -268,13 +271,13 @@ public class Witch : MonoBehaviour
         {
             _elapsedOrbitalShootTime = 0f;
             r_orbitalDeltaMult.Value = 0f;
-            StartCoroutine(ShootRoutine(_orbitalGun.ShootRoutine(damage: _damage * .5f,
+            StartCoroutine(ShootRoutine(_orbitalGun.ShootRoutine(damage: _damage,
                                                                  critChance: _critChance,
                                                                  critMultiplier: _critMultiplier,
-                                                                 knockback: _knockback * .33f,
-                                                                 speed: _mainGun.BulletSpeed * .2f,
-                                                                 duration: _mainGun.BulletDuration * 2f),
-                                          r_orbitalDeltaMult));
+                                                                 knockback: _knockback,
+                                                                 speed: _mainGun.BulletSpeed,
+                                                                 duration: _mainGun.BulletDuration),
+                                        r_orbitalDeltaMult));
         }
 
         // Dagger Shot
@@ -282,21 +285,24 @@ public class Witch : MonoBehaviour
         if (_elapsedDaggerShootTime > _daggerShootTime)
         {
             _elapsedDaggerShootTime = 0f;
-            r_daggerDeltaMult.Value = 0f;
-            StartCoroutine(ShootRoutine(_daggerGun.ShootRoutine(damage: _damage * .5f,
-                                                                critChance: _critChance * .5f,
-                                                                critMultiplier: _critMultiplier * .5f,
-                                                                knockback: 0.1f,
-                                                                size: 1f,
-                                                                speed: _mainGun.BulletSpeed * 2f,
-                                                                pierce: int.MaxValue,
-                                                                bounce: 0,
-                                                                duration: _mainGun.BulletDuration,
-                                                                angle: 0f,
-                                                                burstAmount: Mathf.Max((int)(_mainGun.BurstAmount * .5f), 1),
-                                                                bulletAmount: _daggerAmount,
-                                                                yieldBetweenBurst: _mainGun.YieldBetweenBurts),
-                                         r_daggerDeltaMult));
+            if (_daggerAmount > 0)
+            {
+                r_daggerDeltaMult.Value = 0f;
+                StartCoroutine(ShootRoutine(_daggerGun.ShootRoutine(damage: _damage * .5f,
+                                                                    critChance: _critChance * .5f,
+                                                                    critMultiplier: _critMultiplier * .5f,
+                                                                    knockback: 0.1f,
+                                                                    size: 1f,
+                                                                    speed: _mainGun.BulletSpeed * 2f,
+                                                                    pierce: int.MaxValue,
+                                                                    bounce: 0,
+                                                                    duration: _mainGun.BulletDuration,
+                                                                    angle: 0f,
+                                                                    burstAmount: Mathf.Max((int)(_mainGun.BurstAmount * .5f), 1),
+                                                                    bulletAmount: _daggerAmount,
+                                                                    yieldBetweenBurst: _mainGun.YieldBetweenBurts),
+                                            r_daggerDeltaMult));
+            }
         }
 
         _spriteMask.sprite = _flipBook.SR.sprite;
@@ -381,10 +387,12 @@ public class Witch : MonoBehaviour
             && damageable.CanAddDamageEffect((int)IDamageEffect.DamageEffectID.FIRE_ID))
         {
             damageable.AddDamageEffect(_effectCreatorFire.Get(damage));
+            AudioManager.Instance.PlayOneShot(ac_burnEffectApplied);
         }
 
         if (randomValue < _lightningChance)
         {
+            AudioManager.Instance.PlayOneShot(ac_lightningApplied);
             OnLightningEffectApplied?.Invoke(damageable);
         }
     }
@@ -515,6 +523,7 @@ public class Witch : MonoBehaviour
         _hurtBox.enabled = false;
         OnDamaged?.Invoke();
         HPModified();
+
         if (_health.Hp > 0f)
             StartCoroutine(Blink());
     }
@@ -535,6 +544,7 @@ public class Witch : MonoBehaviour
 
     private void Dodged()
     {
+        AudioManager.Instance.PlayOneShot(ac_dodged);
         StartCoroutine(Invulnerability());
         StopCoroutine(_dodgeCo);
         _dodgeCo = DodgeShine();

@@ -131,7 +131,7 @@ MonoBehaviour:
   _bulletDamage:
     _object: {fileID: 9029989089869572558, guid: 2bcdec51abba14c4aa5f03fc8cdc5e7e, type: 3}
     _initialPoolSize: 10
-  _bulletShotSound: {fileID: 8300000, guid: 672fdea8e7aa8b64092be2303844210e, type: 3}
+  _bulletShotSound: {fileID: 8300000, guid: 56b4e5c69ee5d274580c564ae105434e, type: 3}
   _faceRotationAlpha: 0.5
   _separationPerBullet: 0
   _randomAngleOffsetRange: {x: -360, y: 360}
@@ -5182,7 +5182,7 @@ MonoBehaviour:
   _bulletDamage:
     _object: {fileID: 9029989089869572558, guid: 17211992fecfb714b92e780722ba7df3, type: 3}
     _initialPoolSize: 10
-  _bulletShotSound: {fileID: 8300000, guid: 672fdea8e7aa8b64092be2303844210e, type: 3}
+  _bulletShotSound: {fileID: 8300000, guid: 0bf15166500c85a469d87a2fa32b00d1, type: 3}
   _faceRotationAlpha: 0
   _separationPerBullet: 0
   _randomAngleOffsetRange: {x: -22.5, y: 22.5}
@@ -5241,7 +5241,7 @@ MonoBehaviour:
   _bulletDamage:
     _object: {fileID: 9029989089869572558, guid: 0b6a72a7fe8c1354a8b20e5e7e23c5ef, type: 3}
     _initialPoolSize: 10
-  _bulletShotSound: {fileID: 8300000, guid: 672fdea8e7aa8b64092be2303844210e, type: 3}
+  _bulletShotSound: {fileID: 8300000, guid: 6ef04bd638a5f9d4798425c8f37c6014, type: 3}
   _faceRotationAlpha: 1
   _separationPerBullet: 6.25
   _randomAngleOffsetRange: {x: 0, y: 0}
@@ -5302,7 +5302,7 @@ MonoBehaviour:
   _bulletDamage:
     _object: {fileID: 9029989089869572558, guid: 426dcbc443a40a94eb9791d8625db71f, type: 3}
     _initialPoolSize: 10
-  _bulletShotSound: {fileID: 8300000, guid: 672fdea8e7aa8b64092be2303844210e, type: 3}
+  _bulletShotSound: {fileID: 8300000, guid: b19d05f8e28c773469f123c04d3917b2, type: 3}
   _faceRotationAlpha: 1
   _separationPerBullet: 0
   _randomAngleOffsetRange: {x: 0, y: 0}
@@ -5471,6 +5471,7 @@ MonoBehaviour:
     <TickRate>k__BackingField:
       _baseValue: 1
       _value: 0
+  ac_burnEffectApplied: {fileID: 8300000, guid: a205b8fd8bdd4154fbdfbd8c7f4fd6f2, type: 3}
   _aura: {fileID: 1775757007608571629}
   _thornRange:
     _baseValue: 0.48
@@ -5481,6 +5482,7 @@ MonoBehaviour:
   _thornDefenceDamageMultiplier:
     _baseValue: 0.1
     _value: 0
+  ac_lightningApplied: {fileID: 8300000, guid: e03976f1fa4de57408d132acec6d19e4, type: 3}
   _lightningChance:
     _baseValue: 0
     _value: 0
@@ -5495,6 +5497,7 @@ MonoBehaviour:
   _blinkAmount: 4
   _durationBetweenBlinks: 0.0625
   _damagedColour: {r: 0.8867924, g: 0.34718758, b: 0.34718758, a: 1}
+  ac_dodged: {fileID: 8300000, guid: df06c047aa33c284c91db3244c5d4b86, type: 3}
   _dodgeParticle: {fileID: 8810814724732111599}
   _shineTime: 0.33
   _shineSR: {fileID: 2968246285734045891}

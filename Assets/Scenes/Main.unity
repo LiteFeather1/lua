@@ -4720,9 +4720,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FPS: 0.85
+  m_text: 'FPS: 0.5
 
-    1179.91 ms'
+    2016.99 ms'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
   m_sharedMaterial: {fileID: 7764967047682581053, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
@@ -10477,9 +10477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1470b8ef881c94597c07ac6b14b9be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  min: 1
-  max: 2
   _witch: {fileID: 256337799807947314}
+  ac_thornDamage: {fileID: 8300000, guid: 53f908eb98662514f8073007fa0b7174, type: 3}
   _music: {fileID: 8300000, guid: c688c79e6650ae143baad8b44023675a, type: 3}
   _slowDownScale: 0.25
   _playTime: 0
@@ -10517,7 +10516,6 @@ MonoBehaviour:
   _toDisableOnPause:
   - {fileID: 757530386}
   - {fileID: 2108644924}
-  sr_star: {fileID: 1498909713}
 --- !u!4 &1886159767
 Transform:
   m_ObjectHideFlags: 0

@@ -117,10 +117,11 @@ MonoBehaviour:
   _bulletDamage:
     _object: {fileID: 9029989089869572558, guid: feaf62a4a9fda25499b48cbd6d4224c5, type: 3}
     _initialPoolSize: 10
-  _bulletShotSound: {fileID: 8300000, guid: 672fdea8e7aa8b64092be2303844210e, type: 3}
+  _bulletShotSound: {fileID: 8300000, guid: 73e58063d3efcf64e8548970528487df, type: 3}
+  _faceRotationAlpha: 1
   _separationPerBullet: 12.5
-  _randomAngle: {x: 0, y: 0}
-  _randomSpeedRange: {x: 0, y: 0}
+  _randomAngleOffsetRange: {x: 0, y: 0}
+  _randomSpeedOffsetRange: {x: 0, y: 0}
 --- !u!114 &1962226213644798471
 MonoBehaviour:
   m_ObjectHideFlags: 0

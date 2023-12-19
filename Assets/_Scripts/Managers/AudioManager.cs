@@ -22,9 +22,7 @@ public class AudioManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         else
-        {
             Destroy(gameObject);
-        }
     }
 
     public void PlayOneShot(AudioClip clip, float pitch)
