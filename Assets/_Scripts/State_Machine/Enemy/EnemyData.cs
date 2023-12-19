@@ -24,7 +24,8 @@ public class EnemyData : ScriptableObject
             return 0f;
 
         if (t > 1f)
-            t = 1f;
+            t = 1f + ((t - 1f) * .5f);
+
         return _defenceRange.Evaluate(t);
     }
 
