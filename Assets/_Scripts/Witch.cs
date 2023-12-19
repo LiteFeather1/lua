@@ -286,7 +286,7 @@ public class Witch : MonoBehaviour
             StartCoroutine(ShootRoutine(_daggerGun.ShootRoutine(damage: _damage * .5f,
                                                                 critChance: _critChance * .5f,
                                                                 critMultiplier: _critMultiplier * .5f,
-                                                                knockback: 0f,
+                                                                knockback: 0.1f,
                                                                 size: 1f,
                                                                 speed: _mainGun.BulletSpeed * 2f,
                                                                 pierce: int.MaxValue,

@@ -10461,7 +10461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _witch: {fileID: 256337799807947314}
   _music: {fileID: 8300000, guid: c688c79e6650ae143baad8b44023675a, type: 3}
-  _slowDownScale: 0.375
+  _slowDownScale: 0.25
   _playTime: 0
   _timeForMaxDifficult: 900
   _camera: {fileID: 519420031}
