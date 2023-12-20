@@ -4721,9 +4721,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FPS: 7.99
+  m_text: 'FPS: 6.52
 
-    125.1 ms'
+    153.46 ms'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
   m_sharedMaterial: {fileID: 7764967047682581053, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
@@ -6523,7 +6523,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 12}
   m_SizeDelta: {x: 117, y: 108}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1178190625
@@ -12817,7 +12817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _transformToMove: {fileID: 6013203025026914752}
-  _pixels: 10
+  _pixels: 11
   _time: 0.35
   _curve:
     serializedVersion: 2

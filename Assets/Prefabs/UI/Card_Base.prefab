@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _transformToMove: {fileID: 6013203024223714052}
-  _pixels: 12
+  _pixels: 10
   _time: 0.35
   _curve:
     serializedVersion: 2
