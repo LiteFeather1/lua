@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Spider
   _colour: {r: 0.92941177, g: 0.05882353, b: 0.05490196, a: 1}
-  _speedRange: {x: 0.05, y: 0.3, z: 0.1, w: 0.45}
-  _healthRange: {x: 0.1, y: 35}
+  _speedRange: {x: 0.1, y: 0.3, z: 0.25, w: 0.5}
+  _healthRange: {x: 1, y: 20}
   _defenceRange: {x: 1, y: 20}
   _damageRange: {x: 1, y: 10}

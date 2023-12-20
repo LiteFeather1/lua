@@ -94,6 +94,7 @@ MonoBehaviour:
   _childState: {fileID: 0}
   _speed: 1
   _target: {fileID: 0}
+  _yFollowMultiplier: 1.125
   _followX: 1
   _xDirection: -1
   _rb: {fileID: -9098554913317904933}

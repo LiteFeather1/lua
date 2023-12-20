@@ -288,8 +288,8 @@ public class SpawnManager : MonoBehaviour
                 lightning.SetPosition(0, from);
                 for (int l = 1; l < segments - 1; l++)
                 {
-                    var tmp = Vector2.Lerp(from, to, (float)l / segments);
-                    lightning.SetPosition(l, new(tmp.x + _lightningSegmentOffsetRange.Random(), tmp.y + _lightningSegmentOffsetRange.Random()));
+                    var lerp = Vector2.Lerp(from, to, (float)l / segments);
+                    lightning.SetPosition(l, new(lerp.x + _lightningSegmentOffsetRange.Random(), lerp.y + _lightningSegmentOffsetRange.Random()));
                 }
                 lightning.SetPosition(segments - 1, to);
             }

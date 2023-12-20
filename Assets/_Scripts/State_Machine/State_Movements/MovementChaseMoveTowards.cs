@@ -4,12 +4,15 @@ public class MovementChaseMoveTowards : MovementChase
 {
     public override void Do()
     {
-        Vector2 target = _target.position;
-        if (!_followX)
-            target.x = transform.position.x + _xDirection;
-        else
-            Flip(Mathf.Sign(target.x));
+        var direction = (Vector2)_target.position - _core.Position;
 
-        _core.transform.position = Vector2.MoveTowards(_core.Position, target, _speed * Time.deltaTime);
+        if (!_followX)
+            direction.x = _xDirection;
+        else
+            Flip(Mathf.Sign(direction.x));
+
+        //direction.y *= _yFollowMultiplier;
+
+        _core.transform.Translate(Time.deltaTime * _speed * direction.normalized);
     }
 }

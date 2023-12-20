@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Ghost
   _colour: {r: 0.9098039, g: 0.85882354, b: 0.79607844, a: 1}
-  _speedRange: {x: 0.075, y: 0.3, z: 0.1, w: 0.4}
-  _healthRange: {x: 0.1, y: 35}
-  _defenceRange: {x: 1.25, y: 50}
+  _speedRange: {x: 0.075, y: 0.3, z: 0.2, w: 0.4}
+  _healthRange: {x: 1, y: 40}
+  _defenceRange: {x: 1.25, y: 30}
   _damageRange: {x: 1, y: 30}

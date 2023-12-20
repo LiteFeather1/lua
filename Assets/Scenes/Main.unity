@@ -4453,11 +4453,11 @@ MonoBehaviour:
     - _object:
         _object: {fileID: 1743916010169902079, guid: 8fc8796755dbda349b2e0771845513f4, type: 3}
         _initialPoolSize: 10
-      _weight: 0.5
+      _weight: 0.4
     - _object:
         _object: {fileID: 1124217388555753815, guid: 9b1d73122d5d3ba409c4803812f65789, type: 3}
         _initialPoolSize: 10
-      _weight: 0.125
+      _weight: 0.15
     - _object:
         _object: {fileID: 1124217388555753815, guid: c36c7725324f0bb42a9b86707841f023, type: 3}
         _initialPoolSize: 10
@@ -4465,7 +4465,7 @@ MonoBehaviour:
     - _object:
         _object: {fileID: 1124217388555753815, guid: 49ea02d64db183745b62ee7513381e9d, type: 3}
         _initialPoolSize: 10
-      _weight: 0.5
+      _weight: 0.4
   _maxEnemiesPerBurstRange: {x: 3, y: 18}
   _minEnemiesPerBurstRange: {x: 2, y: 14}
   _enemiesPerBurstOffset: {x: 1, y: 8}
@@ -4499,7 +4499,7 @@ MonoBehaviour:
     _object: {fileID: 2872507750913942527, guid: e57e6c95f5d22544ead44720df0f0b19, type: 3}
     _initialPoolSize: 10
   _worldCanvas: {fileID: 1521358744}
-  _xVelocityRange: {x: 20, y: 32}
+  _xVelocityRange: {x: 16, y: 24}
   _yVelocityRange: {x: 25, y: 50}
   _normalColour: {r: 1, g: 1, b: 1, a: 1}
   _critColour: {r: 1, g: 0.9688053, b: 0.06666666, a: 1}
@@ -4855,9 +4855,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FPS: 0.47
+  m_text: 'FPS: 0.23
 
-    2119.78 ms'
+    4312.96 ms'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
   m_sharedMaterial: {fileID: 7764967047682581053, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
@@ -5144,7 +5144,7 @@ Transform:
   m_GameObject: {fileID: 850318394}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.135, y: 0.15, z: 0}
+  m_LocalPosition: {x: 2.015, y: 0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
