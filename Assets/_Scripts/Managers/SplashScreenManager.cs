@@ -319,7 +319,7 @@ private void Update()
         _messageRoot.localRotation = Quaternion.Euler(0f, 0f, sinRot);
     }
 
-    public void ButtonPlay() => SceneManager.LoadScene(1);
+    public void ButtonPlay() => SceneManager.LoadSceneAsync(1);
 
     public void ButtonQuit()
     {

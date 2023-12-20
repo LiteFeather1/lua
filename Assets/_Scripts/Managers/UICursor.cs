@@ -4,13 +4,23 @@ using UnityEngine.InputSystem;
 
 public class UICursor : MonoBehaviour
 {
+    private static bool s_initialized;
+
     [SerializeField] private Image _cursorImage;
     [SerializeField] private Sprite _normalCursor, _pressedCursor;
 
     private void Awake()
     {
+        if (s_initialized)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        s_initialized = true;
         InputManager.Inputs.Player.Left_Click.performed += OnClickPerformed;
         InputManager.Inputs.Player.Left_Click.canceled += OnClickCanceled;
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Update()

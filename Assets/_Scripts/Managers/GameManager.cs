@@ -173,7 +173,7 @@ public class GameManager : MonoBehaviour
     public void LoadSplashScreen()
     {
         SavePlayerPrefs();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadSceneAsync(0);
         AudioManager.Instance.MusicSource.Stop();
         Time.timeScale = 1f;
     }

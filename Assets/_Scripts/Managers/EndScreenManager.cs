@@ -29,14 +29,16 @@ public class EndScreenManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     private float _lastMouseX;
     private float _mouseDelta;
 
+    private const float CARD_SIZE = 34f;
+
     public int CardsPlayed => _cards.Count;
 
     private void Update()
     {
-        var minX = -(rt_carousel.sizeDelta.x + 34f) * .5f;
-        var maxCards = rt_carousel.sizeDelta.x / 34f;
+        var minX = -(rt_carousel.sizeDelta.x + CARD_SIZE) * .5f;
+        var maxCards = rt_carousel.sizeDelta.x / CARD_SIZE;
         float mul = _cards.Count < maxCards ? 1f : _cards.Count;
-        var maxX = (rt_carousel.sizeDelta.x * .5f) + (34f * mul);
+        var maxX = (rt_carousel.sizeDelta.x * .5f) + (CARD_SIZE * mul);
         maxX += _cards.Count > maxCards ? minX * 2f + 17f : 0f;
         float x;
         if (_mouseDelta == 0f && !_dragging)
@@ -83,8 +85,9 @@ public class EndScreenManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        // Limit Speed
         _dragging = false;
+
+        // Limit Speed
         if (_mouseDelta > _maxMouseDelta)
             _mouseDelta = _maxMouseDelta;
         else if (_mouseDelta < -_maxMouseDelta)
@@ -102,16 +105,15 @@ public class EndScreenManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     public void AddCard(PowerUp power)
     {
-        var maxX = 34f * _cards.Count;
+        var maxX = CARD_SIZE * _cards.Count;
         var card = Instantiate(_cardPrefab, rt_carousel);
-        card.transform.localPosition = new Vector2(maxX, 0f);
+        card.transform.localPosition = new(maxX, 0f);
         card.SetPower(power);
         _cards.Add(card);
     }
 
     public void Replay()
     {
-        var scene = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(scene);
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 }

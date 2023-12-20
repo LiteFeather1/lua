@@ -34,14 +34,14 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDr
 
     public void Update()
     {
-        if (_dragging)
-        {
-            var delta = Time.deltaTime;
-            transform.position = Vector2.SmoothDamp(transform.position, Input.mousePosition, ref Velocity, delta * 6f);
-            var zRotation = Mathf.Lerp(0f, 18f, Mathf.Abs(Velocity.x) / 1800f) * Mathf.Sign(Velocity.x);
-            var to = Quaternion.Euler(0f, 0f, -zRotation);
-            transform.localRotation = SmoothDamp(transform.localRotation, to, ref _deriv, delta * 128f);
-        }
+        if (!_dragging)
+            return;
+
+        var delta = Time.deltaTime;
+        transform.position = Vector2.SmoothDamp(transform.position, Input.mousePosition, ref Velocity, delta * 6f);
+        var zRotation = Mathf.Lerp(0f, 18f, Mathf.Abs(Velocity.x) / 1800f) * Mathf.Sign(Velocity.x);
+        var to = Quaternion.Euler(0f, 0f, -zRotation);
+        transform.localRotation = SmoothDamp(transform.localRotation, to, ref _deriv, delta * 128f);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -61,16 +61,16 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDr
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Left)
-        {
-            OnPickedUp?.Invoke(this);
-            _dragging = true;
-            _originalParent = transform.parent;
-            transform.SetParent(transform.parent.parent);
-            _canvasGroup.blocksRaycasts = false;
-            OnCardUnHovered?.Invoke();
-            AudioManager.Instance.PlayOneShot(_grabClip);
-        }
+        if (eventData.button != PointerEventData.InputButton.Left)
+            return;
+
+        OnPickedUp?.Invoke(this);
+        _dragging = true;
+        _originalParent = transform.parent;
+        transform.SetParent(transform.parent.parent);
+        _canvasGroup.blocksRaycasts = false;
+        OnCardUnHovered?.Invoke();
+        AudioManager.Instance.PlayOneShot(_grabClip);
     }
 
     // Only used to voit the event system to know what is dragging
@@ -78,16 +78,16 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDr
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Left)
-        {
-            _dragging = false;
-            transform.SetParent(_originalParent);
-            _canvasGroup.blocksRaycasts = true;
-            _canvasGroup.alpha = _defaultAlpha;
-            transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
-            OnDropped?.Invoke(this);
-            AudioManager.Instance.PlayOneShot(_ungrabClip);
-        }
+        if (eventData.button != PointerEventData.InputButton.Left)
+            return;
+
+        _dragging = false;
+        transform.SetParent(_originalParent);
+        _canvasGroup.blocksRaycasts = true;
+        _canvasGroup.alpha = _defaultAlpha;
+        transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        OnDropped?.Invoke(this);
+        AudioManager.Instance.PlayOneShot(_ungrabClip);
     }
 
     public void SetPowerUp(PowerUp powerUp)
@@ -100,20 +100,26 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDr
         AudioManager.Instance.PlayOneShot(_grabClip);
     }
 
-    public void ReturnToPile() => OnReturnToPile?.Invoke(this);
+    public void ReturnToPile()
+    {
+        Velocity = Vector2.zero;
+        OnReturnToPile?.Invoke(this);
+    }
 
     private static Quaternion SmoothDamp(Quaternion rot, Quaternion target, ref Quaternion deriv, float time)
     {
-        if (Time.deltaTime < Mathf.Epsilon) return rot;
+        if (Time.deltaTime < Mathf.Epsilon) 
+            return rot;
+
         // account for double-cover
-        var Dot = Quaternion.Dot(rot, target);
-        var Multi = Dot > 0f ? 1f : -1f;
-        target.x *= Multi;
-        target.y *= Multi;
-        target.z *= Multi;
-        target.w *= Multi;
+        var dot = Quaternion.Dot(rot, target);
+        var mult = dot > 0f ? 1f : -1f;
+        target.x *= mult;
+        target.y *= mult;
+        target.z *= mult;
+        target.w *= mult;
         // smooth damp (nlerp approx)
-        var Result = new Vector4(
+        var result = new Vector4(
             Mathf.SmoothDamp(rot.x, target.x, ref deriv.x, time),
             Mathf.SmoothDamp(rot.y, target.y, ref deriv.y, time),
             Mathf.SmoothDamp(rot.z, target.z, ref deriv.z, time),
@@ -121,12 +127,12 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDr
         ).normalized;
 
         // ensure deriv is tangent
-        var derivError = Vector4.Project(new Vector4(deriv.x, deriv.y, deriv.z, deriv.w), Result);
+        var derivError = Vector4.Project(new(deriv.x, deriv.y, deriv.z, deriv.w), result);
         deriv.x -= derivError.x;
         deriv.y -= derivError.y;
         deriv.z -= derivError.z;
         deriv.w -= derivError.w;
 
-        return new(Result.x, Result.y, Result.z, Result.w);
+        return new(result.x, result.y, result.z, result.w);
     }
 }
