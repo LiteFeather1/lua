@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float _slowDownScale = .25f;
     [SerializeField] private float _playTime;
     [SerializeField] private float _timeForMaxDifficult = 360f;
+    private readonly RefValue<float> _t = new(0f), _tClamped = new(0f);
 
     [Header("Managers")]
     [SerializeField] private Camera _camera;
@@ -103,18 +104,20 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.Instance.MusicSource.clip = _music;
         AudioManager.Instance.MusicSource.Play();
+
+        _spawnManager.SetTRef(_t, _tClamped);
     }
 
     private void Update()
     {
         _playTime += Time.deltaTime;
 
-        var t = _playTime / _timeForMaxDifficult;
-        var tClamped = t;
-        if (tClamped > 1f)
-            tClamped = 1f;
+        _t.Value = _playTime / _timeForMaxDifficult;
+        _tClamped.Value = _t.Value;
+        if (_tClamped > 1f)
+            _tClamped.Value = 1f;
 
-        _spawnManager.Tick(t, tClamped);
+        _spawnManager.Tick();
         _uiManager.UpdateTime(_playTime);
     }
 

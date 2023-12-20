@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using LTFUtils;
 using RetroAnimation;
 using UnityEngine;
@@ -9,13 +8,16 @@ using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
+    [NonSerialized] private RefValue<float> _t, _tClamped;
+
     [Header("Enemy")]
     [SerializeField] private Weighter<ObjectPool<Enemy>> _weightedPoolOfEnemies;
-    private Dictionary<string, ObjectPool<Enemy>> _enemyToPool;
+    private readonly Dictionary<string, ObjectPool<Enemy>> _enemyToPool = new();
     private readonly List<Enemy> _activeEnemies = new();
     [SerializeField] private Vector2Int _maxEnemiesPerBurstRange;
     [SerializeField] private Vector2Int _minEnemiesPerBurstRange;
     [SerializeField] private Vector2Int _enemiesPerBurstOffset;
+    [SerializeField] private Vector2Int _minEnemiesAtAllTimes = new(1, 5);
     [SerializeField] private Vector2 _maxSpawnTimeRange;
     [SerializeField] private Vector2 _minSpawnTimeRange;
     [SerializeField] private Vector2 _spawnTimeOffset;
@@ -71,7 +73,6 @@ public class SpawnManager : MonoBehaviour
     {
         _spawnTime = 1f;
 
-        _enemyToPool = new(_weightedPoolOfEnemies.Count);
         for (int i = 0; i < _weightedPoolOfEnemies.Count; i++)
         {
             var pool = _weightedPoolOfEnemies.Objects[i].Object;
@@ -141,30 +142,30 @@ public class SpawnManager : MonoBehaviour
         _thornAnimationPool.ObjectCreated -= ThornAnimationCreated;
     }
 
-    public void Tick(float t, float tClamped)
+    public void SetTRef(RefValue<float> t, RefValue<float> tClamped)
+    {
+        _t = t;
+        _tClamped = tClamped;
+    }
+
+    public void Tick()
     {
         _elapsedTime += Time.deltaTime;
-        if (_elapsedTime >= _spawnTime)
-        {
-            _elapsedTime = 0f;
-            var spawnTime = Random.Range(_minSpawnTimeRange.Evaluate(tClamped), _maxSpawnTimeRange.Evaluate(tClamped));
-            var offSetTime = _spawnTimeOffset.Evaluate(tClamped);
-            _spawnTime = spawnTime + Random.Range(-offSetTime, offSetTime);
+        if (_elapsedTime < _spawnTime)
+            return;
 
-            var minBurstAmount = _minEnemiesPerBurstRange.Evaluate(t);
-            var maxBurstAmount = _maxEnemiesPerBurstRange.Evaluate(t);
-            var offSetBurstT = _enemiesPerBurstOffset.Evaluate(t);
-            var spawnAmount = Random.Range(minBurstAmount, maxBurstAmount + 1) + Random.Range(0, offSetBurstT + 1);
-            for (int i = 0; i < spawnAmount; i++)
-            {
-                var enemy = _weightedPoolOfEnemies.GetWeightedObject().Object.GetObject();
-                var randX = Random.Range(_spawnArea.bounds.min.x, _spawnArea.bounds.max.x);
-                var randY = Random.Range(_spawnArea.bounds.min.y, _spawnArea.bounds.max.y);
-                enemy.transform.localPosition = new(randX, randY);
-                enemy.Spawn(t, tClamped);
-                _activeEnemies.Add(enemy);
-            }
-        }
+        _elapsedTime = 0f;
+        var spawnTime = Random.Range(_minSpawnTimeRange.Evaluate(_tClamped), _maxSpawnTimeRange.Evaluate(_tClamped));
+        var offSetTime = _spawnTimeOffset.Evaluate(_tClamped);
+        _spawnTime = spawnTime + Random.Range(-offSetTime, offSetTime);
+
+        var minBurstAmount = _minEnemiesPerBurstRange.Evaluate(_t);
+        var maxBurstAmount = _maxEnemiesPerBurstRange.Evaluate(_t);
+        var offSetBurstT = _enemiesPerBurstOffset.Evaluate(_t);
+        var spawnAmount = Random.Range(minBurstAmount, maxBurstAmount + 1) + Random.Range(0, offSetBurstT + 1);
+
+        for (int i = 0; i < spawnAmount; i++)
+            SpawnEnemy();
     }
 
     public void SpawnDamageNum(string text, Color color, Vector2 pos)
@@ -303,6 +304,16 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    private void SpawnEnemy()
+    {
+        var enemy = _weightedPoolOfEnemies.GetWeightedObject().Object.GetObject();
+        var randX = Random.Range(_spawnArea.bounds.min.x, _spawnArea.bounds.max.x);
+        var randY = Random.Range(_spawnArea.bounds.min.y, _spawnArea.bounds.max.y);
+        enemy.transform.localPosition = new(randX, randY);
+        enemy.Spawn(_t, _tClamped);
+        _activeEnemies.Add(enemy);
+    }
+
     private void EnemyCreated(Enemy enemy)
     {
         enemy.Init(GameManager.Instance.Witch);
@@ -331,9 +342,16 @@ public class SpawnManager : MonoBehaviour
         SpawnCandy(enemy.transform.localPosition);
         SpawnExplosion(enemy.transform.localPosition, enemy.Data.Colour);
         AudioManager.Instance.PlayOneShot(_enemyDiedSound);
+
         if (Random.value < _chanceToExtraCandy.Value)
             SpawnCandy(enemy.transform.localPosition);
+
         EnemiesDied++;
+        for (int i = 0; i < _minEnemiesAtAllTimes.Evaluate(_t) - _activeEnemies.Count; i++)
+        {
+            print("Added");
+            SpawnEnemy();
+        }
     }
 
     private void EnemyExplosionCreated(FlipBook explosion)

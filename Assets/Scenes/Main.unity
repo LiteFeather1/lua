@@ -4332,9 +4332,10 @@ MonoBehaviour:
         _object: {fileID: 1124217388555753815, guid: 49ea02d64db183745b62ee7513381e9d, type: 3}
         _initialPoolSize: 10
       _weight: 0.5
-  _maxEnemiesPerBurstRange: {x: 4, y: 18}
+  _maxEnemiesPerBurstRange: {x: 3, y: 18}
   _minEnemiesPerBurstRange: {x: 2, y: 14}
   _enemiesPerBurstOffset: {x: 1, y: 8}
+  _minEnemiesAtAllTimes: {x: 1, y: 5}
   _maxSpawnTimeRange: {x: 12.5, y: 2}
   _minSpawnTimeRange: {x: 10, y: 1}
   _spawnTimeOffset: {x: 2.5, y: 0.5}
@@ -4720,9 +4721,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FPS: 4.45
+  m_text: 'FPS: 7.99
 
-    224.48 ms'
+    125.1 ms'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
   m_sharedMaterial: {fileID: 7764967047682581053, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
@@ -5058,7 +5059,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.75, y: 1.2}
+  m_Size: {x: 0.75, y: 1.4}
   m_EdgeRadius: 0
 --- !u!1 &853561077
 GameObject:
