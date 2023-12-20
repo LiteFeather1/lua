@@ -11,7 +11,7 @@ public class MovementChaseMoveTowards : MovementChase
         else
             Flip(Mathf.Sign(direction.x));
 
-        //direction.y *= _yFollowMultiplier;
+        direction.y *= _yFollowMultiplier;
 
         _core.transform.Translate(Time.deltaTime * _speed * direction.normalized);
     }

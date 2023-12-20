@@ -17,4 +17,4 @@ MonoBehaviour:
   _speedRange: {x: 0.1, y: 0.2, z: 0.2, w: 0.55}
   _healthRange: {x: 1, y: 35}
   _defenceRange: {x: 1.75, y: 25}
-  _damageRange: {x: 1, y: 20}
+  _damageRange: {x: 1, y: 15}
