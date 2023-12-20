@@ -55,7 +55,9 @@ public class CardManager : MonoBehaviour
     [Header("Text")]
     [SerializeField] private GameObject _textBG;
     [SerializeField] private TextMeshProUGUI t_cardName;
+    [SerializeField] private TextMeshProUGUI t_cardNameUnderlay;
     [SerializeField] private TextMeshProUGUI t_cardEffect;
+    [SerializeField] private TextMeshProUGUI t_cardEffectUnderlay;
 
     public Action OnCardHovered { get; set; }
     public Action OnCardUnHovered { get; set; }
@@ -136,25 +138,20 @@ public class CardManager : MonoBehaviour
     {
         yield return null;
         for (int i = _drawnCards.Count - 1; i >= 0; i--)
-        {
             _recycler.DropCard(_drawnCards[i]);
-        }
 
         for (int i = _cardsToDraw.Count - 1; i >= 0; i--)
-        {
             ActivateCard(_cardsToDraw[i]);
-        }
 
         _cardsToDraw.Clear();
         i_drawer.color = _drawerDisabledColour;
     }
 
+    // Unity event
     public void SetBackCanvasGroupState(bool state)
     {
         for (int i = 0; i < _cardGroupBack.Count; i++)
-        {
             _cardGroupBack[i].enabled = state;
-        }
     }
 
     private IEnumerable<WeightedObject<PowerUp>> CreateRangeWeightedPowerUp(IEnumerable<PowerUp> powerUps)
@@ -261,9 +258,9 @@ public class CardManager : MonoBehaviour
 
     private void CardHovered(PowerUp power)
     {
-        t_cardName.text = power.Name;
+        t_cardName.text = t_cardNameUnderlay.text = power.Name;
         t_cardName.color = power.RarityColour;
-        t_cardEffect.text = power.Effect;
+        t_cardEffect.text = t_cardEffectUnderlay.text = power.Effect;
         _textBG.SetActive(true);
         OnCardHovered?.Invoke();
     }

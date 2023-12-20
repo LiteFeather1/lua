@@ -16,12 +16,12 @@ MonoBehaviour:
   _effect: 'Heal On Card Played
 
     Increase by +$'
-  _cost: 10
+  _cost: 14
   _rarity: {fileID: 11400000, guid: 0869bc92c695cdd4c97f8b266f87f121, type: 2}
   _icon: {fileID: -302573990, guid: 9597046be1f803a45bde8069dd619320, type: 3}
   _tierIcon: {fileID: -1081683514, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
   _powerUpsToUnlock: []
   _modifier:
-    _value: 3
+    _value: 4
     _type: 100
   _valueToRemove: {fileID: 0}

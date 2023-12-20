@@ -348,10 +348,7 @@ public class SpawnManager : MonoBehaviour
 
         EnemiesDied++;
         for (int i = 0; i < _minEnemiesAtAllTimes.Evaluate(_t) - _activeEnemies.Count; i++)
-        {
-            print("Added");
             SpawnEnemy();
-        }
     }
 
     private void EnemyExplosionCreated(FlipBook explosion)

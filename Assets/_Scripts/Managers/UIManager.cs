@@ -5,12 +5,14 @@ using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI t_timeText;
-
     [Header("Screens")]
     [SerializeField] private GameObject _pauseScreen;
     [SerializeField] private GameObject _gameUi;
     [SerializeField] private GameObject _tipScreen;
+
+    [Header("Time")]
+    [SerializeField] private TextMeshProUGUI t_timeText;
+    [SerializeField] private TextMeshProUGUI t_timeTextUnderlay;
 
     [Header("Fade")]
     [SerializeField] private float _fadeAlpha = .33f;
@@ -29,6 +31,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Sprite _defaultSprite;
     [SerializeField] private Sprite _damagedSprite;
     [SerializeField] private TextMeshProUGUI t_currency;
+    [SerializeField] private TextMeshProUGUI t_currencyUnderlay;
 
     public string TimeText => t_timeText.text;
 
@@ -77,7 +80,7 @@ public class UIManager : MonoBehaviour
         var minutes = (int)(time / 60f);
         var seconds = time % 60f;
         var mili = seconds * 100f % 100f;
-        t_timeText.text = $"{minutes:00} : {(int)seconds:00} . {mili:000}";
+        t_timeText.text = t_timeTextUnderlay.text = $"{minutes:00} : {(int)seconds:00} . {mili:000}";
     }
 
     public void FadeGroup(CanvasGroup canvasGroup)
@@ -140,6 +143,6 @@ public class UIManager : MonoBehaviour
 
     private void UpdateCurrency(int amount)
     {
-        t_currency.text = amount.ToString();
+        t_currency.text = t_currencyUnderlay.text = amount.ToString();
     }
 }
