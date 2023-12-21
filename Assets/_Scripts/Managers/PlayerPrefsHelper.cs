@@ -14,6 +14,8 @@ public static class PlayerPrefsHelper
     private const string MUSIC = "Music";
     private const string SFX = "SFX";
 
+    private const string MESSAGES = "Messages";
+
     public static string Music => MUSIC;
     public static string Sfx => SFX;
 
@@ -58,6 +60,9 @@ public static class PlayerPrefsHelper
     {
         PlayerPrefs.SetInt(CANDY_EARNED, PlayerPrefs.GetInt(CANDY_EARNED, 0) + amount);
     }
+
+    public static string GetMessages() => PlayerPrefs.GetString(MESSAGES);
+    public static void SaveMessages(string message) => PlayerPrefs.SetString(MESSAGES, message);
 
     public static void Save() => PlayerPrefs.Save();
 }

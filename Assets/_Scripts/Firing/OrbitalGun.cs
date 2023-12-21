@@ -60,7 +60,7 @@ public class OrbitalGun : Gun
                             critMultiplier: critMultiplier,
                             knockback: knockback * .33f,
                             size: 1f,
-                            speed: Mathf.Clamp(speed * .2f, .25f, _maxBulletSpeed),
+                            speed: Mathf.Clamp(speed * .2f, .4f, _maxBulletSpeed),
                             pierce: 1,
                             bounce: 0,
                             duration: Mathf.Clamp(duration * 2f, 1.5f, _maxBulletDuration),

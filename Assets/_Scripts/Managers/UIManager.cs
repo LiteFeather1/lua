@@ -77,7 +77,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateTime(float time)
     {
-        var minutes = (time / 60f);
+        var minutes = time / 60f;
         var seconds = time % 60f;
         var mili = seconds * 1000f % 1000f;
         t_timeText.text = t_timeTextUnderlay.text = $"{minutes:00} : {seconds:00} . {mili:000}";

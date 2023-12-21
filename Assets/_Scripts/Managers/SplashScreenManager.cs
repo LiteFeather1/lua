@@ -17,6 +17,7 @@ public class SplashScreenManager : MonoBehaviour
     private const string COLOURIZED = "COLOURIZED";
     private const string RAINBOW = "RAINBOW";
     private const string CHARACTERS = "$%#@!*abcdefghijklmnopqrstuvwxyz1234567890?;:ABCDEFGHIJKLMNOPQRSTUVWXYZ^& ";
+    private const int MAX_NON_REPEATING = 8;
 
     [SerializeField] private TextMeshProUGUI t_version;
 
@@ -25,7 +26,7 @@ public class SplashScreenManager : MonoBehaviour
     [SerializeField] private string[] _messages;
     [SerializeField] private SeasonalStringArray _seasonalMessages;
     [SerializeField] private ValueColourArray _rainbowColors;
-    private static readonly Dictionary<string, RefValue<byte>> sr_lastMessages = new();
+    private readonly Dictionary<string, RefValue<byte>> r_lastMessages = new();
     private static readonly List<string> sr_messages = new();
     private static Func<string>[] s_specialMessages;
     private static readonly System.Text.StringBuilder sr_stringBuilder = new();
@@ -220,23 +221,46 @@ public class SplashScreenManager : MonoBehaviour
             sr_messages.Add($"1 in {possibilities}");
         }
 
+        // Load Messages
+        var s = PlayerPrefsHelper.GetMessages();
+        if (!string.IsNullOrEmpty(s))
+        {
+            var lastMessages = JsonUtility.FromJson<ArrayWrapper>(s).LastMessages;
+            for (int i = 0; i < lastMessages.Length; i++)
+            {
+                r_lastMessages.Add(lastMessages[i].Message, new(lastMessages[i].Amount));
+            }
+        }
+
         var randomValue = Random.value;
         const float MIN = .05f;
         if (randomValue <= MIN)
             RandomMessage = s_specialMessages.PickRandom()();
         else if (randomValue > (_seasonalMessages.ToSet.Length <= 1 ? MIN : .5f - MIN))
-            do
-                RandomMessage = sr_messages.PickRandom();
-            while (sr_lastMessages.ContainsKey(RandomMessage));
+            PickRandomDefaultMessage();
         else
+        {
+            var i = 0;
+            bool picked = false;
             do
+            {
                 RandomMessage = _seasonalMessages.ToSet.PickRandom();
-            while (sr_lastMessages.ContainsKey(RandomMessage));
+                if (!r_lastMessages.ContainsKey(RandomMessage))
+                {
+                    picked = true;
+                    break;
+                }
+            }
+            while (++i < _seasonalMessages.ToSet.Length);
+                
+            if (!picked)
+                PickRandomDefaultMessage();
+        }
 
-        sr_lastMessages.Add(RandomMessage, new(0));
-        foreach (var key in sr_lastMessages.Keys.ToArray())
-            if (sr_lastMessages[key].Value++ == 4)
-                sr_lastMessages.Remove(key);
+        r_lastMessages.Add(RandomMessage, new(0));
+        foreach (var key in r_lastMessages.Keys.ToArray())
+            if (r_lastMessages[key].Value++ == MAX_NON_REPEATING)
+                r_lastMessages.Remove(key);
 
         t_message.text = RandomMessage;
 
@@ -254,6 +278,18 @@ public class SplashScreenManager : MonoBehaviour
 
         SetWindowText(s_windowPtr.Value, $"Lua - {RandomMessage}");
 #endif
+
+        // Save Last Messages
+        {
+            var toSave = new LastMessage[r_lastMessages.Count];
+            var i = 0;
+            foreach (var pair in r_lastMessages)
+            {
+                toSave[i++] = new(pair.Key, pair.Value);
+            }
+            PlayerPrefsHelper.SaveMessages(JsonUtility.ToJson(new ArrayWrapper(toSave)));
+            PlayerPrefsHelper.Save();
+        }
 
         #region Local Function
 
@@ -290,7 +326,6 @@ public class SplashScreenManager : MonoBehaviour
                 RandomMessage = Regex.Replace(RandomMessage, "<.*?>", string.Empty);
         }
 
-
         static string ConvertToHourMinuteSeconds(string s, float time)
         {
             var hours = Mathf.FloorToInt(time / 3600f);
@@ -306,10 +341,17 @@ public class SplashScreenManager : MonoBehaviour
                                    .Append(seconds.ToString("00"))
                                    .ToString();
         }
+
+        void PickRandomDefaultMessage()
+        {
+            do
+                RandomMessage = sr_messages.PickRandom();
+            while (r_lastMessages.ContainsKey(RandomMessage));
+        }
     #endregion
     }
 
-private void Update()
+    private void Update()
     {
         var time = Time.time;
         var sinScale = 1f + (Mathf.Sin(time * _scaleSpeed) * _scaleMagnitude);
@@ -397,4 +439,25 @@ private void Update()
         EditorUtility.SetDirty(this);
     }
 #endif
+
+    [Serializable]
+    private struct LastMessage
+    {
+        public string Message;
+        public byte Amount;
+
+        public LastMessage(string message, byte amount)
+        {
+            Message = message;
+            Amount = amount;
+        }
+    }
+
+    [Serializable]
+    private struct ArrayWrapper
+    {
+        public LastMessage[] LastMessages;
+
+        public ArrayWrapper(LastMessage[] lastMessages) => LastMessages = lastMessages;
+    }
 }
