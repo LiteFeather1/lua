@@ -49,10 +49,12 @@ public class UICursor : MonoBehaviour
         _cursorImage.sprite = _normalCursor;
     }
 
+#if UNITY_WEBGL
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSplashScreen)]
     private static void OnBeforeSplashScreen()
     {
         Cursor.visible = false;
         Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
     }
+#endif
 }
