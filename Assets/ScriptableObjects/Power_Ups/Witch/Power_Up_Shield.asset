@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d61f3b3b6bf7b647a4e4fbb04bc4ed7, type: 3}
-  m_Name: X_Power_Up_Shield
+  m_Name: Power_Up_Shield
   m_EditorClassIdentifier: 
   _name: Shield
   _effect: Gain $ Damage Block
@@ -18,6 +18,7 @@ MonoBehaviour:
   _rarity: {fileID: 11400000, guid: 639bbac6bf1db91429066dc023f24633, type: 2}
   _icon: {fileID: -1649963791, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
   _tierIcon: {fileID: -1081683514, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
-  _powerUpsToUnlock: []
+  _powerUpsToUnlock:
+  - {fileID: 11400000, guid: 5f870b6423fd5234ca6de4b5e724fcf8, type: 2}
   _amount: 1
   _valueToRemove: {fileID: 0}

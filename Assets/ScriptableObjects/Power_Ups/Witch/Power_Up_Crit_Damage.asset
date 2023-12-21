@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Crit Damage Up
   _effect: +$ Critical Damage
-  _cost: 8
+  _cost: 6
   _rarity: {fileID: 11400000, guid: a7ae77a514c29d44995457b989b36476, type: 2}
   _icon: {fileID: 543231189, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
   _tierIcon: {fileID: -1081683514, guid: b40d86951d42bc24199f2ef0ed963f01, type: 3}
-  _powerUpsToUnlock: []
+  _powerUpsToUnlock:
+  - {fileID: 11400000, guid: a41ced2e43b3c7b48b7f79f68eb63fcf, type: 2}
   _modifier:
     _value: 0.1
     _type: 100

@@ -1321,9 +1321,9 @@ MonoBehaviour:
   - {fileID: 1301208098, guid: 9597046be1f803a45bde8069dd619320, type: 3}
   - {fileID: -514428840, guid: 9597046be1f803a45bde8069dd619320, type: 3}
   _powerUpProblems:
-  - PowerUP: {fileID: 11400000, guid: 6d26f4b67ca022d46975e5b1e1aed0ee, type: 2}
+  - PowerUP: {fileID: 11400000, guid: 9fed1f5a13eb0354ead162cfb218028f, type: 2}
     Problems:
-    - Power up modifier shouldn't be percent multiplier
+    - Power has + when it shouldn't
 --- !u!1 &1530324912
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,8 +1695,8 @@ MonoBehaviour:
   - "There and Back again\r"
   - "Joyful Orange\r"
   - 177 Scripts
-  - 7989 Lines
-  - 259722 Characters
+  - 8054 Lines
+  - 261719 Characters
   - 54 unique Cards
   _seasonalMessages: {fileID: 11400000, guid: 46eb8cea998e71a4d8ad82e40f856ce4, type: 2}
   _rainbowColors: {fileID: 11400000, guid: b43dcf31deafca64f8ee885301a4b2a9, type: 2}

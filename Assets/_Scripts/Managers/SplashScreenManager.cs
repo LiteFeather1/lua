@@ -226,10 +226,8 @@ public class SplashScreenManager : MonoBehaviour
         if (!string.IsNullOrEmpty(s))
         {
             var lastMessages = JsonUtility.FromJson<ArrayWrapper>(s).LastMessages;
-            for (int i = 0; i < lastMessages.Length; i++)
-            {
+            for (var i = 0; i < lastMessages.Length; i++)
                 r_lastMessages.Add(lastMessages[i].Message, new(lastMessages[i].Amount));
-            }
         }
 
         var randomValue = Random.value;
@@ -241,7 +239,7 @@ public class SplashScreenManager : MonoBehaviour
         else
         {
             var i = 0;
-            bool picked = false;
+            var picked = false;
             do
             {
                 RandomMessage = _seasonalMessages.ToSet.PickRandom();
@@ -284,9 +282,7 @@ public class SplashScreenManager : MonoBehaviour
             var toSave = new LastMessage[r_lastMessages.Count];
             var i = 0;
             foreach (var pair in r_lastMessages)
-            {
                 toSave[i++] = new(pair.Key, pair.Value);
-            }
             PlayerPrefsHelper.SaveMessages(JsonUtility.ToJson(new ArrayWrapper(toSave)));
             PlayerPrefsHelper.Save();
         }

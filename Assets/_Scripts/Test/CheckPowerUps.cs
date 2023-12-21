@@ -48,7 +48,7 @@ public class CheckPowerUps : MonoBehaviour
                     if (powerUp.Cost < rarityToPrice[powerUp.Rarity].x)
                         problems.Add("Price might be too low");
                     else if (powerUp.Cost > rarityToPrice[powerUp.Rarity].y)
-                        problems.Add("Price might be too");
+                        problems.Add("Price might be too high");
                 }
                 else
                     problems.Add("Rarity might be be debug.");
@@ -61,8 +61,11 @@ public class CheckPowerUps : MonoBehaviour
 
             if (powerUp.TierIcon == null)
                 problems.Add("Power has no tier icon");
-            else if (powerUp.TierIcon == _noTier && powerUp.Name.Contains('+'))
-                problems.Add("Power has + when it shouldn't");
+            else if (powerUp.TierIcon == _noTier)
+            {
+                if (powerUp.Name.Contains('+'))
+                    problems.Add("Power has + when it shouldn't");
+            }
             else if (!powerUp.Name.EndsWith(tierToPlus[powerUp.TierIcon]))
                 problems.Add("Power up has not enough pluses");
 

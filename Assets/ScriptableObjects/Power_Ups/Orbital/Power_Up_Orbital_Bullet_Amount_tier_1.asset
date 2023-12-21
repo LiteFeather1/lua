@@ -18,9 +18,7 @@ MonoBehaviour:
   _rarity: {fileID: 11400000, guid: 994856a3f8937bb4dba3e0990a364b53, type: 2}
   _icon: {fileID: -592067398, guid: 9597046be1f803a45bde8069dd619320, type: 3}
   _tierIcon: {fileID: 1374594584, guid: 9597046be1f803a45bde8069dd619320, type: 3}
-  _powerUpsToUnlock:
-  - {fileID: 11400000, guid: 7047eb2207d92d94db7a67f5c0c9f06b, type: 2}
-  - {fileID: 11400000, guid: 24bc7d20922bf1d45b33f1b3cbe23dd7, type: 2}
+  _powerUpsToUnlock: []
   _amount: 2
   _valueToRemove: {fileID: 11400000, guid: e6e46945ed3c83f419ab6712c43adbb2, type: 2}
   _unlockText: Unlock Orbital Bullet
