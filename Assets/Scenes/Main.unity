@@ -4549,9 +4549,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FPS: 0.78
+  m_text: 'FPS: 0.25
 
-    1275.62 ms'
+    3933.42 ms'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
   m_sharedMaterial: {fileID: 7764967047682581053, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
@@ -7932,7 +7932,6 @@ GameObject:
   - component: {fileID: 1521358744}
   - component: {fileID: 1521358743}
   - component: {fileID: 1521358742}
-  - component: {fileID: 1521358741}
   m_Layer: 5
   m_Name: Canvas-World
   m_TagString: Untagged
@@ -7940,23 +7939,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1521358741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1521358740}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &1521358742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7979,7 +7961,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1521358743
 Canvas:
   m_ObjectHideFlags: 0
@@ -9083,7 +9065,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 320, y: 180}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 1
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

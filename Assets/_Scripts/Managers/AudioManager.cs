@@ -2,6 +2,8 @@
 
 public class AudioManager : MonoBehaviour
 {
+    public const float DEFAULT_AUDIO_SOURCE_VOLUME = .5f;
+
     public static AudioManager Instance { get; private set; }
 
     [SerializeField] private AudioSource _musicSource;
@@ -23,6 +25,11 @@ public class AudioManager : MonoBehaviour
         }
         else
             Destroy(gameObject);
+    }
+
+    public void SetMusicSourceVolume(float volume)
+    {
+        _musicSource.volume = volume;
     }
 
     public void PlayOneShot(AudioClip clip, float pitch)

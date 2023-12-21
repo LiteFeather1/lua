@@ -158,12 +158,16 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 0f;
 
+            AudioManager.Instance.SetMusicSourceVolume(.05f);
+
             for (int i = 0; i < _toDisableOnPause.Length; i++)
                 _toDisableOnPause[i].enabled = !wasPaused;
         }
         else
         {
             Time.timeScale = 1f;
+
+            AudioManager.Instance.SetMusicSourceVolume(AudioManager.DEFAULT_AUDIO_SOURCE_VOLUME);
 
             for (int i = 0; i < _toDisableOnPause.Length; i++)
                 _toDisableOnPause[i].enabled = !wasPaused;
@@ -178,6 +182,7 @@ public class GameManager : MonoBehaviour
         SavePlayerPrefs();
         SceneManager.LoadSceneAsync(0);
         AudioManager.Instance.MusicSource.Stop();
+        AudioManager.Instance.SetMusicSourceVolume(AudioManager.DEFAULT_AUDIO_SOURCE_VOLUME);
         Time.timeScale = 1f;
     }
 
