@@ -18,6 +18,9 @@ csharp_style_expression_bodied_indexers = true:silent
 csharp_style_expression_bodied_accessors = true:silent
 csharp_style_expression_bodied_lambdas = true:silent
 csharp_style_expression_bodied_local_functions = false:silent
+csharp_style_prefer_local_over_anonymous_function = true:suggestion
+csharp_style_unused_value_assignment_preference = discard_variable:suggestion
+csharp_prefer_static_local_function = true:suggestion
 
 [*.{cs,vb}]
 dotnet_style_operator_placement_when_wrapping = beginning_of_line
@@ -79,3 +82,6 @@ dotnet_naming_style.pascal_case.required_prefix =
 dotnet_naming_style.pascal_case.required_suffix = 
 dotnet_naming_style.pascal_case.word_separator = 
 dotnet_naming_style.pascal_case.capitalization = pascal_case
+dotnet_style_prefer_collection_expression = true:suggestion
+dotnet_style_prefer_compound_assignment = true:suggestion
+dotnet_code_quality_unused_parameters = all:suggestion

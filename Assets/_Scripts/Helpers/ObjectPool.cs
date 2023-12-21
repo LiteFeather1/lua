@@ -36,8 +36,8 @@ namespace LTFUtils
                 return;
 
             _spawnActive = spawnActive;
-            _poolParent = new("Pool_" + _object.name);
-            _object.gameObject.SetActive(_spawnActive);
+            _poolParent = new($"Pool_{_object.name}");
+            _object.gameObject.SetActive(_spawnActive); 
             for (int i = 0; i < size; i++)
             {
                 T t = Instantiate();
@@ -46,7 +46,7 @@ namespace LTFUtils
             _object.gameObject.SetActive(true);
         }
 
-        public void InitPool(bool spawnActive = false) => InitPool(_initialPoolSize, spawnActive);
+        public void InitPool(bool spawnActive = false) => InitPool(_initialPoolSize, spawnActive);  
 
         public T GetObject()
         {
