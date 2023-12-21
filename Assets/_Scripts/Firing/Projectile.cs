@@ -61,18 +61,22 @@ public class Projectile : MonoBehaviour, IDeactivatable
         gameObject.SetActive(false);
     }
 
+    protected virtual void Bounce(Collider2D collision, bool _)
+    {
+        _bounce--;
+        var contactPoint = collision.ClosestPoint(transform.position);
+        var normal = (Vector2)transform.position - contactPoint;
+        var reflect = Vector2.Reflect(_rb.velocity.normalized, normal.normalized);
+        Shoot(reflect);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (_pierce > 0 && !collision.CompareTag("Screen"))
+        var isScreen = collision.CompareTag("Screen");
+        if (_pierce > 0 && !isScreen)
             _pierce--;
         else if (_bounce > 0)
-        {
-            _bounce--;
-            var contactPoint = collision.ClosestPoint(transform.position);
-            var normal = (Vector2)transform.position - contactPoint;
-            var reflect = Vector2.Reflect(_rb.velocity.normalized, normal.normalized);
-            Shoot(reflect);
-        }
+            Bounce(collision, isScreen);
         else
             Deactivate();
     }
