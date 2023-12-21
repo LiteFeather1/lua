@@ -3138,6 +3138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 519420032}
   - component: {fileID: 519420034}
+  - component: {fileID: 519420035}
   - component: {fileID: 519420031}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
@@ -3305,6 +3306,18 @@ MonoBehaviour:
   _shakeAmount: {x: -0.01, y: 0.01}
   _shakeCountStrong: 4
   _shakeAmountStrong: {x: -0.04, y: 0.04}
+--- !u!114 &519420035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e204578df96a046479123147ce1475ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &535326132
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3313,6 +3326,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1632749768517537127, guid: 17a4ca7f6c7dc20418790fdfd2301d87, type: 3}
+      propertyPath: m_PixelPerfect
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4175452002911128789, guid: 17a4ca7f6c7dc20418790fdfd2301d87, type: 3}
       propertyPath: m_Name
       value: Canvas-UI_Cursor
@@ -4496,9 +4513,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FPS: 9.55
+  m_text: 'FPS: 0.84
 
-    104.69 ms'
+    1191.09 ms'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
   m_sharedMaterial: {fileID: 7764967047682581053, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
