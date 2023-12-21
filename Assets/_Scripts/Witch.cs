@@ -418,10 +418,12 @@ public class Witch : MonoBehaviour
            yield return _yieldBetweenRandomBursts;
         }
 
-        _mainGun.PlayShotSound();
-        for (int i = 0; i < remainder; i++)
-            ShootRandomBullet();
-
+        if (remainder > 0)
+        {
+            _mainGun.PlayShotSound();
+            for (int i = 0; i < remainder; i++)
+                ShootRandomBullet();
+        }
         yield return _yieldBetweenMoonBursts;
 
         void ShootRandomBullet()
@@ -459,18 +461,18 @@ public class Witch : MonoBehaviour
                                            bulletAmount: shotsPerBurst,
                                            yieldBetweenBurst: _yieldBetweenMoonBursts);
 
-        _moonGun.PlayShotSound();
-        _moonGun.ShootBulletBurst(damage: _damage,
-                                  critChance: _critChance,
-                                  critMultiplier: _critMultiplier,
-                                  knockback: _knockback,
-                                  size: 1f,
-                                  speed: _moonBulletSpeed,
-                                  pierce: 1,
-                                  bounce: 1,
-                                  duration: 3f,
-                                  angle: 0f,
-                                  remainder);
+        if (remainder > 0)
+            _moonGun.ShootBulletBurst(damage: _damage,
+                                      critChance: _critChance,
+                                      critMultiplier: _critMultiplier,
+                                      knockback: _knockback,
+                                      size: 1f,
+                                      speed: _moonBulletSpeed,
+                                      pierce: 1,
+                                      bounce: 1,
+                                      duration: 3f,
+                                      angle: 0f,
+                                      remainder);
 
         yield return _yieldBetweenMoonBursts;
     }
