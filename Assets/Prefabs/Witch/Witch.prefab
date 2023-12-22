@@ -5312,8 +5312,8 @@ MonoBehaviour:
   _rotationSpeed:
     _baseValue: 180
     _value: 0
-  _maxBulletSpeed: 0.9
-  _maxBulletDuration: 6
+  _maxBulletSpeed: 2
+  _maxBulletDuration: 5
   _orbitalAmount: 0
   _yieldBetweenBursts:
     _waitTime: 0.75
