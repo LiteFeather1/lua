@@ -63,7 +63,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71d840f1752c8f4498e8bf264f09626a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _screenBounce: 1
   _pierce: 0
   _bounce: 0
   _duration: 0

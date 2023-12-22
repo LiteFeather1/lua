@@ -18,7 +18,7 @@ public class CardManager : MonoBehaviour
     [Header("Inflation")]
     [SerializeField] private Rarity[] _rarities;
     [SerializeField, ReadOnly] private float _inflation = -.25f;
-    private const float INFLATION_INCREASE = 0.01f;
+    private const float INFLATION_INCREASE = 0.015f;
     private readonly Dictionary<Rarity, float> _rarityInflation = new();
 
     [Header("Power Ups")]
@@ -84,7 +84,7 @@ public class CardManager : MonoBehaviour
             CreateCard();
 
         for (int i = 0; i < _rarities.Length; i++)
-            _rarityInflation.Add(_rarities[i], 0);
+            _rarityInflation.Add(_rarities[i], -.1f);
 
         _seek.OnPowerUpDropped += SeekDropped;
         _player.OnPowerPlayed += IncreaseInflation;
@@ -342,6 +342,13 @@ public class CardManager : MonoBehaviour
                              select powerUp)
                              .ToArray();
 
+        UnityEditor.EditorUtility.SetDirty(this);
+    }
+
+    [ContextMenu("Find Rarities")]
+    private void FindRarities()
+    {
+        UnityEditor.Undo.RegisterCompleteObjectUndo(this, "Find Rarities");
         _rarities = LTFHelpers_EditorOnly.GetScriptableObjects<Rarity>();
         UnityEditor.EditorUtility.SetDirty(this);
     }

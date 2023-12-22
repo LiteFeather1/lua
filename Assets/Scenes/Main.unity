@@ -4513,9 +4513,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FPS: 4.44
+  m_text: 'FPS: 0.74
 
-    225.17 ms'
+    1343.5 ms'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
   m_sharedMaterial: {fileID: 7764967047682581053, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
@@ -10333,6 +10333,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b8c4f061a05d65c45885223445aa71a0, type: 2}
   - {fileID: 11400000, guid: 8c6a259d34569ab469341af94b2f3ae7, type: 2}
   - {fileID: 11400000, guid: 79e8f219685a2304186a979adad12a7b, type: 2}
+  - {fileID: 11400000, guid: b20ed4bdaa1103e469f3a399baf9195b, type: 2}
   - {fileID: 11400000, guid: 112385f36fba6f340b089504bf36fa3b, type: 2}
   - {fileID: 11400000, guid: a2b3feeb3b1335a4199c87a7d82e69fd, type: 2}
   - {fileID: 11400000, guid: 3e565f69de944bf489016144e2498c8e, type: 2}
@@ -10698,7 +10699,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.08}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -10709,7 +10710,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.2, y: 0.25}
+  m_Size: {x: 3.2, y: 0.24}
   m_EdgeRadius: 0
 --- !u!114 &1904676980
 MonoBehaviour:
@@ -11475,7 +11476,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.16, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -11486,7 +11487,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 0.4, y: 0.24}
   m_EdgeRadius: 0
 --- !u!114 &1998093187
 MonoBehaviour:
