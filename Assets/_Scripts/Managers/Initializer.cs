@@ -143,5 +143,9 @@ public class Initializer : MonoBehaviour
             isPeakDay = _day == date.Day && _month == date.Month;
             return date >= startDate && date <= endDate;
         }
+
+#if UNITY_EDITOR
+        public readonly DateTime GetPeakDate() => new(DateTime.Now.Year, _month, _day);
+#endif
     }
 }
