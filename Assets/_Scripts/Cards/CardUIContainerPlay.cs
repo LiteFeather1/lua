@@ -14,14 +14,14 @@ public class CardUIContainerPlay : CardUIDropContainer
             AudioManager.Instance.PlayOneShot(_denied);
 #if UNITY_EDITOR
             if (card.PowerUp.Rarity.name.Contains("Debug"))
-                _gm.Witch.ModifyCurrency(card.PowerUp.Cost);
+                _gm.Witch.ModifyCurrency(card.Cost);
             else
 #endif
             return;
         }
 
         AudioManager.Instance.PlayOneShot(_played);
-        _gm.Witch.ModifyCurrency(-card.PowerUp.Cost);
+        _gm.Witch.ModifyCurrency(-card.Cost);
         card.PowerUp.PowerUpPlayed(_gm);
         card.ReturnToPile();
         OnPowerPlayed?.Invoke(card.PowerUp);

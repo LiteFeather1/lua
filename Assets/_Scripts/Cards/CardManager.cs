@@ -15,6 +15,12 @@ public class CardManager : MonoBehaviour
     [SerializeField] private CompositeValue _timeToDrawCard = new(5f);
     private float _elapsedTimeToDrawCard;
 
+    [Header("Inflation")]
+    [SerializeField] private Rarity[] _rarities;
+    [SerializeField, ReadOnly] private float _inflation = -.25f;
+    private const float INFLATION_INCREASE = 0.01f;
+    private readonly Dictionary<Rarity, float> _rarityInflation = new();
+
     [Header("Power Ups")]
     [SerializeField] private PowerUp[] _startingPowerUps;
     private Weighter<PowerUp> _weightedPowerUps;
@@ -77,7 +83,11 @@ public class CardManager : MonoBehaviour
         for (int i = 0; i < _startingCards; i++)
             CreateCard();
 
+        for (int i = 0; i < _rarities.Length; i++)
+            _rarityInflation.Add(_rarities[i], 0);
+
         _seek.OnPowerUpDropped += SeekDropped;
+        _player.OnPowerPlayed += IncreaseInflation;
     }
 
     private void Start()
@@ -101,6 +111,7 @@ public class CardManager : MonoBehaviour
             UnSubToCard(_drawnCards[i]);
 
         _seek.OnPowerUpDropped -= SeekDropped;
+        _player.OnPowerPlayed -= IncreaseInflation;
     }
 
     public void CardRefundDrawer(float unitInterval)
@@ -158,6 +169,7 @@ public class CardManager : MonoBehaviour
     {
         foreach (var powerUp in powerUps)
         {
+            // Don't add the same power up multiple times
             if (_allPowerUps.Contains(powerUp))
                 continue;
 
@@ -165,7 +177,9 @@ public class CardManager : MonoBehaviour
             powerUp.Reset();
 
             var weightedObject = new WeightedObject<PowerUp>(powerUp, powerUp.Weight);
+
             var powerUpType = powerUp.PowerUpType;
+            // Power up dictionary type
             if (_powerUpToPowerUps.ContainsKey(powerUpType))
                 _powerUpToPowerUps[powerUpType].Add(weightedObject);
             else
@@ -204,7 +218,10 @@ public class CardManager : MonoBehaviour
 
     private void ActivateCard(CardUIPowerUp card)
     {
-        card.SetPowerUp(_weightedPowerUps.GetObject());
+        var powerUp = _weightedPowerUps.GetObject();
+        var cost = Mathf.CeilToInt(powerUp.Cost + 
+            (powerUp.Cost * Mathf.Max(0f, _inflation + _rarityInflation[powerUp.Rarity])));
+        card.SetPowerUp(powerUp, cost);
         card.transform.position = i_drawer.transform.position;
         _drawnCards.Add(card);
         card.gameObject.SetActive(true);
@@ -247,6 +264,7 @@ public class CardManager : MonoBehaviour
         var addX = (_cardSize + spacing) * _root.transform.localScale.x;
         var minX = -(count - 1) * (addX / 2f);
         var deltaTime = Time.deltaTime;
+
         for (int i = 0; i < count; i++)
         {
             var card = _drawnCards[i];
@@ -302,6 +320,12 @@ public class CardManager : MonoBehaviour
         _weightedPowerUps.AddObject(@new);
     }
 
+    private void IncreaseInflation(PowerUp powerUp)
+    {
+        _inflation += INFLATION_INCREASE;
+        _rarityInflation[powerUp.Rarity] += INFLATION_INCREASE;
+    }
+
 #if UNITY_EDITOR
     [ContextMenu("Find Power Ups")]
     private void FindPowerUps()
@@ -317,6 +341,8 @@ public class CardManager : MonoBehaviour
                                 .Any()
                              select powerUp)
                              .ToArray();
+
+        _rarities = LTFHelpers_EditorOnly.GetScriptableObjects<Rarity>();
         UnityEditor.EditorUtility.SetDirty(this);
     }
 #endif

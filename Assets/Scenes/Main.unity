@@ -4513,9 +4513,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FPS: 3.93
+  m_text: 'FPS: 4.44
 
-    254.75 ms'
+    225.17 ms'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
   m_sharedMaterial: {fileID: 7764967047682581053, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
@@ -10310,6 +10310,13 @@ MonoBehaviour:
   _timeToDrawCard:
     _baseValue: 8
     _value: 0
+  _rarities:
+  - {fileID: 11400000, guid: 639bbac6bf1db91429066dc023f24633, type: 2}
+  - {fileID: 11400000, guid: a1df466705a8789499b19027ad855397, type: 2}
+  - {fileID: 11400000, guid: 994856a3f8937bb4dba3e0990a364b53, type: 2}
+  - {fileID: 11400000, guid: 0869bc92c695cdd4c97f8b266f87f121, type: 2}
+  - {fileID: 11400000, guid: a7ae77a514c29d44995457b989b36476, type: 2}
+  _inflation: -0.25
   _startingPowerUps:
   - {fileID: 11400000, guid: 5a5292755a2d8364dbdc683b5c850021, type: 2}
   - {fileID: 11400000, guid: 88d1342179fc9724f9d950bbde297268, type: 2}

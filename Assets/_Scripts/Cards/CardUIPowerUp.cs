@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDragHandler, IPointerEnterHandler
 {
+    private int _cost;
+
     [Header("Card UI Power Up")]
     [SerializeField] private float _defaultAlpha = .9f;
     [SerializeField] private CanvasGroup _canvasGroup;
@@ -29,6 +31,7 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDr
     public Action<CardUIPowerUp> OnDropped { get; set; }
     public Action<PowerUp> OnShowDescription { get; set; }
 
+    public int Cost => _cost;
     public PowerUp PowerUp => _powerUp;
     public CanvasGroup CanvasGroupBack => _canvasGroupBack;
 
@@ -90,13 +93,13 @@ public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDr
         AudioManager.Instance.PlayOneShot(_ungrabClip);
     }
 
-    public void SetPowerUp(PowerUp powerUp)
+    public void SetPowerUp(PowerUp powerUp, int cost)
     {
         _powerUp = powerUp;
         i_powerUp.sprite = powerUp.Icon;
         i_powerUpTierIcon.sprite = powerUp.TierIcon;
         i_card.color = powerUp.RarityColour;
-        t_cardCost.text = powerUp.Cost.ToString();
+        t_cardCost.text = (_cost = cost).ToString();
         AudioManager.Instance.PlayOneShot(_grabClip);
     }
 
