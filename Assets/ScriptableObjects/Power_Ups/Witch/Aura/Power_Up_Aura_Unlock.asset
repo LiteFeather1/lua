@@ -21,4 +21,4 @@ MonoBehaviour:
   _powerUpsToUnlock:
   - {fileID: 11400000, guid: 57e1b2bcf3b0c1642b3b4484fe045041, type: 2}
   - {fileID: 11400000, guid: a6b9375e89d7f264589040e0b54add02, type: 2}
-  _auraSprite: {fileID: -1766102230568296128, guid: 9731a7f38f0260a448afd07282a25790, type: 3}
+  _auraSprite: {fileID: -9193976053371033583, guid: 9731a7f38f0260a448afd07282a25790, type: 3}

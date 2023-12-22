@@ -13,10 +13,6 @@ MonoBehaviour:
   m_Name: Sprite_Array_Witch_Aura
   m_EditorClassIdentifier: 
   <Value>k__BackingField:
-  - {fileID: 1899413028904058232, guid: 9731a7f38f0260a448afd07282a25790, type: 3}
-  - {fileID: 1864117756527854654, guid: 9731a7f38f0260a448afd07282a25790, type: 3}
-  - {fileID: 5154094833045186703, guid: 9731a7f38f0260a448afd07282a25790, type: 3}
-  - {fileID: -9193976053371033583, guid: 9731a7f38f0260a448afd07282a25790, type: 3}
   - {fileID: -1768945033165835640, guid: 9731a7f38f0260a448afd07282a25790, type: 3}
   - {fileID: 5794102916900273367, guid: 9731a7f38f0260a448afd07282a25790, type: 3}
   - {fileID: -5797800143150827842, guid: 9731a7f38f0260a448afd07282a25790, type: 3}
