@@ -180,18 +180,15 @@ public class SpawnManager : MonoBehaviour
 
     public void DamageEveryEnemy(float damage)
     {
-        // Coping array so we don't get out of index. Or do double damage to the same thing
-        var enemies = _activeEnemies.ToArray();
-        for (int i = 0; i < enemies.Length; i++)
-            enemies[i].Health.TakeDamage(damage, 0f, false, enemies[i].transform.position);
+        for (int i = _activeEnemies.Count - 1; i >= 0; i--)
+            _activeEnemies[i].Health.TakeDamage(damage, 0f, false, _activeEnemies[i].transform.position);
     }
 
     public void DamageEveryEnemyInRange(float damage, float knockback, Vector2 pos, float range, Action<Enemy> action)
     {
-        var enemies = _activeEnemies.ToArray();
-        for (int i = 0; i < enemies.Length; i++)
+        for (int i = _activeEnemies.Count - 1; i >= 0; i--)
         {
-            var enemy = enemies[i];
+            var enemy = _activeEnemies[i];
             if (Vector2.Distance(enemy.Position, pos) > range)
                 continue;
 
@@ -215,7 +212,6 @@ public class SpawnManager : MonoBehaviour
 
     public void LightningDamage(float damage, float range, Vector2 firstPoint, IDamageable firstDamageable, float lightningChance, int minChains)
     {
-        var enemies = _activeEnemies.ToArray();
         var lightingPoints = new List<Vector2>()
         {
             firstPoint,
@@ -230,9 +226,9 @@ public class SpawnManager : MonoBehaviour
         {
             float prevDistance = 0f;
             Enemy enemyToAffect = null;
-            for (int i = 0; i < enemies.Length; i++)
+            for (int i = _activeEnemies.Count - 1; i >= 0; i--)
             {
-                var enemy = enemies[i];
+                var enemy = _activeEnemies[i];
                 float distance = Vector2.Distance(prevPos, enemy.Position);
                 if (distance < range && distance > prevDistance)
                 {

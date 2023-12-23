@@ -3326,10 +3326,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1632749768517537127, guid: 17a4ca7f6c7dc20418790fdfd2301d87, type: 3}
-      propertyPath: m_PixelPerfect
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4175452002911128789, guid: 17a4ca7f6c7dc20418790fdfd2301d87, type: 3}
       propertyPath: m_Name
       value: Canvas-UI_Cursor
@@ -4513,9 +4509,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FPS: 0.82
+  m_text: 'FPS: 1.42
 
-    1220.67 ms'
+    703.07 ms'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
   m_sharedMaterial: {fileID: 7764967047682581053, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
@@ -10582,7 +10578,7 @@ MonoBehaviour:
   ac_thornDamage: {fileID: 8300000, guid: 53f908eb98662514f8073007fa0b7174, type: 3}
   _music: {fileID: 8300000, guid: c688c79e6650ae143baad8b44023675a, type: 3}
   _slowDownScale: 0.25
-  _playTime: 0
+  _playTime: 900
   _timeForMaxDifficult: 900
   _camera: {fileID: 519420031}
   _shake: {fileID: 519420034}
