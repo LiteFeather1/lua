@@ -1146,6 +1146,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _seasons:
+  - <SeasonName>k__BackingField: Halloween
+    _dayStart: 24
+    _monthStart: 10
+    _dayEnd: 31
+    _monthEnd: 10
+    _yearPlus: 0
   - <SeasonName>k__BackingField: Christmas
     _dayStart: 12
     _monthStart: 12

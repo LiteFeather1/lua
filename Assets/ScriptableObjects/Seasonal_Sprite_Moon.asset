@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2930d9186ee12c4db044a2c421a875d, type: 3}
   m_Name: Seasonal_Sprite_Moon
   m_EditorClassIdentifier: 
+  _default: {fileID: 0}
   _dictionary:
     _entries:
     - Key: Christmas
-      Value: {fileID: -1440763006, guid: ec6e048190957e844854655e0bd03d27, type: 3}
+      Value: {fileID: 21300000, guid: c3424b9fb395f63458b7a56b42b5a87d, type: 3}
+    - Key: Halloween
+      Value: {fileID: 21300000, guid: 45f376a27ca4cb043b6effd5c1064e0a, type: 3}
   _toSet: {fileID: 11400000, guid: 029acac3cc4eb7147a8ca0a52a80e58b, type: 2}

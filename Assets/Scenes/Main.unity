@@ -1942,7 +1942,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1257769023
   m_SortingLayer: -2
-  m_SortingOrder: -1000
+  m_SortingOrder: -500
   m_Sprite: {fileID: 21300000, guid: cd19e8bebd1f9f14caf498cc2c7ed39c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3501,9 +3501,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FPS: 0.23
+  m_text: 'FPS: 0.04
 
-    4274.42 ms'
+    23287.78 ms'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
   m_sharedMaterial: {fileID: 7764967047682581053, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
@@ -6023,7 +6023,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1257769023
   m_SortingLayer: -2
-  m_SortingOrder: -300
+  m_SortingOrder: -1000
   m_Sprite: {fileID: 21300000, guid: 0a219f090bcd7754187850dd66eee836, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
