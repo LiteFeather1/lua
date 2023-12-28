@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using CompositeValues;
+using Lua.Damage;
 
-namespace Lua
+namespace Lua.Weapons
 {
     public class Aura : MonoBehaviour
     {

@@ -4,6 +4,8 @@ using System.Collections;
 using UnityEngine;
 using CompositeValues;
 using Lua.Managers;
+using Lua.Damage;
+using Lua.Damage.DamageEffects;
 using Lua.Weapons;
 using Random = UnityEngine.Random;
 

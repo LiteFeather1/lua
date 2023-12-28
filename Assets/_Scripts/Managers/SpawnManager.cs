@@ -6,6 +6,7 @@ using RetroAnimation;
 using CompositeValues;
 using UnityEngine;
 using Lua.StateMachine.Enemies;
+using Lua.Damage;
 using Lua.Misc;
 using Random = UnityEngine.Random;
 

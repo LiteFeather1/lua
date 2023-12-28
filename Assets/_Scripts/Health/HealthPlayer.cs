@@ -1,57 +1,60 @@
 ﻿using UnityEngine;
 using CompositeValues;
 
-public class HealthPlayer : Health
+namespace Lua.Damage
 {
-    [Header("Player Health")]   
-    [SerializeField] private int _shield;
-    [SerializeField] private CompositeValue _dodgeChance = new(0f);
-
-    public delegate void MaxHPIncreased(float maxHp, float t);
-    public MaxHPIncreased OnMaxHPIncreased { get; set; }
-    public System.Action OnShieldDamaged { get; set; }
-    public System.Action<int> OnShieldGained { get; set; }
-
-    public System.Action OnDodge { get; set; }
-
-    public int Shield => _shield;
-    public CompositeValue DodgeChance => _dodgeChance;
-
-    public override bool TakeDamage(float damage, float knockback, bool crit, Vector2 pos)
+    public class HealthPlayer : Health
     {
-        if (Random.value < _dodgeChance)
+        [Header("Player Health")]   
+        [SerializeField] private int _shield;
+        [SerializeField] private CompositeValue _dodgeChance = new(0f);
+
+        public delegate void MaxHPIncreased(float maxHp, float t);
+        public MaxHPIncreased OnMaxHPIncreased { get; set; }
+        public System.Action OnShieldDamaged { get; set; }
+        public System.Action<int> OnShieldGained { get; set; }
+
+        public System.Action OnDodge { get; set; }
+
+        public int Shield => _shield;
+        public CompositeValue DodgeChance => _dodgeChance;
+
+        public override bool TakeDamage(float damage, float knockback, bool crit, Vector2 pos)
         {
-            OnDodge?.Invoke();
-            return false;
+            if (Random.value < _dodgeChance)
+            {
+                OnDodge?.Invoke();
+                return false;
+            }
+
+            if (_shield > 0)
+            {
+                _shield--;
+                OnDamaged?.Invoke(0f, knockback, crit, pos);
+                OnShieldDamaged?.Invoke();
+                return false;   
+            }
+
+            return base.TakeDamage(damage, knockback, crit, pos);
         }
 
-        if (_shield > 0)
+        public void IncreaseMaxHP(float amount)
         {
-            _shield--;
-            OnDamaged?.Invoke(0f, knockback, crit, pos);
-            OnShieldDamaged?.Invoke();
-            return false;   
+            _maxHealth += amount;
+            _health += amount;
+            OnMaxHPIncreased?.Invoke(_maxHealth, _health / _maxHealth);
         }
 
-        return base.TakeDamage(damage, knockback, crit, pos);
-    }
+        public int IncreaseMaxHP(int amount)
+        {
+            IncreaseMaxHP((float)amount);
+            return (int)_maxHealth;
+        }
 
-    public void IncreaseMaxHP(float amount)
-    {
-        _maxHealth += amount;
-        _health += amount;
-        OnMaxHPIncreased?.Invoke(_maxHealth, _health / _maxHealth);
-    }
-
-    public int IncreaseMaxHP(int amount)
-    {
-        IncreaseMaxHP((float)amount);
-        return (int)_maxHealth;
-    }
-
-    public int AddShield(int amount)
-    {
-        OnShieldGained?.Invoke(amount);
-        return _shield += amount;
+        public int AddShield(int amount)
+        {
+            OnShieldGained?.Invoke(amount);
+            return _shield += amount;
+        }
     }
 }

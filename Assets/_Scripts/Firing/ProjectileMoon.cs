@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 
-public class ProjectileMoon : Projectile
+namespace Lua.Weapons
 {
-    protected override void Bounce(Collider2D collision, bool isScreen)
+    public class ProjectileMoon : Projectile
     {
-        if (isScreen && collision.transform.localPosition.y < transform.position.y)
-            Deactivate();
-        else
-            base.Bounce(collision, isScreen);
+        protected override void Bounce(Collider2D collision, bool isScreen)
+        {
+            if (isScreen && collision.transform.localPosition.y < transform.position.y)
+                Deactivate();
+            else
+                base.Bounce(collision, isScreen);
+        }
     }
 }

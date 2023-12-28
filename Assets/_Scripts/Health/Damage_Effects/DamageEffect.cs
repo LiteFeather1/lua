@@ -1,22 +1,25 @@
 
-public abstract class DamageEffect : IDamageEffect
+namespace Lua.Damage.DamageEffects
 {
-    protected float _duration;
-    protected float _elapsedTime;
-
-    public abstract int ID { get; }
-
-    public DamageEffect(float duration)
+    public abstract class DamageEffect : IDamageEffect
     {
-        _duration = duration;
-    }
+        protected float _duration;
+        protected float _elapsedTime;
 
-    public virtual bool Tick(IDamageable damageable, float delta)
-    {
-        _elapsedTime += delta;
-        if (_elapsedTime > _duration)
-            return true;
+        public abstract int ID { get; }
 
-        return false;
+        public DamageEffect(float duration)
+        {
+            _duration = duration;
+        }
+
+        public virtual bool Tick(IDamageable damageable, float delta)
+        {
+            _elapsedTime += delta;
+            if (_elapsedTime > _duration)
+                return true;
+
+            return false;
+        }
     }
 }
