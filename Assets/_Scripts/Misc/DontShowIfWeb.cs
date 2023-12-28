@@ -1,11 +1,14 @@
 using UnityEngine;
 
-public class DontShowIfWeb : MonoBehaviour
+namespace Lua.Misc
 {
-#if UNITY_WEBGL
-    private void Awake()
+    public class DontShowIfWeb : MonoBehaviour
     {
-         gameObject.SetActive(false);
-    }
+#if UNITY_WEBGL
+        private void Awake()
+        {
+             gameObject.SetActive(false);
+        }
 #endif
+    }
 }

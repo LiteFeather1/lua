@@ -1,21 +1,24 @@
 ﻿using MoonPhaseConsole;
 using UnityEngine;
 
-public class MoonSprite : MonoBehaviour
+namespace Lua.Misc
 {
-    [SerializeField] private SpriteRenderer _sr;
-    [SerializeField] private ValueSprite _seasonalSprite;
-    [SerializeField] private Sprite[] _moonPhases;
-
-    public void Start()
+    public class MoonSprite : MonoBehaviour
     {
-        if (_seasonalSprite.Value != null)
-        {
-            _sr.sprite = _seasonalSprite.Value;
-            return;
-        }
+        [SerializeField] private SpriteRenderer _sr;
+        [SerializeField] private ValueSprite _seasonalSprite;
+        [SerializeField] private Sprite[] _moonPhases;
 
-        var result = Moon.UtcNow();
-        _sr.sprite = _moonPhases[result.Index];
+        public void Start()
+        {
+            if (_seasonalSprite.Value != null)
+            {
+                _sr.sprite = _seasonalSprite.Value;
+                return;
+            }
+
+            var result = Moon.UtcNow();
+            _sr.sprite = _moonPhases[result.Index];
+        }
     }
 }

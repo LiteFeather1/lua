@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Lua
+namespace Lua.Misc
 {
     public class Deactivator : MonoBehaviour
     {

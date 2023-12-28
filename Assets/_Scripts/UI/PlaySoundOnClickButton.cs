@@ -1,7 +1,7 @@
 using UnityEngine;
 using Lua.Managers;
 
-namespace Lua.Misc
+namespace Lua.UI
 {
     public class PlaySoundOnClickButton : MonoBehaviour
     {
