@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
+using Lua.Managers;
 
-[CreateAssetMenu(menuName = "Power Up/Witch/Dodge Ch]ance")]
-public class PowerUpDodgeChance : PowerUpModifier
+namespace Lua.PowerUps
 {
-    protected override CompositeValue ValueToModify(GameManager gm)
+    [CreateAssetMenu(menuName = "Power Up/Witch/Dodge Ch]ance")]
+    public class PowerUpDodgeChance : PowerUpModifier
     {
-        return gm.Witch.Health.DodgeChance;
+        protected override CompositeValue ValueToModify(GameManager gm)
+        {
+            return gm.Witch.Health.DodgeChance;
+        }
     }
 }

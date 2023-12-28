@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
+using Lua.Managers;
 
-[CreateAssetMenu(menuName = "Power Up/Dagger/Fire Rate")]
-public class PowerUpDaggerFireRate : PowerUpModifier
+namespace Lua.PowerUps
 {
-    protected override CompositeValue ValueToModify(GameManager gm)
+    [CreateAssetMenu(menuName = "Power Up/Dagger/Fire Rate")]
+    public class PowerUpDaggerFireRate : PowerUpModifier
     {
-        return gm.Witch.DaggerShootTime;
+        protected override CompositeValue ValueToModify(GameManager gm)
+        {
+            return gm.Witch.DaggerShootTime;
+        }
     }
 }

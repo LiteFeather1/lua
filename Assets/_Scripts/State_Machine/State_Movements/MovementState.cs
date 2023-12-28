@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class MovementState : StateMachine.State
+public abstract class MovementState : StateMachineCore.State
 {
     [SerializeField] protected float _speed = 1f;
 

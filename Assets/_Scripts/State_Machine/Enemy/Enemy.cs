@@ -1,114 +1,117 @@
 using RetroAnimation;
 using UnityEngine;
 
-public abstract class Enemy : StateMachine.StateMachine, IDeactivatable
+namespace Lua.StateMachine.Enemies
 {
-    [SerializeField] protected EnemyData _data;
-
-    [Header("Base States")]
-    [SerializeField] private MovementKnockback _knockbackState;
-
-    [Header("Sprite")]
-    [SerializeField] private ValueSprite _knockbackSprite;
-
-    [Header("Components")]
-    [SerializeField] private FlipBook _flipBook;
-    [SerializeField] private Health _health;
-    [SerializeField] private HitBox _hitBox;
-
-    private Parentable _fireParticle;
-
-    public EnemyData Data => _data;
-
-    public Health Health => _health;
-    public HitBox HitBox => _hitBox;
-
-    public System.Action<Enemy> ReturnToPool { get; set; }
-    public System.Action<Enemy> OnDied { get; set; }
-
-    public System.Func<Parentable> OnFireEffectApplied { get; set; }
-
-    protected void OnEnable()
+    public abstract class Enemy : StateMachineCore.StateMachine, IDeactivatable
     {
-        _health.OnDamaged += Damaged;
-        _health.OnDeath += Died;
+        [SerializeField] protected EnemyData _data;
 
-        _health.OnDamageEffectApplied += EffectApplied;
-        _health.OnDamageEffectRemoved += EffectRemoved;
+        [Header("Base States")]
+        [SerializeField] private MovementKnockback _knockbackState;
 
-        _knockbackState.OnStateComplete += KnockBackComplete;
-    }
+        [Header("Sprite")]
+        [SerializeField] private ValueSprite _knockbackSprite;
 
-    protected void OnDisable()
-    {
-        _health.OnDamaged -= Damaged;
-        _health.OnDeath -= Died;
+        [Header("Components")]
+        [SerializeField] private FlipBook _flipBook;
+        [SerializeField] private Health _health;
+        [SerializeField] private HitBox _hitBox;
 
-        _health.OnDamageEffectApplied -= EffectApplied;
-        _health.OnDamageEffectRemoved -= EffectRemoved;
+        private Parentable _fireParticle;
 
-        _knockbackState.OnStateComplete -= KnockBackComplete;
-    }
+        public EnemyData Data => _data;
 
-    public virtual void Init(Witch witch) { }
+        public Health Health => _health;
+        public HitBox HitBox => _hitBox;
 
-    public virtual void Spawn(float t, float tClamped) 
-    {
-        _flipBook.SR.sortingOrder = Random.Range(100, 500);
-        _health.SetNewStats(_data.Health(t), _data.Defence(t));
-        _hitBox.SetDamage(_data.Damage(t));
-        gameObject.SetActive(true);
-    }
+        public System.Action<Enemy> ReturnToPool { get; set; }
+        public System.Action<Enemy> OnDied { get; set; }
 
-    public void Deactivate()
-    {
-        gameObject.SetActive(false);
-        ReturnToPool?.Invoke(this);
-    }
+        public System.Func<Parentable> OnFireEffectApplied { get; set; }
 
-    protected virtual void KnockBackComplete()
-    {
-        _flipBook.Play(true);
-        transform.localScale = new(1f, 1f, 1f);
-    }
-
-    private void Damaged(float damage, float knockback, bool crit, Vector2 pos)
-    {
-        if (knockback == 0f)
-            return;
-
-        _flipBook.Stop();
-        _flipBook.SR.sprite = _knockbackSprite.Value;
-
-        var knockbackDirection = (Position - pos).normalized;
-        transform.localScale = new(-Mathf.Sign(knockbackDirection.x), 1f, 1f);
-        _knockbackState.SetUp(knockbackDirection, crit ? knockback * 1.5f : knockback);
-        Set(_knockbackState);
-    }
-
-    private void Died()
-    {
-        _fireParticle?.UnParent();
-
-        gameObject.SetActive(false);
-        ReturnToPool?.Invoke(this);
-        OnDied?.Invoke(this);
-    }
-
-    private void EffectApplied(int effectID)
-    {
-        if (effectID == (int)IDamageEffect.DamageEffectID.FIRE_ID)
+        protected void OnEnable()
         {
-            _fireParticle = OnFireEffectApplied?.Invoke();
-            _fireParticle.Parent(_health.transform);
+            _health.OnDamaged += Damaged;
+            _health.OnDeath += Died;
+
+            _health.OnDamageEffectApplied += EffectApplied;
+            _health.OnDamageEffectRemoved += EffectRemoved;
+
+            _knockbackState.OnStateComplete += KnockBackComplete;
         }
-    }
 
-    private void EffectRemoved(int effectID)
-    {
-        if (effectID == (int)IDamageEffect.DamageEffectID.FIRE_ID)
+        protected void OnDisable()
         {
-            _fireParticle.UnParent();
+            _health.OnDamaged -= Damaged;
+            _health.OnDeath -= Died;
+
+            _health.OnDamageEffectApplied -= EffectApplied;
+            _health.OnDamageEffectRemoved -= EffectRemoved;
+
+            _knockbackState.OnStateComplete -= KnockBackComplete;
+        }
+
+        public virtual void Init(Witch witch) { }
+
+        public virtual void Spawn(float t, float tClamped) 
+        {
+            _flipBook.SR.sortingOrder = Random.Range(100, 500);
+            _health.SetNewStats(_data.Health(t), _data.Defence(t));
+            _hitBox.SetDamage(_data.Damage(t));
+            gameObject.SetActive(true);
+        }
+
+        public void Deactivate()
+        {
+            gameObject.SetActive(false);
+            ReturnToPool?.Invoke(this);
+        }
+
+        protected virtual void KnockBackComplete()
+        {
+            _flipBook.Play(true);
+            transform.localScale = new(1f, 1f, 1f);
+        }
+
+        private void Damaged(float damage, float knockback, bool crit, Vector2 pos)
+        {
+            if (knockback == 0f)
+                return;
+
+            _flipBook.Stop();
+            _flipBook.SR.sprite = _knockbackSprite.Value;
+
+            var knockbackDirection = (Position - pos).normalized;
+            transform.localScale = new(-Mathf.Sign(knockbackDirection.x), 1f, 1f);
+            _knockbackState.SetUp(knockbackDirection, crit ? knockback * 1.5f : knockback);
+            Set(_knockbackState);
+        }
+
+        private void Died()
+        {
+            _fireParticle?.UnParent();
+
+            gameObject.SetActive(false);
+            ReturnToPool?.Invoke(this);
+            OnDied?.Invoke(this);
+        }
+
+        private void EffectApplied(int effectID)
+        {
+            if (effectID == (int)IDamageEffect.DamageEffectID.FIRE_ID)
+            {
+                _fireParticle = OnFireEffectApplied?.Invoke();
+                _fireParticle.Parent(_health.transform);
+            }
+        }
+
+        private void EffectRemoved(int effectID)
+        {
+            if (effectID == (int)IDamageEffect.DamageEffectID.FIRE_ID)
+            {
+                _fireParticle.UnParent();
+            }
         }
     }
 }

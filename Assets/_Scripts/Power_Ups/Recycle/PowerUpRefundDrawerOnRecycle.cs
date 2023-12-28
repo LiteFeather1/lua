@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
-
-[CreateAssetMenu(menuName = "Power Up/Recycle/Refund Drawer")]
-public class PowerUpRefundDrawerOnRecycle : PowerUpModifier
+using Lua.Managers;
+    
+namespace Lua.PowerUps
 {
-    protected override CompositeValue ValueToModify(GameManager gm)
+    [CreateAssetMenu(menuName = "Power Up/Recycle/Refund Drawer")]
+    public class PowerUpRefundDrawerOnRecycle : PowerUpModifier
     {
-        return gm.OnRecycleRefund;
+        protected override CompositeValue ValueToModify(GameManager gm)
+        {
+            return gm.OnRecycleRefund;
+        }
     }
 }

@@ -1,25 +1,29 @@
 ﻿using System;
 using UnityEngine;
+using Lua.Managers;
 
-public abstract class PowerUpFlat : PowerUp
+namespace Lua.PowerUps
 {
-    [SerializeField] private int _amount;
-    [SerializeField] private ValueInt _valueToRemove;
-
-    protected override string Num => _amount.ToString();
-
-    // ToDo : Maybe this could be better with a interface??
-    protected abstract Func<int, int> ModifyValue(GameManager gm);
-
-    protected override void ApplyEffect(GameManager gm)
+    public abstract class PowerUpFlat : PowerUp
     {
-        var amount = ModifyValue(gm)(_amount);
+        [SerializeField] private int _amount;
+        [SerializeField] private ValueInt _valueToRemove;
 
-        if (_valueToRemove == null)
-            return;
+        protected override string Num => _amount.ToString();
 
-        // Is Maxed
-        if (_amount > 0 ? amount >= _valueToRemove : amount <= _valueToRemove)
-            Remove(gm.CardManager);
-    }   
+        // ToDo : Maybe this could be better with a interface??
+        protected abstract Func<int, int> ModifyValue(GameManager gm);
+
+        protected override void ApplyEffect(GameManager gm)
+        {
+            var amount = ModifyValue(gm)(_amount);
+
+            if (_valueToRemove == null)
+                return;
+
+            // Is Maxed
+            if (_amount > 0 ? amount >= _valueToRemove : amount <= _valueToRemove)
+                Remove(gm.CardManager);
+        }   
+    }
 }

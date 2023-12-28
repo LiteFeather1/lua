@@ -1,54 +1,58 @@
 ﻿using UnityEngine;
+using Lua.Managers;
 
-public abstract class PowerUpModifier : PowerUp
+namespace Lua.PowerUps
 {
-    [Header("Power Up Modifier")]
-    [SerializeField] private CompositeValueModifier _modifier;
-    [SerializeField] private ValueFloat _valueToRemove;
-
-    public CompositeValueModifier Modifier => _modifier;
-
-    protected override string Num
+    public abstract class PowerUpModifier : PowerUp
     {
-        get
+        [Header("Power Up Modifier")]
+        [SerializeField] private CompositeValueModifier _modifier;
+        [SerializeField] private ValueFloat _valueToRemove;
+
+        public CompositeValueModifier Modifier => _modifier;
+
+        protected override string Num
         {
-            return _modifier.Type switch
+            get
             {
-                CompositeValueModifierType.Flat => FlatModifier(),
-                CompositeValueModifierType.PercentAdditive => PercentModifer(),
-                CompositeValueModifierType.PercentMultiplier => PercentModifer(),
-                _ => ""
-            };
+                return _modifier.Type switch
+                {
+                    CompositeValueModifierType.Flat => FlatModifier(),
+                    CompositeValueModifierType.PercentAdditive => PercentModifer(),
+                    CompositeValueModifierType.PercentMultiplier => PercentModifer(),
+                    _ => ""
+                };
+            }
         }
-    }
 
-    protected abstract CompositeValue ValueToModify(GameManager gm);
+        protected abstract CompositeValue ValueToModify(GameManager gm);
 
-    protected override void ApplyEffect(GameManager gm)
-    {
-        var compositeValue = ValueToModify(gm);
-        compositeValue.AddModifier(_modifier);
+        protected override void ApplyEffect(GameManager gm)
+        {
+            var compositeValue = ValueToModify(gm);
+            compositeValue.AddModifier(_modifier);
 
-        if (_valueToRemove == null)
-            return;
-        // is Maxed
-        if (_modifier > 0f ? compositeValue >= _valueToRemove : compositeValue <= _valueToRemove)
-            Remove(gm.CardManager);
-    }
+            if (_valueToRemove == null)
+                return;
+            // is Maxed
+            if (_modifier > 0f ? compositeValue >= _valueToRemove : compositeValue <= _valueToRemove)
+                Remove(gm.CardManager);
+        }
 
-    private string FlatModifier()
-    {
-        if (Mathf.Abs(_modifier) < 1f)
-            return PercentModifer();
+        private string FlatModifier()
+        {
+            if (Mathf.Abs(_modifier) < 1f)
+                return PercentModifer();
 
-        return _modifier.Value.ToString();
-    }
+            return _modifier.Value.ToString();
+        }
 
-    private string PercentModifer()
-    {
-        if (_modifier >= 0f)
-            return _modifier.Value.ToString("0.0%");
-        else
-            return (-_modifier.Value).ToString("0.0%");
+        private string PercentModifer()
+        {
+            if (_modifier >= 0f)
+                return _modifier.Value.ToString("0.0%");
+            else
+                return (-_modifier.Value).ToString("0.0%");
+        }
     }
 }

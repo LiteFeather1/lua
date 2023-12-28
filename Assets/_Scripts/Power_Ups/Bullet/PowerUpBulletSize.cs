@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
+using Lua.Managers;
 
-[CreateAssetMenu(menuName = "Power Up/Bullet/Bullet Size")]
-public class PowerUpBulletSize : PowerUpModifier
+namespace Lua.PowerUps
 {
-    protected override CompositeValue ValueToModify(GameManager gm)
+    [CreateAssetMenu(menuName = "Power Up/Bullet/Bullet Size")]
+    public class PowerUpBulletSize : PowerUpModifier
     {
-        return gm.Witch.Gun.Size;
+        protected override CompositeValue ValueToModify(GameManager gm)
+        {
+            return gm.Witch.Gun.Size;
+        }
     }
 }

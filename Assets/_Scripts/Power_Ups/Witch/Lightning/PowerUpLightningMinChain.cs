@@ -1,11 +1,15 @@
 ﻿using System;
 using UnityEngine;
+using Lua.Managers;
 
-[CreateAssetMenu(menuName = "Power Up/Witch/Lightining/Lightning Min Chain")]
-public class PowerUpLightningMinChain : PowerUpFlat
+namespace Lua.PowerUps
 {
-    protected override Func<int, int> ModifyValue(GameManager gm)
+    [CreateAssetMenu(menuName = "Power Up/Witch/Lightining/Lightning Min Chain")]
+    public class PowerUpLightningMinChain : PowerUpFlat
     {
-        return gm.Witch.ChangeLightningMinChain;
+        protected override Func<int, int> ModifyValue(GameManager gm)
+        {
+            return gm.Witch.ChangeLightningMinChain;
+        }
     }
 }

@@ -7,7 +7,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Lua.Cards
+namespace Lua.PowerUps.Cards
 {
     public class CardManager : MonoBehaviour
     {

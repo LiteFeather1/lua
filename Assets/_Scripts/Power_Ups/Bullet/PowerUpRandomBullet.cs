@@ -1,23 +1,27 @@
 ﻿using System;
 using UnityEngine;
+using Lua.Managers;
 
-[CreateAssetMenu(menuName = "Power Up/Bullet/Random Bullet")]
-public class PowerUpRandomBullet : PowerUpFlat
+namespace Lua.PowerUps
 {
-    [Header("Random Bullet")]
-    [SerializeField, TextArea(1, 2)] private string _unlockText = "Periodically Shot bullet in random directions";
-    private static bool _picked;
-
-    public override string Effect => _picked ? base.Effect : _unlockText;
-
-    public override void Reset()
+    [CreateAssetMenu(menuName = "Power Up/Bullet/Random Bullet")]
+    public class PowerUpRandomBullet : PowerUpFlat
     {
-        base.Reset();
-        _picked = false;
-    }
+        [Header("Random Bullet")]
+        [SerializeField, TextArea(1, 2)] private string _unlockText = "Periodically Shot bullet in random directions";
+        private static bool _picked;
 
-    protected override Func<int, int> ModifyValue(GameManager gm)
-    {
-        return gm.Witch.AddRandomBullet;
+        public override string Effect => _picked ? base.Effect : _unlockText;
+
+        public override void Reset()
+        {
+            base.Reset();
+            _picked = false;
+        }
+
+        protected override Func<int, int> ModifyValue(GameManager gm)
+        {
+            return gm.Witch.AddRandomBullet;
+        }
     }
 }

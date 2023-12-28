@@ -1,23 +1,27 @@
 ﻿using System;
 using UnityEngine;
+using Lua.Managers;
 
-[CreateAssetMenu(menuName = "Power Up/Moon/Amount")]
-public class PowerUpMoonAmount : PowerUpFlat
+namespace Lua.PowerUps
 {
-    [Header("Orbital Bullet Amount")]
-    [SerializeField] private string _unlockText = "Unlock Moon Bullet";
-    private static bool _unlocked = false;
-
-    public override string Effect => _unlocked ? base.Effect : _unlockText;
-
-    public override void Reset()
+    [CreateAssetMenu(menuName = "Power Up/Moon/Amount")]
+    public class PowerUpMoonAmount : PowerUpFlat
     {
-        base.Reset();
-        _unlocked = false;
-    }
+        [Header("Orbital Bullet Amount")]
+        [SerializeField] private string _unlockText = "Unlock Moon Bullet";
+        private static bool _unlocked = false;
 
-    protected override Func<int, int> ModifyValue(GameManager gm)
-    {
-        return gm.Witch.AddShootingMoonBullet;
+        public override string Effect => _unlocked ? base.Effect : _unlockText;
+
+        public override void Reset()
+        {
+            base.Reset();
+            _unlocked = false;
+        }
+
+        protected override Func<int, int> ModifyValue(GameManager gm)
+        {
+            return gm.Witch.AddShootingMoonBullet;
+        }
     }
 }

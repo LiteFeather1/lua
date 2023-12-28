@@ -1,13 +1,17 @@
 ﻿using UnityEngine;
+using Lua.Managers;
 
-[CreateAssetMenu(menuName = "Power Up/Dragon/Junior Dragon")]
-public class PowerUpDragonJunior: PowerUp
+namespace Lua.PowerUps
 {
-    protected override string Num => "";
-
-    protected override void ApplyEffect(GameManager gm)
+    [CreateAssetMenu(menuName = "Power Up/Dragon/Junior Dragon")]
+    public class PowerUpDragonJunior: PowerUp
     {
-        gm.Dragon.Grow(.5f);
-        Remove(gm.CardManager);
+        protected override string Num => "";
+
+        protected override void ApplyEffect(GameManager gm)
+        {
+            gm.Dragon.Grow(.5f);
+            Remove(gm.CardManager);
+        }
     }
 }

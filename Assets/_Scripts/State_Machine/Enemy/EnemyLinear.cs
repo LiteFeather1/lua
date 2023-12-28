@@ -1,24 +1,27 @@
 ﻿using UnityEngine;
 
-public class EnemyLinear : Enemy
+namespace Lua.StateMachine.Enemies
 {
-    [Header("States")]
-    [SerializeField] private MovementLinear _movement;
-
-    private void Start()
+    public class EnemyLinear : Enemy
     {
-        Set(_movement);
-    }
+        [Header("States")]
+        [SerializeField] private MovementLinear _movement;
 
-    public override void Spawn(float t, float tClamped)
-    {
-        base.Spawn(t, tClamped);
-        _movement.SetSpeed(_data.Speed(tClamped));
-    }
+        private void Start()
+        {
+            Set(_movement);
+        }
 
-    protected override void KnockBackComplete()
-    {
-        Set(_movement);
-        base.KnockBackComplete();
+        public override void Spawn(float t, float tClamped)
+        {
+            base.Spawn(t, tClamped);
+            _movement.SetSpeed(_data.Speed(tClamped));
+        }
+
+        protected override void KnockBackComplete()
+        {
+            Set(_movement);
+            base.KnockBackComplete();
+        }
     }
 }

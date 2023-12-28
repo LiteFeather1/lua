@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
+using Lua.Managers;
 
-[CreateAssetMenu(menuName = "Power Up/Drawer/Redraw Hand")]
-public class PowerUpRedrawHand : PowerUp
+namespace Lua.PowerUps
 {
-    protected override string Num => string.Empty;
-
-    protected override void ApplyEffect(GameManager gm)
+    [CreateAssetMenu(menuName = "Power Up/Drawer/Redraw Hand")]
+    public class PowerUpRedrawHand : PowerUp
     {
-        gm.StartCoroutine(gm.CardManager.RedrawHand());
+        protected override string Num => string.Empty;
+
+        protected override void ApplyEffect(GameManager gm)
+        {
+            gm.StartCoroutine(gm.CardManager.RedrawHand());
+        }
     }
 }

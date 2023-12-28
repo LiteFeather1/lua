@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
+using Lua.Managers;
 
-[CreateAssetMenu(menuName = "Power Up/Bullet/Range")]
-public class PowerUpBulletRange : PowerUpModifier
+namespace Lua.PowerUps
 {
-    protected override CompositeValue ValueToModify(GameManager gm)
+    [CreateAssetMenu(menuName = "Power Up/Bullet/Range")]
+    public class PowerUpBulletRange : PowerUpModifier
     {
-        return gm.Witch.Gun.BulletDuration;
+        protected override CompositeValue ValueToModify(GameManager gm)
+        {
+            return gm.Witch.Gun.BulletDuration;
+        }
     }
 }

@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
+using Lua.Managers;
 
-[CreateAssetMenu(menuName = "Power Up/Recycle/Heal")]
-public class PowerUpHealOnRecycle : PowerUpModifier
+namespace Lua.PowerUps
 {
-    protected override CompositeValue ValueToModify(GameManager gm)
+    [CreateAssetMenu(menuName = "Power Up/Recycle/Heal")]
+    public class PowerUpHealOnRecycle : PowerUpModifier
     {
-        return gm.OnRecycleHeal;
+        protected override CompositeValue ValueToModify(GameManager gm)
+        {
+            return gm.OnRecycleHeal;
+        }
     }
 }

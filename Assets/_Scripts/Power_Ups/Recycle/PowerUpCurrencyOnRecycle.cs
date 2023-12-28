@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
+using Lua.Managers;
 
-[CreateAssetMenu(menuName = "Power Up/Recycle/Gain Currency")]
-public class PowerUpCurrencyOnRecycle : PowerUpModifier
+namespace Lua.PowerUps
 {
-    protected override CompositeValue ValueToModify(GameManager gm)
+    [CreateAssetMenu(menuName = "Power Up/Recycle/Gain Currency")]
+    public class PowerUpCurrencyOnRecycle : PowerUpModifier
     {
-        return gm.OnRecycleAddCurrency;
+        protected override CompositeValue ValueToModify(GameManager gm)
+        {
+            return gm.OnRecycleAddCurrency;
+        }
     }
 }

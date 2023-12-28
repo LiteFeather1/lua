@@ -1,11 +1,15 @@
 ﻿using System;
 using UnityEngine;
+using Lua.Managers;
 
-[CreateAssetMenu(menuName = "Power Up/Drawer/Maximum Cards")]
-public class PowerUpMaximumDrawnCards : PowerUpFlat
+namespace Lua.PowerUps
 {
-    protected override Func<int, int> ModifyValue(GameManager gm)
+    [CreateAssetMenu(menuName = "Power Up/Drawer/Maximum Cards")]
+    public class PowerUpMaximumDrawnCards : PowerUpFlat
     {
-        return gm.CardManager.AddCard;
+        protected override Func<int, int> ModifyValue(GameManager gm)
+        {
+            return gm.CardManager.AddCard;
+        }
     }
 }

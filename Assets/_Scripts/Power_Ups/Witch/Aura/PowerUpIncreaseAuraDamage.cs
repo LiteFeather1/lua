@@ -1,16 +1,20 @@
 ﻿using UnityEngine;
+using Lua.Managers;
 
-[CreateAssetMenu(menuName = "Power Up/Witch/Aura/Aura Damage")]
-public class PowerUpIncreaseAuraDamage : PowerUpModifier
+namespace Lua.PowerUps
 {
-    protected override CompositeValue ValueToModify(GameManager gm)
+    [CreateAssetMenu(menuName = "Power Up/Witch/Aura/Aura Damage")]
+    public class PowerUpIncreaseAuraDamage : PowerUpModifier
     {
-        return gm.Witch.Aura.DamagePercent;
-    }
+        protected override CompositeValue ValueToModify(GameManager gm)
+        {
+            return gm.Witch.Aura.DamagePercent;
+        }
 
-    protected override void ApplyEffect(GameManager gm)
-    {
-        base.ApplyEffect(gm);
-        gm.Witch.Aura.DamagePercent.ForceRecalculate();
+        protected override void ApplyEffect(GameManager gm)
+        {
+            base.ApplyEffect(gm);
+            gm.Witch.Aura.DamagePercent.ForceRecalculate();
+        }
     }
 }

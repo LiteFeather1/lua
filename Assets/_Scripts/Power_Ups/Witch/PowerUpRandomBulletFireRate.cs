@@ -1,11 +1,14 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
+using Lua.Managers;
 
-[CreateAssetMenu(menuName = "Power Up/Witch/Random Bullet Fire Rate")]
-public class PowerUpRandomBulletFireRate : PowerUpModifier
+namespace Lua.PowerUps
 {
-    protected override CompositeValue ValueToModify(GameManager gm)
+    [CreateAssetMenu(menuName = "Power Up/Witch/Random Bullet Fire Rate")]
+    public class PowerUpRandomBulletFireRate : PowerUpModifier
     {
-        return gm.Witch.RandomBulletShootTime;
+        protected override CompositeValue ValueToModify(GameManager gm)
+        {
+            return gm.Witch.RandomBulletShootTime;
+        }
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Lua.Cards
+namespace Lua.PowerUps.Cards
 {
     public abstract class CardUi : MonoBehaviour, IPointerExitHandler
     {

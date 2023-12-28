@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Lua.Cards
+namespace Lua.PowerUps.Cards
 {
     public class CardUIDropContainerSeek : CardUIDropContainer
     {

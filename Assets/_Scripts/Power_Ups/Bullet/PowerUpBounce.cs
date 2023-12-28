@@ -1,11 +1,15 @@
 ﻿using System;
 using UnityEngine;
+using Lua.Managers;
 
-[CreateAssetMenu(menuName = "Power Up/Bullet/Bounce")]
-public class PowerUpBounce : PowerUpFlat
+namespace Lua.PowerUps
 {
-    protected override Func<int, int> ModifyValue(GameManager gm)
+    [CreateAssetMenu(menuName = "Power Up/Bullet/Bounce")]
+    public class PowerUpBounce : PowerUpFlat
     {
-        return gm.Witch.Gun.AddBounce;
+        protected override Func<int, int> ModifyValue(GameManager gm)
+        {
+            return gm.Witch.Gun.AddBounce;
+        }
     }
 }

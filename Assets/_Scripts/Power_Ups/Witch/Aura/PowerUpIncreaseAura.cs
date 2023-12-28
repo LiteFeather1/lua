@@ -1,16 +1,20 @@
 ﻿using UnityEngine;
+using Lua.Managers;
 
-[CreateAssetMenu(menuName = "Power Up/Witch/Aura/Aura Size")]
-public class PowerUpIncreaseAura : PowerUp
+namespace Lua.PowerUps
 {
-    [Header("Increase Witch Aura")]
-    [SerializeField] private int _auraIncrease;
-
-    protected override string Num => (_auraIncrease * 2).ToString();
-
-    protected override void ApplyEffect(GameManager gm)
+    [CreateAssetMenu(menuName = "Power Up/Witch/Aura/Aura Size")]
+    public class PowerUpIncreaseAura : PowerUp
     {
-        if (gm.Witch.Aura.IncreaseAura(_auraIncrease))
-            Remove(gm.CardManager);
+        [Header("Increase Witch Aura")]
+        [SerializeField] private int _auraIncrease;
+
+        protected override string Num => (_auraIncrease * 2).ToString();
+
+        protected override void ApplyEffect(GameManager gm)
+        {
+            if (gm.Witch.Aura.IncreaseAura(_auraIncrease))
+                Remove(gm.CardManager);
+        }
     }
 }

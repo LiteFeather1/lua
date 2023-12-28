@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
+using Lua.Managers;
 
-[CreateAssetMenu(menuName = "Power Up/On Card Played/Refund Drawer")]
-public class PowerUpCardPlayedRefundDrawer : PowerUpModifier
+namespace Lua.PowerUps
 {
-    protected override CompositeValue ValueToModify(GameManager gm)
+    [CreateAssetMenu(menuName = "Power Up/On Card Played/Refund Drawer")]
+    public class PowerUpCardPlayedRefundDrawer : PowerUpModifier
     {
-        return gm.OnCardPlayedRefund;
+        protected override CompositeValue ValueToModify(GameManager gm)
+        {
+            return gm.OnCardPlayedRefund;
+        }
     }
 }

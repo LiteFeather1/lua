@@ -1,24 +1,28 @@
 using System;
 using UnityEngine;
+using Lua.Managers;
 
-[CreateAssetMenu(menuName = "Power Up/Dagger/Amount")]
-public class PowerUpDaggerAmount : PowerUpFlat
+namespace Lua.PowerUps
 {
-    [Header("Power Up Dagger Amount")]
-    [SerializeField, TextArea] private string _unlockText;
-    private static bool _unlocked = false;
-
-    public override string Effect => _unlocked ? base.Effect : _unlockText;
-
-    public override void Reset()
+    [CreateAssetMenu(menuName = "Power Up/Dagger/Amount")]
+    public class PowerUpDaggerAmount : PowerUpFlat
     {
-        base.Reset();
-        _unlocked = false;
-    }
+        [Header("Power Up Dagger Amount")]
+        [SerializeField, TextArea] private string _unlockText;
+        private static bool _unlocked = false;
 
-    protected override Func<int, int> ModifyValue(GameManager gm)
-    {
-        _unlocked = true;
-        return gm.Witch.DaggerAmount;
+        public override string Effect => _unlocked ? base.Effect : _unlockText;
+
+        public override void Reset()
+        {
+            base.Reset();
+            _unlocked = false;
+        }
+
+        protected override Func<int, int> ModifyValue(GameManager gm)
+        {
+            _unlocked = true;
+            return gm.Witch.DaggerAmount;
+        }
     }
 }

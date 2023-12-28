@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class MovementKnockback : StateMachine.State
+public class MovementKnockback : StateMachineCore.State
 {
     private const int TIMES_TO_SHAKE = 7;
 

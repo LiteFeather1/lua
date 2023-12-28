@@ -1,5 +1,5 @@
 ﻿
-namespace Lua.Cards
+namespace Lua.PowerUps.Cards
 {
     public class CardUIDropContainerRecycle : CardUIDropContainer
     {

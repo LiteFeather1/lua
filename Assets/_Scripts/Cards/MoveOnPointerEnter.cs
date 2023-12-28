@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Lua.Cards
+namespace Lua.PowerUps.Cards
 {
     public class MoveOnPointerEnter : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {

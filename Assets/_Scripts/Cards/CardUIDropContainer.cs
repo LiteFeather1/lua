@@ -1,6 +1,6 @@
 ﻿using UnityEngine.EventSystems;
 
-namespace Lua.Cards
+namespace Lua.PowerUps.Cards
 {
     public abstract class CardUIDropContainer : CardUi, IDropHandler
     {

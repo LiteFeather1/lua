@@ -1,10 +1,14 @@
 using UnityEngine;
+using Lua.Managers;
 
-[CreateAssetMenu(menuName = "Power Up/Enemy Explosion/Chance To Enemy Explode")]
-public class PowerChanceToEnemyExplode : PowerUpModifier
+namespace Lua.PowerUps
 {
-    protected override CompositeValue ValueToModify(GameManager gm)
+    [CreateAssetMenu(menuName = "Power Up/Enemy Explosion/Chance To Enemy Explode")]
+    public class PowerChanceToEnemyExplode : PowerUpModifier
     {
-        return gm.SpawnManager.ChanceDamageExplosion;
+        protected override CompositeValue ValueToModify(GameManager gm)
+        {
+            return gm.SpawnManager.ChanceDamageExplosion;
+        }
     }
 }

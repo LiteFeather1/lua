@@ -1,11 +1,15 @@
 ﻿using System;
 using UnityEngine;
+using Lua.Managers;
 
-[CreateAssetMenu(menuName = "Power Up/Witch/Heal")]
-public class PowerUpHeal : PowerUpFlat
+namespace Lua.PowerUps
 {
-    protected override Func<int, int> ModifyValue(GameManager gm)
+    [CreateAssetMenu(menuName = "Power Up/Witch/Heal")]
+    public class PowerUpHeal : PowerUpFlat
     {
-        return gm.Witch.Health.Heal;
+        protected override Func<int, int> ModifyValue(GameManager gm)
+        {
+            return gm.Witch.Health.Heal;
+        }
     }
 }

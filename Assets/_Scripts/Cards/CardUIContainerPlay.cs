@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using Lua.Managers;
 
-namespace Lua.Cards
+namespace Lua.PowerUps.Cards
 {
     public class CardUIContainerPlay : CardUIDropContainer
     {

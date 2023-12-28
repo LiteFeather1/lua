@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
+using Lua.Managers;
 
-[CreateAssetMenu(menuName = "Power Up/On Card Played/Heal")]
-public class PowerUpCardPlayedHeal : PowerUpModifier
+namespace Lua.PowerUps
 {
-    protected override CompositeValue ValueToModify(GameManager gm)
+    [CreateAssetMenu(menuName = "Power Up/On Card Played/Heal")]
+    public class PowerUpCardPlayedHeal : PowerUpModifier
     {
-        return gm.OnCardPlayedHeal;
+        protected override CompositeValue ValueToModify(GameManager gm)
+        {
+            return gm.OnCardPlayedHeal;
+        }
     }
 }

@@ -3,8 +3,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Lua.Managers;
 
-namespace Lua.Cards
+namespace Lua.PowerUps.Cards
 {
     public class CardUIPowerUp : CardUi, IPointerDownHandler, IPointerUpHandler, IDragHandler, IPointerEnterHandler
     {

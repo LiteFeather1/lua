@@ -1,10 +1,14 @@
 using UnityEngine;
+using Lua.Managers;
 
-[CreateAssetMenu(menuName = "Power Up/Orbital/Rotation Speed")]
-public class PowerUpOrbitalSpeed : PowerUpModifier
+namespace Lua.PowerUps
 {
-    protected override CompositeValue ValueToModify(GameManager gm)
+    [CreateAssetMenu(menuName = "Power Up/Orbital/Rotation Speed")]
+    public class PowerUpOrbitalSpeed : PowerUpModifier
     {
-        return gm.Witch.OrbitalGun.RotationSpeed;
+        protected override CompositeValue ValueToModify(GameManager gm)
+        {
+            return gm.Witch.OrbitalGun.RotationSpeed;
+        }
     }
 }
