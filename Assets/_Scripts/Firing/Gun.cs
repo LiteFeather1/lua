@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Lua.Guns
+namespace Lua.Weapons
 {
     public class Gun : MonoBehaviour
     {

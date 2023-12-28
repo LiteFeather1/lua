@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEngine;
 using CompositeValues;
 using Lua.Managers;
-using Lua.Guns;
+using Lua.Weapons;
 using Random = UnityEngine.Random;
 
 namespace Lua

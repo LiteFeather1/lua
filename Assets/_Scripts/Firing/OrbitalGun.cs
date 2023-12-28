@@ -5,7 +5,7 @@ using LTFUtils;
 using RetroAnimation;
 using CompositeValues;
 
-namespace Lua.Guns
+namespace Lua.Weapons
 {
     public class OrbitalGun : Gun
     {
