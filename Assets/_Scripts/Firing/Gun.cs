@@ -1,10 +1,12 @@
 ﻿using LTFUtils;
+using LTFUtils.ObjectPool;
 using RetroAnimation;
 using System;
 using System.Collections;
 using UnityEngine;
-using Lua.Damage;
 using Lua.Managers;
+using Lua.Damage;
+using Lua.Parentables;
 
 namespace Lua.Weapons
 {
@@ -48,7 +50,7 @@ namespace Lua.Weapons
 
             foreach (var particle in _particlePool.Objects)
             {
-                particle.OnReturn -= ReturnParticleToPool;
+                particle.ReturnToPool -= ReturnParticleToPool;
             }
             _particlePool.ObjectCreated -= ParticleCreated; ;
 
@@ -173,7 +175,7 @@ namespace Lua.Weapons
         private void ParticleCreated(Parentable particle)
         {
             particle.gameObject.SetActive(true);
-            particle.OnReturn += ReturnParticleToPool;
+            particle.ReturnToPool += ReturnParticleToPool;
         }
 
         private void ReturnParticleToPool(Parentable particle)

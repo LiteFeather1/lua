@@ -1,28 +1,31 @@
 using System.Collections;
 using UnityEngine;
 
-public class ParticleStoppedCallBack : Parentable
+namespace Lua.Parentables
 {
-    [SerializeField] protected ParticleSystem _ps;
-
-    public override void Parent(Transform parent)
+    public class ParticleStoppedCallBack : Parentable
     {
-        base.Parent(parent);
-        var mainModule = _ps.main;
-        mainModule.loop = true;
-        _ps.Play();
-    }
+        [SerializeField] protected ParticleSystem _ps;
 
-    public override void UnParent()
-    {
-        base.UnParent();
-        var mainModule = _ps.main;
-        mainModule.loop = false;
-    }
+        public override void Parent(Transform parent)
+        {
+            base.Parent(parent);
+            var mainModule = _ps.main;
+            mainModule.loop = true;
+            _ps.Play();
+        }
 
-    private IEnumerator OnParticleSystemStopped()
-    {
-        yield return null;
-        OnReturn?.Invoke(this);
+        public override void UnParent()
+        {
+            base.UnParent();
+            var mainModule = _ps.main;
+            mainModule.loop = false;
+        }
+
+        private IEnumerator OnParticleSystemStopped()
+        {
+            yield return null;
+            ReturnToPool?.Invoke(this);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Lua.Parentables;
+using UnityEngine;
 
 namespace Lua.Damage.DamageEffects
 {

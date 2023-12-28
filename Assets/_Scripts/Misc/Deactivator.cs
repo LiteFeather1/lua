@@ -1,12 +1,13 @@
 using UnityEngine;
 
-public class Deactivator : MonoBehaviour
+namespace Lua
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class Deactivator : MonoBehaviour
     {
-        if (collision.TryGetComponent(out IDeactivatable deactivatable))
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            deactivatable.Deactivate();
+            if (collision.TryGetComponent(out IDeactivatable deactivatable))
+                deactivatable.Deactivate();
         }
     }
 }

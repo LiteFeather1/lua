@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LTFUtils
+namespace LTFUtils.ObjectPool
 {
     [System.Serializable]
     public class ObjectPool<T> where T : Component

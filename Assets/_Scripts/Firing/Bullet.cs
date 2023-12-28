@@ -1,6 +1,8 @@
 ﻿using System;
 using UnityEngine;
+using LTFUtils.ObjectPool;
 using Lua.Damage;
+using Lua.Parentables;
 
 namespace Lua.Weapons
 {

@@ -2,11 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using LTFUtils;
+using LTFUtils.ObjectPool;
 using RetroAnimation;
 using CompositeValues;
 using UnityEngine;
 using Lua.StateMachine.Enemies;
 using Lua.Damage;
+using Lua.Parentables;
 using Lua.Misc;
 using Random = UnityEngine.Random;
 
@@ -137,7 +139,7 @@ namespace Lua.Managers
 
             foreach (var fire in _fireParticlePool.Objects)
             {
-                fire.OnReturn -= FireParticleCreated;
+                fire.ReturnToPool -= FireParticleCreated;
             }
             _fireParticlePool.ObjectCreated -= FireParticleCreated;
 
@@ -434,7 +436,7 @@ namespace Lua.Managers
         private void FireParticleCreated(Parentable fireParticle)
         {
             fireParticle.gameObject.SetActive(true);
-            fireParticle.OnReturn += ReturnFireParticle;
+            fireParticle.ReturnToPool += ReturnFireParticle;
         }
 
         private void ReturnFireParticle(Parentable fireParticle)

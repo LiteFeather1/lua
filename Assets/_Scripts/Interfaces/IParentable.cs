@@ -1,6 +1,10 @@
-﻿
-public interface IParentable<T> : IReturnToPool<T>
+﻿using LTFUtils.ObjectPool;
+
+namespace Lua.Parentables
 {
-    public void Parent(UnityEngine.Transform parent);
-    public void UnParent();
+    public interface IParentable<T> : IPoolable<T>
+    {
+        public void Parent(UnityEngine.Transform parent);
+        public void UnParent();
+    }
 }

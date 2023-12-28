@@ -1,5 +1,8 @@
 ﻿
-public interface IDeactivatable
+namespace Lua
 {
-    public void Deactivate();
+    public interface IDeactivatable
+    {
+        public void Deactivate();
+    }
 }

@@ -2,20 +2,23 @@
 using UnityEditor.SceneManagement;
 using UnityEditor;
 
-internal static class SceneMenuItems
+namespace LTFUtils
 {
-    [MenuItem("Scene Go/Splash Screen", priority = 1)]
-    private static void LoadSplash()
+    internal static class SceneMenuItems
     {
-        EditorSceneManager.SaveOpenScenes();
-        EditorSceneManager.OpenScene("Assets/Scenes/Splash_Screen.unity");
-    }
+        [MenuItem("Scene Go/Splash Screen", priority = 1)]
+        private static void LoadSplash()
+        {
+            EditorSceneManager.SaveOpenScenes();
+            EditorSceneManager.OpenScene("Assets/Scenes/Splash_Screen.unity");
+        }
 
-    [MenuItem("Scene Go/Main")]
-    private static void LoadMain()
-    {
-        EditorSceneManager.SaveOpenScenes();
-        EditorSceneManager.OpenScene("Assets/Scenes/Main.unity");
+        [MenuItem("Scene Go/Main")]
+        private static void LoadMain()
+        {
+            EditorSceneManager.SaveOpenScenes();
+            EditorSceneManager.OpenScene("Assets/Scenes/Main.unity");
+        }
     }
 }
 #endif

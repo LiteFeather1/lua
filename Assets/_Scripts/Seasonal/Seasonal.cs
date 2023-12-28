@@ -1,4 +1,5 @@
 using UnityEngine;
+using LTFUtils;
 
 public abstract class Seasonal<T, G> : ScriptableObject, ISeasonal where G : ISeasonalSetable<T>
 {

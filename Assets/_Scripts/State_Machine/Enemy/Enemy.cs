@@ -2,6 +2,7 @@ using RetroAnimation;
 using UnityEngine;
 using Lua.Damage;
 using Lua.Damage.DamageEffects;
+using Lua.Parentables;
 
 namespace Lua.StateMachine.Enemies
 {
