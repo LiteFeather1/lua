@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using CompositeValues;
+using LTF.Timers;
+using LTF.CompositeValue;
 using Lua.Damage;
-using Timers;
 
 namespace Lua.Weapons
 {

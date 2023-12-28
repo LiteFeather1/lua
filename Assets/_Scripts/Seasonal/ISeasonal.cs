@@ -1,10 +1,14 @@
-﻿public interface ISeasonal
+﻿
+namespace Seasonal
 {
+    public interface ISeasonal
+    {
 #if UNITY_EDITOR
-    public void SetDefault();
+        public void SetDefault();
 #endif
-    public void Set(string season);
-    public void Add(string name);
-    public void AddChristmas();
-    public void AddHalloween();
+        public void Set(string season);
+        public void Add(string name);
+        public void AddChristmas();
+        public void AddHalloween();
+    }
 }

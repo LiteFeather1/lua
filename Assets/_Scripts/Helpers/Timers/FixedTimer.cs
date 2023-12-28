@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Timers
+namespace LTF.Timers
 {
     public class FixedTimer : Timer
     {

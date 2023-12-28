@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
-namespace Timers
+namespace LTF.Timers
 {
     public abstract class Timer : MonoBehaviour
     {

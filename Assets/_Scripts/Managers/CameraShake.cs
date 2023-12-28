@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using LTFUtils;
+using LTF.Utils;
 
 namespace Lua.Managers
 {

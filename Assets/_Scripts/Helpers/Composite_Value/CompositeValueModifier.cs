@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CompositeValues
+namespace LTF.CompositeValue
 {
     [System.Serializable]
     public class CompositeValueModifier

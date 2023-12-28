@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace LTFUtils
+namespace LTF.RefValue
 {
     [System.Serializable]
     public class RefValue<T> : IRefValue<T>

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 
 #if UNITY_EDITOR
-namespace LTFUtils.Editor
+namespace LTF.Editor
 {
     [CustomPropertyDrawer(typeof(OptionalValue<>))]
     public class OptionalPropertyDrawer : PropertyDrawer

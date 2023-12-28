@@ -7,7 +7,9 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Text.RegularExpressions;
-using LTFUtils;
+using LTF.RefValue;
+using LTF.Utils;
+using Seasonal;
 #if !UNITY_WEBGL && !UNITY_EDITOR
 using System.Runtime.InteropServices;
 #endif
@@ -421,7 +423,7 @@ namespace Lua.Managers
             otherMessages.Add($"{characters} Characters");
 
             HashSet<string> unique = new();
-            var cards = LTFUtils.LTFHelpersEditorOnly.GetScriptableObjects<PowerUps.PowerUp>();
+            var cards = LTFHelpersEditorOnly.GetScriptableObjects<PowerUps.PowerUp>();
             for (int i = 0; i < cards.Length; i++)
             {
                 if (cards[i].name[0] == 'X')

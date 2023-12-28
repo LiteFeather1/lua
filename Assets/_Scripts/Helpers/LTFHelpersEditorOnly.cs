@@ -1,8 +1,8 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 
-#if UNITY_EDITOR
-namespace LTFUtils
+namespace LTF.Utils
 {
     public static class LTFHelpersEditorOnly
     {

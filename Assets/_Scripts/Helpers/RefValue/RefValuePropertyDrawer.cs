@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-namespace LTFUtils.Editor
+namespace LTF.RefValue.Editor
 {
 #if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(RefValue<>))]

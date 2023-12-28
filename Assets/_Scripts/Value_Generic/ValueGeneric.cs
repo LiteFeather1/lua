@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class ValueGeneric<T> : ScriptableObject, ISeasonalSetable<T>
+public abstract class ValueGeneric<T> : ScriptableObject, Seasonal.ISeasonalSetable<T>
 {
     [field: SerializeField] public T Value { get; set; }
 

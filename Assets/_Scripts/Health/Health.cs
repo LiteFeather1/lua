@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using CompositeValues;
+using LTF.CompositeValue;
 using Lua.Damage.DamageEffects;
 
 namespace Lua.Damage

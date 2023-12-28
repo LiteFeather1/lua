@@ -1,5 +1,5 @@
 ﻿
-namespace LTFUtils.ObjectPool
+namespace LTF.ObjectPool
 {
     public interface IPoolable<T>
     {

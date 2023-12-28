@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
-using CompositeValues;
-using LTFUtils;
-using LTFUtils.CustomWaits;
+using LTF.Utils;
+using LTF.CustomWaits;
+using LTF.CompositeValue;
 
 namespace Lua.Weapons
 {

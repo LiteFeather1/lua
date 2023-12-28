@@ -3,7 +3,7 @@ using UnityEngine;
 namespace RetroAnimation
 {
     [CreateAssetMenu(fileName = "New Flip Sheet", menuName = "Flip Sheet")]
-    public class FlipSheet : ScriptableObject, ISeasonalSetable<FlipSheet.FlipSheetData>
+    public class FlipSheet : ScriptableObject, Seasonal.ISeasonalSetable<FlipSheet.FlipSheetData>
     {
         [SerializeField] private Sprite[] _sprites;
         [SerializeField] private float _fps = 6;

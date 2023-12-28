@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CompositeValues
+namespace LTF.CompositeValue
 {
     [Serializable]
     public class CompositeValue

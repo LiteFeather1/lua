@@ -1,5 +1,5 @@
 ﻿
-namespace LTFUtils
+namespace LTF.RefValue
 {
     public interface IRefValue<T>
     {

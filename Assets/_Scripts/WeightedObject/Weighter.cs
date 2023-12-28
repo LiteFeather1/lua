@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace LTFUtils
+namespace LTF
 {
     [System.Serializable]
     public class Weighter<T> 

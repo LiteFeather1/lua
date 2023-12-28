@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
+using LTF.Utils;
 
-namespace LTFUtils.CustomWaits
+namespace LTF.CustomWaits
 {
     [System.Serializable]
     public class CustomRandomWaitForSeconds : IEnumerator

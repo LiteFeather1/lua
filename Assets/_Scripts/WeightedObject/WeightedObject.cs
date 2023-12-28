@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LTFUtils
+namespace LTF
 {
     [System.Serializable]
     public class WeightedObject<T>

@@ -1,4 +1,4 @@
-﻿namespace CompositeValues
+﻿namespace LTF.CompositeValue
 {
     public enum CompositeValueModifierType
     {

@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using LTFUtils.ObjectPool;
-using LTFUtils.CustomWaits;
+using LTF.ObjectPool;
+using LTF.CustomWaits;
+using LTF.CompositeValue;
 using RetroAnimation;
-using CompositeValues;
 
 namespace Lua.Weapons
 {

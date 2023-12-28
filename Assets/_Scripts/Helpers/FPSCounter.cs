@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace LTFUtils
+namespace LTF
 {
     [ExecuteAlways]
     public class FPSCounter : MonoBehaviour

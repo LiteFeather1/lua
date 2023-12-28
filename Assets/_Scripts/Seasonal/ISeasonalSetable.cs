@@ -1,4 +1,8 @@
-﻿public interface ISeasonalSetable<T>
+﻿
+namespace Seasonal
 {
-    public void SetSeasonal(T value);
+    public interface ISeasonalSetable<T>
+    {
+        public void SetSeasonal(T value);
+    }
 }

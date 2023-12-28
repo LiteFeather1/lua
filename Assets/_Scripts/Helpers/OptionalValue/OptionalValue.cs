@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace LTFUtils
+namespace LTF
 {
     [Serializable]
     public struct OptionalValue<T> : IEquatable<OptionalValue<T>>

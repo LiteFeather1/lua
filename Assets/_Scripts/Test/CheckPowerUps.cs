@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.Linq;
-using CompositeValues;
+using LTF.Utils;
+using LTF.CompositeValue;
 using Lua.PowerUps;
 
 namespace Lua.Test
@@ -30,7 +31,7 @@ namespace Lua.Test
                 tierToPlus.Add(_tiers[i], new('+', i + 1));
             }
 
-            var allPowerUps = LTFUtils.LTFHelpersEditorOnly.GetScriptableObjects<PowerUp>();
+            var allPowerUps = LTFHelpersEditorOnly.GetScriptableObjects<PowerUp>();
             var powerUpProblem = new List<PowerUpProblem>();
             foreach (var powerUp in allPowerUps)
             {

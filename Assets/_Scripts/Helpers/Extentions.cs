@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LTFUtils
+namespace LTF.Utils
 {
     public static class Extentions
     {

@@ -1,5 +1,5 @@
 using UnityEngine;
-using CompositeValues;
+using LTF.CompositeValue;
 using Lua.Managers;
 
 namespace Lua.PowerUps

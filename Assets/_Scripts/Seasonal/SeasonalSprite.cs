@@ -1,4 +1,7 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Seasonal/Sprite")]
-public class SeasonalSprite : Seasonal<Sprite, ValueSprite> { }
+namespace Seasonal
+{
+    [CreateAssetMenu(menuName = "Seasonal/Sprite")]
+    public class SeasonalSprite : Seasonal<Sprite, ValueSprite> { }
+}

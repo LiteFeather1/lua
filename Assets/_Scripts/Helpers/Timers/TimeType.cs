@@ -1,4 +1,4 @@
-﻿namespace Timers
+﻿namespace LTF.Timers
 {
     public enum TimeType
     {

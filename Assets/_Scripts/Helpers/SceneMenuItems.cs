@@ -2,7 +2,7 @@
 using UnityEditor.SceneManagement;
 using UnityEditor;
 
-namespace LTFUtils
+namespace LTF
 {
     internal static class SceneMenuItems
     {

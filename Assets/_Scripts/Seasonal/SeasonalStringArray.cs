@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Seasonal/String Array")]
-public class SeasonalStringArray : Seasonal<string[], ValueStringArray> 
+namespace Seasonal
 {
-#if UNITY_EDITOR
-    public void LoadMessages(System.Collections.Generic.IDictionary<string, string[]> dict)
+    [CreateAssetMenu(menuName = "Seasonal/String Array")]
+    public class SeasonalStringArray : Seasonal<string[], ValueStringArray> 
     {
-        UnityEditor.EditorUtility.SetDirty(this);
-        _dictionary = new(dict);
-    }
+#if UNITY_EDITOR
+        public void LoadMessages(System.Collections.Generic.IDictionary<string, string[]> dict)
+        {
+            UnityEditor.EditorUtility.SetDirty(this);
+            _dictionary = new(dict);
+        }
 #endif
+    }
 }
