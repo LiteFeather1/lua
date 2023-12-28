@@ -1,6 +1,7 @@
 ﻿using RetroAnimation;
 using UnityEngine;
 using Lua.Managers;
+using Lua.Guns;
 
 namespace Lua
 {

@@ -6,6 +6,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using CompositeValues;
 
 namespace Lua.PowerUps.Cards
 {
