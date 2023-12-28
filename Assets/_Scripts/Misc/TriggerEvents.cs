@@ -1,18 +1,21 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-public class TriggerEvents : MonoBehaviour
+namespace Lua.Misc
 {
-    [SerializeField] private UnityEvent _onEnterTriggerEvent;
-    [SerializeField] private UnityEvent _onExitTriggerEvent;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class TriggerEvents : MonoBehaviour
     {
-        _onEnterTriggerEvent.Invoke();
-    }
+        [SerializeField] private UnityEvent _onEnterTriggerEvent;
+        [SerializeField] private UnityEvent _onExitTriggerEvent;
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        _onExitTriggerEvent.Invoke();
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            _onEnterTriggerEvent.Invoke();
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            _onExitTriggerEvent.Invoke();
+        }
     }
 }
