@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using CompositeValues;
 using Lua.Damage;
+using Timers;
 
 namespace Lua.Weapons
 {
@@ -13,7 +14,7 @@ namespace Lua.Weapons
         private int _currentAuraIndex = 0;
 
         [Header("Components")]
-        [SerializeField] private LTFUtils.FixedTimer _tickRateTimer;
+        [SerializeField] private FixedTimer _tickRateTimer;
         [SerializeField] private HitBox _hitbox;
         [SerializeField] private SpriteRenderer sr_Aura;
         [SerializeField] private CircleCollider2D _c;

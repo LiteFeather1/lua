@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using Lua.Managers;
 
-namespace Lua.Managers
+namespace Lua.UI
 {
     public class UICursor : MonoBehaviour
     {

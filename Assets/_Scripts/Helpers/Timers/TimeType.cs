@@ -1,4 +1,4 @@
-﻿namespace LTFUtils
+﻿namespace Timers
 {
     public enum TimeType
     {

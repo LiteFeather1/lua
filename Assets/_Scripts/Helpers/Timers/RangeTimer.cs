@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LTFUtils
+namespace Timers
 {
     public class RangeTimer : Timer
     {

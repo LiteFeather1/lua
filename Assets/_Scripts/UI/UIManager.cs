@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections;
 
-namespace Lua.Managers
+namespace Lua.UI
 {
     public class UIManager : MonoBehaviour
     {

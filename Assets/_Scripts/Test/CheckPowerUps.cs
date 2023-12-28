@@ -5,7 +5,7 @@ using System.Linq;
 using CompositeValues;
 using Lua.PowerUps;
 
-namespace Lua.Managers
+namespace Lua.Test
 {
     public class CheckPowerUps : MonoBehaviour
     {
