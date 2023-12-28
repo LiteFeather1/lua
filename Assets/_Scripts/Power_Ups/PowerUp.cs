@@ -1,4 +1,5 @@
 using UnityEngine;
+using Lua.Cards;
 
 public abstract class PowerUp : ScriptableObject
 {

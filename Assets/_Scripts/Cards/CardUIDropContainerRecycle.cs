@@ -1,10 +1,14 @@
-﻿public class CardUIDropContainerRecycle : CardUIDropContainer
+﻿
+namespace Lua.Cards
 {
-    public int CardsRecycled { get; private set; }
-
-    protected override void UseCard(CardUIPowerUp card)
+    public class CardUIDropContainerRecycle : CardUIDropContainer
     {
-        CardsRecycled++;
-        card.ReturnToPile();
+        public int CardsRecycled { get; private set; }
+
+        protected override void UseCard(CardUIPowerUp card)
+        {
+            CardsRecycled++;
+            card.ReturnToPile();
+        }
     }
 }

@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using Lua.Cards;
 
 public class EndScreenManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {

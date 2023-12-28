@@ -1,21 +1,24 @@
 ﻿using UnityEngine.EventSystems;
 
-public abstract class CardUIDropContainer : CardUi, IDropHandler
+namespace Lua.Cards
 {
-    public System.Action OnCardUsed { get; set; }
-
-    public void OnDrop(PointerEventData eventData)
+    public abstract class CardUIDropContainer : CardUi, IDropHandler
     {
-        if (eventData.button == PointerEventData.InputButton.Left 
-            && eventData.pointerDrag.TryGetComponent(out CardUIPowerUp card))
-            DropCard(card);
-    }
+        public System.Action OnCardUsed { get; set; }
 
-    public void DropCard(CardUIPowerUp card)
-    {
-        UseCard(card);
-        OnCardUsed?.Invoke();
-    }
+        public void OnDrop(PointerEventData eventData)
+        {
+            if (eventData.button == PointerEventData.InputButton.Left 
+                && eventData.pointerDrag.TryGetComponent(out CardUIPowerUp card))
+                DropCard(card);
+        }
 
-    protected abstract void UseCard(CardUIPowerUp card);
+        public void DropCard(CardUIPowerUp card)
+        {
+            UseCard(card);
+            OnCardUsed?.Invoke();
+        }
+
+        protected abstract void UseCard(CardUIPowerUp card);
+    }
 }

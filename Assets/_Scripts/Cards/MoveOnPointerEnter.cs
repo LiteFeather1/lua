@@ -2,57 +2,60 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MoveOnPointerEnter : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+namespace Lua.Cards
 {
-    [SerializeField] private RectTransform _transformToMove;
-    [SerializeField] private float _pixels = 8f;
-    [SerializeField] private float _time;
-    [SerializeField] private AnimationCurve _curve;
-    private Vector2 _startPos;
-    private IEnumerator _movement;
-
-    private void Awake()
+    public class MoveOnPointerEnter : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        _startPos = _transformToMove.localPosition;
-        _movement = Movement(Vector2.zero, Vector2.zero);
-    }
+        [SerializeField] private RectTransform _transformToMove;
+        [SerializeField] private float _pixels = 8f;
+        [SerializeField] private float _time;
+        [SerializeField] private AnimationCurve _curve;
+        private Vector2 _startPos;
+        private IEnumerator _movement;
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        StartCoroutine(MoveUp());
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        StartCoroutine(MoveDown());
-    }
-
-    public IEnumerator MoveUp()
-    {
-        StopCoroutine(_movement);
-        _movement = Movement(_transformToMove.localPosition, _startPos + new Vector2(0f, _pixels));
-        return _movement;
-    }
-    
-    public IEnumerator MoveDown()
-    {
-        StopCoroutine(_movement);
-        _movement = Movement(_transformToMove.localPosition, _startPos);
-        return _movement;
-    }
-
-    public void Stop() => StopCoroutine(_movement);
-
-    private IEnumerator Movement(Vector2 from, Vector2 to)
-    {
-        float eTime = 0f;
-        while (eTime < _time) 
+        private void Awake()
         {
-            float t = _curve.Evaluate(eTime / _time); 
-            _transformToMove.localPosition = Vector2.Lerp(from, to, t);
-            eTime += Time.deltaTime;
-            yield return null;
+            _startPos = _transformToMove.localPosition;
+            _movement = Movement(Vector2.zero, Vector2.zero);
         }
-        _transformToMove.localPosition = to;
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            StartCoroutine(MoveUp());
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            StartCoroutine(MoveDown());
+        }
+
+        public IEnumerator MoveUp()
+        {
+            StopCoroutine(_movement);
+            _movement = Movement(_transformToMove.localPosition, _startPos + new Vector2(0f, _pixels));
+            return _movement;
+        }
+    
+        public IEnumerator MoveDown()
+        {
+            StopCoroutine(_movement);
+            _movement = Movement(_transformToMove.localPosition, _startPos);
+            return _movement;
+        }
+
+        public void Stop() => StopCoroutine(_movement);
+
+        private IEnumerator Movement(Vector2 from, Vector2 to)
+        {
+            float eTime = 0f;
+            while (eTime < _time) 
+            {
+                float t = _curve.Evaluate(eTime / _time); 
+                _transformToMove.localPosition = Vector2.Lerp(from, to, t);
+                eTime += Time.deltaTime;
+                yield return null;
+            }
+            _transformToMove.localPosition = to;
+        }
     }
 }
