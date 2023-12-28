@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Lua.Managers;
 
 namespace Lua.Misc
 {

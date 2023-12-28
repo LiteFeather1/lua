@@ -30,7 +30,7 @@ namespace Lua.Managers
                 tierToPlus.Add(_tiers[i], new('+', i + 1));
             }
 
-            var allPowerUps = LTFUtils.LTFHelpers_EditorOnly.GetScriptableObjects<PowerUp>();
+            var allPowerUps = LTFUtils.LTFHelpersEditorOnly.GetScriptableObjects<PowerUp>();
             var powerUpProblem = new List<PowerUpProblem>();
             foreach (var powerUp in allPowerUps)
             {

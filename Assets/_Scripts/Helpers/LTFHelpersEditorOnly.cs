@@ -4,7 +4,7 @@ using UnityEngine;
 #if UNITY_EDITOR
 namespace LTFUtils
 {
-    public static class LTFHelpers_EditorOnly
+    public static class LTFHelpersEditorOnly
     {
         public static T[] GetScriptableObjects<T>() where T : ScriptableObject
         {

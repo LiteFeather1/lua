@@ -2,6 +2,8 @@ using RetroAnimation;
 using System;
 using System.Collections;
 using UnityEngine;
+using LTFUtils;
+using LTFUtils.CustomWaits;
 using CompositeValues;
 using Lua.Managers;
 using Lua.Damage;

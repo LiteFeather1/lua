@@ -4509,9 +4509,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FPS: 0.9
+  m_text: 'FPS: 0.17
 
-    1114.7 ms'
+    5820.53 ms'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
   m_sharedMaterial: {fileID: 7764967047682581053, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
@@ -10578,7 +10578,7 @@ MonoBehaviour:
   ac_thornDamage: {fileID: 8300000, guid: 53f908eb98662514f8073007fa0b7174, type: 3}
   _music: {fileID: 8300000, guid: c688c79e6650ae143baad8b44023675a, type: 3}
   _slowDownScale: 0.25
-  _playTime: 900
+  _playTime: 0
   _timeForMaxDifficult: 900
   _camera: {fileID: 519420031}
   _shake: {fileID: 519420034}

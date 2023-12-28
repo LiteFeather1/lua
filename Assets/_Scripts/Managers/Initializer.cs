@@ -91,7 +91,7 @@ public class Initializer : MonoBehaviour
     private T[] GetSeasonal<T>() where T : ScriptableObject
     {
         UnityEditor.Undo.RegisterCompleteObjectUndo(this, "Seasonals");
-        return LTFHelpers_EditorOnly.GetScriptableObjects<T>();
+        return LTFHelpersEditorOnly.GetScriptableObjects<T>();
     }
 
     [ContextMenu("Get Seasonal Flip Sheets")]

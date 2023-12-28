@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 using CompositeValues;
+using LTFUtils;
+using LTFUtils.CustomWaits;
 
 namespace Lua.Weapons
 {

@@ -334,7 +334,7 @@ namespace Lua.PowerUps.Cards
         private void FindPowerUps()
         {
             UnityEditor.Undo.RegisterCompleteObjectUndo(this, "Find Power Ups");
-            var allPowers = LTFHelpers_EditorOnly.GetScriptableObjects<PowerUp>();
+            var allPowers = LTFHelpersEditorOnly.GetScriptableObjects<PowerUp>();
             _startingPowerUps = (from powerUp in allPowers
                                  where !powerUp.name.StartsWith('X') &&
                                     !(from otherPowerUp in allPowers
@@ -352,7 +352,7 @@ namespace Lua.PowerUps.Cards
         private void FindRarities()
         {
             UnityEditor.Undo.RegisterCompleteObjectUndo(this, "Find Rarities");
-            _rarities = LTFHelpers_EditorOnly.GetScriptableObjects<Rarity>();
+            _rarities = LTFHelpersEditorOnly.GetScriptableObjects<Rarity>();
             UnityEditor.EditorUtility.SetDirty(this);
         }
 #endif

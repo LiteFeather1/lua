@@ -2,7 +2,7 @@
 
 namespace LTFUtils
 {
-    public static class LTFHelpers_Math
+    public static class LTFHelpersMath
     {
         /// <summary>
         /// Map a value from a range to another

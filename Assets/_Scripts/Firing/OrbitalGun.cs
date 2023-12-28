@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using LTFUtils;
+using LTFUtils.CustomWaits;
 using RetroAnimation;
 using CompositeValues;
 

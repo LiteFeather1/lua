@@ -1,4 +1,5 @@
 using UnityEngine;
+using LTFUtils;
 
 [CreateAssetMenu(fileName = "Enemy_Data", menuName = "Enemy Data")]
 public class EnemyData : ScriptableObject

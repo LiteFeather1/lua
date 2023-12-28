@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using Lua.Damage;
+using Lua.Managers;
 
 namespace Lua.Weapons
 {

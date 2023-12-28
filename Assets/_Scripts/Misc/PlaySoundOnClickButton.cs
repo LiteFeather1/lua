@@ -1,11 +1,15 @@
 using UnityEngine;
+using Lua.Managers;
 
-public class PlaySoundOnClickButton : MonoBehaviour
+namespace Lua.Misc
 {
-    [SerializeField] private AudioClip _clip;
-
-    public void Play()
+    public class PlaySoundOnClickButton : MonoBehaviour
     {
-        AudioManager.Instance.PlayOneShot(_clip);
+        [SerializeField] private AudioClip _clip;
+
+        public void Play()
+        {
+            AudioManager.Instance.PlayOneShot(_clip);
+        }
     }
 }
