@@ -1,6 +1,6 @@
-﻿using LTF;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using LTF.Weighter;
 
 namespace Lua.PowerUps.Cards
 {

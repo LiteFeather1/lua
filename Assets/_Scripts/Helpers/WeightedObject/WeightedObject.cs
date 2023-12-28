@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LTF
+namespace LTF.Weighter
 {
     [System.Serializable]
     public class WeightedObject<T>
@@ -20,5 +20,7 @@ namespace LTF
         public float Weight => _weight;
 
         public void SetWeight(float weight) => _weight = weight;
+
+        public static implicit operator T(WeightedObject<T> wo) => wo._object;
     }
 }

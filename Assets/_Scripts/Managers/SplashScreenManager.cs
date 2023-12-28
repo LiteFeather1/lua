@@ -30,7 +30,7 @@ namespace Lua.Managers
         [SerializeField] private TextMeshProUGUI t_message;
         [SerializeField] private string[] _messages;
         [SerializeField] private SeasonalStringArray _seasonalMessages;
-        [SerializeField] private ValueColourArray _rainbowColors;
+        [SerializeField] private LTF.ValueGeneric.ValueColourArray _rainbowColors;
         private readonly Dictionary<string, RefValue<byte>> r_lastMessages = new();
         private static readonly List<string> sr_messages = new();
         private static Func<string>[] s_specialMessages;

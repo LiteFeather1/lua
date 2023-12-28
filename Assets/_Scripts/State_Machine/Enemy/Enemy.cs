@@ -14,7 +14,7 @@ namespace Lua.StateMachine.Enemies
         [SerializeField] private MovementKnockback _knockbackState;
 
         [Header("Sprite")]
-        [SerializeField] private ValueSprite _knockbackSprite;
+        [SerializeField] private LTF.ValueGeneric.ValueSprite _knockbackSprite;
 
         [Header("Components")]
         [SerializeField] private FlipBook _flipBook;

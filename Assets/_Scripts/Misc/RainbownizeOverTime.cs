@@ -5,8 +5,8 @@ namespace Lua.Misc
     public class RainbownizeOverTime : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer _sr;
-        [SerializeField] private ValueColourArray _colourArray;
-        [SerializeField] private ValueFloat _timeToChange;
+        [SerializeField] private LTF.ValueGeneric.ValueColourArray _colourArray;
+        [SerializeField] private LTF.ValueGeneric.ValueFloat _timeToChange;
         private float _elaspsedTime = 100f;
 
         private void Update()

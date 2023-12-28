@@ -5,7 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using LTF;
+using LTF.Weighter;
 using LTF.Utils;
 using LTF.CompositeValue;
 

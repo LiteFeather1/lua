@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RetroAnimation;
-using LTF;
+using LTF.Weighter;
 using LTF.Utils;
 using LTF.RefValue;
 using LTF.ObjectPool;
@@ -312,7 +312,7 @@ namespace Lua.Managers
 
         private void SpawnEnemy()
         {
-            var enemy = _weightedPoolOfEnemies.GetWeightedObject().Object.GetObject();
+            var enemy = _weightedPoolOfEnemies.GetObject().GetObject();
             var randX = Random.Range(_spawnArea.bounds.min.x, _spawnArea.bounds.max.x);
             var randY = Random.Range(_spawnArea.bounds.min.y, _spawnArea.bounds.max.y);
             enemy.transform.localPosition = new(randX, randY);

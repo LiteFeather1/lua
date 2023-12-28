@@ -8,7 +8,7 @@ namespace Lua.PowerUps
     {
         [Header("Power Up Modifier")]
         [SerializeField] private CompositeValueModifier _modifier;
-        [SerializeField] private ValueFloat _valueToRemove;
+        [SerializeField] private LTF.ValueGeneric.ValueFloat _valueToRemove;
 
         public CompositeValueModifier Modifier => _modifier;
 

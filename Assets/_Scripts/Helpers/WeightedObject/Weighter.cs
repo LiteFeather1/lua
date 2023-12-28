@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-namespace LTF
+namespace LTF.Weighter
 {
     [System.Serializable]
     public class Weighter<T> 
@@ -64,10 +64,11 @@ namespace LTF
                 objectToReturn = object_;
                 break;
             }
+
             return objectToReturn;
         }
 
-        public T GetObject() => GetWeightedObject().Object;
+        public T GetObject() => GetWeightedObject();
 
         public void AddObject(WeightedObject<T> objectToAdd)
         {

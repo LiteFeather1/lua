@@ -16,9 +16,9 @@ namespace LTF
         [SerializeField] private float _updateInterval = .5f;
 
         [Header("Colours")]
-        [SerializeField] private Color _red;
-        [SerializeField] private Color _yellow;
-        [SerializeField] private Color _green;
+        [SerializeField] private Color _red = new(255f, 85f, 85f, 255f);
+        [SerializeField] private Color _yellow = new(229, 215f, 74f, 255f);
+        [SerializeField] private Color _green = new(0f, 255f, 83f, 255f);
 
         private float _elaspedIntervalTime;
         private int _intervalFrameCount;

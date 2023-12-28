@@ -6,7 +6,7 @@ namespace Lua.Misc
     public class MoonSprite : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer _sr;
-        [SerializeField] private ValueSprite _seasonalSprite;
+        [SerializeField] private LTF.ValueGeneric.ValueSprite _seasonalSprite;
         [SerializeField] private Sprite[] _moonPhases;
 
         public void Start()

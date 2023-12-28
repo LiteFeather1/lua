@@ -7,7 +7,7 @@ namespace Lua.PowerUps
     public abstract class PowerUpFlat : PowerUp
     {
         [SerializeField] private int _amount;
-        [SerializeField] private ValueInt _valueToRemove;
+        [SerializeField] private LTF.ValueGeneric.ValueInt _valueToRemove;
 
         protected override string Num => _amount.ToString();
 

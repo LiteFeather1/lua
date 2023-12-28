@@ -5,7 +5,7 @@ namespace Lua.Misc
     public class SetSpriteOnAwake : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer _sr;
-        [SerializeField] private ValueSprite _valueSprite;
+        [SerializeField] private LTF.ValueGeneric.ValueSprite _valueSprite;
 
         private void Awake() => _sr.sprite = _valueSprite;
     }
