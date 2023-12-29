@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Lua.Managers;
 
 namespace Lua.PowerUps
 {
@@ -11,13 +10,13 @@ namespace Lua.PowerUps
 
         protected override string Num => "";
 
-        protected override void ApplyEffect(GameManager gm)
+        protected override void ApplyEffect(Cards.CardManager cm)
         {
-            gm.Witch.Aura.SetAura(_auraSprite);
-            gm.Witch.Damage.ForceRecalculate();
-            gm.Witch.CritChance.ForceRecalculate();
-            gm.Witch.CritMultiplier.ForceRecalculate();
-            Remove(gm.CardManager);
+            cm.GameManager.Witch.Aura.SetAura(_auraSprite);
+            cm.GameManager.Witch.Damage.ForceRecalculate();
+            cm.GameManager.Witch.CritChance.ForceRecalculate();
+            cm.GameManager.Witch.CritMultiplier.ForceRecalculate();
+            Remove(cm);
         }
     }
 }

@@ -8,10 +8,10 @@ namespace Lua.PowerUps
     {
         protected override string Num => "";
 
-        protected override void ApplyEffect(GameManager gm)
+        protected override void ApplyEffect(Cards.CardManager cm)
         {
-            gm.Dragon.Grow(1f);
-            Remove(gm.CardManager);
+            cm.GameManager.Dragon.Grow(1f);
+            Remove(cm);
         }
     }
 }

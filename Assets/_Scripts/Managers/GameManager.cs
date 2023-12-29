@@ -7,8 +7,6 @@ using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using LTF.CompositeValue;
 using LTF.RefValue;
-using Lua.PowerUps;
-using Lua.PowerUps.Cards;
 using Lua.Damage;
 using Lua.UI;
 
@@ -33,9 +31,7 @@ namespace Lua.Managers
         [SerializeField] private Camera _camera;
         [SerializeField] private CameraShake _shake;
         [SerializeField] private UIManager _uiManager;
-        [SerializeField] private EndScreenManager _endScreenManager;
         [SerializeField] private SpawnManager _spawnManager;
-        [SerializeField] private CardManager _cardManager;
         public Dragon Dragon { get; set; }
 
         [Header("Volume")]
@@ -43,17 +39,6 @@ namespace Lua.Managers
         [SerializeField] private float _aberrationIntensity = 1f;
         [SerializeField] private float _aberrationDuration = .5f;
         private ChromaticAberration _chromaticAberration;
-
-        [Header("Recycle Effects")]
-        [SerializeField] private CompositeValue _onRecycleDamageEnemies;
-        [SerializeField] private CompositeValue _onRecycleHeal;
-        [SerializeField] private CompositeValue _onRecycleAddCurrency;
-        [SerializeField] private CompositeValue _onRecycleRefund;
-
-        [Header("On Card Played Effect")]
-        [SerializeField] private CompositeValue _onCardPlayedDamageEnemies;
-        [SerializeField] private CompositeValue _onCardPlayedHeal;
-        [SerializeField] private CompositeValue _onCardPlayedRefund;
 
         [Header("Others")]
         [SerializeField] private MonoBehaviour[] _toDisableOnPause;
@@ -63,19 +48,12 @@ namespace Lua.Managers
 
         public static GameManager Instance { get; private set; }
 
+        public System.Action<string, int, int> OnGameEnded { get; set; } 
+        public System.Func<(int CardsPlayed, int CardsRecycled)> OnGetCardsActedInfo { get; set; }
+
         public Witch Witch => _witch;
         public Camera Camera => _camera;
         public SpawnManager SpawnManager => _spawnManager;
-        public CardManager CardManager => _cardManager;
-
-        public CompositeValue OnRecycleDamageEnemies => _onRecycleDamageEnemies;
-        public CompositeValue OnRecycleHeal => _onRecycleHeal;
-        public CompositeValue OnRecycleAddCurrency => _onRecycleAddCurrency;
-        public CompositeValue OnRecycleRefund => _onRecycleRefund;
-
-        public CompositeValue OnCardPlayedDamageEnemies => _onCardPlayedDamageEnemies;
-        public CompositeValue OnCardPlayedHeal => _onCardPlayedHeal;
-        public CompositeValue OnCardPlayedRefund => _onCardPlayedRefund;
 
         private void Awake()
         {
@@ -89,11 +67,6 @@ namespace Lua.Managers
             _witch.Health.OnDodge += WitchDodged;
             _witch.FlipBook.OnAnimationFinished += WitchDeathAnimationFinished;
             _witch.OnLightningEffectApplied += WitchLightning;
-
-            _cardManager.OnCardHovered += SlowDown;
-            _cardManager.OnCardUnHovered += UnSlowDown;
-            _cardManager.Recycler.OnCardUsed += CardRecycled;
-            _cardManager.PlayArea.OnPowerPlayed += CardPlayed;
 
             _spawnManager.EnemyHurt += _shake.Shake;
             _spawnManager.EnemyDamagedInRange += EnemyDamagedInRange;
@@ -145,11 +118,6 @@ namespace Lua.Managers
             _witch.Health.OnDodge -= WitchDodged;
             _witch.OnLightningEffectApplied -= WitchLightning;
             _witch.FlipBook.OnAnimationFinished -= WitchDeathAnimationFinished;
-
-            _cardManager.OnCardHovered -= SlowDown;
-            _cardManager.OnCardUnHovered -= UnSlowDown;
-            _cardManager.Recycler.OnCardUsed -= CardRecycled;
-            _cardManager.PlayArea.OnPowerPlayed -= CardPlayed;
 
             _spawnManager.EnemyHurt -= _shake.Shake;
             _spawnManager.EnemyDamagedInRange -= EnemyDamagedInRange;
@@ -209,6 +177,22 @@ namespace Lua.Managers
             }
         }
 
+        public void SlowDown()
+        {
+            Time.timeScale = _slowDownScale;
+            StopCoroutine(_slowPitch);
+            _slowPitch = SetPitch(0.75f);
+            StartCoroutine(_slowPitch);
+        }
+
+        public void UnSlowDown()
+        {
+            Time.timeScale = 1f;
+            StopCoroutine(_slowPitch);
+            _slowPitch = SetPitch(1f);
+            StartCoroutine(_slowPitch);
+        }
+
         private void WitchDamaged()
         {
             _shake.ShakeStrong();
@@ -235,16 +219,14 @@ namespace Lua.Managers
             _uiManager.GameUi.SetActive(false);
         }
 
-        private void WitchDeathAnimationFinished(FlipBook flipbook)
+        private void WitchDeathAnimationFinished(FlipBook _)
         {
-            _endScreenManager.SetTexts(time: _uiManager.TimeText,
-                                       enemies: _spawnManager.EnemiesDied,
-                                       cardsReciclyed: _cardManager.Recycler.CardsRecycled,
-                                       candy: _witch.TotalCurrencyGained);
+            OnGameEnded?.Invoke(_uiManager.TimeText,
+                                _spawnManager.EnemiesDied,
+                                _witch.TotalCurrencyGained);
 
             SavePlayerPrefs();
 
-            _endScreenManager.gameObject.SetActive(true);
             _witchDied = true;
             _chromaticAberration.intensity.value = .125f;
         }
@@ -255,11 +237,12 @@ namespace Lua.Managers
                 return;
 
             _saved = true;
+            var (CardsPlayed, CardsRecycled) = OnGetCardsActedInfo();
             PlayerPrefsHelper.AddRun();
             PlayerPrefsHelper.AddPlayTime(_playTime);
             PlayerPrefsHelper.AddEnemiesKilled(_spawnManager.EnemiesDied);
-            PlayerPrefsHelper.AddCardsPlayed(_endScreenManager.CardsPlayed);
-            PlayerPrefsHelper.AddCardsRecycled(_cardManager.Recycler.CardsRecycled);
+            PlayerPrefsHelper.AddCardsPlayed(CardsPlayed);
+            PlayerPrefsHelper.AddCardsRecycled(CardsRecycled);
             PlayerPrefsHelper.AddCandyEarned(_witch.TotalCurrencyGained);
             PlayerPrefsHelper.Save();
         }
@@ -284,45 +267,6 @@ namespace Lua.Managers
         private void MuteUnMute(InputAction.CallbackContext ctx)
         {
             AudioListener.volume = AudioListener.volume > 0.1f ? 0f : 1f;
-        }
-
-        private void SlowDown()
-        {
-            Time.timeScale = _slowDownScale;
-            StopCoroutine(_slowPitch);
-            _slowPitch = SetPitch(0.75f);
-            StartCoroutine(_slowPitch);
-        }
-
-        private void UnSlowDown()
-        {
-            Time.timeScale = 1f;
-            StopCoroutine(_slowPitch);
-            _slowPitch = SetPitch(1f);
-            StartCoroutine(_slowPitch);
-        }
-
-        private void CardRecycled()
-        {
-            if (_onRecycleDamageEnemies > 0.01f)
-                _spawnManager.DamageEveryEnemy(_onRecycleDamageEnemies);
-
-            _witch.Health.Heal(_onRecycleHeal);
-            _witch.ModifyCurrency((int)_onRecycleAddCurrency);
-
-            _cardManager.CardRefundDrawer(_onRecycleRefund);
-        }
-
-        private void CardPlayed(PowerUp powerUp)
-        {
-            _endScreenManager.AddCard(powerUp);
-
-            if (_onCardPlayedDamageEnemies > 0.01f)
-                _spawnManager.DamageEveryEnemy(_onCardPlayedDamageEnemies);
-
-            _witch.Health.Heal(_onCardPlayedHeal);
-
-            _cardManager.CardRefundDrawer(_onCardPlayedRefund);
         }
 
         private IEnumerator SetPitch(float pitch)

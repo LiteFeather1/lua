@@ -1,21 +1,20 @@
 ﻿using UnityEngine;
 using LTF.CompositeValue;
-using Lua.Managers;
 
 namespace Lua.PowerUps
 {
     [CreateAssetMenu(menuName = "Power Up/Witch/Speed")]
     public class PowerUpSpeed : PowerUpModifier
     {
-        protected override CompositeValue ValueToModify(GameManager gm)
+        protected override CompositeValue ValueToModify(Cards.CardManager cm)
         {
-            return gm.Witch.Acceleration;
+            return cm.GameManager.Witch.Acceleration;
         }
 
-        protected override void ApplyEffect(GameManager gm)
+        protected override void ApplyEffect(Cards.CardManager cm)
         {
-            base.ApplyEffect(gm);
-            gm.Witch.EvaluateDrag();
+            base.ApplyEffect(cm);
+            cm.GameManager.Witch.EvaluateDrag();
         }
     }
 }

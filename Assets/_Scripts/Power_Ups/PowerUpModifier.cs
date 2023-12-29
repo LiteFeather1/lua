@@ -26,18 +26,18 @@ namespace Lua.PowerUps
             }
         }
 
-        protected abstract CompositeValue ValueToModify(GameManager gm);
+        protected abstract CompositeValue ValueToModify(Cards.CardManager cm);
 
-        protected override void ApplyEffect(GameManager gm)
+        protected override void ApplyEffect(Cards.CardManager cm)
         {
-            var compositeValue = ValueToModify(gm);
+            var compositeValue = ValueToModify(cm);
             compositeValue.AddModifier(_modifier);
 
             if (_valueToRemove == null)
                 return;
             // is Maxed
             if (_modifier > 0f ? compositeValue >= _valueToRemove : compositeValue <= _valueToRemove)
-                Remove(gm.CardManager);
+                Remove(cm);
         }
 
         private string FlatModifier()

@@ -8,12 +8,25 @@ using UnityEngine.UI;
 using LTF.Weighter;
 using LTF.Utils;
 using LTF.CompositeValue;
+using Lua.Managers;
 
 namespace Lua.PowerUps.Cards
 {
     public class CardManager : MonoBehaviour
     {
+        [SerializeField] private EndScreenManager _endScreenManager;
         [SerializeField] private Canvas _root;
+
+        [Header("Recycle Effects")]
+        [SerializeField] private CompositeValue _onRecycleDamageEnemies;
+        [SerializeField] private CompositeValue _onRecycleHeal;
+        [SerializeField] private CompositeValue _onRecycleAddCurrency;
+        [SerializeField] private CompositeValue _onRecycleRefund;
+
+        [Header("On Card Played Effect")]
+        [SerializeField] private CompositeValue _onCardPlayedDamageEnemies;
+        [SerializeField] private CompositeValue _onCardPlayedHeal;
+        [SerializeField] private CompositeValue _onCardPlayedRefund;
 
         [Header("Time")]
         [SerializeField] private CompositeValue _timeToDrawCard = new(5f);
@@ -69,14 +82,18 @@ namespace Lua.PowerUps.Cards
         [SerializeField] private TextMeshProUGUI t_cardEffect;
         [SerializeField] private TextMeshProUGUI t_cardEffectUnderlay;
 
-        public Action OnCardHovered { get; set; }
-        public Action OnCardUnHovered { get; set; }
+        public GameManager GameManager => GameManager.Instance;
 
         public CompositeValue TimeToDrawCard => _timeToDrawCard;
 
-        public CardUIContainerPlay PlayArea => _player;
+        public CompositeValue OnRecycleDamageEnemies => _onRecycleDamageEnemies;
+        public CompositeValue OnRecycleHeal => _onRecycleHeal;
+        public CompositeValue OnRecycleAddCurrency => _onRecycleAddCurrency;
+        public CompositeValue OnRecycleRefund => _onRecycleRefund;
 
-        public CardUIDropContainerRecycle Recycler => _recycler;
+        public CompositeValue OnCardPlayedDamageEnemies => _onCardPlayedDamageEnemies;
+        public CompositeValue OnCardPlayedHeal => _onCardPlayedHeal;
+        public CompositeValue OnCardPlayedRefund => _onCardPlayedRefund;
 
         private void Awake()
         {
@@ -91,13 +108,18 @@ namespace Lua.PowerUps.Cards
                 _rarityInflation.Add(_rarities[i], -.1f);
 
             _seek.OnPowerUpDropped += SeekDropped;
-            _player.OnPowerPlayed += IncreaseInflation;
+            _player.OnPowerPlayed += PowerUpPlayed;
+            _recycler.OnCardUsed += CardRecycled;
         }
 
         private void Start()
         {
             _weightedPowerUps = new(CreateRangeWeightedPowerUp(_startingPowerUps));
             StartCoroutine(_drawerMove.MoveUp());
+
+            var gm = GameManager.Instance;
+            gm.OnGameEnded += GameEnded;
+            gm.OnGetCardsActedInfo = GetCardsActedInfo;
         }
 
         private void Update()
@@ -115,7 +137,11 @@ namespace Lua.PowerUps.Cards
                 UnSubToCard(_drawnCards[i]);
 
             _seek.OnPowerUpDropped -= SeekDropped;
-            _player.OnPowerPlayed -= IncreaseInflation;
+            _player.OnPowerPlayed -= PowerUpPlayed;
+            _recycler.OnCardUsed -= CardRecycled;
+
+            var gm = GameManager.Instance;
+            gm.OnGameEnded -= GameEnded;
         }
 
         public void CardRefundDrawer(float unitInterval)
@@ -284,13 +310,13 @@ namespace Lua.PowerUps.Cards
             t_cardName.color = power.RarityColour;
             t_cardEffect.text = t_cardEffectUnderlay.text = power.Effect;
             _textBG.SetActive(true);
-            OnCardHovered?.Invoke();
+            GameManager.Instance.SlowDown();
         }
 
         private void CardUnHovered()
         {
             _textBG.SetActive(false);
-            OnCardUnHovered?.Invoke();
+            GameManager.Instance.UnSlowDown();
         }
 
         private void CardDropped(CardUIPowerUp card)
@@ -324,10 +350,42 @@ namespace Lua.PowerUps.Cards
             _weightedPowerUps.AddObject(@new);
         }
 
-        private void IncreaseInflation(PowerUp powerUp)
+        private void PowerUpPlayed(PowerUp powerUp)
         {
             _inflation += INFLATION_INCREASE;
             _rarityInflation[powerUp.Rarity] += INFLATION_INCREASE;
+
+            _endScreenManager.AddCard(powerUp);
+
+            var gm = GameManager.Instance;
+            if (_onCardPlayedDamageEnemies > 0.01f)
+                gm.SpawnManager.DamageEveryEnemy(_onCardPlayedDamageEnemies);
+
+            gm.Witch.Health.Heal(_onCardPlayedHeal);
+
+            CardRefundDrawer(_onCardPlayedRefund);
+        }
+
+        private void CardRecycled()
+        {
+            var gm = GameManager.Instance;
+            if (_onRecycleDamageEnemies > 0.01f)
+                gm.SpawnManager.DamageEveryEnemy(_onRecycleDamageEnemies);
+
+            gm.Witch.Health.Heal(_onRecycleHeal);
+            gm.Witch.ModifyCurrency((int)_onRecycleAddCurrency);
+
+            CardRefundDrawer(_onRecycleRefund);
+        }
+
+        private void GameEnded(string time, int enemies, int candy)
+        {
+            _endScreenManager.SetTexts(time, enemies, _recycler.CardsRecycled, candy);
+        }
+
+        private (int CardsPlayed, int CardsRecycled) GetCardsActedInfo()
+        {
+            return (_endScreenManager.CardsPlayed, _recycler.CardsRecycled);
         }
 
 #if UNITY_EDITOR

@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 using LTF.CompositeValue;
-using Lua.Managers;
 
 namespace Lua.PowerUps
 {
     [CreateAssetMenu(menuName = "Power Up/Witch/Damage")]
     public class PowerUpDamage : PowerUpModifier
     {
-        protected override CompositeValue ValueToModify(GameManager gm)
+        protected override CompositeValue ValueToModify(Cards.CardManager cm)
         {
-            return gm.Witch.Damage;
+            return cm.GameManager.Witch.Damage;
         }
     }
 }

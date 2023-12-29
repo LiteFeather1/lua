@@ -12,18 +12,18 @@ namespace Lua.PowerUps
         protected override string Num => _amount.ToString();
 
         // ToDo : Maybe this could be better with a interface??
-        protected abstract Func<int, int> ModifyValue(GameManager gm);
+        protected abstract Func<int, int> ModifyValue(Cards.CardManager cm);
 
-        protected override void ApplyEffect(GameManager gm)
+        protected override void ApplyEffect(Cards.CardManager cm)
         {
-            var amount = ModifyValue(gm)(_amount);
+            var amount = ModifyValue(cm)(_amount);
 
             if (_valueToRemove == null)
                 return;
 
             // Is Maxed
             if (_amount > 0 ? amount >= _valueToRemove : amount <= _valueToRemove)
-                Remove(gm.CardManager);
+                Remove(cm);
         }   
     }
 }

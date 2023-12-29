@@ -422,18 +422,6 @@ namespace Lua.Managers
             otherMessages.Add($"{lines} Lines");
             otherMessages.Add($"{characters} Characters");
 
-            HashSet<string> unique = new();
-            var cards = LTFHelpersEditorOnly.GetScriptableObjects<PowerUps.PowerUp>();
-            for (int i = 0; i < cards.Length; i++)
-            {
-                if (cards[i].name[0] == 'X')
-                    continue;
-
-                if (!unique.Contains(cards[i].PowerUpType))
-                    unique.Add(cards[i].PowerUpType);
-            }
-            otherMessages.Add($"{unique.Count} unique Cards");
-
             _messages = new string[fileMessages.Length + otherMessages.Count];
             fileMessages.CopyTo(_messages, 0);
             otherMessages.CopyTo(_messages, fileMessages.Length);

@@ -4509,9 +4509,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FPS: 1.02
+  m_text: 'FPS: 1.03
 
-    978.3 ms'
+    972.15 ms'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
   m_sharedMaterial: {fileID: 7764967047682581053, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
@@ -4769,7 +4769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   i_card: {fileID: 772496566}
-  _gm: {fileID: 1886159766}
+  _cm: {fileID: 1844759271}
   _played: {fileID: 8300000, guid: c1e54463e55c60740986227852698926, type: 3}
   _denied: {fileID: 8300000, guid: 65e34a4e1e5d01042bcdc84232198171, type: 3}
 --- !u!1 &850318394
@@ -10302,7 +10302,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9012131821dbf65429041387c66bc470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _endScreenManager: {fileID: 2133348063}
   _root: {fileID: 1699692668}
+  _onRecycleDamageEnemies:
+    _baseValue: 0
+    _value: 0
+  _onRecycleHeal:
+    _baseValue: 0
+    _value: 0
+  _onRecycleAddCurrency:
+    _baseValue: 0
+    _value: 0
+  _onRecycleRefund:
+    _baseValue: 0
+    _value: 0
+  _onCardPlayedDamageEnemies:
+    _baseValue: 0
+    _value: 0
+  _onCardPlayedHeal:
+    _baseValue: 0
+    _value: 0
+  _onCardPlayedRefund:
+    _baseValue: 0
+    _value: 0
   _timeToDrawCard:
     _baseValue: 8
     _value: 0
@@ -10583,33 +10605,10 @@ MonoBehaviour:
   _camera: {fileID: 519420031}
   _shake: {fileID: 519420034}
   _uiManager: {fileID: 1699692670}
-  _endScreenManager: {fileID: 2133348063}
   _spawnManager: {fileID: 682165029}
-  _cardManager: {fileID: 1844759271}
   _volume: {fileID: 241432715}
   _aberrationIntensity: 0.5
   _aberrationDuration: 0.5
-  _onRecycleDamageEnemies:
-    _baseValue: 0
-    _value: 0
-  _onRecycleHeal:
-    _baseValue: 0
-    _value: 0
-  _onRecycleAddCurrency:
-    _baseValue: 1
-    _value: 0
-  _onRecycleRefund:
-    _baseValue: 0.1
-    _value: 0
-  _onCardPlayedDamageEnemies:
-    _baseValue: 0
-    _value: 0
-  _onCardPlayedHeal:
-    _baseValue: 0
-    _value: 0
-  _onCardPlayedRefund:
-    _baseValue: 0.01
-    _value: 0
   _toDisableOnPause:
   - {fileID: 757530386}
   - {fileID: 2108644924}

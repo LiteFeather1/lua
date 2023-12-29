@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using LTF.CompositeValue;
-using Lua.Managers;
 
 namespace Lua.PowerUps
 {
@@ -21,16 +20,16 @@ namespace Lua.PowerUps
             _picked = false;
         }
 
-        protected override CompositeValue ValueToModify(GameManager gm)
+        protected override CompositeValue ValueToModify(Cards.CardManager cm)
         {
-            return gm.Witch.ThornBaseDamage;
+            return cm.GameManager.Witch.ThornBaseDamage;
         }
 
-        protected override void ApplyEffect(GameManager gm)
+        protected override void ApplyEffect(Cards.CardManager cm)
         {
-            base.ApplyEffect(gm);
+            base.ApplyEffect(cm);
             _picked = true;
-            gm.Witch.ThornDefenceDamageMultiplier.AddModifier(_defenceDamageMultiplier);
+            cm.GameManager.Witch.ThornDefenceDamageMultiplier.AddModifier(_defenceDamageMultiplier);
         }
     }
 }

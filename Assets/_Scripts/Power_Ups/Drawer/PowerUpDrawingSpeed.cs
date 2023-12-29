@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 using LTF.CompositeValue;
-using Lua.Managers;
 
 namespace Lua.PowerUps
 {
     [CreateAssetMenu(menuName = "Power Up/Drawer/Drawing Speed")]
     public class PowerUpDrawingSpeed : PowerUpModifier
     {
-        protected override CompositeValue ValueToModify(GameManager gm)
+        protected override CompositeValue ValueToModify(Cards.CardManager cm)
         {
-            return gm.CardManager.TimeToDrawCard;
+            return cm.TimeToDrawCard;
         }
     }
 }

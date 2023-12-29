@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Lua.Managers;
 
 namespace Lua.PowerUps
 {
@@ -11,10 +10,10 @@ namespace Lua.PowerUps
 
         protected override string Num => (_auraIncrease * 2).ToString();
 
-        protected override void ApplyEffect(GameManager gm)
+        protected override void ApplyEffect(Cards.CardManager cm)
         {
-            if (gm.Witch.Aura.IncreaseAura(_auraIncrease))
-                Remove(gm.CardManager);
+            if (cm.GameManager.Witch.Aura.IncreaseAura(_auraIncrease))
+                Remove(cm);
         }
     }
 }

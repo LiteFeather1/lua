@@ -33,19 +33,19 @@ namespace Lua.PowerUps
             _unlockedPowerUps = false;
         }
 
-        public void PowerUpPlayed(GameManager gm)
+        public void PowerUpPlayed(Cards.CardManager cm)
         {
-            ApplyEffect(gm);
+            ApplyEffect(cm);
 
             if (_unlockedPowerUps || _powerUpsToUnlock.Length == 0)
                 return;
 
             _unlockedPowerUps = true;
-            gm.CardManager.AddWeightedPowerUps(_powerUpsToUnlock);
+            cm.AddWeightedPowerUps(_powerUpsToUnlock);
         }
 
         protected void Remove(Cards.CardManager cardManager) => cardManager.RemoveCardsOfType(GetType().Name);
 
-        protected abstract void ApplyEffect(GameManager gm);
+        protected abstract void ApplyEffect(Cards.CardManager cm);
     }
 }

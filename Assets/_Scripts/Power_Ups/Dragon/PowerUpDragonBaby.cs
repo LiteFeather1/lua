@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Lua.Managers;
 
 namespace Lua.PowerUps
 {
@@ -10,13 +9,13 @@ namespace Lua.PowerUps
         [SerializeField] private Dragon _dragonPrefab;
         protected override string Num => "";
 
-        protected override void ApplyEffect(GameManager gm)
+        protected override void ApplyEffect(Cards.CardManager cm)
         {
             Dragon dragon = Instantiate(_dragonPrefab);
-            dragon.Activate(gm.Witch);
+            dragon.Activate(cm.GameManager.Witch);
             dragon.Grow(.25f);
-            gm.Dragon = dragon;
-            Remove(gm.CardManager);
+            cm.GameManager.Dragon = dragon;
+            Remove(cm);
         }
     }
 }

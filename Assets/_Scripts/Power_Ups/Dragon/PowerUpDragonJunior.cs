@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Lua.Managers;
 
 namespace Lua.PowerUps
 {
@@ -8,10 +7,10 @@ namespace Lua.PowerUps
     {
         protected override string Num => "";
 
-        protected override void ApplyEffect(GameManager gm)
+        protected override void ApplyEffect(Cards.CardManager cm)
         {
-            gm.Dragon.Grow(.5f);
-            Remove(gm.CardManager);
+            cm.GameManager.Dragon.Grow(.5f);
+            Remove(cm);
         }
     }
 }

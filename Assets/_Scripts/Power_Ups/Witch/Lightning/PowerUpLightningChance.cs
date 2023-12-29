@@ -1,6 +1,5 @@
 using UnityEngine;
 using LTF.CompositeValue;
-using Lua.Managers;
 
 namespace Lua.PowerUps
 {
@@ -19,10 +18,10 @@ namespace Lua.PowerUps
             _unlocked = false;
         }
 
-        protected override CompositeValue ValueToModify(GameManager gm)
+        protected override CompositeValue ValueToModify(Cards.CardManager cm)
         {
             _unlocked = true;
-            return gm.Witch.LightningChance;
+            return cm.GameManager.Witch.LightningChance;
         }
     }
 }

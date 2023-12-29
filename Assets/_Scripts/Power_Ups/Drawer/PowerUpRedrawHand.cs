@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Lua.Managers;
 
 namespace Lua.PowerUps
 {
@@ -8,9 +7,9 @@ namespace Lua.PowerUps
     {
         protected override string Num => string.Empty;
 
-        protected override void ApplyEffect(GameManager gm)
+        protected override void ApplyEffect(Cards.CardManager cm)
         {
-            gm.StartCoroutine(gm.CardManager.RedrawHand());
+            cm.StartCoroutine(cm.RedrawHand());
         }
     }
 }

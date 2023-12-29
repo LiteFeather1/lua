@@ -105,6 +105,8 @@ namespace Lua.Managers
             t_cardsPlayed.text = _cards.Count.ToString();
             t_cardsRecycled.text = cardsReciclyed.ToString();
             t_candyEarned.text = candy.ToString();
+
+            gameObject.SetActive(true);
         }
 
         public void AddCard(PowerUp power)

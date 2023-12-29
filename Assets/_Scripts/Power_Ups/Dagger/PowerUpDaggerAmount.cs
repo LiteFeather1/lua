@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using Lua.Managers;
 
 namespace Lua.PowerUps
 {
@@ -19,10 +18,10 @@ namespace Lua.PowerUps
             _unlocked = false;
         }
 
-        protected override Func<int, int> ModifyValue(GameManager gm)
+        protected override Func<int, int> ModifyValue(Cards.CardManager cm)
         {
             _unlocked = true;
-            return gm.Witch.DaggerAmount;
+            return cm.GameManager.Witch.DaggerAmount;
         }
     }
 }
