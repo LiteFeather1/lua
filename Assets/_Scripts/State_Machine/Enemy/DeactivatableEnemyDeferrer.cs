@@ -3,7 +3,7 @@
 namespace Lua.StateMachine.Enemies
 {
     // Used if the enemy base is not on the root collider
-    public class DeactivatableEnemyDeferrer : MonoBehaviour, IDeactivatable
+    public class DeactivatableEnemyDeferrer : MonoBehaviour, StateMachineCore.IDeactivatable
     {
         [SerializeField] private Enemy _enemy;
 

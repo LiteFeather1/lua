@@ -6,7 +6,7 @@ using Lua.Parentables;
 
 namespace Lua.StateMachine.Enemies
 {
-    public abstract class Enemy : StateMachineCore.StateMachine, IDeactivatable
+    public abstract class Enemy : StateMachineCore.StateMachine, StateMachineCore.IDeactivatable
     {
         [SerializeField] protected EnemyData _data;
 
@@ -55,7 +55,7 @@ namespace Lua.StateMachine.Enemies
             _knockbackState.OnStateComplete -= KnockBackComplete;
         }
 
-        public virtual void Init(Witch witch) { }
+        public virtual void Init(Transform transform) { }
 
         public virtual void Spawn(float t, float tClamped) 
         {

@@ -1,5 +1,5 @@
-﻿
-namespace Lua
+
+namespace StateMachineCore
 {
     public interface IDeactivatable
     {

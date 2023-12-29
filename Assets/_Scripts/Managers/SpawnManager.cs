@@ -322,7 +322,7 @@ namespace Lua.Managers
 
         private void EnemyCreated(Enemy enemy)
         {
-            enemy.Init(GameManager.Instance.Witch);
+            enemy.Init(GameManager.Instance.Witch.transform);
             enemy.ReturnToPool += ReturnEnemyToPool;
             enemy.OnDied += EnemyDied;
             enemy.Health.OnDamaged += EnemyDamaged;

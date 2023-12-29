@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Lua.Weapons
 {
-    public class Projectile : MonoBehaviour, IDeactivatable
+    public class Projectile : MonoBehaviour, StateMachineCore.IDeactivatable
     {
         [SerializeField] private int _pierce;
         [SerializeField] private int _bounce;

@@ -1,0 +1,16 @@
+{
+    "name": "A_Parentable",
+    "rootNamespace": "",
+    "references": [
+        "GUID:dc2e606fcbecf90419de8b7ff52ce3f8"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

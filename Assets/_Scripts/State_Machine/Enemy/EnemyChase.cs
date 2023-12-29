@@ -9,10 +9,10 @@ namespace Lua.StateMachine.Enemies
 
         private void Start() => Set(_movement);
 
-        public override void Init(Witch witch)
+        public override void Init(Transform transform)
         {
-            base.Init(witch);
-            _movement.SetTarget(witch.transform);
+            base.Init(transform);
+            _movement.SetTarget(transform);
         }
 
         public override void Spawn(float t, float tClamped)

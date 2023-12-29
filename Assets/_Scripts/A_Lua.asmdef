@@ -1,0 +1,25 @@
+{
+    "name": "A_Lua",
+    "rootNamespace": "",
+    "references": [
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:df380645f10b7bc4b97d4f5eb6303d95",
+        "GUID:15fc0a57446b3144c949da3e2b9737a9",
+        "GUID:1a7c088b323682f4f9364e7e99c8ab90",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:49aea5f0296d96e47b5793827c29eea0",
+        "GUID:dc2e606fcbecf90419de8b7ff52ce3f8",
+        "GUID:1e381c7cc17834f4aaf55b0feed66641",
+        "GUID:09f9d18ef4fed7f4282a470042e376f4",
+        "GUID:2201fc97c85e0674697e14f1fd1f7465"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
