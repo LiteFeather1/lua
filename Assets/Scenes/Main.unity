@@ -4509,9 +4509,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FPS: 0.17
+  m_text: 'FPS: 1.02
 
-    5820.53 ms'
+    978.3 ms'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
   m_sharedMaterial: {fileID: 7764967047682581053, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
@@ -4521,7 +4521,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4283782655
-  m_fontColor: {r: 1, g: 0.33490568, b: 0.33490568, a: 1}
+  m_fontColor: {r: 1, g: 0.33333334, b: 0.33333334, a: 255}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4597,14 +4597,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 757530382}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ed0ab787b84e2b4a8f3e7f4aebd9ad6, type: 3}
+  m_Script: {fileID: 11500000, guid: 24c3f3de3dd27de418957fef7348e6c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 757530384}
   _updateInterval: 0.5
-  _red: {r: 1, g: 0.33490568, b: 0.33490568, a: 1}
-  _yellow: {r: 0.8962264, g: 0.8413964, b: 0.29169634, a: 1}
-  _green: {r: 0, g: 1, b: 0.32633018, a: 1}
+  _red: {r: 1, g: 0.33333334, b: 0.33333334, a: 255}
+  _yellow: {r: 0.8980392, g: 0.84313726, b: 0.2901961, a: 1}
+  _green: {r: 0, g: 1, b: 0.3254902, a: 255}
 --- !u!1 &763479831
 GameObject:
   m_ObjectHideFlags: 0
@@ -9877,14 +9877,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1753955071}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ed0ab787b84e2b4a8f3e7f4aebd9ad6, type: 3}
+  m_Script: {fileID: 11500000, guid: 24c3f3de3dd27de418957fef7348e6c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 1753955073}
   _updateInterval: 0.5
-  _red: {r: 1, g: 0.33490568, b: 0.33490568, a: 1}
-  _yellow: {r: 0.8962264, g: 0.8413964, b: 0.29169634, a: 1}
-  _green: {r: 0, g: 1, b: 0.32633018, a: 1}
+  _red: {r: 1, g: 0.33333334, b: 0.33333334, a: 255}
+  _yellow: {r: 0.8980392, g: 0.84313726, b: 0.2901961, a: 1}
+  _green: {r: 0, g: 1, b: 0.3254902, a: 255}
 --- !u!1 &1775580851
 GameObject:
   m_ObjectHideFlags: 0

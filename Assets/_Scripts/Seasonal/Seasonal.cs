@@ -3,11 +3,11 @@ using LTF;
 
 namespace Seasonal
 {
-    public abstract class Seasonal<T, G> : ScriptableObject, ISeasonal where G : ISeasonalSetable<T>
+    public abstract class Seasonal<T, G> : ScriptableObject, ISeasonal where G : ISetable<T>
     {
         [SerializeField] protected T _default;
 #if UNITY_EDITOR
-        public void SetDefault() => _toSet.SetSeasonal(_default);
+        public void SetDefault() => _toSet.Set(_default);
 #endif
 
         [SerializeField] protected SerializedDictionary<string, T> _dictionary = new()
@@ -25,7 +25,7 @@ namespace Seasonal
             if (!_dictionary.ContainsKey(season))
                 return;
 
-            _toSet.SetSeasonal(_dictionary[season]);
+            _toSet.Set(_dictionary[season]);
         }
 
         public void Add(string name) => _dictionary.TryAdd(name, default);

@@ -1,0 +1,17 @@
+{
+    "name": "A_Seasonal",
+    "rootNamespace": "",
+    "references": [
+        "GUID:dc2e606fcbecf90419de8b7ff52ce3f8",
+        "GUID:49aea5f0296d96e47b5793827c29eea0"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
