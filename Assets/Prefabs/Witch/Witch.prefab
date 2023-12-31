@@ -5631,6 +5631,7 @@ GameObject:
   - component: {fileID: 5092606559990903128}
   - component: {fileID: 9027821827532596157}
   - component: {fileID: 4398865992499433019}
+  - component: {fileID: 363769275099937629}
   m_Layer: 6
   m_Name: Aura
   m_TagString: Untagged
@@ -5669,7 +5670,7 @@ MonoBehaviour:
     _baseValue: 0.1
     _value: 0
   _auraSprites: {fileID: 11400000, guid: 7db32a9f2e0832f4ea6fda7a1c34762a, type: 2}
-  _tickRateTimer: {fileID: 0}
+  _tickRateTimer: {fileID: 363769275099937629}
   _hitbox: {fileID: 5263069347915584189}
   sr_Aura: {fileID: 9027821827532596157}
   _c: {fileID: 4398865992499433019}
@@ -5792,6 +5793,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.0001
+--- !u!114 &363769275099937629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8091909960328110266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bc6ba21ce401b74e9e502000ff51ab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timer:
+    _canTick: 1
+    _timeType: 0
+    _range: {x: 0, y: 0}
 --- !u!1 &8852279403284934805
 GameObject:
   m_ObjectHideFlags: 0
