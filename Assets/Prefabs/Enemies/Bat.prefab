@@ -75,6 +75,10 @@ MonoBehaviour:
   _defence:
     _baseValue: 0
     _value: 0
+    _compositeModifiers: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &-4825785271480909483
 MonoBehaviour:
   m_ObjectHideFlags: 0

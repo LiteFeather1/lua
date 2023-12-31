@@ -8,8 +8,8 @@ namespace LTF.CompositeValue
     public class CompositeValue : ICompositeValue
     {
         [SerializeField] private float _baseValue;
-        [SerializeField, DrawInEditorMode(false)] private float _value;
-        private readonly List<ICompositeValueModifier> _compositeModifiers;
+        [SerializeField] private float _value;
+        [SerializeReference] private List<ICompositeValueModifier> _compositeModifiers;
 
         public Action<float> OnValueModified { get; set; }
 

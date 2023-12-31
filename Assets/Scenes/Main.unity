@@ -4138,9 +4138,11 @@ MonoBehaviour:
   _chanceDamageExplosion:
     _baseValue: 0
     _value: 0
+    _compositeModifiers: []
   _explosionDamage:
     _baseValue: 5
-    _value: 0
+    _value: 5
+    _compositeModifiers: []
   _explosionRadius: 0.16
   _currencyPool:
     _object: {fileID: 2748346242251297967, guid: 01b4627feeae6a645a416d881fbab9b8, type: 3}
@@ -4148,7 +4150,8 @@ MonoBehaviour:
   _candySpawnOffset: 0.04
   _chanceToExtraCandy:
     _baseValue: 0.01
-    _value: 0
+    _value: 0.01
+    _compositeModifiers: []
   _damageNumPool:
     _object: {fileID: 2872507750913942527, guid: e57e6c95f5d22544ead44720df0f0b19, type: 3}
     _initialPoolSize: 10
@@ -4183,6 +4186,9 @@ MonoBehaviour:
   - {r: 0.023529414, g: 0.5882353, b: 0.73333335, a: 1}
   - {r: 0, g: 0.5568628, b: 0.35686275, a: 1}
   - {r: 0.54901963, g: 0.73333335, b: 0.14901961, a: 1}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &733809782
 GameObject:
   m_ObjectHideFlags: 0
@@ -4509,9 +4515,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'FPS: 0.15
+  m_text: 'FPS: 1.26
 
-    6896.54 ms'
+    796.54 ms'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
   m_sharedMaterial: {fileID: 7764967047682581053, guid: 1d567964c873f044f98a1ab5a5a8b236, type: 2}
@@ -10307,27 +10313,35 @@ MonoBehaviour:
   _onRecycleDamageEnemies:
     _baseValue: 0
     _value: 0
+    _compositeModifiers: []
   _onRecycleHeal:
     _baseValue: 0
     _value: 0
+    _compositeModifiers: []
   _onRecycleAddCurrency:
     _baseValue: 0
     _value: 0
+    _compositeModifiers: []
   _onRecycleRefund:
     _baseValue: 0
     _value: 0
+    _compositeModifiers: []
   _onCardPlayedDamageEnemies:
     _baseValue: 0
     _value: 0
+    _compositeModifiers: []
   _onCardPlayedHeal:
     _baseValue: 0
     _value: 0
+    _compositeModifiers: []
   _onCardPlayedRefund:
     _baseValue: 0
     _value: 0
+    _compositeModifiers: []
   _timeToDrawCard:
     _baseValue: 8
-    _value: 0
+    _value: 8
+    _compositeModifiers: []
   _rarities:
   - {fileID: 11400000, guid: 639bbac6bf1db91429066dc023f24633, type: 2}
   - {fileID: 11400000, guid: a1df466705a8789499b19027ad855397, type: 2}
@@ -10404,6 +10418,9 @@ MonoBehaviour:
   t_cardNameUnderlay: {fileID: 454428354}
   t_cardEffect: {fileID: 1971697729}
   t_cardEffectUnderlay: {fileID: 1410255031}
+  references:
+    version: 2
+    RefIds: []
 --- !u!225 &1844759272
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -12558,10 +12575,6 @@ PrefabInstance:
     - target: {fileID: 5155081586467621625, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5263069347915584189, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
-      propertyPath: _knockBack
-      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 7450378837478392003, guid: 40c8e164cf75f244fba2ffd8d0ea1e12, type: 3}
       propertyPath: m_Name
