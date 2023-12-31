@@ -15,22 +15,16 @@ namespace Lua.Weapons
         private int _currentAuraIndex = 0;
 
         [Header("Components")]
-        [SerializeField] private FixedTimer _tickRateTimer;
+        [SerializeField] private TimerBehaviour<TimerFixed> _tickRateTimer;
         [SerializeField] private HitBox _hitbox;
         [SerializeField] private SpriteRenderer sr_Aura;
         [SerializeField] private CircleCollider2D _c;
 
         public CompositeValue DamagePercent => _damagePercent;
 
-        private void Awake()
-        {
-            _tickRateTimer.TimeEvent += Tick;
-        }
+        private void Awake() => _tickRateTimer.TimeEvent += Tick;
 
-        private void OnDestroy()
-        {
-            _tickRateTimer.TimeEvent -= Tick;
-        }
+        private void OnDestroy() => _tickRateTimer.TimeEvent -= Tick;
 
         private void Tick()
         {

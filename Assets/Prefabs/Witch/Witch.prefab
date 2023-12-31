@@ -5669,7 +5669,7 @@ MonoBehaviour:
     _baseValue: 0.1
     _value: 0
   _auraSprites: {fileID: 11400000, guid: 7db32a9f2e0832f4ea6fda7a1c34762a, type: 2}
-  _tickRateTimer: {fileID: 5092606559990903128}
+  _tickRateTimer: {fileID: 0}
   _hitbox: {fileID: 5263069347915584189}
   sr_Aura: {fileID: 9027821827532596157}
   _c: {fileID: 4398865992499433019}
@@ -5698,12 +5698,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8091909960328110266}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 810a93fc99d30e94b9565395bad9249e, type: 3}
+  m_Script: {fileID: 11500000, guid: 16a5babd7cb480d4584566f26a93c0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canTick: 1
-  _timeType: 0
-  _time: 1
+  _timer:
+    _canTick: 1
+    _timeType: 0
+    _time: 1
 --- !u!212 &9027821827532596157
 SpriteRenderer:
   m_ObjectHideFlags: 0
