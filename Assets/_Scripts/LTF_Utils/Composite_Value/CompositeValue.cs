@@ -5,16 +5,15 @@ using UnityEngine;
 namespace LTF.CompositeValue
 {
     [Serializable]
-    public class CompositeValue : ICompositeValue
+    public class CompositeValue
     {
         [SerializeField] private float _baseValue;
         [SerializeField] private float _value;
-        [SerializeReference] private List<ICompositeValueModifier> _compositeModifiers;
+        private readonly List<CompositeValueModifier> _compositeModifiers;
 
         public Action<float> OnValueModified { get; set; }
 
         public float BaseValue => _baseValue;
-
         public float Value => _value;
 
         public CompositeValue() => _compositeModifiers = new();
@@ -50,23 +49,23 @@ namespace LTF.CompositeValue
             OnValueModified?.Invoke(_value);
         }
 
-        public void AddModifier(ICompositeValueModifier modifier)
+        public void AddModifier(CompositeValueModifier modifier)
         {
             _compositeModifiers.Add(modifier);
-            _compositeModifiers.Sort(ICompositeValue.CompareModifierOrder);
+            _compositeModifiers.Sort(CompareModifierOrder);
             Recalculate();
         }
 
-        public void AddMultipleModifiers(IEnumerable<ICompositeValueModifier> modifiers)
+        public void AddMultipleModifiers(IEnumerable<CompositeValueModifier> modifiers)
         {
             foreach (var modifier in modifiers)
                 _compositeModifiers.Add(modifier);
 
-            _compositeModifiers.Sort(ICompositeValue.CompareModifierOrder);
+            _compositeModifiers.Sort(CompareModifierOrder);
             Recalculate();
         }
 
-        public bool RemoveModifier(ICompositeValueModifier modifier)
+        public bool RemoveModifier(CompositeValueModifier modifier)
         {
             if (!_compositeModifiers.Remove(modifier))
                 return false;
@@ -127,6 +126,13 @@ namespace LTF.CompositeValue
 
             return finalValue;
         }
+
+        static int CompareModifierOrder(CompositeValueModifier lhs, CompositeValueModifier rhs) => lhs.Order switch
+        {
+            var order when order < rhs.Order => -1,
+            var order when order > rhs.Order => 1,
+            _ => 0,
+        };
 
         #region Operator
 

@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 using UnityEditor;
 
-namespace LTF.CompositeValue
+namespace LTF.CompositeValue.Editor
 {
     [CustomPropertyDrawer(typeof(CompositeValue))]
     public class CompositeValueDrawer : PropertyDrawer
@@ -19,8 +20,9 @@ namespace LTF.CompositeValue
                 return;
             }
 
-            var p = new GUIContent(property.displayName, "Composite value");
+            var p = new GUIContent(property.displayName, "Composite Value");
             EditorGUILayout.LabelField(p, EditorStyles.boldLabel);
+
             EditorGUI.indentLevel++;
             var lastValue = property.FindPropertyRelative("_baseValue").floatValue;
             property.FindPropertyRelative("_value").floatValue 
@@ -31,3 +33,4 @@ namespace LTF.CompositeValue
         }
     }
 }
+#endif

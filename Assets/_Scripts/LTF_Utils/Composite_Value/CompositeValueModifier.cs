@@ -3,7 +3,7 @@
 namespace LTF.CompositeValue
 {
     [System.Serializable]
-    public class CompositeValueModifier : ICompositeValueModifier
+    public class CompositeValueModifier
     {
         [SerializeField] private float _value = 0f;
         [SerializeField] private CompositeValueModifierType _type = CompositeValueModifierType.Flat;
