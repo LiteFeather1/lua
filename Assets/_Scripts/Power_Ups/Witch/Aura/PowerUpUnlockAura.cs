@@ -13,9 +13,9 @@ namespace Lua.PowerUps
         protected override void ApplyEffect(Cards.CardManager cm)
         {
             cm.GameManager.Witch.Aura.SetAura(_auraSprite);
-            cm.GameManager.Witch.Damage.ForceRecalculate();
-            cm.GameManager.Witch.CritChance.ForceRecalculate();
-            cm.GameManager.Witch.CritMultiplier.ForceRecalculate();
+            cm.GameManager.Witch.Damage.Recalculate();
+            cm.GameManager.Witch.CritChance.Recalculate();
+            cm.GameManager.Witch.CritMultiplier.Recalculate();
             Remove(cm);
         }
     }

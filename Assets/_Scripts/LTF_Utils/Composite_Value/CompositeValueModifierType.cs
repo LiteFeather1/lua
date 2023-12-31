@@ -3,10 +3,6 @@
     public enum CompositeValueModifierType
     {
         /// <summary>
-        /// This means it will skip and not add the value to base
-        /// </summary>
-        None,
-        /// <summary>
         /// This means it will add a flat value to base
         /// </summary>
         Flat = 100,

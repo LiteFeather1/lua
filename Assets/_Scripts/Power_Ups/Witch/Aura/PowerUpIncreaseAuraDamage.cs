@@ -14,7 +14,7 @@ namespace Lua.PowerUps
         protected override void ApplyEffect(Cards.CardManager cm)
         {
             base.ApplyEffect(cm);
-            cm.GameManager.Witch.Aura.DamagePercent.ForceRecalculate();
+            cm.GameManager.Witch.Aura.DamagePercent.Recalculate();
         }
     }
 }
