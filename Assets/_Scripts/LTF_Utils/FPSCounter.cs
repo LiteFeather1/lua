@@ -35,16 +35,15 @@ namespace LTF
 
                 _intervalFrameCount = 0;
                 _elaspedIntervalTime = 0f;
+
+                _text.text = $"FPS: {_fps}\n{_ms} ms";
+                _text.color = _fps switch
+                {
+                    < 30 => _red,
+                    < 60 => _yellow,
+                    _ => _green
+                };
             }
-
-            _text.text = $"FPS: {_fps}\n{_ms} ms";
-
-            _text.color = _fps switch
-            {
-                < 30 => _red,
-                < 60 => _yellow,
-                _ => _green
-            };
         }
     }
 }
