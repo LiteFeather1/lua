@@ -53,10 +53,8 @@ namespace LTF.Weighter
             var f = UnityEngine.Random.value * SumOfWeights;
             for (int i = 0; i < _objects.Count; i++)
             {
-                if (!((f -= _objects[i]) <= 0f))
-                    continue;
-
-                return _objects[i];
+                if ((f -= _objects[i]) <= 0f)
+                    return _objects[i];
             }
 
             return _objects[0];
