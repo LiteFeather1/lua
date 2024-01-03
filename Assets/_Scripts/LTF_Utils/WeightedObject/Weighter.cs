@@ -1,15 +1,17 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 
 namespace LTF.Weighter
 {
-    [System.Serializable]
-    public class Weighter<T> 
+    [Serializable]
+    public class Weighter<T> : IDisposable
     {
         [SerializeField] private List<WeightedObject<T>> _objects = new();
-        public List<WeightedObject<T>> Objects => _objects;
         private bool _isDirty = true;
         private float _sumOfWeights;
+
+        public List<WeightedObject<T>> Objects => _objects;
         public int Count => _objects.Count;
 
         public float SumOfWeights
@@ -26,14 +28,6 @@ namespace LTF.Weighter
             }
         }
 
-        public void RecalculateSumOfWeights()
-        {
-            _sumOfWeights = 0f;
-
-            foreach (var object_ in _objects)
-                _sumOfWeights += object_.Weight;
-        }
-
         public Weighter(IEnumerable<WeightedObject<T>> objects)
         {
             _objects = new(objects);
@@ -41,31 +35,33 @@ namespace LTF.Weighter
             _sumOfWeights = SumOfWeights;
         }
 
-        public Weighter()
+        public Weighter() : this(null) { }
+
+        ~Weighter() 
         {
-            _objects = new();
-            _isDirty = true;
-            _sumOfWeights = SumOfWeights;
+            Dispose();
+        }
+
+        public void RecalculateSumOfWeights()
+        {
+            _sumOfWeights = 0f;
+
+            for (int i = 0; i < _objects.Count; i++)
+                _sumOfWeights += _objects[i];
         }
 
         public WeightedObject<T> GetWeightedObject()
         {
-            if (_sumOfWeights < 0.01f)
-                _isDirty = true;
-
-            float f = Random.value * SumOfWeights;
-            WeightedObject<T> objectToReturn = _objects[0];
-            foreach (var object_ in _objects)
+            var f = UnityEngine.Random.value * SumOfWeights;
+            for (int i = 0; i < _objects.Count; i++)
             {
-                f -= object_.Weight;
-                if (!(f <= 0))
+                if (!((f -= _objects[i]) <= 0f))
                     continue;
 
-                objectToReturn = object_;
-                break;
+                return _objects[i];
             }
 
-            return objectToReturn;
+            return _objects[0];
         }
 
         public T GetObject() => GetWeightedObject();
@@ -86,6 +82,11 @@ namespace LTF.Weighter
         {
             _objects.Remove(objectToRemove);
             _isDirty = true;
+        }
+
+        public void Dispose()
+        {
+            _objects.Clear();
         }
     }
 }

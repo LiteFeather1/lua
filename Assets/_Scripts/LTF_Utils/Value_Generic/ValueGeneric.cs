@@ -8,6 +8,6 @@ namespace LTF.ValueGeneric
 
         public void Set(T value) => Value = value;
 
-        public static implicit operator T(ValueGeneric<T> genericValue) => genericValue.Value;
+        public static implicit operator T(ValueGeneric<T> v) => v.Value;
     }
 }

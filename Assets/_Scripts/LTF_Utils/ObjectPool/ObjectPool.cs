@@ -5,7 +5,7 @@ using UnityEngine;
 namespace LTF.ObjectPool
 {
     [Serializable]
-    public class ObjectPool<T> where T : Component
+    public class ObjectPool<T> : IDisposable where T : Component
     {
         [SerializeField] private T _object;
         [SerializeField] private int _initialPoolSize;
@@ -13,6 +13,7 @@ namespace LTF.ObjectPool
         private readonly Queue<T> _inactiveObjects = new();
 
         public HashSet<T> Objects { get; private set; } = new();
+
         public Action<T> ObjectCreated { get; set; }
 
         public T Object => _object;
@@ -32,7 +33,7 @@ namespace LTF.ObjectPool
 
         ~ObjectPool()
         {
-            Destroy();
+            Dispose();
         }
 
         public void InitPool(int size, bool spawnActive = false)
@@ -68,7 +69,7 @@ namespace LTF.ObjectPool
             _inactiveObjects.Enqueue(object_);
         }
 
-        public void Destroy()
+        public void Dispose()
         {
             Objects.Clear();
             UnityEngine.Object.Destroy(_poolParent.gameObject);

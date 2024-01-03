@@ -1,5 +1,5 @@
 ﻿
-namespace LTF
+namespace LTF.ValueGeneric
 {
     public interface ISetable<T>
     {

@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 using UnityEditor;
 
 namespace LTF.RefValue.Editor
 {
-#if UNITY_EDITOR
+    // Mainly used for not indenting in the inspector
     [CustomPropertyDrawer(typeof(RefValue<>))]
     public class RefValuePropertyDrawer : PropertyDrawer
     {

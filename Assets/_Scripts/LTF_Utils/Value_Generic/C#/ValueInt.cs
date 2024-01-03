@@ -2,6 +2,6 @@
 
 namespace LTF.ValueGeneric
 {
-    [CreateAssetMenu(menuName = "Generic Value/Int")]
+    [CreateAssetMenu(menuName = "Generic Value/C#/Int")]
     public class ValueInt : ValueGeneric<int> { }
 }

@@ -2,6 +2,6 @@
 
 namespace LTF.ValueGeneric
 {
-    [CreateAssetMenu(menuName = "Generic Value/Sprite")]
+    [CreateAssetMenu(menuName = "Generic Value/Unity/Sprite")]
     public class ValueSprite : ValueGeneric<Sprite> { }
 }

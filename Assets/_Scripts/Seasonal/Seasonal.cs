@@ -1,5 +1,6 @@
 using UnityEngine;
 using LTF;
+using LTF.ValueGeneric;
 
 namespace Seasonal
 {
