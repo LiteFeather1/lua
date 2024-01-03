@@ -1,12 +1,11 @@
 ﻿using System;
 using UnityEngine;
-using LTF.ObjectPool;
 using Lua.Damage;
 using Lua.Parentables;
 
 namespace Lua.Weapons
 {
-    public class Bullet : MonoBehaviour, IPoolable<Bullet>
+    public class Bullet : MonoBehaviour
     {
         [SerializeField] private Projectile _projectile;
         [SerializeField] private HitBox _hitBox;

@@ -1,22 +1,22 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace LTF.ObjectPool
 {
-    [System.Serializable]
+    [Serializable]
     public class ObjectPool<T> where T : Component
     {
         [SerializeField] private T _object;
         [SerializeField] private int _initialPoolSize;
-        private GameObject _poolParent;
-        private bool _spawnActive = false;
+        private Transform _poolParent;
         private readonly Queue<T> _inactiveObjects = new();
+
         public HashSet<T> Objects { get; private set; } = new();
+        public Action<T> ObjectCreated { get; set; }
 
         public T Object => _object;
-        public GameObject PoolParent => _poolParent;
-
-        public System.Action<T> ObjectCreated { get; set; }
+        public Transform PoolParent => _poolParent;
 
         public ObjectPool(T object_, int initialPoolSize)
         {
@@ -30,50 +30,37 @@ namespace LTF.ObjectPool
 
         public ObjectPool() { }
 
+        ~ObjectPool()
+        {
+            Destroy();
+        }
+
         public void InitPool(int size, bool spawnActive = false)
         {
             if (_poolParent != null)
                 return;
 
-            _spawnActive = spawnActive;
-            _poolParent = new($"Pool_{_object.name}");
-            _object.gameObject.SetActive(_spawnActive); 
+            var name = _object.name;
+
+            _poolParent = new GameObject($"Pool_{name}").transform;
+
+            _object = UnityEngine.Object.Instantiate(_object);
+            _object.gameObject.SetActive(spawnActive);
+            _object.name = name;
+            _object.gameObject.hideFlags = HideFlags.HideAndDontSave;
+
             for (int i = 0; i < size; i++)
-            {
-                T t = Instantiate();
-                _inactiveObjects.Enqueue(t);
-            }
-            _object.gameObject.SetActive(true);
+                _inactiveObjects.Enqueue(Instantiate());
         }
 
         public void InitPool(bool spawnActive = false) => InitPool(_initialPoolSize, spawnActive);  
 
         public T GetObject()
         {
-            T object_;
-
             if (_inactiveObjects.Count > 0)
-            {
-                object_ = _inactiveObjects.Dequeue();
-            }
-            else
-            {
-                _object.gameObject.SetActive(_spawnActive);
-                object_ = Instantiate();
-                _object.gameObject.SetActive(true);
-            }
+                return _inactiveObjects.Dequeue();
 
-            return object_;
-        }
-
-        private T Instantiate()
-        {
-            T object_ = UnityEngine.Object.Instantiate(_object);
-            object_.transform.SetParent(_poolParent.transform);
-            object_.name += _inactiveObjects.Count;
-            Objects.Add(object_);
-            ObjectCreated?.Invoke(object_);
-            return object_;
+            return Instantiate();
         }
 
         public void ReturnObject(T object_)
@@ -81,15 +68,20 @@ namespace LTF.ObjectPool
             _inactiveObjects.Enqueue(object_);
         }
 
-        ~ObjectPool()
-        {
-            Destroy();
-        }
-
         public void Destroy()
         {
             Objects.Clear();
-            UnityEngine.Object.Destroy(_poolParent);
+            UnityEngine.Object.Destroy(_poolParent.gameObject);
+        }
+
+        private T Instantiate()
+        {
+            T object_ = UnityEngine.Object.Instantiate(_object);
+            object_.transform.SetParent(_poolParent);
+            object_.name = $"{_object.name}_{Objects.Count}";
+            Objects.Add(object_);
+            ObjectCreated?.Invoke(object_);
+            return object_;
         }
     }
 }
