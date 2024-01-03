@@ -32,7 +32,6 @@ namespace LTF.Weighter
         {
             _objects = new(objects);
             _isDirty = true;
-            _sumOfWeights = SumOfWeights;
         }
 
         public Weighter() : this(new WeightedObject<T>[0]) { }
@@ -45,7 +44,6 @@ namespace LTF.Weighter
         public void RecalculateSumOfWeights()
         {
             _sumOfWeights = 0f;
-
             for (int i = 0; i < _objects.Count; i++)
                 _sumOfWeights += _objects[i];
         }
