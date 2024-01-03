@@ -35,7 +35,7 @@ namespace LTF.Weighter
             _sumOfWeights = SumOfWeights;
         }
 
-        public Weighter() : this(null) { }
+        public Weighter() : this(new WeightedObject<T>[0]) { }
 
         ~Weighter() 
         {

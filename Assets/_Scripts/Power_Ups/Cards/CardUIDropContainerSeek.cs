@@ -15,7 +15,7 @@ namespace Lua.PowerUps.Cards
         protected override void UseCard(CardUIPowerUp card)
         {
             card.ReturnToPile();
-            var newWeight = new WeightedObject<PowerUp>(card.PowerUp, Mathf.Min(card.PowerUp.Weight * 3f, 0.5f));
+            var newWeight = new WeightedObject<PowerUp>(Mathf.Min(card.PowerUp.Weight * 3f, 0.5f), card.PowerUp);
             OnPowerUpDropped?.Invoke(WeightedPowerUpSeeking, newWeight);
             WeightedPowerUpSeeking = newWeight;
             i_powerUpIcon.sprite = card.PowerUp.Icon;

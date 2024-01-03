@@ -4,7 +4,7 @@ using UnityEditor;
 
 namespace LTF
 {
-    internal static class SceneMenuItems
+    public static partial class SceneMenuItems
     {
         [MenuItem("Scene Go/Splash Screen", priority = 1)]
         private static void LoadSplash()

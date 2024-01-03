@@ -6,7 +6,7 @@ namespace MoonPhaseConsole
 {
     public static class Moon
     {
-        private static readonly List<string> Names = new()
+        private static readonly string[] Names = new string[]
         {
             Phase.NewMoon,
             Phase.WaxingCrescent, Phase.FirstQuarter, Phase.WaxingGibbous,
@@ -20,7 +20,7 @@ namespace MoonPhaseConsole
 
         static Moon()
         {
-            var period = TotalLengthOfCycle / Names.Count;
+            var period = TotalLengthOfCycle / Names.Length;
             // divide the phases into equal parts 
             // making sure there are no gaps
             allPhases = Names
@@ -107,9 +107,9 @@ namespace MoonPhaseConsole
             public override string ToString()
             {
                 var percent = Math.Round(Visibility, 2);
-                return $"The Moon for {Moment} is {DaysIntoCycle} days\n" +
-                       $"into the cycle, and is showing as \"{Name}\"\n" +
-                       $"with {percent}% visibility, and a face of from the northern hemisphere.";
+                return $@"The Moon for {Moment} is {DaysIntoCycle} days
+                       into the cycle, and is showing as {Name}
+                       with {percent}% visibility, and a face of from the northern hemisphere.";
             }
         }
 

@@ -7,12 +7,11 @@ namespace LTF.Editor
     [CustomPropertyDrawer(typeof(OptionalValue<>))]
     public class OptionalPropertyDrawer : PropertyDrawer
     {
-        private const float TOGGLE_PAD = 24;
+        private const float TOGGLE_PAD = 24f;
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            SerializedProperty valueProperty = property.FindPropertyRelative("_value");
-            return EditorGUI.GetPropertyHeight(valueProperty, label);
+            return EditorGUI.GetPropertyHeight(property.FindPropertyRelative("_value"), label);
         }
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)

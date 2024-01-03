@@ -206,7 +206,7 @@ namespace Lua.PowerUps.Cards
                 _allPowerUps.Add(powerUp);
                 powerUp.Reset();
 
-                var weightedObject = new WeightedObject<PowerUp>(powerUp, powerUp.Weight);
+                var weightedObject = new WeightedObject<PowerUp>(powerUp.Weight, powerUp);
 
                 var powerUpType = powerUp.PowerUpType;
                 // Power up dictionary type
