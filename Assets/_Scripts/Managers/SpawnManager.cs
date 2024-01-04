@@ -203,21 +203,13 @@ namespace Lua.Managers
                     continue;
 
                 const float RANGE = .08f;
-                float x = enemy.Position.x + Mathf.Clamp(pos.x - enemy.Position.x, -RANGE, RANGE);
-                float y = enemy.Position.y + Mathf.Clamp(pos.y - enemy.Position.y, -RANGE, RANGE);
+                var x = enemy.Position.x + Mathf.Clamp(pos.x - enemy.Position.x, -RANGE, RANGE);
+                var y = enemy.Position.y + Mathf.Clamp(pos.y - enemy.Position.y, -RANGE, RANGE);
                 var preDmg = enemy.Health.Hp;
                 enemy.Health.TakeDamage(damage, knockback, false, new(x, y));
                 action(enemy);
                 EnemyDamagedInRange?.Invoke(preDmg - enemy.Health.Hp);
             }
-        }
-
-        public void SpawnThornAnimation(Enemy enemy)
-        {
-            var thorn = _thornAnimationPool.GetObject();
-            thorn.transform.localPosition = enemy.Position;
-            thorn.Play(overRide: true);
-            thorn.gameObject.SetActive(true);
         }
 
         public void LightningDamage(float damage, float range, Vector2 firstPoint, IDamageable firstDamageable, float lightningChance, int minChains)
@@ -308,6 +300,14 @@ namespace Lua.Managers
                 _lightningEffectPool.ReturnObject(lightnings[i]);
                 lightnings[i].enabled = false;
             }
+        }
+
+        public void SpawnThornAnimation(Enemy enemy)
+        {
+            var thorn = _thornAnimationPool.GetObject();
+            thorn.transform.localPosition = enemy.Position;
+            thorn.Play(overRide: true);
+            thorn.gameObject.SetActive(true);
         }
 
         private void SpawnEnemy()

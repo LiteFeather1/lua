@@ -26,5 +26,5 @@ namespace LTF.RefValue.Editor
         }
     }
 
-#endif
 }
+#endif

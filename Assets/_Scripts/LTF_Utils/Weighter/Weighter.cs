@@ -8,6 +8,7 @@ namespace LTF.Weighter
     public class Weighter<T> : IDisposable
     {
         [SerializeField] private List<WeightedObject<T>> _objects = new();
+
         private bool _isDirty = true;
         private float _sumOfWeights;
 

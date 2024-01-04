@@ -11,7 +11,8 @@ namespace LTF.Weighter.Editor
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            EditorGUILayout.PropertyField(property.FindPropertyRelative("_objects"), label);
+            using var p = property.FindPropertyRelative("_objects");
+            EditorGUILayout.PropertyField(p, label);
         }
     }
 }

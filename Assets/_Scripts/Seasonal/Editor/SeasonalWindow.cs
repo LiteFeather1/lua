@@ -68,5 +68,5 @@ namespace Seasonal.Editor
             }
         }
     }
-#endif
 }
+#endif

@@ -77,8 +77,7 @@ namespace LTF.ObjectPool
 
         private T Instantiate()
         {
-            T object_ = UnityEngine.Object.Instantiate(_object);
-            object_.transform.SetParent(_poolParent);
+            T object_ = UnityEngine.Object.Instantiate(_object, _poolParent);
             object_.name = $"{_object.name}_{Objects.Count}";
             Objects.Add(object_);
             ObjectCreated?.Invoke(object_);

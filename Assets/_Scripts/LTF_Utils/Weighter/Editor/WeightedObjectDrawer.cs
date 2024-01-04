@@ -12,16 +12,17 @@ namespace LTF.Weighter.Editor
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            return EditorGUI.GetPropertyHeight(property.FindPropertyRelative("_object"), label);
+            using var p = property.FindPropertyRelative("_object");
+            return EditorGUI.GetPropertyHeight(p, label);
         }
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            var objectP = property.FindPropertyRelative("_object");
-            var weightP = property.FindPropertyRelative("_weight");
+            using var objectP = property.FindPropertyRelative("_object");
+            using var weightP = property.FindPropertyRelative("_weight");
             label.tooltip = TOOLTIP;
 
-            EditorGUI.BeginProperty(position, label, property);
+            using (new EditorGUI.PropertyScope(position, label, property))
             {
                 position.width -= PAD;
                 EditorGUI.PropertyField(position, objectP, label, true);
@@ -38,7 +39,6 @@ namespace LTF.Weighter.Editor
 
                 EditorGUI.indentLevel = indent;
             }
-            EditorGUI.EndProperty();
         }
     }
 }
