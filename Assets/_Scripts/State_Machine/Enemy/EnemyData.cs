@@ -16,7 +16,7 @@ public class EnemyData : ScriptableObject
     public string Name => _name;
     public Color Colour => _colour;
 
-    public float Speed(float t) => _speedRange.Evaluate(t);
+    public float Speed(float t) => _speedRange.Random(t);
     public float Health(float t) => _healthRange.Evaluate(t);
     public float Defence(float t)
     {

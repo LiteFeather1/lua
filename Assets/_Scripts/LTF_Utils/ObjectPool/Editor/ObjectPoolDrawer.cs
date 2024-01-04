@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace LTF.ObjectPool
+namespace LTF.ObjectPool.Editor
 {
     [CustomPropertyDrawer(typeof(ObjectPool<>))]
     public class WeightedObjectDrawer : PropertyDrawer

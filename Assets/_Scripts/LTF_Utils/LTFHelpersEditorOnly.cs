@@ -6,6 +6,10 @@ namespace LTF.Utils
 {
     public static class LTFHelpersEditorOnly
     {
+        /// <summary>
+        /// Find all scriptableobjects in the project of type <typeparamref name="T"/>
+        /// </summary>
+        /// <returns></returns>
         public static T[] GetScriptableObjects<T>() where T : ScriptableObject
         {
             string[] guid = AssetDatabase.FindAssets($"t:{typeof(T).Name}");

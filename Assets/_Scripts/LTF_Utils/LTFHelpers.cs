@@ -4,6 +4,12 @@ namespace LTF.Utils
 {
     public static class LTFHelpers
     {
+        /// <summary>
+        /// Based on https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle 
+        /// Adapted for unity
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array"></param>
         public static void KnuthShuffle<T>(this T[] array)
         {
             int n = array.Length;
@@ -62,6 +68,10 @@ namespace LTF.Utils
             return new(c.r, c.g, c.b, a);
         }
 
+        /// <summary>
+        /// Combines two colours in a simple way
+        /// Use CombineColoursSqrt for a more accurate colour
+        /// </summary>
         public static Color CombineColour(Color c1, Color c2)
         {
             return new(
@@ -71,6 +81,10 @@ namespace LTF.Utils
                 (c1.a + c2.a) * .5f);
         }
 
+        /// <summary>
+        /// Combines multiple colours in a simple way
+        /// Use CombineColoursSqrt for a more accurate colour
+        /// </summary>
         public static Color CombineColours(params Color[] cs)
         {
             float r = 0f, g = 0f, b = 0f, a = 0f;
@@ -85,6 +99,9 @@ namespace LTF.Utils
             return new(r / cs.Length, g / cs.Length, b / cs.Length, a / cs.Length);
         }
 
+        /// <summary>
+        /// Combines multiple colours in a accurate way
+        /// </summary>
         public static Color CombineColourSqrt(Color c1, Color c2)
         {
             return new(
@@ -94,6 +111,9 @@ namespace LTF.Utils
                 Mathf.Sqrt((c1.a + c2.a) * .5f));
         }
 
+        /// <summary>
+        /// Combines multiple colours in a accurate way
+        /// </summary>
         public static Color CombineColourSqrt(params Color[] cs)
         {
             float r = 0f, g = 0f, b = 0f, a = 0f;
