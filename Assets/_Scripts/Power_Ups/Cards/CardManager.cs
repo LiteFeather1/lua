@@ -1,12 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using LTF.Weighter;
+using LTF;
 using LTF.Utils;
+using LTF.Weighter;
 using LTF.CompositeValue;
 using Lua.Managers;
 

@@ -2,6 +2,7 @@ using RetroAnimation;
 using System;
 using System.Collections;
 using UnityEngine;
+using LTF;
 using LTF.RefValue;
 using LTF.Utils;
 using LTF.CustomWaits;

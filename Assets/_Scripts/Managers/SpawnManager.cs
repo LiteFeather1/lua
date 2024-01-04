@@ -267,7 +267,7 @@ namespace Lua.Managers
                 segmentLengths[i] = _lightningSegmentLengthRange.Random();
             }
 
-            var updates = _lightningUpdatesRange.Random();
+            var updates = _lightningUpdatesRange.RandomExclusive();
             var wait = new WaitForSeconds(_lightningTimeRange.Random() /  updates);
             // Draw Lightnings
             for (int i = 0; i < updates; i++)

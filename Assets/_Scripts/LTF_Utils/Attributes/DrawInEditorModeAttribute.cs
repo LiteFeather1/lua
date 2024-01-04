@@ -1,33 +1,36 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-public class DrawInEditorModeAttribute : PropertyAttribute
+namespace LTF
 {
-    public bool InEditor { get; }
+    public class DrawInEditorModeAttribute : PropertyAttribute
+    {
+        public bool InEditor { get; }
 
-    public DrawInEditorModeAttribute(bool inEditor = true) => InEditor = inEditor;
-}
+        public DrawInEditorModeAttribute(bool inEditor = true) => InEditor = inEditor;
+    }
 
 #if UNITY_EDITOR
-[CustomPropertyDrawer(typeof(DrawInEditorModeAttribute))]
-public class DrawInPlayModeDrawer : PropertyDrawer
-{
-    private float _propertyDrawer;
-
-    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+    [CustomPropertyDrawer(typeof(DrawInEditorModeAttribute))]
+    public class DrawInPlayModeDrawer : PropertyDrawer
     {
-        return _propertyDrawer;
-    }
+        private float _propertyDrawer;
 
-    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-    {
-        if ((attribute as DrawInEditorModeAttribute).InEditor != Application.isPlaying)
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            _propertyDrawer = base.GetPropertyHeight(property, label);
-            EditorGUI.PropertyField(position, property, label, true);
+            return _propertyDrawer;
         }
-        else
-            _propertyDrawer = 0f;
+
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        {
+            if ((attribute as DrawInEditorModeAttribute).InEditor != Application.isPlaying)
+            {
+                _propertyDrawer = base.GetPropertyHeight(property, label);
+                EditorGUI.PropertyField(position, property, label, true);
+            }
+            else
+                _propertyDrawer = 0f;
+        }
     }
-}
 #endif
+}
