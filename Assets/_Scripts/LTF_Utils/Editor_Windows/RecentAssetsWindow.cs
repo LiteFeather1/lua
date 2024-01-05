@@ -159,11 +159,12 @@ namespace LTF.Editor.Windows
                         EditorGUIUtility.SetIconSize(new(16f, 16f));
                         var choiceButtonStyle = new GUIStyle(GUI.skin.button)
                         {
-                            alignment = TextAnchor.MiddleCenter,
+                            alignment = TextAnchor.MiddleLeft,
                             fontStyle = FontStyle.Bold,
                         };
                         // Open
-                        if (GUILayout.Button(new GUIContent(s.Name, AssetDatabase.GetCachedIcon(s.Path)), choiceButtonStyle, sr_height))
+                        var maxWidth = GUILayout.Width(Screen.width - (BUTTON_SIZE * 2f) - 14f);
+                        if (GUILayout.Button(new GUIContent(s.Name, AssetDatabase.GetCachedIcon(s.Path), $"{s.Name} "), choiceButtonStyle, maxWidth, sr_height))
                         {
                             if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
                                 return;
