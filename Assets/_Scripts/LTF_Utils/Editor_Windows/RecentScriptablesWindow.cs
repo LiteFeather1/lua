@@ -1,50 +1,41 @@
 ﻿#if UNITY_EDITOR
 using System.Collections.Generic;
-using System.Linq;
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace LTF.Editor.Windows
 {
-    public class RecentAssetsWindow : EditorWindow
+    public class RecentScriptablesWindow : EditorWindow
     {
-        private const string MENU_ITEM = "Tools/Recent Assets/";
+        private const string MENU_ITEM = "Tools/Recent Scriptables/";
         private const int MAX_ELEMENTS_IN_RECENT_LIST = 16;
-        private const string RANDOM_GUID = "{AD8E9BB2-096D-413F-829F-E83E0A82FD65}";
+        private const string RANDOM_GUID = "{B19E8C8F-E3FC-4D3E-9733-723A8FF25C50}";
         private const float BUTTON_SIZE = 24f;
 
         private static readonly GUILayoutOption sr_buttonWidth = GUILayout.Width(BUTTON_SIZE);
         private static readonly GUILayoutOption sr_height = GUILayout.Height(BUTTON_SIZE);
         private static readonly Color sr_red = new(.9f, 0f, .1f, .5f);
         private static readonly Color sr_green = new(.2f, .8f, 0f, .5f);
-        private static readonly Color sr_blue = new(0f, .33f, .66f, .5f);
 
         private static readonly GUIContent sr_clearAllContent = new("CLEAR ALL", "Removes all but pinned");
-        private static readonly GUIContent sr_toggleContent = new("O");
         private static readonly GUIContent sr_pinContent = new();
         private static readonly GUIContent sr_removeContent = new("X", "Remove Item");
 
         private static Data s_data;
+        private static readonly List<Object> sr_scriptables = new();
         private static int s_pinnnedAmount;
         private static Vector2 s_scrollPos;
 
         private static string ListPersistanceKey => $"{Application.productName}_{Application.companyName}_{RANDOM_GUID}";
 
-        [MenuItem(MENU_ITEM + "Window", priority = 0)]
+        [MenuItem(MENU_ITEM + "Window", priority = 100)]
         private static void Init()
         {
-            GetWindow<RecentAssetsWindow>("Recent Prefabs");
+            GetWindow<RecentScriptablesWindow>("Recent Scriptables");
         }
 
-        [MenuItem(MENU_ITEM + "Toggle Scene Visibility", priority = 1)]
-        private static void ToggleSceneVisibility()
-        {
-            s_data.ShowScenes = !s_data.ShowScenes;
-        }
-
-        [MenuItem(MENU_ITEM + "Clear Editor Prefs",priority = 2)]
+        [MenuItem(MENU_ITEM + "Clear Editor Prefs", priority = 101)]
         private static void ClearPrefs()
         {
             EditorPrefs.DeleteKey(ListPersistanceKey);
@@ -52,40 +43,28 @@ namespace LTF.Editor.Windows
 
         private void OnEnable()
         {
-            EditorSceneManager.sceneClosed += SceneClosed;
-            PrefabStage.prefabStageClosing += PrefabStageClosing;
+            Selection.selectionChanged += SelectionChanged;
 
             s_data = JsonUtility.FromJson<Data>(EditorPrefs.GetString(ListPersistanceKey, JsonUtility.ToJson(new Data())));
+            for (int i = 0; i < s_data.Count; i++)
+            {
+                if (s_data[i].IsPinned)
+                    s_pinnnedAmount++;
 
-            s_pinnnedAmount = s_data.List.Count(s => s.IsPinned);
+                sr_scriptables.Add(AssetDatabase.LoadAssetAtPath<Object>(s_data[i].Path));
+            }
         }
 
         private void OnDisable()
         {
-            EditorSceneManager.sceneClosed -= SceneClosed;
-            PrefabStage.prefabStageClosing -= PrefabStageClosing;
+            Selection.selectionChanged -= SelectionChanged;
 
             EditorPrefs.SetString(ListPersistanceKey, JsonUtility.ToJson(s_data));
         }
 
         private void OnGUI()
         {
-            string label;
-            Color c;
-            if (s_data.ShowScenes)
-            {
-                label = "Pinned & Recent Prefabs & Scenes:";
-                sr_toggleContent.tooltip = "Hide scenes";
-                c = sr_blue;
-            }
-            else
-            {
-                label = "Pinned & Recent Prefabs:";
-                sr_toggleContent.tooltip = "Show scenes";
-                c = Color.white;
-            }
-
-            EditorGUILayout.LabelField(label, new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold });
+            EditorGUILayout.LabelField("Pinned & Recent Scriptables: ", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold });
 
             s_scrollPos = EditorGUILayout.BeginScrollView(s_scrollPos);
 
@@ -97,27 +76,18 @@ namespace LTF.Editor.Windows
             EditorGUILayout.EndScrollView();
             EditorGUILayout.LabelField("", GUI.skin.horizontalScrollbar);
 
-            using (new EditorGUILayout.HorizontalScope())
+            GUI.backgroundColor = sr_red;
+            // Remove all but pinned button
+            if (GUILayout.Button(sr_clearAllContent, sr_height))
             {
-                GUI.backgroundColor = c;
-                // Toggle Scenes button
-                if (GUILayout.Button(sr_toggleContent, sr_buttonWidth, sr_height))
+                if (s_data.Count > 0)
                 {
-                    s_data.ShowScenes = !s_data.ShowScenes;
+                    s_data.List.RemoveRange(s_pinnnedAmount, s_data.Count - s_pinnnedAmount);
+                    sr_scriptables.RemoveRange(s_pinnnedAmount, s_data.Count - s_pinnnedAmount);
                     Repaint();
                 }
-
-                GUI.backgroundColor = sr_red;
-                // Remove all but pinned button
-                if (GUILayout.Button(sr_clearAllContent, sr_height))
-                {
-                    if (s_data.Count > 0)
-                    {
-                        s_data.List.RemoveRange(s_pinnnedAmount, s_data.Count - s_pinnnedAmount);
-                        Repaint();
-                    }
-                }
             }
+
             GUI.backgroundColor = Color.white;
         }
 
@@ -125,7 +95,7 @@ namespace LTF.Editor.Windows
         {
             for (int i = from; i >= to; i--)
             {
-                var s = s_data[i];  
+                var s = s_data[i];
                 if (string.IsNullOrEmpty(s.Name)
                     || string.IsNullOrEmpty(s.Path)
                     || string.IsNullOrEmpty(AssetDatabase.AssetPathToGUID(s.Path, AssetPathToGUIDOptions.OnlyExistingAssets)))
@@ -134,22 +104,15 @@ namespace LTF.Editor.Windows
                     continue;
                 }
 
-                if (!s_data.ShowScenes && !s.IsPrefab)
-                    continue;
-
-                var stage = PrefabStageUtility.GetCurrentPrefabStage();
                 bool isPresent = false;
-                if (stage == null)
-                    for (int index = 0; index < SceneManager.sceneCount; index++)
+                for (int index = 0; index < SceneManager.sceneCount; index++)
+                {
+                    if (Selection.activeObject == sr_scriptables[i])
                     {
-                        if (SceneManager.GetSceneAt(index).path.Equals(s.Path))
-                        {
-                            isPresent = true;
-                            break;
-                        }
+                        isPresent = true;
+                        break;
                     }
-                else
-                    isPresent = stage.assetPath.Equals(s.Path);
+                }
 
                 using (new EditorGUILayout.HorizontalScope())
                 {
@@ -164,15 +127,7 @@ namespace LTF.Editor.Windows
                         };
                         // Open
                         if (GUILayout.Button(new GUIContent(s.Name, AssetDatabase.GetCachedIcon(s.Path)), choiceButtonStyle, sr_height))
-                        {
-                            if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
-                                return;
-
-                            if (s.IsPrefab)
-                                AssetDatabase.OpenAsset(AssetDatabase.LoadAssetAtPath<GameObject>(s.Path));
-                            else
-                                EditorSceneManager.OpenScene(s.Path);
-                        }
+                            Selection.activeObject = sr_scriptables[i];
                     }
 
                     if (s.IsPinned)
@@ -200,17 +155,25 @@ namespace LTF.Editor.Windows
                         s.IsPinned = !s.IsPinned;
                         s_data[i] = s;
                         if (s.IsPinned)
-                        {   
+                        {
                             if (i != s_data.Count - 1)
+                            {
                                 (s_data[i], s_data[s_pinnnedAmount]) = (s_data[s_pinnnedAmount], s_data[i]);
+                                (sr_scriptables[i], sr_scriptables[s_pinnnedAmount]) = (sr_scriptables[s_pinnnedAmount], sr_scriptables[i]);
+                            }
                             else
                             {
-                                //Move element forward
+                                // Move element forward
                                 var tmpD = s_data[from];
+                                var tmpS = sr_scriptables[from];
                                 // Inplace moving items so we don't have to RemoveAt and then Insert
                                 for (int j = i; j > s_pinnnedAmount; j--)
+                                {
                                     s_data[j] = s_data[j - 1];
+                                    sr_scriptables[j] = sr_scriptables[j - 1];
+                                }
                                 s_data[s_pinnnedAmount] = tmpD;
+                                sr_scriptables[s_pinnnedAmount] = tmpS;
                             }
                             s_pinnnedAmount++;
                         }
@@ -228,6 +191,7 @@ namespace LTF.Editor.Windows
                     if (GUILayout.Button(sr_removeContent, closeButtonStyle, sr_buttonWidth, sr_height))
                     {
                         s_data.List.RemoveAt(i);
+                        sr_scriptables.RemoveAt(i);
                         if (s.IsPinned)
                             s_pinnnedAmount--;
                         Repaint();
@@ -240,31 +204,26 @@ namespace LTF.Editor.Windows
             }
         }
 
-        private void SceneClosed(Scene scene)
+        private void SelectionChanged()
         {
-            if (Application.isPlaying)
+            if (Selection.activeObject is not ScriptableObject scriptable)
+            {
+                Repaint();
                 return;
+            }
 
-            AddRecentItem(scene.path, scene.name, false);
-
+            AddItem(scriptable, AssetDatabase.GetAssetPath(scriptable), scriptable.name);
             Repaint();
         }
 
-        private void PrefabStageClosing(PrefabStage prefab)
-        {
-            AddRecentItem(prefab.assetPath, prefab.prefabContentsRoot.name, true);
-
-            Repaint();
-        }
-
-        private static void AddRecentItem(string path, string name, bool prefab)
+        private void AddItem(ScriptableObject scriptable, string path, string name)
         {
             // Checking we already have that item
             for (int i = s_data.Count - 1; i >= 0; i--)
             {
                 // Don't have so continue
                 if (!s_data[i].Path.Equals(path))
-                        continue;
+                    continue;
                 // We have it and it's pinned so we don't have to do anything
                 if (s_data[i].IsPinned)
                     return;
@@ -274,7 +233,8 @@ namespace LTF.Editor.Windows
                 return;
             }
 
-            s_data.List.Add(new(path, name, prefab));
+            s_data.List.Add(new(path, name));
+            sr_scriptables.Add(scriptable);
 
             if (s_data.List.Count > MAX_ELEMENTS_IN_RECENT_LIST + s_pinnnedAmount)
                 s_data.List.RemoveAt(s_pinnnedAmount);
@@ -282,26 +242,29 @@ namespace LTF.Editor.Windows
 
         private static void MoveElementBack(int from)
         {
-            var tmp = s_data[from];
+            var tmpD = s_data[from];
+            var tmpS = sr_scriptables[from];
             // Inplace moving items so we don't have to RemoveAt and then Insert
             for (int j = from; j < s_data.Count - 1; j++)
+            {
                 s_data[j] = s_data[j + 1];
-            s_data[^1] = tmp;
+                sr_scriptables[j] = sr_scriptables[j + 1];
+            }
+            s_data[^1] = tmpD;
+            sr_scriptables[^1] = tmpS;
         }
 
         [System.Serializable]
-        private struct SavedSceneOrPrefab
+        private struct SavedScriptable
         {
             [field: SerializeField] public string Path { get; private set; }
             [field: SerializeField] public string Name { get; private set; }
-            [field: SerializeField] public bool IsPrefab { get; private set;    }
             [field: SerializeField] public bool IsPinned { get; set; }
 
-            public SavedSceneOrPrefab(string path, string name, bool isPrefab)
+            public SavedScriptable(string path, string name)
             {
                 Path = path;
                 Name = name;
-                IsPrefab = isPrefab;
                 IsPinned = false;
             }
         }
@@ -309,16 +272,14 @@ namespace LTF.Editor.Windows
         [System.Serializable]
         private struct Data
         {
-            [field: SerializeField] public List<SavedSceneOrPrefab> List { get; private set; }
-            [field: SerializeField] public bool ShowScenes { get; set; }
+            [field: SerializeField] public List<SavedScriptable> List { get; private set; }
 
-            public Data(List<SavedSceneOrPrefab> list, bool showScenes)
+            public Data(List<SavedScriptable> list)
             {
                 List = list;
-                ShowScenes = showScenes;
             }
 
-            public readonly SavedSceneOrPrefab this[int i] { get => List[i]; set => List[i] = value; }
+            public readonly SavedScriptable this[int i] { get => List[i]; set => List[i] = value; }
 
             public readonly int Count => List.Count;
         }
