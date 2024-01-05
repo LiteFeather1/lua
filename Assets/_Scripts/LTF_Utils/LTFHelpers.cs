@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace LTF.Utils
 {
@@ -10,14 +11,40 @@ namespace LTF.Utils
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="array"></param>
-        public static void KnuthShuffle<T>(this T[] array)
+        public static void KnuthShuffle<T>(this IList<T> array)
         {
-            int n = array.Length;
+            int n = array.Count;
             while (n > 1)
             {
                 int k = Random.Range(0, n--);
                 (array[k], array[n]) = (array[n], array[k]);
             }
+        }
+
+        public static void Move<T>(this T[] a, int from, int to)
+        {
+            var tmp = a[from];
+            if (from < to)
+                for (int i = from; i < to; i++)
+                    a[i] = a[i + 1];
+            else
+                for (int i = from; i > to; i--)
+                    a[i] = a[i - 1];
+
+            a[to] = tmp;
+        }
+
+        public static void Move<T>(this List<T> l, int from, int to)
+        {
+            var tmp = l[from];
+            if (from < to)
+                for (int i = from; i < to; i++)
+                    l[i] = l[i + 1];
+            else
+                for (int i = from; i > to; i--)
+                    l[i] = l[i - 1];
+
+            l[to] = tmp;
         }
 
         public static T PickRandom<T>(this T[] array)
