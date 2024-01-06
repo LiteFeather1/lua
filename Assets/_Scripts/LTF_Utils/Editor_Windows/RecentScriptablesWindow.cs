@@ -23,7 +23,6 @@ namespace LTF.Editor.Windows
         private static readonly GUIContent sr_removeContent = new("X", "Remove Item");
 
         private static Data s_data;
-        private static readonly List<Object> sr_scriptables = new();
         private static int s_pinnnedAmount;
         private static Vector2 s_scrollPos;
 
@@ -51,7 +50,7 @@ namespace LTF.Editor.Windows
                 if (s_data[i].IsPinned)
                     s_pinnnedAmount++;
 
-                sr_scriptables.Add(AssetDatabase.LoadAssetAtPath<Object>(s_data[i].Path));
+                s_data.List[i].Scriptable = AssetDatabase.LoadAssetAtPath<Object>(s_data[i].Path);
             }
         }
 
@@ -83,7 +82,6 @@ namespace LTF.Editor.Windows
                 if (s_data.Count > 0)
                 {
                     s_data.List.RemoveRange(s_pinnnedAmount, s_data.Count - s_pinnnedAmount);
-                    sr_scriptables.RemoveRange(s_pinnnedAmount, s_data.Count - s_pinnnedAmount);
                     Repaint();
                 }
             }
@@ -107,7 +105,7 @@ namespace LTF.Editor.Windows
                 bool isPresent = false;
                 for (int index = 0; index < SceneManager.sceneCount; index++)
                 {
-                    if (Selection.activeObject == sr_scriptables[i])
+                    if (Selection.activeObject == s_data[i].Scriptable)
                     {
                         isPresent = true;
                         break;
@@ -128,7 +126,7 @@ namespace LTF.Editor.Windows
                         // Open
                         var maxWidth = GUILayout.Width(EditorGUIUtility.currentViewWidth - (BUTTON_SIZE * 3f) - 4f);
                         if (GUILayout.Button(new GUIContent(s.Name, AssetDatabase.GetCachedIcon(s.Path), $"{s.Name} "), choiceButtonStyle, sr_height, maxWidth))
-                            Selection.activeObject = sr_scriptables[i];
+                            Selection.activeObject = s_data[i].Scriptable;
                     }
 
                     if (s.IsPinned)
@@ -154,29 +152,14 @@ namespace LTF.Editor.Windows
                     if (GUILayout.Button(sr_pinContent, closeButtonStyle, sr_buttonWidth, sr_height))
                     {
                         s.IsPinned = !s.IsPinned;
-                        s_data[i] = s;
                         if (s.IsPinned)
                         {
-                            if (i != s_data.Count - 1)
-                            {
-                                (s_data[i], s_data[s_pinnnedAmount]) = (s_data[s_pinnnedAmount], s_data[i]);
-                                (sr_scriptables[i], sr_scriptables[s_pinnnedAmount]) = (sr_scriptables[s_pinnnedAmount], sr_scriptables[i]);
-                            }
-                            else
-                            {
-                                // Move element forward
-                                var tmpD = s_data[from];
-                                var tmpS = sr_scriptables[from];
-                                // Inplace moving items so we don't have to RemoveAt and then Insert
-                                for (int j = i; j > s_pinnnedAmount; j--)
-                                {
-                                    s_data[j] = s_data[j - 1];
-                                    sr_scriptables[j] = sr_scriptables[j - 1];
-                                }
-                                s_data[s_pinnnedAmount] = tmpD;
-                                sr_scriptables[s_pinnnedAmount] = tmpS;
-                            }
-                            s_pinnnedAmount++;
+                            // Move element forward
+                            var tmpD = s_data[i];
+                            // Inplace moving items so we don't have to RemoveAt and then Insert
+                            for (int j = i; j > s_pinnnedAmount; j--)
+                                s_data[j] = s_data[j - 1];
+                            s_data[s_pinnnedAmount++] = tmpD;
                         }
                         else
                         {
@@ -192,7 +175,6 @@ namespace LTF.Editor.Windows
                     if (GUILayout.Button(sr_removeContent, closeButtonStyle, sr_buttonWidth, sr_height))
                     {
                         s_data.List.RemoveAt(i);
-                        sr_scriptables.RemoveAt(i);
                         if (s.IsPinned)
                             s_pinnnedAmount--;
                         Repaint();
@@ -234,8 +216,7 @@ namespace LTF.Editor.Windows
                 return;
             }
 
-            s_data.List.Add(new(path, name));
-            sr_scriptables.Add(scriptable);
+            s_data.List.Add(new(scriptable, path, name));
 
             if (s_data.List.Count > MAX_ELEMENTS_IN_RECENT_LIST + s_pinnnedAmount)
                 s_data.List.RemoveAt(s_pinnnedAmount);
@@ -244,26 +225,23 @@ namespace LTF.Editor.Windows
         private static void MoveElementBack(int from)
         {
             var tmpD = s_data[from];
-            var tmpS = sr_scriptables[from];
             // Inplace moving items so we don't have to RemoveAt and then Insert
             for (int j = from; j < s_data.Count - 1; j++)
-            {
                 s_data[j] = s_data[j + 1];
-                sr_scriptables[j] = sr_scriptables[j + 1];
-            }
             s_data[^1] = tmpD;
-            sr_scriptables[^1] = tmpS;
         }
 
         [System.Serializable]
-        private struct SavedScriptable
+        private class SavedScriptable
         {
+            public Object Scriptable { get; set; }
             [field: SerializeField] public string Path { get; private set; }
             [field: SerializeField] public string Name { get; private set; }
             [field: SerializeField] public bool IsPinned { get; set; }
 
-            public SavedScriptable(string path, string name)
+            public SavedScriptable(Object scriptable, string path, string name)
             {
+                Scriptable = scriptable;
                 Path = path;
                 Name = name;
                 IsPinned = false;

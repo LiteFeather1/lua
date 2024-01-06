@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 
 namespace LTF.Editor.Windows
 {
+    // ToDo: Could be neat to have a fuzzysearch textfield, tho is not necessary
+    // Todo: Would be nice to have a small inheritance because this and RecentScriptablesWindow are almost the same thing but with a few changes +
+    // aaa
     public class RecentAssetsWindow : EditorWindow
     {
         private const string MENU_ITEM = "Tools/Recent Assets/";
@@ -201,19 +204,13 @@ namespace LTF.Editor.Windows
                         s.IsPinned = !s.IsPinned;
                         s_data[i] = s;
                         if (s.IsPinned)
-                        {   
-                            if (i != s_data.Count - 1)
-                                (s_data[i], s_data[s_pinnnedAmount]) = (s_data[s_pinnnedAmount], s_data[i]);
-                            else
-                            {
-                                //Move element forward
-                                var tmpD = s_data[from];
-                                // Inplace moving items so we don't have to RemoveAt and then Insert
-                                for (int j = i; j > s_pinnnedAmount; j--)
-                                    s_data[j] = s_data[j - 1];
-                                s_data[s_pinnnedAmount] = tmpD;
-                            }
-                            s_pinnnedAmount++;
+                        {
+                            //Move element forward
+                            var tmpD = s_data[i];
+                            // Inplace moving items so we don't have to RemoveAt and then Insert
+                            for (int j = i; j > s_pinnnedAmount; j--)
+                                s_data[j] = s_data[j - 1];
+                            s_data[s_pinnnedAmount++] = tmpD;
                         }
                         else
                         {
@@ -295,7 +292,7 @@ namespace LTF.Editor.Windows
         {
             [field: SerializeField] public string Path { get; private set; }
             [field: SerializeField] public string Name { get; private set; }
-            [field: SerializeField] public bool IsPrefab { get; private set;    }
+            [field: SerializeField] public bool IsPrefab { get; private set; }
             [field: SerializeField] public bool IsPinned { get; set; }
 
             public SavedSceneOrPrefab(string path, string name, bool isPrefab)
