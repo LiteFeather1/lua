@@ -41,5 +41,5 @@ namespace LTF.BiasedRandom.Editor
             EditorGUILayout.EndFoldoutHeaderGroup();
         }
     }
-#endif
 }
+#endif
